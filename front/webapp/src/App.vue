@@ -1,5 +1,11 @@
+<!--
+ * @Date: 2020-11-11 09:58:43
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-11-11 11:00:01
+-->
 <template>
   <div id="app">
+
     <img src="./assets/logo.png">
     <router-view/>
   </div>
@@ -8,6 +14,7 @@
 <script>
 export default {
   name: 'App'
+  
 }
 </script>
 
