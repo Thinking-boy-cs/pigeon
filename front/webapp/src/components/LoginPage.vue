@@ -89,7 +89,6 @@ export default {
 <style type="text/css">
 
 #welcome {
-  margin-top: 80px;
   color: black;
   font-size: 29px;
   text-align: center;
