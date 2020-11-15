@@ -1,16 +1,17 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 16:42:08
+ * @LastEditTime: 2020-11-15 20:02:39
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import LoginPage from '@/components/LoginPage'
 import Register from '@/components/Register'
-import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.css'
-
+import Notification from '@/components/Notification'
+import Main from '@/components/Main'
+import Antd from 'ant-design-vue/es'
+import 'ant-design-vue/dist/antd.less'
 Vue.use(Router)
 Vue.use(Antd)
 export default new Router({
@@ -29,6 +30,16 @@ export default new Router({
       path: '/register',
       name: 'Regist',
       component: Register
+    },
+    {
+      path: '/Notification',
+      name: 'Notification',
+      component: Notification
+    },
+    {
+      path: '/',
+      name: 'Main',
+      component: Main
     }
   ]
 })
