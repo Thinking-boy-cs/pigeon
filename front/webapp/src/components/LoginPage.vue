@@ -2,11 +2,13 @@
   <div id="header-container">
     <div id="header-title">
       <p id="welcome">
-        你好，<br />欢迎来到Pigeon！<br /><br /><br />
-        账号密码登录
+        欢迎使用Pigeon<br />
+        <a class="welcome1">更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生</a><br /><br /><br />
       </p>
     </div>
+    <div id="test">
     <div id="header-mid">
+      <p id="login">账号密码登录</p>
       <a-form
     id="components-form-demo-normal-login"
     :form="form"
@@ -62,6 +64,7 @@
     </a-form-item>
   </a-form>
     </div>
+    </div>
   </div>
 </template>
 
@@ -84,11 +87,26 @@ export default {
 </script>
 
 <style type="text/css">
+body{
+  background-color: tomato;
+}
 #welcome {
-  margin-left: 45px;
-  margin-top: 92px;
+  margin-top: 80px;
+  color: white;
+  font-size: 29px;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-weight: bold;
+}
+.welcome1 {
+  font-size: 18px;
+  color: white;
+  font-weight: normal;
+}
+#login {
+  padding-top: 50px;
   color: rgba(16, 16, 16, 100);
-  font-size: 26px;
+  font-size: 20px;
   text-align: left;
   font-family: PingFangSC-Regular;
   font-weight: bold;
@@ -96,6 +114,14 @@ export default {
 #header-mid {
   margin-left: 45px;
   width: calc(100% - 90px);
+}
+#test {
+  margin-top: 65px;
+  background-color: white;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  height: 600px;
+  border-radius: 20px 20px 0px 0px;
 }
 #username,
 #password {
