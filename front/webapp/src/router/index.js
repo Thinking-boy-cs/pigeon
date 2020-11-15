@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 16:18:01
+ * @LastEditTime: 2020-11-15 16:42:08
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -26,9 +26,9 @@ export default new Router({
       component: LoginPage
     },
     {
-        path: '/register',
-        name: 'Regist',
-        component: Register
+      path: '/register',
+      name: 'Regist',
+      component: Register
     }
   ]
 })
