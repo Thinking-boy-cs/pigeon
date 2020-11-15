@@ -1,45 +1,20 @@
-/*
- * @Date: 2020-11-11 11:09:58
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-11 11:10:31
- */
 package cn.swu.pigeon.entity;
 
-import java.io.Serializable;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
-import org.springframework.stereotype.Component;
+import java.util.Date;
 
-@Component
-public class User implements Serializable{
-    private String id;
-    private String name;
+@Data
+@Accessors(chain = true)
+public class User {
+    private String id;//String 类型api 相当多
+    private String username;
+    private String realname;
+    private String password;
+    private String sex;
+    private String status;
+    private Date registerTime;
 
-    /**
-     * @return String return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * @return String return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }
