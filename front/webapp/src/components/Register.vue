@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 17:57:58
+ * @LastEditTime: 2020-11-15 20:04:43
 -->
 <template>
   <div id="subapp">
@@ -52,7 +52,7 @@
           </a-input-password>
         </a-form-model-item>
         <a-form-item>
-          <a-radio defaultChecked="false" v-model="formInline.agree">勾选表示同意<a href="#">《用户使用协议》</a></a-radio>
+          <a-radio :defaultChecked="false" v-model="formInline.agree">勾选表示同意<a href="#">《用户使用协议》</a></a-radio>
         </a-form-item>
         <a-form-model-item>
           <a-button

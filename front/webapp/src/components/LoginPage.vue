@@ -52,7 +52,7 @@
       <a class="login-form-forgot" href="">
         忘记密码
       </a>
-      <a-button type="primary" html-type="submit" class="login-form-button">
+      <a-button size="large" type="primary" html-type="submit" class="login-form-button">
         登 录
       </a-button>
       或者
