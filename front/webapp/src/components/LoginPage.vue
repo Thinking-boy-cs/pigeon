@@ -2,8 +2,8 @@
   <div id="header-container">
     <div id="header-title">
       <p id="welcome">
-        欢迎使用Pigeon<br />
-        <a class="welcome1">更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生</a><br /><br /><br />
+        欢迎使用Pigeon
+        <p class="welcome1">更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生<br /><br /><br />
       </p>
     </div>
     <div id="test">
@@ -90,15 +90,15 @@ export default {
 
 #welcome {
   margin-top: 80px;
-  color: white;
+  color: black;
   font-size: 29px;
   text-align: center;
   font-family: PingFangSC-Regular;
-  font-weight: bold;
+  font-weight: 700;
 }
 .welcome1 {
+  text-align: center;
   font-size: 18px;
-  color: white;
   font-weight: normal;
 }
 #login {
