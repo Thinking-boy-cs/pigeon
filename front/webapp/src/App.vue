@@ -1,12 +1,13 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-11 11:00:01
+ * @LastEditTime: 2020-11-15 20:22:18
 -->
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- <img src="./assets/logo.png"> -->
     <router-view/>
+    <div id="navigator-container"></div>
   </div>
 </template>
 
@@ -24,6 +25,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 100vw;
+  height: 100vh;
+  /* margin-top: 60px; */
 }
 </style>
