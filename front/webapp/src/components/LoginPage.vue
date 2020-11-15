@@ -86,24 +86,19 @@ export default {
 }
 </script>
 
-<style type="text/css">
-
+<style lang="less">
+@import "~ant-design-vue/dist/antd.less";
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: @text-color;
+}
 #welcome {
-  color: black;
-  font-size: 29px;
-  text-align: center;
-  font-family: PingFangSC-Regular;
-  font-weight: 700;
-}
-.welcome1 {
-  text-align: center;
-  font-size: 18px;
-  font-weight: normal;
-}
-#login {
-  padding-top: 50px;
-  color: rgba(16, 16, 16, 100);
-  font-size: 20px;
+  margin-left: 45px;
+  margin-top: 92px;
+  // color: rgba(16, 16, 16, 100);
+  font-size: 26px;
   text-align: left;
   font-family: PingFangSC-Regular;
   font-weight: bold;
@@ -123,7 +118,7 @@ export default {
 #password {
   line-height: 20px;
   background-color: rgba(248, 248, 248, 100);
-  color: rgba(16, 16, 16, 100);
+  // color: rgba(16, 16, 16, 100);
   font-size: 14px;
   text-align: left;
   font-family: PingFangSC-Regular;
