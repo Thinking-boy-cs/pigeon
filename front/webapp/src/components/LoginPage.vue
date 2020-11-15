@@ -87,9 +87,7 @@ export default {
 </script>
 
 <style type="text/css">
-body{
-  background-color: tomato;
-}
+
 #welcome {
   margin-top: 80px;
   color: white;
@@ -120,7 +118,6 @@ body{
   background-color: white;
   width: calc(100% - 40px);
   margin-left: 20px;
-  height: 600px;
   border-radius: 20px 20px 0px 0px;
 }
 #username,
