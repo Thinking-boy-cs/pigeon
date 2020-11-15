@@ -1,10 +1,10 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 20:04:43
+ * @LastEditTime: 2020-11-15 20:34:32
 -->
 <template>
-  <div id="subapp">
+  <div>
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 * {
   margin: 0;
   padding: 0;
@@ -116,7 +116,8 @@ export default {
 #header-container {
   position: relative;
   text-align: left;
-  margin-top: 100px;
+  /* height: calc(100vh - 40px); */
+  padding-top: 100px;
 }
 #header-wrapper {
   width: calc(100% - 90px);
