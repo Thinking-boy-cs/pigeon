@@ -26,9 +26,9 @@ export default new Router({
       component: LoginPage
     },
     {
-        path: '/register',
-        name: 'Regist',
-        component: Register
+      path: '/register',
+      name: 'Regist',
+      component: Register
     }
   ]
 })
