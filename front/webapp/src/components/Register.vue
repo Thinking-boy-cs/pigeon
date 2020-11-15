@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 20:34:32
+ * @LastEditTime: 2020-11-15 20:44:32
 -->
 <template>
   <div>
@@ -91,10 +91,13 @@ export default {
 </script>
 
 <style lang="less">
+@import "~ant-design-vue/dist/antd.less";
+
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  color: @text-color;
 }
 #navigation-container {
   position: fixed;
@@ -126,11 +129,11 @@ export default {
 .header-title {
   font-size: 37px;
   font-weight: bolder;
-  color: #101010;
+  color: @text-color;
 }
 .header-second-title {
   font-size: 18px;
-  color: #999999;
+  color: @text-color-secondary;
 }
 #form-container {
   position: relative;
