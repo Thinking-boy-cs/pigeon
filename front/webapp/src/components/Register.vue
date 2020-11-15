@@ -1,10 +1,10 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 17:32:30
+ * @LastEditTime: 2020-11-15 17:57:58
 -->
 <template>
-  <div id="app">
+  <div id="subapp">
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">

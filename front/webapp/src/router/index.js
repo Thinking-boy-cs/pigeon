@@ -1,13 +1,14 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 16:42:08
+ * @LastEditTime: 2020-11-15 17:49:03
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import LoginPage from '@/components/LoginPage'
 import Register from '@/components/Register'
+import Main from '@/components/Main'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 
@@ -17,8 +18,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Main',
+      component: Main
     },
     {
       path: '/login',
@@ -30,5 +31,6 @@ export default new Router({
       name: 'Regist',
       component: Register
     }
+
   ]
 })
