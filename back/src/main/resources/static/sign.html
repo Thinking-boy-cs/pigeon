@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sign</title>
+</head>
+<body>
+    <div id="wrap">
+        <form action="login.html" method="post">
+            <table cellpadding="0" cellspacing="0" border="0"
+                   class="form_table">
+                <tr>
+                    <td valign="middle" align="right">
+                        姓名:
+                    </td>
+                    <td valign="middle" align="left">
+                        <input type="text" class="inputgri" v-model="record.username"  />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" align="right">
+                        温度:
+                    </td>
+                    <td valign="middle" align="left">
+                        <input type="text" class="inputgri" v-model="record.temeperature"  />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" align="right">
+                        国家:
+                    </td>
+                    <td valign="middle" align="left">
+                        <input type="text" class="inputgri" v-model="record.nation"  />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" align="right">
+                        省份:
+                    </td>
+                    <td valign="middle" align="left">
+                        <input type="text" class="inputgri" v-model="record.province" />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" align="right">
+                        城市:
+                    </td>
+                    <td valign="middle" align="left">
+                        <input type="password" class="inputgri" v-model="record.city" />
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <input type="button" @click="sign" class="button" value="Submit &raquo;" />
+            </p>
+        </form>
+    </div>
+</body>
+</html>
+
+<script src="/pigeon/js/vue.js"></script>
+<script src="/pigeon/js/axios.min.js"></script>
+<script>
+    var app = new Vue({
+        el:"#wrap",
+        data:{
+            url:"",
+            record:{
+            },
+        },
+        methods:{
+            //用来签到
+            sign(){
+                axios.post("http://localhost:8989/pigeon/record/sign?code="+this.record).then(res=>{
+                    console.log(res.data);
+                    if(res.data.state){
+                        alert(res.data.msg+",签到成功!");
+                    }else{
+                        alert(res.data.msg);
+                    }
+                });
+            }
+        },
+    })
+</script>
