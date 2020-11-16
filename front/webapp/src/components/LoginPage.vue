@@ -99,14 +99,15 @@ export default {
   z-index:1;
 }
 #header-background:after{
+  background: url(../img/gezi.png) no-repeat fixed;
   content: "";
   width:100%;
   height:100%;
   position: absolute;
   left:0;
   top:0;
-  background: inherit;
-  filter: blur(2px);
+  filter: opacity(30%);
+  // background: inherit;
   z-index: 2;
 }
 #header-container {
