@@ -97,7 +97,7 @@ export default {
   padding-top: 65px;
   font-size: 26px;
   text-align: center;
-  font-family: PingFangSC-Regular;
+  font-family: PingFang SC;
   font-weight: bold;
   margin-bottom: 0.5em;
 }
@@ -108,7 +108,8 @@ export default {
   padding-top: 50px;
   font-size: 20px;
   text-align: left;
-  font-weight: bolder;
+  font-family: PingFang SC;
+  font-weight: bold;
 }
 #header-mid {
   margin-left: 45px;
@@ -129,7 +130,7 @@ export default {
   // color: rgba(16, 16, 16, 100);
   font-size: 14px;
   text-align: left;
-  font-family: PingFangSC-Regular;
+  font-family:PingFang SC;
   border: 1px solid rgba(255, 255, 255, 100);
 }
 #components-form-demo-normal-login .login-form {
