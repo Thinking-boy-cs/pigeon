@@ -1,4 +1,5 @@
 <template>
+  <div id="header-background">
   <div id="header-container">
     <div id="header-title">
       <p id="welcome">
@@ -66,6 +67,7 @@
     </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -88,27 +90,51 @@ export default {
 
 <style lang="less">
 @import "~ant-design-vue/dist/antd.less";
+#header-background {
+  background: url(../img/bg.png) no-repeat fixed;
+  width:100%;
+  height:100%;
+  position: relative;
+  box-sizing:border-box;
+  z-index:1;
+}
+#header-background:after{
+  content: "";
+  width:100%;
+  height:100%;
+  position: absolute;
+  left:0;
+  top:0;
+  background: inherit;
+  filter: blur(2px);
+  z-index: 2;
+}
+#header-container {
+  position: relative;
+  z-index: 3;
+}
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  font-family: PingFang SC;
 }
 #welcome {
   padding-top: 65px;
   font-size: 26px;
   text-align: center;
-  font-family: PingFang SC;
   font-weight: bold;
+  color: white;
   margin-bottom: 0.5em;
 }
 .welcome1 {
   font-size: 15px;
+  color: white;
 }
 #login {
   padding-top: 50px;
   font-size: 20px;
   text-align: left;
-  font-family: PingFang SC;
   font-weight: bold;
 }
 #header-mid {
@@ -130,7 +156,6 @@ export default {
   // color: rgba(16, 16, 16, 100);
   font-size: 14px;
   text-align: left;
-  font-family:PingFang SC;
   border: 1px solid rgba(255, 255, 255, 100);
 }
 #components-form-demo-normal-login .login-form {
