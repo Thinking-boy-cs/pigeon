@@ -6,7 +6,7 @@
         <p class="welcome1">更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生<br /><br /><br />
       </p>
     </div>
-    <div id="test">
+    <div id="cover">
     <div id="header-mid">
       <p id="login">账号密码登录</p>
       <a-form
@@ -92,27 +92,35 @@ export default {
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: @text-color;
 }
 #welcome {
-  margin-left: 45px;
-  margin-top: 92px;
-  // color: rgba(16, 16, 16, 100);
+  padding-top: 65px;
   font-size: 26px;
-  text-align: left;
+  text-align: center;
   font-family: PingFangSC-Regular;
   font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.welcome1 {
+  font-size: 15px;
+}
+#login {
+  padding-top: 50px;
+  font-size: 20px;
+  text-align: left;
+  font-weight: bolder;
 }
 #header-mid {
   margin-left: 45px;
   width: calc(100% - 90px);
 }
-#test {
-  margin-top: 65px;
+#cover {
+  margin-top: 130px;
   background-color: white;
   width: calc(100% - 40px);
   margin-left: 20px;
   border-radius: 20px 20px 0px 0px;
+  height: 420px;
 }
 #username,
 #password {
