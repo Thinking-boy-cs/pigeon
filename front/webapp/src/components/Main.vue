@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 17:44:38
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 18:37:18
+ * @LastEditTime: 2020-11-16 20:17:49
 -->
 <template>
   <div id="app">
@@ -13,14 +13,35 @@
         <div class="cabg">4</div>
       </a-carousel>
     </div>
+    <i class="fa fa-address-book-o">face</i>
+    <!-- <div class="section-container">
+      <div class="section-title">最近常用</div>
+      <div class="item-container">
+          <a-row>
+              <a-col :span="6" v-for="(item, i) in pageData.recents" :key="i">
+                  <div class="feature-icon"><a-icon :type="item.icon" /></div>
+                  <div class="feature-name"><a-icon :type="item.name" /></div>
+              </a-col>
+          </a-row>
+      </div>
+    </div> -->
     <div class="section-container">
-      <div class=""></div>
+      <div class="section-title"></div>
+      <div class="item-container"></div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+
+    }
+  },
+  created () {
+    //   this.$axios.get('/')
+  }
 }
 </script>
 
