@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 17:44:38
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-16 20:17:49
+ * @LastEditTime: 2020-11-17 21:01:21
 -->
 <template>
   <div id="app">
@@ -13,47 +13,118 @@
         <div class="cabg">4</div>
       </a-carousel>
     </div>
-    <i class="fa fa-address-book-o">face</i>
-    <!-- <div class="section-container">
-      <div class="section-title">最近常用</div>
-      <div class="item-container">
-          <a-row>
-              <a-col :span="6" v-for="(item, i) in pageData.recents" :key="i">
-                  <div class="feature-icon"><a-icon :type="item.icon" /></div>
-                  <div class="feature-name"><a-icon :type="item.name" /></div>
-              </a-col>
-          </a-row>
-      </div>
-    </div> -->
+    <!-- <i class="fa fa-address-book-o">face</i> -->
     <div class="section-container">
-      <div class="section-title"></div>
-      <div class="item-container"></div>
+      <div class="section-wrapper">
+        <div class="section-title">最近常用</div>
+        <div class="item-container">
+          <a-row>
+            <a-col
+              class="feature-item"
+              :span="8"
+              v-for="(item, i) in pageData.recents"
+              :key="i"
+            >
+              <div class="feature-icon">
+                <a-icon :type="item.icon" two-tone-color="#fb7299" />
+              </div>
+              <div class="feature-name">{{ item.name }}</div>
+            </a-col>
+          </a-row>
+        </div>
+        <div class="section-container">
+          <div class="section-title">所有应用</div>
+          <div class="item-container">
+            <a-row>
+              <a-col
+                class="feature-item"
+                :span="8"
+                v-for="(item, i) in pageData.all"
+                :key="i"
+              >
+                <div class="feature-icon">
+                  <a-icon :type="item.icon" two-tone-color="#fb7299" />
+                </div>
+                <div class="feature-name">{{ item.name }}</div>
+              </a-col>
+            </a-row>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- <div id="" -->
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-
-    }
+      pageData: {}
+    };
   },
-  created () {
-    //   this.$axios.get('/')
+  created() {
+    var that = this;
+    // get page layout
+    this.$axios
+      .get("/static/pageData.json")
+      .then(function(res) {
+        console.log(res.data);
+        that.pageData = res.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
-}
+};
 </script>
 
-<style>
+<style lang="less">
+@import "~ant-design-vue/dist/antd.less";
+
 #carousel-container {
   position: relative;
   width: 100%;
   height: 200px;
 }
 .cabg {
-  background-color: aliceblue;
+  background-color: rgba(251, 114, 153, 0.514);
   width: 100%;
   height: 200px;
+}
+.section-container {
+  margin-top: 20px;
+}
+.section-title {
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  color: @text-color;
+}
+.section-wrapper {
+  width: calc(100% - 40px);
+  margin-left: 20px;
+}
+.feature-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 80px;
+  padding: 10px;
+}
+.feature-icon {
+  font-size: 24px;
+  height: 40px;
+  color: @primary-color;
+  font-weight: bold;
+}
+.feature-name {
+  font-size: 16px;
+  height: 20px;
+  line-height: 20px;
+  color: @text-color;
 }
 </style>
