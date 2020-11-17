@@ -74,8 +74,13 @@
             sign(){
                 axios.post("http://localhost:8989/pigeon/record/sign?",this.record).then(res=>{
                     console.log(res.data);
+<<<<<<< HEAD
                     if(res.data.state){
                         alert(res.data.msg);
+=======
+                    if(res.data.status){
+                        alert(res.data.msg+",签到成功!");
+>>>>>>> ysw-dev
                     }else{
                         alert(res.data.msg);
                     }
