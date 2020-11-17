@@ -2,24 +2,24 @@ GitHubTest
 #后端
 ## 1. 登录/注册
 + 登录:输入用户名和密码登录   
-	请求地址   
-	POST http://localhost:8989/pigeon/user/login   
-	请求参数         
+请求地址   
+POST http://localhost:8989/pigeon/user/login   
+请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; 用户类    
 
-	返回值     
+返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
 	state&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
 	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
 
-	states的合法值   
+status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
 	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;登录成功   
 	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;登录失败   
 
-	请求数据实例   
+请求数据实例   
 ```
 user{
   	user.username:"小朋友"
@@ -27,7 +27,7 @@ user{
    }
 ```   
 
-	返回数据实例
+返回数据实例
 
 ```
   {
@@ -38,24 +38,24 @@ user{
 
 
 + 注册   
-	请求地址   
-	POST http://localhost:8989/pigeon/user/register?code   
+请求地址   
+POST http://localhost:8989/pigeon/user/register?code   
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; &nbsp;用户类    
 	code &nbsp; &nbsp; String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是  &nbsp; &nbsp; &nbsp;验证码    
 
-	返回值     
+返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
 	state&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
 	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
 
-	states的合法值   
+status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
 	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;注册成功   
 	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;注册失败   
-	请求数据实例   
+请求数据实例   
 ```
 user{
 	user.id:"001"
@@ -66,7 +66,7 @@ user{
    }
 ```   
 
-	返回数据实例
+返回数据实例
 
 ```
   {
@@ -90,4 +90,37 @@ user{
 	说明:验证码   
 
 ## 2. 签到
-  
+请求地址      
+POST http://localhost:8989/pigeon/user/sign      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	record &nbsp; &nbsp; Record&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; 签到记录类    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	state&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;签到成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;签到失败   
+
+请求数据实例   
+```
+record{
+  	record.name:"小朋友"
+  	record.temperature:36.6
+  	record.nation:"中国"
+  	record.province:"重庆市"
+  	record.city:"荣昌区"
+   }
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"签到成功"
+  }
+```
