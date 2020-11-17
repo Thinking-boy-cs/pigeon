@@ -20,7 +20,7 @@
 					</div>
 					<div id="topheader">
 						<h1 id="title">
-							<a href="/ems_vue/emplist.html">main</a>
+							<a href="/pigeon/emplist.html">main</a>
 						</h1>
 					</div>
 					<div id="navigation">
@@ -82,8 +82,8 @@
 		</div>
 	</body>
 </html>
-<script src="/ems_vue/js/vue.js"></script>
-<script src="/ems_vue/js/axios.min.js"></script>
+<script src="/pigeon/js/vue.js"></script>
+<script src="/pigeon/js/axios.min.js"></script>
 <script>
 	var app = new Vue({
 		el: "#wrap",
@@ -112,7 +112,7 @@
 				var _this = this;
 				axios({
 					method:"post",
-					url:"http://localhost:8989/ems_vue/emp/save",
+					url:"http://localhost:8989/pigeon/emp/save",
 					data:formData,
 					headers:{
 						'content-type':'multipart/form-data'
@@ -121,7 +121,7 @@
 					console.log(res.data);
 					if(res.data.state){
 						if(window.confirm(res.data.msg+",点击确定跳转到列表页面!")){
-							location.href="/ems_vue/emplist.html";
+							location.href="/pigeon/emplist.html";
 						}else{
 							_this.emp = {};
 						}
@@ -137,7 +137,7 @@
 				this.user =  JSON.parse(userString);
 			}else{
 				alert("您尚未登录,点击确定跳转至登录页面!");
-				location.href ="/ems_vue/login.html";
+				location.href ="/pigeon/login.html";
 			}
 		}
 	});

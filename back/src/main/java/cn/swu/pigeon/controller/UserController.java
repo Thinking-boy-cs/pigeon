@@ -34,12 +34,12 @@ public class UserController {
         Map<String, Object> map =  new HashMap<>();
         try {
             User userDB = userService.login(user);
-            map.put("state",true);
+            map.put("status",0);
             map.put("msg","登录成功!");
             map.put("user",userDB);
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("state",false);
+            map.put("status",1);
             map.put("msg",e.getMessage());
         }
         return map;
@@ -49,7 +49,7 @@ public class UserController {
      * 用来处理用户注册方法
      */
     @PostMapping("register")
-    public Map<String, Object> register(@RequestBody User user, String code, HttpServletRequest request) {
+    public Map<String, Object> register(@RequestBody User user, String code, HttpServletRequest request){
         log.info("用户信息:[{}]",user.toString());
         log.info("用户输入的验证码信息:[{}]",code);
         Map<String, Object> map = new HashMap<>();
@@ -58,14 +58,14 @@ public class UserController {
             if (key.equalsIgnoreCase(code)) {
                 //1.调用业务方法
                 userService.register(user);
-                map.put("state", true);
+                map.put("status", 0);
                 map.put("msg", "提示: 注册成功!");
             } else {
                 throw new RuntimeException("验证码出现错误!");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("state", false);
+            map.put("status", 1);
             map.put("msg", "提示:"+e.getMessage());
         }
         return map;

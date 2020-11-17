@@ -5,14 +5,14 @@
 <mapper namespace="cn.swu.pigeon.dao.UserDAO">
 
     <!--save-->
-    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        insert into t_user values (#{id},#{username},#{realname},#{password},#{sex},#{status},#{registerTime})
+    <insert id="save" parameterType="User" >
+        insert into staff values (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime})
     </insert>
 
     <!--findByUserName-->
     <select id="findByUserName" parameterType="String" resultType="User">
-        select id,username,realname,password,sex,status,registerTime
-        from t_user where username=#{username}
+        select id,username,dept,password,sex,status,registerTime
+        from staff where username=#{username}
     </select>
 
 </mapper>

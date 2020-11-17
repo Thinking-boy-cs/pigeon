@@ -11,14 +11,14 @@
         <div id="header">
             <div id="rightheader">
                 <p>
-                    2009/11/20
+                    2020/11/13
                     <br/>
                     <a href="javascript:;" @click="logout">安全退出</a>
                 </p>
             </div>
             <div id="topheader">
                 <h1 id="title">
-                    <a href="/ems_vue/emplist.html">main</a>
+                    <a href="/pigeon/emplist.html">main</a>
                 </h1>
             </div>
             <div id="navigation">
@@ -28,7 +28,7 @@
             <p id="whereami">
             </p>
             <h1>
-                Welcome {{ user.realname }}!
+                Welcome {{ user.username }}!
             </h1>
             <table class="table">
                 <tr class="table_header">
@@ -59,7 +59,7 @@
                         {{emp.name}}
                     </td>
                     <td>
-                        <img :src="'/ems_vue/'+emp.path" style="height: 40px;">
+                        <img :src="'/pigeon/'+emp.path" style="height: 40px;">
                     </td>
                     <td>
                         {{emp.salary}}
@@ -80,14 +80,14 @@
     </div>
     <div id="footer">
         <div id="footer_bg">
-            ABC@126.com
+
         </div>
     </div>
 </div>
 </body>
 </html>
-<script src="/ems_vue/js/vue.js"></script>
-<script src="/ems_vue/js/axios.min.js"></script>
+<script src="/pigeon/js/vue.js"></script>
+<script src="/pigeon/js/axios.min.js"></script>
 <script>
     var app = new Vue({
         el: "#wrap",
@@ -107,7 +107,7 @@
             delEmp(id) {
                 if(window.confirm("确定要删除这条员工信息吗?")){
                     var _this = this;
-                    axios.get("http://localhost:8989/ems_vue/emp/delete?id=" + id).then(res => {
+                    axios.get("http://localhost:8989/pigeon/emp/delete?id=" + id).then(res => {
                         if (res.data.state) {
                             alert(res.data.msg + ",点击确定刷新数据!");
                             _this.findAll();//重新加载数据
@@ -120,7 +120,7 @@
             //查询员工列表方法
             findAll() {
                 var _this = this;
-                axios.get("http://localhost:8989/ems_vue/emp/findAll").then(res => {
+                axios.get("http://localhost:8989/pigeon/emp/findAll").then(res => {
                     _this.emps = res.data;
                 });
             }
@@ -131,7 +131,7 @@
                 this.user = JSON.parse(userString);
             } else {
                 alert("您尚未登录,点击确定跳转至登录页面!");
-                location.href = "/ems_vue/login.html";
+                location.href = "/pigeon/login.html";
             }
             //查询所有信息
             this.findAll();

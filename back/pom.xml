@@ -15,11 +15,9 @@
 	<description>ems manager project for Spring Boot</description>
 
 	<properties>
-<<<<<<< Updated upstream
+
 		<java.version>11</java.version>
-=======
-		<java.version>1.8</java.version>
->>>>>>> Stashed changes
+
 	</properties>
 
 	<dependencies>
