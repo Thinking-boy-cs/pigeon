@@ -43,7 +43,9 @@ public class UserServiceImpl implements UserService {
             user.setStatus("已激活");
             //2.设置用户注册时间
             user.setRegisterTime(new Date());
-            //3.调用DAO
+            //3.设置用户默认头像
+            user.setIcon("/default");
+            //4.调用DAO
             userDAO.save(user);
         }else{
             throw new RuntimeException("用户名已存在!");

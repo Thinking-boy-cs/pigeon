@@ -15,6 +15,7 @@ public class User {
     private String sex;
     private String status;
     private Date registerTime;
+    private String icon;
 
 
 }

@@ -10,22 +10,21 @@
 	<body>
 		<div id="wrap">
 			<div id="top_content">
-				<div id="header">
-					<div id="rightheader">
-						<p>
-							2009/11/20
-							<br/>
-							<a href="javascript:;" @click="logout">安全退出</a>
-						</p>
+					<div id="header">
+						<div id="rightheader">
+							<p>
+								2009/11/20
+								<br />
+							</p>
+						</div>
+						<div id="topheader">
+							<h1 id="title">
+								<a href="#">Main</a>
+							</h1>
+						</div>
+						<div id="navigation">
+						</div>
 					</div>
-					<div id="topheader">
-						<h1 id="title">
-							<a href="/pigeon/emplist.html">main</a>
-						</h1>
-					</div>
-					<div id="navigation">
-					</div>
-				</div>
 				<div id="content">
 					<p id="whereami">
 					</p>
@@ -40,15 +39,7 @@
 									id:
 								</td>
 								<td valign="middle" align="left">
-									{{emp.id}}
-								</td>
-							</tr>
-							<tr>
-								<td valign="middle" align="right">
-									old photo:
-								</td>
-								<td valign="middle" align="left">
-									<img :src="'/pigeon/'+emp.path" style="height: 60px;" alt="">
+									1
 								</td>
 							</tr>
 							<tr>
@@ -56,7 +47,7 @@
 									name:
 								</td>
 								<td valign="middle" align="left">
-									<input type="text" class="inputgri" v-model="emp.name"/>
+									<input type="text" class="inputgri" name="name" value="zhangshan"/>
 								</td>
 							</tr>
 							<tr>
@@ -64,7 +55,7 @@
 									photo:
 								</td>
 								<td valign="middle" align="left">
-									<input type="file" ref="photo" />
+									<input type="file" name="photo" />
 								</td>
 							</tr>
 							<tr>
@@ -72,7 +63,7 @@
 									salary:
 								</td>
 								<td valign="middle" align="left">
-									<input type="text" class="inputgri" v-model="emp.salary"/>
+									<input type="text" class="inputgri" name="salary" value="20000"/>
 								</td>
 							</tr>
 							<tr>
@@ -80,12 +71,12 @@
 									age:
 								</td>
 								<td valign="middle" align="left">
-									<input type="text" class="inputgri" v-model="emp.age"/>
+									<input type="text" class="inputgri" name="age" value="20"/>
 								</td>
 							</tr>
 						</table>
 						<p>
-							<input type="button" @click="editEmp" class="button" value="Confirm" />
+							<input type="submit" class="button" value="Confirm" />
 						</p>
 					</form>
 				</div>
@@ -98,74 +89,3 @@
 		</div>
 	</body>
 </html>
-<script src="/pigeon/js/vue.js"></script>
-<script src="/pigeon/js/axios.min.js"></script>
-<script>
-	var app = new Vue({
-		el: "#wrap",
-		data: {  //数据
-			user:{
-				realname:"",
-			},//用来存放用户登录信息
-			emp:{}
-		},
-		methods: { //自定义函数
-			//处理安全退出
-			logout(){
-				localStorage.removeItem("user");
-				location.reload(true);//刷新页面
-			},
-			//处理员工信息修改
-			editEmp(){
-				console.log(this.emp);
-				console.log(this.$refs.photo.files[0]);
-				//文件上传时 请求方式必须是post  enctype必须为multipart/form-data
-				var formData = new FormData();
-				formData.append("id",this.emp.id)
-				formData.append("name",this.emp.name);
-				formData.append("path",this.emp.path);
-				formData.append("salary",this.emp.salary);
-				formData.append("age",this.emp.age);
-				formData.append("photo",this.$refs.photo.files[0]);
-				var _this = this;
-				axios({
-					method:"post",
-					url:"http://localhost:8989/pigeon/emp/update",
-					data:formData,
-					headers:{
-						'content-type':'multipart/form-data'
-					}
-				}).then(res=>{
-					console.log(res.data);
-					if(res.data.state){
-						if(window.confirm(res.data.msg+",点击确定跳转到列表页面!")){
-							location.href="/pigeon/emplist.html";
-						}
-					}else{
-						alert(res.data.msg);
-					}
-				});
-
-			}
-		},
-		created(){//生命周期函数
-			var userString = localStorage.getItem("user");
-			if(userString){
-				this.user =  JSON.parse(userString);
-			}else{
-				alert("您尚未登录,点击确定跳转至登录页面!");
-				location.href ="/pigeon/login.html";
-			}
-			//获取对应id信息
-			var start = location.href.lastIndexOf("=");
-			var id = location.href.substring(start+1);
-			console.log(id);
-			//查询一个人信息
-			var _this = this;
-			axios.get("http://localhost:8989/pigeon/emp/findOne?id="+id).then(res=>{
-				console.log(res.data);
-				_this.emp = res.data;
-			});
-		}
-	});
-</script>
