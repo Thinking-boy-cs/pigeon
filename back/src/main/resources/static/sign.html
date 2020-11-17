@@ -62,16 +62,15 @@
 <script src="/pigeon/js/axios.min.js"></script>
 <script>
     var app = new Vue({
-        el:"#wrap",
-        data:{
-            url:"",
-            record:{
-            },
+        el: "#wrap",
+        data: {
+            url: "",
+            record: {},
         },
-        methods:{
+        methods: {
             //用来签到
-            sign(){
-                axios.post("http://localhost:8989/pigeon/record/sign?",this.record).then(res=>{
+            sign() {
+                axios.post("http://localhost:8989/pigeon/record/sign?", this.record).then(res => {
                     console.log(res.data);
                     if(res.data.status === 0){
                         alert(res.data.msg);

@@ -81,11 +81,11 @@
                 //发送登录请求
                 axios.post("http://localhost:8989/pigeon/user/login",this.user).then(res=>{
                     console.log(res.data);
-                    if(res.data.state){
+                    if(!res.data.status){
                         alert(res.data.msg+",点击确定进入主页!");
                         //将登录用户信息放入localStorage key  value
                         localStorage.setItem("user",JSON.stringify(res.data.user));
-                        location.href="/pigeon/emplist.html";
+                        location.href="/pigeon/change.html";
                     }else{
                         alert(res.data.msg);
                     }

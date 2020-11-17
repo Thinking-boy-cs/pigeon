@@ -124,6 +124,7 @@
 			getSrc(){
 				var  _this = this;
 				axios.get("http://localhost:8989/pigeon/user/getImage?time="+Math.random()).then(res=>{
+					console.log(res.data);
 					_this.url = res.data;
 
 				});
