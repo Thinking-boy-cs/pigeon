@@ -49,7 +49,7 @@ public class UserController {
      * 用来处理用户注册方法
      */
     @PostMapping("register")
-    public Map<String, Object> register(@RequestBody User user, String code, HttpServletRequest request) {
+    public Map<String, Object> register(@RequestBody User user, String code, HttpServletRequest request){
         log.info("用户信息:[{}]",user.toString());
         log.info("用户输入的验证码信息:[{}]",code);
         Map<String, Object> map = new HashMap<>();
@@ -85,4 +85,9 @@ public class UserController {
         VerifyCodeUtils.outputImage(120, 30, byteArrayOutputStream, code);
         return "data:image/png;base64," + Base64Utils.encodeToString(byteArrayOutputStream.toByteArray());
     }
+
+    /**
+     * 设置用户个人信息
+     */
+
 }
