@@ -1,10 +1,10 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 17:32:30
+ * @LastEditTime: 2020-11-15 20:44:32
 -->
 <template>
-  <div id="app">
+  <div>
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
@@ -52,7 +52,7 @@
           </a-input-password>
         </a-form-model-item>
         <a-form-item>
-          <a-radio defaultChecked="false" v-model="formInline.agree">勾选表示同意<a href="#">《用户使用协议》</a></a-radio>
+          <a-radio :defaultChecked="false" v-model="formInline.agree">勾选表示同意<a href="#">《用户使用协议》</a></a-radio>
         </a-form-item>
         <a-form-model-item>
           <a-button
@@ -90,11 +90,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+@import "~ant-design-vue/dist/antd.less";
+
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  color: @text-color;
 }
 #navigation-container {
   position: fixed;
@@ -103,6 +106,7 @@ export default {
   width: 100%;
   height: 58px;
   line-height: 58px;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 #navigation-wrapper {
   position: relative;
@@ -116,7 +120,8 @@ export default {
 #header-container {
   position: relative;
   text-align: left;
-  margin-top: 100px;
+  /* height: calc(100vh - 40px); */
+  padding-top: 100px;
 }
 #header-wrapper {
   width: calc(100% - 90px);
@@ -125,11 +130,11 @@ export default {
 .header-title {
   font-size: 37px;
   font-weight: bolder;
-  color: #101010;
+  color: @text-color;
 }
 .header-second-title {
   font-size: 18px;
-  color: #999999;
+  color: @text-color-secondary;
 }
 #form-container {
   position: relative;
