@@ -1,0 +1,24 @@
+{
+    "recents": [
+        {
+            "name": "签到",
+            "icon": "environment"
+        },
+        {
+            "name": "请假",
+            "icon": "audit"
+        },
+        {
+            "name": "信息收集",
+            "icon": "file"
+        },
+        {
+            "name": "活动报名",
+            "icon": "sound"
+        },
+        {
+            "name": "地图",
+            "icon": "compass"
+        }
+    ]
+}

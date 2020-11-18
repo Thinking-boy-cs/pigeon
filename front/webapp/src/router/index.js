@@ -1,10 +1,11 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-16 17:47:05
+ * @LastEditTime: 2020-11-18 08:06:20
  */
 import Vue from 'vue'
 import Router from 'vue-router'
+// import HelloWorld from '@/components/HelloWorld'
 import LoginPage from '@/components/LoginPage'
 import Register from '@/components/Register'
 import Notification from '@/components/Notification'
@@ -32,9 +33,12 @@ export default new Router({
       component: Register
     },
     {
-      path: '/Notification',
+      path: '/notification',
       name: 'Notification',
-      component: Notification
+      component: Notification,
+      meta: {
+        id: 1
+      }
     },
     {
       path: '/Map',
@@ -44,7 +48,10 @@ export default new Router({
     {
       path: '/',
       name: 'Main',
-      component: Main
+      component: Main,
+      meta: {
+        id: 0
+      }
     }
   ]
 })

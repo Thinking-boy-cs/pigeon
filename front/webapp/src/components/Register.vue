@@ -1,14 +1,14 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 20:44:32
+ * @LastEditTime: 2020-11-18 10:17:37
 -->
 <template>
   <div>
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" />
+          <a-icon type="left" @click="$router.go(-1);"/>
         </div>
       </div>
     </div>
@@ -91,8 +91,8 @@ export default {
 </script>
 
 <style lang="less">
-@import "~ant-design-vue/dist/antd.less";
-
+// @import "~ant-design-vue/dist/antd.less";
+@import "../style/index.less";
 * {
   margin: 0;
   padding: 0;

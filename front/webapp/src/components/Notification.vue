@@ -1,3 +1,8 @@
+<!--
+ * @Date: 2020-11-16 19:34:11
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-11-18 10:13:17
+-->
 <template>
   <div>
     <div id="navigation-container">
@@ -20,7 +25,6 @@ export default {
 
 </script>
 
-<style>
 #navigation-container {
   position: fixed;
   top: 0;
@@ -47,4 +51,6 @@ export default {
   position: relative;
   padding-top: 70px;
 }
+<style lang="less" scoped>
+@import "../style/index.less";
 </style>
