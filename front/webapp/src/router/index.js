@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 08:06:20
+ * @LastEditTime: 2020-11-18 20:41:01
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -33,12 +33,9 @@ export default new Router({
       component: Register
     },
     {
-      path: '/notification',
+      path: '/Notification',
       name: 'Notification',
-      component: Notification,
-      meta: {
-        id: 1
-      }
+      component: Notification
     },
     {
       path: '/Map',
@@ -48,10 +45,7 @@ export default new Router({
     {
       path: '/',
       name: 'Main',
-      component: Main,
-      meta: {
-        id: 0
-      }
+      component: Main
     }
   ]
 })
