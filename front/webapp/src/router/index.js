@@ -1,11 +1,11 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-17 08:15:28
+ * @LastEditTime: 2020-11-18 08:04:08
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 import LoginPage from '@/components/LoginPage'
 import Register from '@/components/Register'
 import Notification from '@/components/Notification'
@@ -27,7 +27,7 @@ export default new Router({
       component: Register
     },
     {
-      path: '/Notification',
+      path: '/notification',
       name: 'Notification',
       component: Notification
     },

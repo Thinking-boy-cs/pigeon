@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 17:44:38
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-17 21:01:21
+ * @LastEditTime: 2020-11-17 21:29:12
 -->
 <template>
   <div id="app">
@@ -52,31 +52,30 @@
         </div>
       </div>
     </div>
-    <!-- <div id="" -->
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       pageData: {}
-    };
+    }
   },
-  created() {
-    var that = this;
+  created () {
+    var that = this
     // get page layout
     this.$axios
-      .get("/static/pageData.json")
-      .then(function(res) {
-        console.log(res.data);
-        that.pageData = res.data;
+      .get('/static/pageData.json')
+      .then(function (res) {
+        console.log(res.data)
+        that.pageData = res.data
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function (error) {
+        console.log(error)
+      })
   }
-};
+}
 </script>
 
 <style lang="less">
