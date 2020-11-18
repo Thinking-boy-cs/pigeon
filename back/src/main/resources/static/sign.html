@@ -14,7 +14,7 @@
                         姓名:
                     </td>
                     <td valign="middle" align="left">
-                        <input type="text" class="inputgri" v-model="record.username"  />
+                        <input type="text" class="inputgri" v-model="record.name"  />
                     </td>
                 </tr>
                 <tr>
@@ -22,7 +22,7 @@
                         温度:
                     </td>
                     <td valign="middle" align="left">
-                        <input type="text" class="inputgri" v-model="record.temeperature"  />
+                        <input type="text" class="inputgri" v-model="record.temperature"  />
                     </td>
                 </tr>
                 <tr>
@@ -46,7 +46,7 @@
                         城市:
                     </td>
                     <td valign="middle" align="left">
-                        <input type="password" class="inputgri" v-model="record.city" />
+                        <input type="text" class="inputgri" v-model="record.city" />
                     </td>
                 </tr>
             </table>
@@ -62,22 +62,21 @@
 <script src="/pigeon/js/axios.min.js"></script>
 <script>
     var app = new Vue({
-        el:"#wrap",
-        data:{
-            url:"",
-            record:{
-            },
+        el: "#wrap",
+        data: {
+            url: "",
+            record: {},
         },
-        methods:{
+        methods: {
             //用来签到
-            sign(){
-                axios.post("http://localhost:8989/pigeon/record/sign?code="+this.record).then(res=>{
+            sign() {
+                axios.post("http://localhost:8989/pigeon/record/sign?", this.record).then(res => {
                     console.log(res.data);
-                    if(res.data.state){
-                        alert(res.data.msg+",签到成功!");
-                    }else{
-                        alert(res.data.msg);
-                    }
+                        if (res.data.status) {
+                            alert(res.data.msg + ",签到成功!");
+                        } else {
+                            alert(res.data.msg);
+                        }
                 });
             }
         },
