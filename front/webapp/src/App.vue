@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 09:54:26
+ * @LastEditTime: 2020-11-18 10:01:09
 -->
 <template>
   <div id="app">
@@ -15,16 +15,24 @@
           <a-icon
             theme="filled"
             type="home"
-            :class="{ 'menu-icon': true, selected: currentTab === 1 }"
+            :class="{ 'menu-icon': true, selected: currentTab === 0 }"
           />
           <div class="menu-name">主页</div>
         </a-col>
         <a-col :span="8" class="menu-item" @click="switchTab(1)">
-          <a-icon theme="filled" type="bell" class="menu-icon" />
+          <a-icon
+            theme="filled"
+            type="bell"
+            :class="{ 'menu-icon': true, selected: currentTab === 1 }"
+          />
           <div class="menu-name">消息</div>
         </a-col>
         <a-col :span="8" class="menu-item" @click="switchTab(2)">
-          <a-icon theme="filled" type="idcard" class="menu-icon" />
+          <a-icon
+            theme="filled"
+            type="idcard"
+            :class="{ 'menu-icon': true, selected: currentTab === 2 }"
+          />
           <div class="menu-name">我的</div>
         </a-col>
       </a-row>
@@ -38,7 +46,7 @@ export default {
   data () {
     return {
       paths: ['/', '/notification', '/me'],
-      currentTab: -1,
+      currentTab: this.$route.meta.id,
       animationName: 'slide-left'
     }
   },
@@ -46,6 +54,7 @@ export default {
     switchTab: function (t) {
       var that = this
       this.$router.push({ path: that.paths[t] })
+      this.currentTab = t
     }
   },
   // beforeRouteUpdate (to, from, next) {
@@ -150,7 +159,7 @@ export default {
   /* margin-top: 60px; */
 }
 .selected {
-  color: @primary-color;
+  color: @primary-color!important;
 }
 #navigator-container {
   position: fixed;
