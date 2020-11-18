@@ -11,14 +11,6 @@
                    class="form_table">
                 <tr>
                     <td valign="middle" align="right">
-                        姓名:
-                    </td>
-                    <td valign="middle" align="left">
-                        <input type="text" class="inputgri" v-model="record.name"  />
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
                         温度:
                     </td>
                     <td valign="middle" align="left">
@@ -72,11 +64,11 @@
             sign() {
                 axios.post("http://localhost:8989/pigeon/record/sign?", this.record).then(res => {
                     console.log(res.data);
-                    if(res.data.status === 0){
-                        alert(res.data.msg);
-                    }else{
-                        alert(res.data.msg);
-                    }
+                        if (res.data.status) {
+                            alert(res.data.msg);
+                        } else {
+                            alert(res.data.msg);
+                        }
                 });
             }
         },
