@@ -1,11 +1,11 @@
 package cn.swu.pigeon.controller;
 
+import cn.swu.pigeon.entity.Activity;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
-import cn.swu.pigeon.service.RecordService;
+import cn.swu.pigeon.service.ActivityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,44 +14,49 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
-
 @RestController
 @CrossOrigin //允许跨域
-@RequestMapping("record")
+@RequestMapping("activity")
 @Slf4j
-public class RecordController {
+public class ActivityController {
 
     @Autowired
-    private RecordService recordService;
-
+    private ActivityService activityService;
 
     /**
-     * 处理签到
+     * 处理提交活动
      */
-    @PostMapping("sign")
-    public Map<String,Object> sign(@RequestBody Record record, HttpServletRequest request){
-        log.info("当前签到的用户信息：[{}]",record.toString());
+    @PostMapping("submit")
+    public Map<String,Object> submit(@RequestBody Activity activity, HttpServletRequest request){
         User thisUser = (User) request.getServletContext().getAttribute("thisUser");
         Map<String,Object> map = new HashMap<>();
         try {
-            if(!ObjectUtils.isEmpty(record)){
-                record.setName(thisUser.getUsername());
-                recordService.isSign(record);
+            if(!ObjectUtils.isEmpty(activity)){
+                activity.setApplicant(thisUser.getUsername());
+                activity.setStartTime(new Date());
+                activity.setEndTime(new Date());
+                activityService.submitActivity(activity);
                 map.put("status",0);
-                map.put("msg","签到成功");
+                map.put("msg","提交成功");
             } else {
                 map.put("status",1);
-                map.put("msg","签到失败");
+                map.put("msg","提交失败");
             }
             return map;
         } catch (Exception e){
             e.printStackTrace();
             map.put("status",1);
-            map.put("msg","签到失败");
+            map.put("msg","提交失败");
             return map;
         }
 
     }
+
+    /**
+     * 处理撤销活动
+     */
+
+    /**
+     * 查看活动
+     */
 }

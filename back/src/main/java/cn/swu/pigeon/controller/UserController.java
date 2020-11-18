@@ -35,8 +35,9 @@ public class UserController {
      * 用来处理用户登录
      */
     @PostMapping("login")
-    public Map<String,Object> login(@RequestBody User user){
+    public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
         log.info("当前登录用户的信息: [{}]",user.toString());
+        request.getServletContext().setAttribute("thisUser", user);
         Map<String, Object> map =  new HashMap<>();
         try {
             User userDB = userService.login(user);
@@ -96,12 +97,14 @@ public class UserController {
      * 设置用户个人信息
      */
     @PostMapping("changeInfo")
-    public Map<String,Object> changeUserInfo(@RequestBody User user){
+    public Map<String,Object> changeUserInfo(@RequestBody User user,HttpServletRequest request){
         log.info("当前签到的用户信息：[{}]",user.toString());
+        User thisUser = (User)request.getServletContext().getAttribute("thisUser");
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(user)){
-                changeInfoService.changeUserInfo(user);
+                thisUser.setIcon(user.getIcon());
+                changeInfoService.changeUserInfo(thisUser);
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {
