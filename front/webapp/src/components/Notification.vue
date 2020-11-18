@@ -24,7 +24,8 @@ export default {
 }
 
 </script>
-
+<style lang="less" scoped>
+@import "../style/index.less";
 #navigation-container {
   position: fixed;
   top: 0;
@@ -51,6 +52,4 @@ export default {
   position: relative;
   padding-top: 70px;
 }
-<style lang="less" scoped>
-@import "../style/index.less";
 </style>
