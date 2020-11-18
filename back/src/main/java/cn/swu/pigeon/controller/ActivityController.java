@@ -33,8 +33,6 @@ public class ActivityController {
         try {
             if(!ObjectUtils.isEmpty(activity)){
                 activity.setApplicant(thisUser.getUsername());
-                activity.setStartTime(new Date());
-                activity.setEndTime(new Date());
                 activityService.submitActivity(activity);
                 map.put("status",0);
                 map.put("msg","提交成功");
@@ -55,6 +53,7 @@ public class ActivityController {
     /**
      * 处理撤销活动
      */
+
 
     /**
      * 查看活动
