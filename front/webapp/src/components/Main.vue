@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 17:44:38
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 08:36:04
+ * @LastEditTime: 2020-11-18 10:13:45
 -->
 <template>
   <div id="app"  key="0">
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "~ant-design-vue/dist/antd.less";
+@import "../style/index.less";
 
 #carousel-container {
   position: relative;

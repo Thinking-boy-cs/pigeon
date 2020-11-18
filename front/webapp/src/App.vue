@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 10:01:09
+ * @LastEditTime: 2020-11-18 10:15:45
 -->
 <template>
   <div id="app">
@@ -81,6 +81,7 @@ export default {
 </script>
 
 <style lang="less">
+@import "./style/index.less";
 .page {
   // position: absolute;
   // width: 100%;
@@ -89,7 +90,7 @@ export default {
   opacity: 1 important;
 }
 
-@import "~ant-design-vue/dist/antd.less";
+// @import "~ant-design-vue/dist/antd.less";
 @keyframes slideInLeft {
   from {
     transform: translate3d(100%, 0, 0);
