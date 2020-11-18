@@ -1,11 +1,11 @@
 <!--
  * @Date: 2020-11-16 19:34:11
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 16:26:14
+ * @LastEditTime: 2020-11-18 16:39:23
 -->
 <template>
 <div class="test0" key="1">
-  bababa
+  Test content
 </div>
 </template>
 <script>
