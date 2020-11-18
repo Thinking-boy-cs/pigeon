@@ -8,11 +8,17 @@ import Router from 'vue-router'
 import LoginPage from '@/components/LoginPage'
 import Register from '@/components/Register'
 import Notification from '@/components/Notification'
+import Map from '@/components/Map'
 import Main from '@/components/Main'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
+import BaiduMap from 'vue-baidu-map'
 Vue.use(Router)
 Vue.use(Antd)
+Vue.use(BaiduMap, {
+  ak: 'pXbxmFWZNykvWBGwt9jVD6grmkpVkzwg'
+})
+
 export default new Router({
   routes: [
     {
@@ -29,6 +35,11 @@ export default new Router({
       path: '/Notification',
       name: 'Notification',
       component: Notification
+    },
+    {
+      path: '/Map',
+      name: 'Map',
+      component: Map
     },
     {
       path: '/',

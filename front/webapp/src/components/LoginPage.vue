@@ -133,7 +133,8 @@ export default {
   color: white;
 }
 #login {
-  padding-top: 50px;
+  padding-top: 40px;
+  padding-bottom: 25px;
   font-size: 20px;
   text-align: left;
   font-weight: bold;
@@ -143,12 +144,12 @@ export default {
   width: calc(100% - 90px);
 }
 #cover {
-  margin-top: 130px;
+  margin-top: 160px;
   background-color: white;
   width: calc(100% - 40px);
   margin-left: 20px;
   border-radius: 20px 20px 0px 0px;
-  height: 420px;
+  height: 390px;
 }
 #username,
 #password {
