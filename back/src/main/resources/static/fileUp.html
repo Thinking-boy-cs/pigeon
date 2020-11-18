@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传</title>
+</head>
+<body>
+<h1>上传图片</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    姓名：<input type="text" name="username"><br>
+    图片：<input type="file" name="multipartFile" multiple="multiple"><br>
+    <input type="submit" value="上传">
+</form>
+</body>
+</html>
+
+<script src="/pigeon/js/vue.js"></script>
+<script src="/pigeon/js/axios.min.js"></script>
+<script>
+    var app = new Vue({
+        el: "#wrap",
+        data: {
+            url: "",
+            record: {},
+        },
+        methods: {
+            //用来签到
+            sign() {
+                axios.post("http://localhost:8989/pigeon/upload/fileUp?", this.upload).then(res => {
+                    console.log(res.data);
+                    if(res.data.status === 0){
+                        alert(res.data.msg);
+                    }else{
+                        alert(res.data.msg);
+                    }
+                });
+            }
+        },
+    })
+</script>

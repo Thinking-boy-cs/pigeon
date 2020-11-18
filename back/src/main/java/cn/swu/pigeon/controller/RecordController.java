@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,13 +30,11 @@ public class RecordController {
      * 处理签到
      */
     @PostMapping("sign")
-    public Map<String,Object> sign(@RequestBody Record record,HttpServletRequest request){
+    public Map<String,Object> sign(@RequestBody Record record){
         log.info("当前签到的用户信息：[{}]",record.toString());
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(record)){
-                User thisUser = (User)request.getServletContext().getAttribute("thisUser");
-                record.setName(thisUser.getUsername());
                 recordService.isSign(record);
                 map.put("status",0);
                 map.put("msg","签到成功");
