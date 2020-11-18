@@ -43,6 +43,7 @@ export default {
 }
 #notification1 {
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
+  height: 80px;
 }
 #title {
   font-size: 20px;
