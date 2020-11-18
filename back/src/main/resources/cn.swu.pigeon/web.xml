@@ -1,0 +1,10 @@
+<!--****************获取服务器的绝对路径*********************-->
+<context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>server.basePath</param-value>
+    <!--controller中通过 System.getProperty("server.basePath") 可以获取当前web项目在服务器上的绝对路径-->
+</context-param>
+
+<!--<listener>-->
+<!--<listener-class>org.springframework.web.util.WebAppRootListener</listener-class>-->
+<!--</listener>-->
