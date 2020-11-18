@@ -53,9 +53,54 @@ public class ActivityController {
     /**
      * 处理撤销活动
      */
+    @PostMapping("backout")
+    //这里有问题：怎么处理不同的活动？---->先写查看活动（要做表的连接）
+    public Map<String,Object> backout(@RequestBody Activity activity){
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(activity)){
+                //activityService.backActivity(activityService.findActivity(activity));
+                map.put("status",0);
+                map.put("msg","撤销成功");
+            } else {
+                map.put("status",1);
+                map.put("msg","撤销失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","撤销失败");
+            return map;
+        }
 
+    }
 
     /**
      * 查看活动
      */
+    @PostMapping("find")
+    public Map<String,Object> find(HttpServletRequest request){
+        Map<String,Object> map = new HashMap<>();
+        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        try {
+            if(!ObjectUtils.isEmpty(thisUser)){
+                //有问题：得返回一个Activity数组
+                activityService.findActivity(thisUser);
+                map.put("status",0);
+                map.put("msg","查看成功");
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
+
+    }
+
 }
