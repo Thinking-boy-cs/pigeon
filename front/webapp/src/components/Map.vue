@@ -10,30 +10,42 @@
             class="bm-view"
             :center="circlePath.center"
             :zoom="15"
-            @click="getPoint"
-            @ready="handler"
+            :pinch-to-zoom="true"
+            @ready="getPoint"
           >
             <bm-circle
               :center="circlePath.center"
               :radius="circlePath.radius"
               stroke-color="blue"
               :stroke-opacity="0.5"
-              :stroke-weight="2"
-              @lineupdate="updateCirclePath"
+              :stroke-weight="1"
+              fillColor="#3291F8"
+              :fillOpacity="0.15"
             >
             </bm-circle>
             <bm-marker
               :position="circlePath.center"
               animation="BMAP_ANIMATION_BOUNCE"
             >
-              <bm-info-window
+              <bm-label
+                :content="add.site"
+                :position="circlePath.center"
+                :offset="{ width: 20, height: -15 }"
+                :labelStyle="{
+                  color: '#3291F8',
+                  fontSize: '13px',
+                  font: 'bolder 12px/20px PingFang SC,sans-serif',
+                  border: 0,
+                }"
+              />
+              <!-- <bm-info-window
                 :show="show"
                 :closeOnClick="false"
-                style="font-size: 14px"
+                style="font-size: 10px"
                 @close="infoWindowClose" @open="infoWindowOpen"
               >
                 <p>站点地址：{{ add.site }}</p>
-              </bm-info-window>
+              </bm-info-window> -->
             </bm-marker>
             <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
           </baidu-map>
@@ -49,8 +61,8 @@ export default {
     return {
       show: false,
       postionMap: {
-        lng: 120.211486,
-        lat: 30.256576
+        lng: 0,
+        lat: 0
       },
       location: '',
       address: '',
@@ -77,30 +89,27 @@ export default {
     }
   },
   methods: {
-    getPoint (e) {
-      this.show = true
-      this.postionMap.lng = e.point.lng
-      this.postionMap.lat = e.point.lat
-      this.add.jd = e.point.lng
-      this.add.wd = e.point.lat
-      this.zoom = e.target.getZoom()
+    getPoint () {
+      // this.show = true
+      // this.postionMap.lng = e.point.lng
+      // this.postionMap.lat = e.point.lat
+      // this.add.jd = e.point.lng
+      // this.add.wd = e.point.lat
+      // this.zoom = e.target.getZoom()
       let geocoder = new window.BMap.Geocoder()
-      geocoder.getLocation(e.point, rs => {
+      let point = new window.BMap.Point(this.circlePath.center.lng, this.circlePath.center.lat)
+      geocoder.getLocation(point, (rs) => {
         this.add.site = rs.address
+        console.log(rs.address) // 这里打印可以看到里面的详细地址信息，可以根据需求选择想要的
+        console.log(rs.addressComponents)// 结构化的地址描述(object)
+        console.log(rs.addressComponents.province) // 省
+        console.log(rs.addressComponents.city) // 城市
+        console.log(rs.addressComponents.district) // 区县
+        console.log(rs.addressComponents.street) // 街道
+        console.log(rs.addressComponents.streetNumber) // 门牌号
+        console.log(rs.surroundingPois) // 附近的POI点(array)
+        console.log(rs.business) // 商圈字段，代表此点所属的商圈(string)
       })
-    },
-    updateCirclePath (e) {
-      this.circlePath.center = e.target.getCenter()
-      this.circlePath.radius = e.target.getRadius()
-    },
-
-    infoWindowClose () {
-      this.show = false
-    },
-    infoWindowOpen () {
-      setInterval(() => {
-        this.show = true
-      }, 100)
     }
   }
 }

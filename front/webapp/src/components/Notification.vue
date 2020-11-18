@@ -19,8 +19,8 @@ export default {
 }
 
 </script>
-
-<style>
+<style lang="less" scoped>
+@import "../style/index.less";
 #navigation-container {
   position: fixed;
   top: 0;
