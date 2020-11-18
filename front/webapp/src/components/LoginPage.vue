@@ -88,8 +88,9 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "~ant-design-vue/dist/antd.less";
+<style lang="less" scoped>
+// @import "~ant-design-vue/dist/antd.less";
+@import "../style/index.less";
 #header-background {
   background: url(../img/bg.png) no-repeat fixed;
   width:100%;
