@@ -6,11 +6,14 @@
 </head>
 <body>
 <h1>上传图片</h1>
-<form action="login.html" method="post" enctype="multipart/form-data">
-    姓名：<input type="text" name="username"><br>
-    图片：<input type="file" name="multipartFile" multiple="multiple"><br>
-    <input type="submit" value="上传">
-</form>
+<div id="wrap">
+    <form action="login.html" method="post" enctype="multipart/form-data">
+        姓名：<input type="text" name="username" v-model="upload.username"><br>
+        图片：<input type="file" name="multipartFile" v-model="upload.imgPath" multiple="multiple"><br>
+        <input type="button"  @click="upload" value="Submit &raquo;">
+    </form>
+</div>
+
 </body>
 </html>
 
@@ -20,12 +23,12 @@
     var app = new Vue({
         el: "#wrap",
         data: {
-            url: "",
-            record: {},
+
+            upload:{},
         },
         methods: {
             //用来签到
-            sign() {
+            upload() {
                 axios.post("http://localhost:8989/pigeon/upload/fileUp?", this.upload).then(res => {
                     console.log(res.data);
                     if(res.data.status === 0){

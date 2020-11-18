@@ -35,7 +35,7 @@ public class FileUploadController {
     @PostMapping("fileUp")
     public Map<String,Object> saveUpload(@RequestBody Upload upload,MultipartFile multipartFile) {
 
-        log.info("当前签到的用户信息：[{}]",upload.toString());
+        log.info("当前file：[{}]",upload.toString());
         Map<String, Object> map = new HashMap<>();
         if(multipartFile.isEmpty())
 
