@@ -13,6 +13,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -35,10 +36,11 @@ public class UserController {
      * 用来处理用户登录
      */
     @PostMapping("login")
-    public Map<String,Object> login(@RequestBody User user){
+    public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
         log.info("当前登录用户的信息: [{}]",user.toString());
         Map<String, Object> map =  new HashMap<>();
         try {
+            request.getServletContext().setAttribute("thisUser",user);
             User userDB = userService.login(user);
             map.put("status",0);
             map.put("msg","登录成功!");
@@ -96,12 +98,17 @@ public class UserController {
      * 设置用户个人信息
      */
     @PostMapping("changeInfo")
-    public Map<String,Object> changeUserInfo(@RequestBody User user){
+    public Map<String,Object> changeUserInfo(@RequestBody User user, HttpServletRequest request){
         log.info("当前签到的用户信息：[{}]",user.toString());
         Map<String,Object> map = new HashMap<>();
         try {
+            User thisUser = (User)request.getServletContext().getAttribute("thisUser");
             if(!ObjectUtils.isEmpty(user)){
-                changeInfoService.changeUserInfo(user);
+                //头像传递
+                thisUser.setIcon(user.getIcon());
+                //应用
+                changeInfoService.changeUserInfo(thisUser);
+                log.info("当前我的用户，[{}]",thisUser.toString());
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {
