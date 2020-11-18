@@ -1,10 +1,10 @@
 <!--
  * @Date: 2020-11-15 17:44:38
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-17 21:29:12
+ * @LastEditTime: 2020-11-18 08:36:04
 -->
 <template>
-  <div id="app">
+  <div id="app"  key="0">
     <div id="carousel-container">
       <a-carousel autoplay>
         <div class="cabg">1</div>
