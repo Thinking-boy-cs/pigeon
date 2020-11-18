@@ -1,11 +1,10 @@
 <template>
   <div>
     <div id="navigation-container">
+        <a id="title">消息</a>
       <div id="navigation-wrapper">
-        <div class="icon-container">
-          <a-icon type="left" />
-        </div>
         <div class="title-container">
+          日历
         </div>
       </div>
     </div>
@@ -30,14 +29,14 @@ export default {
   line-height: 58px;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
+#title {
+  font-size: 20px;
+  font-weight: bold;
+}
 #navigation-wrapper {
   position: relative;
   width: calc(100% - 40px);
   margin-left: 20px;
-}
-.icon-container {
-  position: absolute;
-  left: 0;
 }
 .title-container {
   font-size: 18px;
