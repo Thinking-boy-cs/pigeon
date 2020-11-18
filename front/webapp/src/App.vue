@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 10:15:45
+ * @LastEditTime: 2020-11-18 15:04:37
 -->
 <template>
   <div id="app">
@@ -80,7 +80,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "./style/index.less";
 .page {
   // position: absolute;

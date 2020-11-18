@@ -1,14 +1,14 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 10:16:00
+ * @LastEditTime: 2020-11-18 10:17:37
 -->
 <template>
   <div>
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" />
+          <a-icon type="left" @click="$router.go(-1);"/>
         </div>
       </div>
     </div>

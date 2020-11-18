@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 17:44:38
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 10:13:45
+ * @LastEditTime: 2020-11-18 15:05:02
 -->
 <template>
   <div id="app"  key="0">
@@ -78,7 +78,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "../style/index.less";
 
 #carousel-container {
