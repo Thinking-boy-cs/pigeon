@@ -18,6 +18,12 @@ public class ActivityServiceImpl implements ActivityService{
     @Override
     public void submitActivity(Activity activity) {
         activity.setSubmitTime(new Date());
+        activity.setStatus("待审核");
         activityDao.submitAct(activity);
+    }
+
+    @Override
+    public void backActivity(Activity activity) {
+
     }
 }
