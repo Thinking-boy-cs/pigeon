@@ -1,8 +1,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.ChangeInfoDAO">
-    <insert id="changeInfo" parameterType="User">
+    <update id="changeInfo" parameterType="User">
         UPDATE staff
         SET icon=#{icon}
         where username=#{username};
-    </insert>
+    </update>
 </mapper>
