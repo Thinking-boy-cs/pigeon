@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 10:17:37
+ * @LastEditTime: 2020-11-18 16:27:57
 -->
 <template>
   <div>
@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 // @import "~ant-design-vue/dist/antd.less";
 @import "../style/index.less";
 * {
