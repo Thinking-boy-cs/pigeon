@@ -1,13 +1,14 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 20:41:01
+ * @LastEditTime: 2020-11-18 21:23:04
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import LoginPage from '@/components/LoginPage'
 import Register from '@/components/Register'
+import Leave from '@/components/Leave'
 import Notification from '@/components/Notification'
 import Map from '@/components/Map'
 import Main from '@/components/Main'
@@ -25,17 +26,26 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: LoginPage
+      component: LoginPage,
+      meta: {
+        id: -1
+      }
     },
     {
       path: '/register',
       name: 'Regist',
-      component: Register
+      component: Register,
+      meta: {
+        id: -2
+      }
     },
     {
       path: '/Notification',
       name: 'Notification',
-      component: Notification
+      component: Notification,
+      meta: {
+        id: 1
+      }
     },
     {
       path: '/Map',
@@ -48,7 +58,14 @@ export default new Router({
       component: Main,
       meta: {
         id: 0
-
+      }
+    },
+    {
+      path: '/leave',
+      name: 'Leave',
+      component: Leave,
+      meta: {
+        id: 10
       }
     }
   ]

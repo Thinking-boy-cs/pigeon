@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 16:26:57
+ * @LastEditTime: 2020-11-18 21:10:58
 -->
 <template>
   <div id="app">
@@ -9,7 +9,7 @@
     <transition :name="animationName" mode="out-in">
       <router-view class="page" :key="$route.name" />
     </transition>
-    <div id="navigator-container">
+    <div id="navigator-container" v-if="$route.meta.id >= 0">
       <a-row>
         <a-col :span="8" class="menu-item" @click="switchTab(0)">
           <a-icon
