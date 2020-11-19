@@ -37,6 +37,7 @@ public class UserController {
     @PostMapping("login")
     public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
         log.info("当前登录用户的信息: [{}]",user.toString());
+        //广播：一个变量
         request.getServletContext().setAttribute("thisUser", user);
         Map<String, Object> map =  new HashMap<>();
         try {
