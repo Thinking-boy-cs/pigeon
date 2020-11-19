@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ems_vue" target="1.8" />
+      <module name="ems_vue" target="12" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

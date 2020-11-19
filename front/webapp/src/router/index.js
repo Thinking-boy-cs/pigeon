@@ -1,45 +1,81 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 20:02:39
+ * @LastEditTime: 2020-11-18 21:23:04
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 import LoginPage from '@/components/LoginPage'
 import Register from '@/components/Register'
+import Leave from '@/components/Leave'
 import Notification from '@/components/Notification'
+import Me from '@/components/Me'
+import Map from '@/components/Map'
 import Main from '@/components/Main'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
+import BaiduMap from 'vue-baidu-map'
 Vue.use(Router)
 Vue.use(Antd)
+Vue.use(BaiduMap, {
+  ak: 'pXbxmFWZNykvWBGwt9jVD6grmkpVkzwg'
+})
+
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
       path: '/login',
       name: 'Login',
-      component: LoginPage
+      component: LoginPage,
+      meta: {
+        id: -1
+      }
     },
     {
       path: '/register',
       name: 'Regist',
-      component: Register
+      component: Register,
+      meta: {
+        id: -2
+      }
     },
     {
       path: '/Notification',
       name: 'Notification',
-      component: Notification
+      component: Notification,
+      meta: {
+        id: 1
+      }
+    },
+    {
+      path: '/Me',
+      name: 'Me',
+      component: Me,
+      meta: {
+        id: 2
+      }
+    },
+    {
+      path: '/Map',
+      name: 'Map',
+      component: Map
     },
     {
       path: '/',
       name: 'Main',
-      component: Main
+      component: Main,
+      meta: {
+        id: 0
+      }
+    },
+    {
+      path: '/leave',
+      name: 'Leave',
+      component: Leave,
+      meta: {
+        id: 10
+      }
     }
   ]
 })

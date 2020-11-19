@@ -1,12 +1,15 @@
 <template>
+  <div id="header-background">
   <div id="header-container">
     <div id="header-title">
       <p id="welcome">
-        你好，<br />欢迎来到Pigeon！<br /><br /><br />
-        账号密码登录
+        欢迎使用Pigeon
+        <p class="welcome1">更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生<br /><br /><br />
       </p>
     </div>
+    <div id="cover">
     <div id="header-mid">
+      <p id="login">账号密码登录</p>
       <a-form
     id="components-form-demo-normal-login"
     :form="form"
@@ -62,6 +65,8 @@
     </a-form-item>
   </a-form>
     </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -83,26 +88,69 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "~ant-design-vue/dist/antd.less";
+<style lang="less" scoped>
+// @import "~ant-design-vue/dist/antd.less";
+@import "../style/index.less";
+#header-background {
+  background: url(../img/bg.png) no-repeat fixed;
+  width:100%;
+  height:100%;
+  position: relative;
+  box-sizing:border-box;
+  z-index:1;
+}
+#header-background:after{
+  background: url(../img/gezi.png) no-repeat fixed;
+  content: "";
+  width:100%;
+  height:100%;
+  position: absolute;
+  left:0;
+  top:0;
+  filter: opacity(30%);
+  // background: inherit;
+  z-index: 2;
+}
+#header-container {
+  position: relative;
+  z-index: 3;
+}
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: @text-color;
+  font-family: PingFang SC;
 }
 #welcome {
-  margin-left: 45px;
-  margin-top: 92px;
-  // color: rgba(16, 16, 16, 100);
+  padding-top: 65px;
   font-size: 26px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5em;
+}
+.welcome1 {
+  font-size: 15px;
+  color: white;
+}
+#login {
+  padding-top: 40px;
+  padding-bottom: 25px;
+  font-size: 20px;
   text-align: left;
-  font-family: PingFangSC-Regular;
   font-weight: bold;
 }
 #header-mid {
   margin-left: 45px;
   width: calc(100% - 90px);
+}
+#cover {
+  margin-top: 160px;
+  background-color: white;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  border-radius: 20px 20px 0px 0px;
+  height: 390px;
 }
 #username,
 #password {
@@ -111,7 +159,6 @@ export default {
   // color: rgba(16, 16, 16, 100);
   font-size: 14px;
   text-align: left;
-  font-family: PingFangSC-Regular;
   border: 1px solid rgba(255, 255, 255, 100);
 }
 #components-form-demo-normal-login .login-form {

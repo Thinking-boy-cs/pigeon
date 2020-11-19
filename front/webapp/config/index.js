@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 17:44:16
+ * @LastEditTime: 2020-11-18 15:01:23
  */
 'use strict'
 // Template version: 1.3.1
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '0.0.0.0', // can be overwritten by process.env.HOST
     port: 5000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
