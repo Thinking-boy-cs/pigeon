@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>allActivity</title>
+</head>
+<body>
+
+    <form action="login.html" method="get">
+        <table method="post">
+            <tr>
+                <th>编号</th><th>活动名</th><th>申请人</th><th>审批人</th><th>开始时间</th><th>结束时间</th><th>状态</th><th>提交时间</th>
+            </tr>
+            <p>
+                <input type="button" @click="find" class="button" value="Submit &raquo;" />
+            </p>
+        </table>
+    </form>
+
+</body>
+</html>
+
+<script src="/pigeon/js/vue.js"></script>
+<script src="/pigeon/js/axios.min.js"></script>
+<script>
+    var app = new Vue({
+        el: "#wrap",
+        data: {
+            activity: {}
+        },
+        methods:{
+            //查看活动
+            find(){
+                //发送查看活动请求
+                axios.post("http://localhost:8989/pigeon/activity/find").then(res=>{
+                    console.log(res.data);
+                    if(!res.data.status){
+                        alert(res.data.msg);
+                    }else{
+                        alert(res.data.msg);
+                    }
+                });
+            }
+        }
+    });
+
+</script>

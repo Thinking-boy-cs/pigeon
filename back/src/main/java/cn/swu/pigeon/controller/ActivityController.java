@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -55,11 +56,17 @@ public class ActivityController {
      */
     @PostMapping("backout")
     //这里有问题：怎么处理不同的活动？---->先写查看活动（要做表的连接）
-    public Map<String,Object> backout(@RequestBody Activity activity){
+    public Map<String,Object> backout(@RequestBody Activity activity,HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
+        List<Activity> thisActivities = (List<Activity>) request.getServletContext().getAttribute("thisActivities");
         try {
             if(!ObjectUtils.isEmpty(activity)){
-                //activityService.backActivity(activityService.findActivity(activity));
+                for(int i = 0;i<thisActivities.size();i++){
+                    if(thisActivities.get(i).getId()==activity.getId()){
+                        activityService.backActivity(activity);
+                    }
+                }
+
                 map.put("status",0);
                 map.put("msg","撤销成功");
             } else {
@@ -85,8 +92,11 @@ public class ActivityController {
         User thisUser = (User) request.getServletContext().getAttribute("thisUser");
         try {
             if(!ObjectUtils.isEmpty(thisUser)){
-                //有问题：得返回一个Activity数组
-                activityService.findActivity(thisUser);
+                //返回一个Activity数组
+                List<Activity> thisActivities = activityService.findActivity(thisUser);
+                //这个怎么交给前端？？？
+                request.getServletContext().setAttribute("thisActivities", thisActivities);
+                //System.out.println("所有的活动："+thisActivities.toString());
                 map.put("status",0);
                 map.put("msg","查看成功");
             } else {
