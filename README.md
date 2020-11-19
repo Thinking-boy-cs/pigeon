@@ -154,5 +154,42 @@ User{
 	status:0
 	msg:"修改成功"
   }
+```   
+## 4. 提交活动请求
+请求地址      
+POST http://localhost:8989/pigeon/activity/submit?      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	activity &nbsp; &nbsp; Activity&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;是  &nbsp; &nbsp; 提交活动申请    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;提交成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;提交失败   
+
+请求数据实例   
+```
+Activity{
+  	activityName:"请假",
+        applicant:"小朋友",
+        approver:"大家长",
+        startTime:"2020-11-19 09:07:34",
+        endTime:"2020-11-19 09:07:35",
+        status:"已通过",
+        submitTime:"2020-11-19 09:07:20" 
+   }
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"提交成功"
+  }
 ```
 
