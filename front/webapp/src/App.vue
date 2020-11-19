@@ -53,6 +53,7 @@ export default {
   methods: {
     switchTab: function (t) {
       var that = this
+      if (this.currentTab === t) { return }
       this.$router.push({ path: that.paths[t] })
       this.currentTab = t
     }
