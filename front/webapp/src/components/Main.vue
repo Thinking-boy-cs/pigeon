@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 17:44:38
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 15:05:02
+ * @LastEditTime: 2020-11-19 20:31:19
 -->
 <template>
   <div id="app"  key="0">
@@ -23,7 +23,7 @@
               class="feature-item"
               :span="8"
               v-for="(item, i) in pageData.recents"
-              :key="i"
+              :key="i" @click="toPage('/leave')"
             >
               <div class="feature-icon">
                 <a-icon :type="item.icon" two-tone-color="#fb7299" />
@@ -60,6 +60,11 @@ export default {
   data () {
     return {
       pageData: {}
+    }
+  },
+  methods: {
+    toPage (uri) {
+      this.$router.push({ path: uri })
     }
   },
   created () {

@@ -3,9 +3,11 @@
     <insert id="submitAct" parameterType="Activity" useGeneratedKeys="true" keyProperty="id">
         insert into activity values (#{id},#{activityName},#{applicant},#{approver},#{startTime},#{endTime},#{status},#{submitTime})
     </insert>
-    <select id="findAct" parameterType="Activity" resultType="Activity">
-        select activity.id from activity,staff
-        where activity.activityName=staff.username
+    <!--save-->
+    <select id="findAct" parameterType="User" resultType="Activity">
+        select activity.*
+        from activity,staff
+        where activity.applicant={#username}
     </select>
     <delete id="backAct" parameterType="Activity">
         delete from activity

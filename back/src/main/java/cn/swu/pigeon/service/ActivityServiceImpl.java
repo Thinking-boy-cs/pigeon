@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -29,7 +30,7 @@ public class ActivityServiceImpl implements ActivityService{
     }
 
     @Override
-    public Activity findActivity(User user) {
+    public List<Activity> findActivity(User user) {
         return activityDao.findAct(user);
     }
 }

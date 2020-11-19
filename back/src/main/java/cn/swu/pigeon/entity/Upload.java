@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Upload {
 
+    private int id;
     private String username;
     private String imgPath;
 

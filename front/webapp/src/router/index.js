@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-18 21:23:04
+ * @LastEditTime: 2020-11-19 20:56:46
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -74,7 +74,7 @@ export default new Router({
       name: 'Leave',
       component: Leave,
       meta: {
-        id: 10
+        id: -10
       }
     }
   ]

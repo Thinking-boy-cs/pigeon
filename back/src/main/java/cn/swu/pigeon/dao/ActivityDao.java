@@ -4,9 +4,11 @@ import cn.swu.pigeon.entity.Activity;
 import cn.swu.pigeon.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface ActivityDao {
     void submitAct(Activity activity);
     void backAct(Activity activity);
-    Activity findAct(User user);
+    List<Activity> findAct(User user);
 }

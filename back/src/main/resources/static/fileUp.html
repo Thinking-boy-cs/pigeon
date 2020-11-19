@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:border="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>上传</title>
+    <title>Title</title>
+    <script src="/pigeon/js/jquery-3.5.1.js"></script>
+    <script>
+        $(function () {
+            $("#upload").click(function () {
+                //$('#uploadForm')[0]为选择器，不规定为id选择器，前提是该选择器能获取file文件，然后放入到formData中
+                var formData = new FormData($('#uploadForm')[0]);
+                console.log(formData.get("file"))
+                if (formData ==={} || formData===""){
+                    alert("请选择文件")
+                }
+                formData.append("multipartFile",formData.get("file"));
+                //调用formData的append方法，将book属性都添加进去，img填空白即可。
+                // formData.append("name","龙哥传");
+                // formData.append("author","龙哥");
+                // formData.append("price","10.33");
+                formData.append("username","")
+                formData.append("imgPath","");
+
+                $.ajax({
+                    type: 'post',
+                    url: "http://localhost:8989/pigeon/upload/uploadFile",
+                    data: formData,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success:(function (results) {
+                        if (results.data!==0 || results.status === 200){
+                            alert("成功")
+                        }
+                    }),
+                    error:(function () {
+                        alert("上传失败");
+                    }),
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-<h1>上传图片</h1>
-<form action="" method="post" enctype="multipart/form-data">
-    姓名：<input type="text" name="username"><br>
-    图片：<input type="file" name="multipartFile" multiple="multiple"><br>
-    <input type="submit" value="上传">
+<form id="uploadForm" enctype="multipart/form-data">
+    文件:<input id="file" type="file" name="file"/>
 </form>
+<button id="upload">上传文件</button>
 </body>
 </html>
-
-<script src="/pigeon/js/vue.js"></script>
-<script src="/pigeon/js/axios.min.js"></script>
-<script>
-    var app = new Vue({
-        el: "#wrap",
-        data: {
-            url: "",
-            record: {},
-        },
-        methods: {
-            //用来签到
-            sign() {
-                axios.post("http://localhost:8989/pigeon/upload/fileUp?", this.upload).then(res => {
-                    console.log(res.data);
-                    if(res.data.status === 0){
-                        alert(res.data.msg);
-                    }else{
-                        alert(res.data.msg);
-                    }
-                });
-            }
-        },
-    })
-</script>
