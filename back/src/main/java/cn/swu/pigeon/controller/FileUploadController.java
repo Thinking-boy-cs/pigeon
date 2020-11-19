@@ -23,7 +23,7 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin //允许跨域
-@RequestMapping("upload")
+@RequestMapping("upload")   
 @Slf4j
 
 public class FileUploadController {
