@@ -30,14 +30,14 @@ public class FileUploadController {
     @Resource
     private UploadService uploadService;
 
-    @RequestMapping("/uploadFile")
-    public Result uploadFile(MultipartFile multipartFile, Upload upload){
+    @RequestMapping("uploadFile")
+    public Result uploadFile(MultipartFile multipartFile, Upload upload,HttpServletRequest request){
+        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
         try{
             if (multipartFile.isEmpty()){
-
                 return Result.error();
             }
-
+            upload.setUsername(thisUser.getUsername());
             int rows =uploadService.saveFile(multipartFile,upload);
             System.out.println(rows);
 
