@@ -12,14 +12,18 @@
             id="feature-icon2"
             aria-hidden="true"
           ></i>
-          待办
+          <a id="todo">待办</a>
         </div>
       </div>
       <div id="notification1">
-        <a-avatar :size="64" style="backgroundColor:#87d068" icon="bell" />待处理通知
+        <a-avatar :size="64" style="backgroundColor:#f56a00" icon="bell" id="bell" />
+        <a>待处理通知</a>
+        <div id="info1">【签到提醒】</div>
       </div>
       <div id="notification2">
-        <a-avatar :size="64" style="backgroundColor:#87d068" icon="bell" />待处理通知
+        <a-avatar :size="64" style="backgroundColor:#1890ff" icon="user" id="admin" />
+        <a>管理员通知</a>
+        <div id="info2">【管理员提醒】</div>
       </div>
     </div>
     <div id="notification-header"></div>
@@ -43,7 +47,46 @@ export default {
 }
 #notification1 {
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
-  height: 80px;
+  height: 90px;
+}
+#notification1 a{
+  color: black;
+  float: left;
+  font-weight: bold;
+  margin-left: 10px ;
+}
+#bell {
+  float: left;
+  margin-left: 20px;
+  margin-top:15px;
+}
+#notification2 {
+  height: 90px;
+}
+#notification2 a{
+  color: black;
+  float: left;
+  font-weight: bold;
+  margin-left: 10px ;
+}
+#admin{
+  float: left;
+  margin-left: 20px;
+  margin-top:15px;
+}
+#info1 {
+  position: absolute;
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 100px;
+  color:#81848D;
+}
+#info2 {
+  position: absolute;
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 100px;
+  color:#81848D;
 }
 #title {
   font-size: 20px;
@@ -65,16 +108,21 @@ export default {
 #feature-icon1 {
   font-size: 24px;
   height: 40px;
-  color: @primary-color;
+  color: rgba(0, 0, 0, 0.65);
 }
 #feature-icon2 {
   font-size: 24px;
   height: 40px;
-  color: @primary-color;
-  padding-left: 50px;
+  color: rgba(0, 0, 0, 0.65);
+  padding-left: 70px;
 }
 #calendar {
-  padding-right: 50px;
+  padding-right: 70px;
   color: rgba(0, 0, 0, 0.65);
+  font-weight: bold;
+}
+#todo {
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: bold;
 }
 </style>

@@ -8,7 +8,7 @@
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" />
+          <a-icon type="left"/>
         </div>
       </div>
     </div>
