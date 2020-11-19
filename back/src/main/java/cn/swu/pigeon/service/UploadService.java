@@ -1,7 +1,8 @@
 package cn.swu.pigeon.service;
 
 import cn.swu.pigeon.entity.Upload;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UploadService {
-    void saveFile(Upload upload);
+    int saveFile(MultipartFile multipartFile, Upload upload);
 }
