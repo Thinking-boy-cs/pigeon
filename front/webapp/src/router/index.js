@@ -10,6 +10,7 @@ import LoginPage from '@/components/LoginPage'
 import Register from '@/components/Register'
 import Leave from '@/components/Leave'
 import Notification from '@/components/Notification'
+import Me from '@/components/Me'
 import Map from '@/components/Map'
 import Main from '@/components/Main'
 import Antd from 'ant-design-vue/es'
@@ -45,6 +46,14 @@ export default new Router({
       component: Notification,
       meta: {
         id: 1
+      }
+    },
+    {
+      path: '/Me',
+      name: 'Me',
+      component: Me,
+      meta: {
+        id: 2
       }
     },
     {
