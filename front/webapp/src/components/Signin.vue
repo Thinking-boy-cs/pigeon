@@ -9,15 +9,35 @@
       </div>
     </div>
     <div id="information-bar">
-        <div id="avatar">头像</div>
-        <div id="username">用户名</div>
+      <div id="avatar"><a-avatar :size="64" icon="user" /></div>
+      <div id="userinfo">
+        <a id="username">用户名</a>
         <div id="apartment">部门名称</div>
+      </div>
+      <div id="leave">
+        <a-icon type="audit" style="font-size: 24px" />
+        <div style="font-weight: bold">请假</div>
+      </div>
+    </div>
+    <div id="main-container">
+      <div id="sign-button">
+        <div id="sign-title">打卡</div>
+      </div>
+      <div id="sign-map">
+        <a-icon type="environment" id="environment" theme="filled"  />
+        <a id="text">查看签到范围</a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {}
+  },
+  methods: {}
+}
 </script>
 
 <style lang="less" scoped>
@@ -27,20 +47,6 @@ export default {}
   padding: 0;
   text-decoration: none;
   color: @text-color;
-}
-#navigation-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 58px;
-  line-height: 58px;
-  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
-}
-#navigation-wrapper {
-  position: relative;
-  width: calc(100% - 40px);
-  margin-left: 20px;
 }
 .icon-container {
   position: absolute;
@@ -52,12 +58,72 @@ export default {}
   margin-left: 148px;
 }
 #information-bar {
-    position:absolute;
-    background-color: greenyellow;
-    margin-top: 80px;
-    margin-left: 15px;
-    width: calc(100% - 30px);
-    height: 100px;
-    border-radius: 20px 20px 20px 20px;
+  position: absolute;
+  background-color: greenyellow;
+  margin-top: 80px;
+  margin-left: 15px;
+  width: calc(100% - 30px);
+  height: 100px;
+  border-radius: 20px 20px 20px 20px;
+}
+#avatar {
+  margin-left: 20px;
+  margin-top: 10px;
+  float: left;
+}
+#userinfo {
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+  text-align: left;
+}
+#username {
+  font-weight: bold;
+  color: black;
+}
+#apartment {
+  margin-top: 5px;
+}
+#leave {
+  float: left;
+  margin-left: 185px;
+  margin-top: 20px;
+}
+#main-container {
+  position: absolute;
+  background-color: orange;
+  margin-top: 200px;
+  margin-left: 15px;
+  width: calc(100% - 30px);
+  height: 570px;
+  border-radius: 20px 20px 20px 20px;
+}
+#sign-button {
+  position: absolute;
+  background-color: green;
+  margin-top: 20%;
+  margin-left: 25%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 15px 6px rgba(0, 0, 0, 0.1);
+}
+#sign-title {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  margin-top: 65px;
+}
+#sign-map {
+  margin-top: 85%;
+}
+#environment {
+  font-size: 20px;
+  color: #3291f8;
+}
+#text {
+  font-size: 20px;
+  color: #3291f8;
+  font-weight: bold;
 }
 </style>
