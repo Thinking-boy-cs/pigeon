@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-19 20:22:16
+ * @LastEditTime: 2020-11-19 20:42:45
 -->
 <template>
   <div>
@@ -100,10 +100,6 @@ export default {
   color: @text-color;
 }
 
-.icon-container {
-  position: absolute;
-  left: 0;
-}
 #header-container {
   position: relative;
   text-align: left;
