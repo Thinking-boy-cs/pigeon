@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.UploadDao">
-    <insert id="upload" parameterType="Upload">
-        insert into picrecord values (#{username},#{imgPath})
+    <insert id="upload" parameterType="Upload" useGeneratedKeys="true" keyProperty="id">
+        insert into picrecord values (#{id},#{username},#{imgPath})
     </insert>
 </mapper>
