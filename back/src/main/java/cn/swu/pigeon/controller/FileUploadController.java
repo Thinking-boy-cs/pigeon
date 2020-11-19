@@ -1,6 +1,7 @@
 package cn.swu.pigeon.controller;
 
 import cn.swu.pigeon.entity.Upload;
+import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.UploadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -33,9 +34,11 @@ public class FileUploadController {
      * @param multipartFile
      */
     @PostMapping("fileUp")
-    public Map<String,Object> saveUpload(@RequestBody Upload upload,MultipartFile multipartFile) {
+    public Map<String,Object> saveUpload(Upload upload,MultipartFile multipartFile,HttpServletRequest request) {
 
         log.info("当前file：[{}]",upload.toString());
+        //获取当前用户对象
+        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
         Map<String, Object> map = new HashMap<>();
         if(multipartFile.isEmpty())
 
@@ -90,6 +93,7 @@ public class FileUploadController {
         // 将文件对象的访问路径映射给实体类对象的成员属性上
 //        customer.setImgPath(fileRelativePath);
         upload.setImgPath(fileRelativePath);
+        upload.setUsername(thisUser.getUsername());
         // 使用反射，将设置属性的方法具有通用性
         // 提取需要保存的属性名
         /*String propertyName = multipartFile.getName().replace("file_", "");
