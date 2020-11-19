@@ -31,12 +31,12 @@ public class RecordController {
      * 处理签到
      */
     @PostMapping("sign")
-    public Map<String,Object> sign(@RequestBody Record record,HttpServletRequest request){
+    public Map<String,Object> sign(@RequestBody Record record, HttpServletRequest request){
         log.info("当前签到的用户信息：[{}]",record.toString());
+        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(record)){
-                User thisUser = (User)request.getServletContext().getAttribute("thisUser");
                 record.setName(thisUser.getUsername());
                 recordService.isSign(record);
                 map.put("status",0);
