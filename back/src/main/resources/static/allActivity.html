@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <form action="login.html" method="get">
+    <form action="login.html" method="post">
         <table method="post">
             <tr>
                 <th>编号</th><th>活动名</th><th>申请人</th><th>审批人</th><th>开始时间</th><th>结束时间</th><th>状态</th><th>提交时间</th>
@@ -26,19 +26,14 @@
     var app = new Vue({
         el: "#wrap",
         data: {
-            activity: {}
+
         },
-        methods:{
+        methods:{    
             //查看活动
             find(){
                 //发送查看活动请求
                 axios.post("http://localhost:8989/pigeon/activity/find").then(res=>{
                     console.log(res.data);
-                    if(!res.data.status){
-                        alert(res.data.msg);
-                    }else{
-                        alert(res.data.msg);
-                    }
                 });
             }
         }

@@ -55,10 +55,10 @@ public class ActivityController {
      * 处理撤销活动
      */
     @PostMapping("backout")
-    //这里有问题：怎么处理不同的活动？---->先写查看活动（要做表的连接）
+    @SuppressWarnings("unchecked")
     public Map<String,Object> backout(@RequestBody Activity activity,HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
-        List<Activity> thisActivities = (List<Activity>) request.getServletContext().getAttribute("thisActivities");
+        List<Activity> thisActivities = (List<Activity>)request.getServletContext().getAttribute("thisActivities");
         try {
             if(!ObjectUtils.isEmpty(activity)){
                 for(int i = 0;i<thisActivities.size();i++){
@@ -66,7 +66,6 @@ public class ActivityController {
                         activityService.backActivity(activity);
                     }
                 }
-
                 map.put("status",0);
                 map.put("msg","撤销成功");
             } else {
@@ -97,17 +96,23 @@ public class ActivityController {
                 //这个怎么交给前端？？？
                 request.getServletContext().setAttribute("thisActivities", thisActivities);
                 //System.out.println("所有的活动："+thisActivities.toString());
+                for(int i=0;i<thisActivities.size();i++){
+                    System.out.println(thisActivities.get(i).getActivityName());
+                }
                 map.put("status",0);
                 map.put("msg","查看成功");
+                map.put("data",thisActivities);
             } else {
                 map.put("status",1);
                 map.put("msg","查看失败");
+                map.put("data",null);
             }
             return map;
         } catch (Exception e){
             e.printStackTrace();
             map.put("status",1);
             map.put("msg","查看失败");
+            map.put("data",null);
             return map;
         }
 
