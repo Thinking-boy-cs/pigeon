@@ -40,21 +40,42 @@
       常用操作
     </div>
     <div id="profile">
-      个人资料
-  </div>
+      <div id="title1">
+        个人资料
+      </div>
+      <div id="title2">
+        修改个人信息
+        <a-icon type="user" id="title3"/>
+      </div>
+    </div>
     <div id="record">
-      打卡记录
+      <div id="title1">
+        打卡记录
+      </div>
+      <div id="title2">
+        查看打卡考勤记录
+    </div>
     </div>
     <div id="about">
-      关于我们
+      <div id="title1">
+        关于我们
+      </div>
+      <div id="title2">
+        了解设计团队
+    </div>
     </div>
     <div id="settings">
-      设置
+      <div id="title1">
+        设置
+      </div>
+      <div id="title2">
+        关于APP的设置
+    </div>
     </div>
     <div id="logout">
       退出登录
     </div>
-  </div>
+    </div>
 
 </template>
 
@@ -64,7 +85,6 @@ export default {}
 
 <style lang="less" scoped>
 @import "~ant-design-vue/dist/antd.less";
-
 #title-background {
   position: absolute;
   background: url(../img/01.jpg) no-repeat fixed;
@@ -178,5 +198,22 @@ position: absolute;
     height: 63px;
     margin-left: 50px;
     border-radius: 10px 10px 10px 10px;
+}
+#title1 {
+  margin-top: 5px;
+  text-align: left;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 12px;
+}
+#title2 {
+  text-align: left;
+  margin-left: 20px;
+  color: #81848d;
+  font-size: 10px;
+}
+#title3 {
+  font-size: 25px;
+  margin-left: 50px;
 }
 </style>
