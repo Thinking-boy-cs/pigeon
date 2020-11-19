@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-18 20:37:30
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-19 20:17:15
+ * @LastEditTime: 2020-11-19 20:32:55
 -->
 <template>
   <div>
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="less" scoped>
-@import "../style/index.css";
+@import "../style/index.less";
 
 </style>
