@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 20:44:32
+ * @LastEditTime: 2020-11-19 20:42:45
 -->
 <template>
   <div>
@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "~ant-design-vue/dist/antd.less";
+@import "../style/index.less";
 
 * {
   margin: 0;
@@ -100,10 +100,6 @@ export default {
   color: @text-color;
 }
 
-.icon-container {
-  position: absolute;
-  left: 0;
-}
 #header-container {
   position: relative;
   text-align: left;
