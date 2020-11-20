@@ -8,5 +8,5 @@ public interface UserDAO {
 
     void save(User user);
 
-    User findByUserName(String username);
+    User findById(String id);
 }
