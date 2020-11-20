@@ -13,22 +13,20 @@
             theme="twoTone"
             two-tone-color="#fb7299"
             :style="{ fontSize: '25px' }"
-            id = "smile"
-          /> 部门
+            id="smile"
+          />
+          部门
           <a-icon
             type="idcard"
             theme="twoTone"
             two-tone-color="#fb7299"
             :style="{ fontSize: '25px' }"
-            id = "idcard"
-          /> 工号
+            id="idcard"
+          />
+          工号
         </div>
-        <div id="department">
-          人力资源部
-        </div>
-        <div id="num">
-          001
-        </div>
+        <div id="department">人力资源部</div>
+        <div id="num">001</div>
       </div>
       <a-avatar
         id="avatar"
@@ -36,47 +34,39 @@
         src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
       />
     </div>
-    <div id="usual">
-      常用操作
-    </div>
+    <div id="usual">常用操作</div>
     <div id="profile">
       <div id="title1">
         个人资料
+        <a-icon type="user" id="title3" />
       </div>
-      <div id="title2">
-        修改个人信息
-        <a-icon type="user" id="title3"/>
-      </div>
+      <div id="title2">修改个人信息</div>
     </div>
     <div id="record">
       <div id="title1">
         打卡记录
+        <a-icon type="carry-out" id="title3" />
       </div>
-      <div id="title2">
-        查看打卡考勤记录
-    </div>
+      <div id="title2">查看打卡考勤记录</div>
     </div>
     <div id="about">
       <div id="title1">
         关于我们
+        <a-icon type="team" id="title3" />
       </div>
-      <div id="title2">
-        了解设计团队
-    </div>
+      <div id="title2">了解设计团队</div>
     </div>
     <div id="settings">
       <div id="title1">
-        设置
+        设置中心
+        <a-icon type="setting" id="title3" />
       </div>
-      <div id="title2">
-        关于APP的设置
-    </div>
+      <div id="title2">关于APP的设置</div>
     </div>
     <div id="logout">
-      退出登录
+      <div id="logout-button">退出登录</div>
     </div>
-    </div>
-
+  </div>
 </template>
 
 <script>
@@ -150,54 +140,54 @@ export default {}
   margin-top: 10px;
 }
 #usual {
-  position:absolute;
+  position: absolute;
   margin-top: 335px;
   margin-left: 35px;
 }
 #profile {
-    position: absolute;
-    margin-top: 370px;
-    background-color: rgba(0, 0, 255, 0.109);
-    width: 165px;
-    height: 63px;
-    margin-left: 35px;
-    border-radius: 10px 10px 10px 10px;
+  position: absolute;
+  margin-top: 370px;
+  background-color: white;
+  width: 165px;
+  height: 63px;
+  margin-left: 35px;
+  border-radius: 10px 10px 10px 10px;
 }
 #record {
-    position: absolute;
-    margin-top: 445px;
-    background-color: rgba(0, 0, 255, 0.109);
-    width: 165px;
-    height: 63px;
-    margin-left: 35px;
-    border-radius: 10px 10px 10px 10px;
+  position: absolute;
+  margin-top: 445px;
+  background-color: white;
+  width: 165px;
+  height: 63px;
+  margin-left: 35px;
+  border-radius: 10px 10px 10px 10px;
 }
 #about {
-position: absolute;
-    margin-top: 445px;
-    background-color: rgba(0, 0, 255, 0.109);
-    width: 165px;
-    height: 63px;
-    margin-left: 212px;
-    border-radius: 10px 10px 10px 10px;
+  position: absolute;
+  margin-top: 445px;
+  background-color: white;
+  width: 165px;
+  height: 63px;
+  margin-left: 212px;
+  border-radius: 10px 10px 10px 10px;
 }
 #settings {
-    position: absolute;
-    margin-top: 370px;
-    background-color: rgba(0, 0, 255, 0.109);
-    width: 165px;
-    height: 63px;
-    margin-left: 212px;
-    border-radius: 10px 10px 10px 10px;
+  position: absolute;
+  margin-top: 370px;
+  background-color: white;
+  width: 165px;
+  height: 63px;
+  margin-left: 212px;
+  border-radius: 10px 10px 10px 10px;
 }
 #logout {
-    position: absolute;
-    margin-top: 550px;
-    width: calc(100% - 100px);
-    background-color: rgba(0, 0, 255, 0.109);
-    height: 63px;
-    margin-left: 50px;
-    border-radius: 10px 10px 10px 10px;
+  position: absolute;
+  margin-top: 550px;
+  width: calc(100% - 100px);
+  background-color: white;
+  height: 50px;
+  margin-left: 50px;
+  border-radius: 10px 10px 10px 10px;
 }
 #title1 {
   margin-top: 5px;
@@ -215,5 +205,10 @@ position: absolute;
 #title3 {
   font-size: 25px;
   margin-left: 50px;
+}
+#logout-button {
+  color: red;
+  margin-top: 15px;
+  font-weight: bold;
 }
 </style>
