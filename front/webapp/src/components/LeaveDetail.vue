@@ -1,10 +1,28 @@
 <!--
  * @Date: 2020-11-20 11:11:01
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-20 11:34:00
+ * @LastEditTime: 2020-11-20 11:41:04
 -->
 <template>
-
+  <div>
+    <div id="navigation-container">
+      <div id="navigation-wrapper">
+        <div class="icon-container">
+          <a-icon type="left" @click="$router.go(-1)" />
+        </div>
+        <div class="page-title">
+          请假详情
+        </div>
+      </div>
+    </div>
+    <div id="content-container">
+      <div id="content-wrapper">
+        <div id="status-container">
+          <a-icon type="clock-circle" theme="filled" />{{}}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
