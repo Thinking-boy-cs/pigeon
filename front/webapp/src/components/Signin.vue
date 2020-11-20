@@ -3,9 +3,9 @@
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" id="back" />
-          <a id="title">签到</a>
+          <a-icon type="left" @click="$router.go(-1)" />
         </div>
+        <div class="page-title">签到</div>
       </div>
     </div>
     <div id="information-bar">
@@ -52,14 +52,13 @@ export default {
   position: absolute;
   left: 0;
 }
-#title {
+.page-title {
   font-size: 20px;
   font-weight: bold;
-  margin-left: 148px;
 }
 #information-bar {
   position: absolute;
-  background-color: greenyellow;
+  background-color:white;
   margin-top: 80px;
   margin-left: 15px;
   width: calc(100% - 30px);
@@ -91,16 +90,16 @@ export default {
 }
 #main-container {
   position: absolute;
-  background-color: orange;
+  background-color: white;;
   margin-top: 200px;
   margin-left: 15px;
   width: calc(100% - 30px);
-  height: 570px;
+  height: 500px;
   border-radius: 20px 20px 20px 20px;
 }
 #sign-button {
   position: absolute;
-  background-color: green;
+  background-color: #3291F8;
   margin-top: 20%;
   margin-left: 25%;
   width: 200px;

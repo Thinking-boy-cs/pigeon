@@ -147,7 +147,7 @@ export default {}
 #profile {
   position: absolute;
   margin-top: 370px;
-  background-color: rgba(0, 0, 255, 0.109);
+  background-color: white;
   width: 165px;
   height: 63px;
   margin-left: 35px;
@@ -156,7 +156,7 @@ export default {}
 #record {
   position: absolute;
   margin-top: 445px;
-  background-color: rgba(0, 0, 255, 0.109);
+  background-color: white;
   width: 165px;
   height: 63px;
   margin-left: 35px;
@@ -165,7 +165,7 @@ export default {}
 #about {
   position: absolute;
   margin-top: 445px;
-  background-color: rgba(0, 0, 255, 0.109);
+  background-color: white;
   width: 165px;
   height: 63px;
   margin-left: 212px;
@@ -174,7 +174,7 @@ export default {}
 #settings {
   position: absolute;
   margin-top: 370px;
-  background-color: rgba(0, 0, 255, 0.109);
+  background-color: white;
   width: 165px;
   height: 63px;
   margin-left: 212px;
@@ -184,7 +184,7 @@ export default {}
   position: absolute;
   margin-top: 550px;
   width: calc(100% - 100px);
-  background-color: rgba(0, 0, 255, 0.109);
+  background-color: white;
   height: 50px;
   margin-left: 50px;
   border-radius: 10px 10px 10px 10px;

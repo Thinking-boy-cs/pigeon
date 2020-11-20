@@ -14,6 +14,7 @@ import Me from '@/components/Me'
 import Map from '@/components/Map'
 import Main from '@/components/Main'
 import Signin from '@/components/Signin'
+import Profile from '@/components/Profile'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
 import BaiduMap from 'vue-baidu-map'
@@ -66,6 +67,14 @@ export default new Router({
       path: '/Signin',
       name: 'Signin',
       component: Signin
+    },
+    {
+      path: '/Profile',
+      name: 'Profile',
+      component: Profile,
+      meta: {
+        id: -11
+      }
     },
     {
       path: '/',
