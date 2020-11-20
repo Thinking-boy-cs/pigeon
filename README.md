@@ -32,7 +32,7 @@ user{
 
 ```
   {
-	status:0
+	status:0,
 	msg:"登录成功"
         data:{
                 user.id:"001",
@@ -42,7 +42,9 @@ user{
                 user.sex:"男",
                 user.status:"已激活",
                 user.registerTime:2020-11-18 20:30:27,
-                user.icon:"/default"
+                user.icon:"/default",
+                user.telNumber:null,
+                user.email:null
              }
   }
 ```
@@ -69,11 +71,13 @@ status的合法值
 请求数据实例   
 ```
 user{
-	user.id:"001"
-  	user.username:"小朋友"
-  	user.dept:"幼儿园"
-  	user.password:"123456"
-  	uesr.sex:"男"
+	user.id:"001",
+  	user.username:"小朋友",
+  	user.dept:"幼儿园",
+  	user.password:"123456",
+        thisPassword:"123456",
+  	uesr.sex:"男",
+        code:"ABCD"
    }
 ```   
 
@@ -81,7 +85,7 @@ user{
 
 ```
   {
-	status:0
+	status:0,
 	msg:"注册成功"
   }
 ```
@@ -150,8 +154,8 @@ POST http://localhost:8989/pigeon/user/changeInfo
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
-	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;签到成功   
-	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;签到失败   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;修改成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;修改失败   
 
 请求数据实例   
 ```
@@ -164,6 +168,9 @@ User{
   {
 	status:0
 	msg:"修改成功"
+    data{
+            
+        }
   }
 ```   
 ## 4. 提交活动请求
@@ -188,12 +195,10 @@ status的合法值
 ```
 Activity{
   	activityName:"请假",
-        applicant:"小朋友",
+        applicant:"001",
         approver:"大家长",
         startTime:"2020-11-19 09:07:34",
-        endTime:"2020-11-19 09:07:35",
-        status:"已通过",
-        submitTime:"2020-11-19 09:07:20" 
+        endTime:"2020-11-19 09:07:35" 
    }
 ```
 返回数据实例
@@ -218,8 +223,8 @@ POST http://localhost:8989/pigeon/activity/find
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
-	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;提交成功   
-	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;提交失败   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看失败   
 
 请求数据实例   
 ```
@@ -238,7 +243,7 @@ user{
 	msg:"提交成功"
   }
 ```   
-## 6. 撤回活动(有问题，待定)
+## 6. 撤回活动
 请求地址      
 POST http://localhost:8989/pigeon/activity/backout      
 	请求参数         
@@ -253,18 +258,14 @@ POST http://localhost:8989/pigeon/activity/backout
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
-	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;提交成功   
-	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;提交失败   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;撤回成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;撤回失败   
 
 请求数据实例   
 ```
-user{
-	user.id:"001"
-  	user.username:"小朋友"
-  	user.dept:"幼儿园"
-  	user.password:"123456"
-  	uesr.sex:"男"
-   }
+activity{
+	      ???
+        }
 ```
 返回数据实例
 ```

@@ -6,7 +6,7 @@
 
     <!--save-->
     <insert id="save" parameterType="User" >
-        insert into staff values (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime},#{icon})
+        insert into staff values (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime},#{icon},#{telNumber},#{email})
     </insert>
 
     <!--findByUserName-->
