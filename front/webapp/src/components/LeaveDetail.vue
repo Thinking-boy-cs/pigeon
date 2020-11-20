@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-20 11:11:01
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-20 11:41:04
+ * @LastEditTime: 2020-11-20 11:48:01
 -->
 <template>
   <div>
@@ -18,7 +18,7 @@
     <div id="content-container">
       <div id="content-wrapper">
         <div id="status-container">
-          <a-icon type="clock-circle" theme="filled" />{{}}
+          <a-icon type="clock-circle" theme="filled" /> {{getCurrentStatus()}}
         </div>
       </div>
     </div>
@@ -52,20 +52,21 @@ export default {
           {
             'type': 'status',
             'name': '已通过'
-            // '': 
+            // '':
           }
         ]
       }
     }
   },
   methods: {
-
+    getCurrentStatus () {
+      return this.customStatusData.data[this.leaveData.status]
+    }
   },
   created () {
     var that = this
     this.leaveId = this.$route.params.leaveId
     if (this.leaveId !== null) {
-
       this.leaveData = {
         'type': 'type 1',
         'startTime': '2020-10-11 10:10:10',
@@ -90,5 +91,9 @@ export default {
 </script>
 
 <style>
+@import '../style/index.less';
+#status-container {
+  width: 100%;
 
+}
 </style>
