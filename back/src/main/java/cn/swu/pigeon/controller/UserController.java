@@ -115,6 +115,7 @@ public class UserController {
                 //修改信息
                 thisUser.setSex(user.getSex());
                 changeInfoService.changeUserInfo(thisUser);
+                //加一个最新的thisUser
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {
