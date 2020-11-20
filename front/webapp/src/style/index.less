@@ -16,6 +16,10 @@
 *:not(class=fa) {
   font-family: 'PingFang SC';
 }
+body,
+#app {
+  background-color: #f8f8f8;
+}
 #navigation-container {
   position: fixed;
   top: 0;
@@ -24,9 +28,15 @@
   height: 58px;
   line-height: 58px;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 #navigation-wrapper {
   position: relative;
   width: calc(100% - 40px);
   margin-left: 20px;
+}
+
+.icon-container {
+  position: absolute;
+  left: 0;
 }
