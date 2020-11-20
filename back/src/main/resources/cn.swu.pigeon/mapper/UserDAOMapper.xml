@@ -3,13 +3,9 @@
 
 
 <mapper namespace="cn.swu.pigeon.dao.UserDAO">
-
-    <!--save-->
     <insert id="save" parameterType="User" >
-        insert into staff values (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime},#{icon})
+        insert into staff values (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime},#{icon},#{telNumber},#{email})
     </insert>
-
-    <!--findByUserName-->
     <select id="findById" parameterType="String" resultType="User">
         select id,username,dept,password,sex,status,registerTime,icon
         from staff where id=#{id}

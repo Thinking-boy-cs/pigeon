@@ -16,6 +16,8 @@ public class User {
     private String status;
     private Date registerTime;
     private String icon;
+    private String telNumber;
+    private String email;
 
 
 }
