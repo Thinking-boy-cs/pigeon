@@ -20,4 +20,9 @@ public class GovernServiceImpl implements GovernService{
     public List<User> findUsers() {
         return governDao.find();
     }
+
+    @Override
+    public void addUser(User user) {
+        governDao.addUser(user.getId());
+    }
 }
