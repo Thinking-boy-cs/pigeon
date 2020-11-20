@@ -14,4 +14,7 @@ public class Record {
     private String province;
     private String city;
     private Date signTime;
+    private String location;
+    private float longitude;
+    private float latitude;
 }

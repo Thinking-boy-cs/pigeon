@@ -41,6 +41,30 @@
                         <input type="text" class="inputgri" v-model="record.city" />
                     </td>
                 </tr>
+                <tr>
+                    <td valign="middle" align="right">
+                        详细地点:
+                    </td>
+                    <td valign="middle" align="left">
+                        <input type="text" class="inputgri" v-model="record.location" />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" align="right">
+                        经度:
+                    </td>
+                    <td valign="middle" align="left">
+                        <input type="text" class="inputgri" v-model="record.longitude" />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" align="right">
+                        纬度:
+                    </td>
+                    <td valign="middle" align="left">
+                        <input type="text" class="inputgri" v-model="record.latitude" />
+                    </td>
+                </tr>
             </table>
             <p>
                 <input type="button" @click="sign" class="button" value="Submit &raquo;" />
