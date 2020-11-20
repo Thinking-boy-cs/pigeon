@@ -7,11 +7,14 @@ import cn.swu.pigeon.service.UserService;
 import cn.swu.pigeon.utils.VerifyCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,6 +27,7 @@ import java.util.Map;
 @Slf4j
 public class UserController {
 
+    @Resource
     @Autowired
     private UserService userService;
 
@@ -98,16 +102,27 @@ public class UserController {
     /**
      * 设置用户个人信息
      */
-    @PostMapping("changeInfo")
-    public Map<String,Object> changeUserInfo(@RequestBody User user,HttpServletRequest request){
+   @RequestMapping(value = "/changeUserInfo" ,method = RequestMethod.POST)
+//    @ResponseBody
+    //@RequestMapping("changeUserInfo")
+    public Map<String,Object> changeUserInfo( User user, HttpServletRequest request, MultipartFile multipartFile){
         log.info("当前签到的用户信息：[{}]",user.toString());
         User thisUser = (User)request.getServletContext().getAttribute("thisUser");
+        log.info("[{}]",thisUser.toString());
         Map<String,Object> map = new HashMap<>();
+        log.info("[{}]",multipartFile);
+
         try {
+            if (multipartFile.isEmpty()){
+                map.put("status",1);
+                map.put("msg","文件不存在");
+            }
             if(!ObjectUtils.isEmpty(user)){
                 //修改信息
                 thisUser.setSex(user.getSex());
-                changeInfoService.changeUserInfo(thisUser);
+                log.info("修改性别后当前用户：[{}]",thisUser.toString());
+//                changeInfoService.changeUserInfo(thisUser);
+                changeInfoService.changeUserInfo(multipartFile,thisUser);
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {
