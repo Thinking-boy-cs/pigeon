@@ -79,7 +79,7 @@
         <a-select-option value="sender3"> 管理员3 </a-select-option>
       </a-select>
     </div>
-        <div id="logout">
+    <div id="logout">
       <div id="logout-button">退出登录</div>
     </div>
   </div>
@@ -107,9 +107,9 @@ export default {
     handleChange (value) {
       console.log(`selected ${value}`)
     },
-
-    handleStart (value) {
-      console.log(`selected ${value}`)
+    handleStart (value, dateString) {
+      console.log('Selected Time: ', value)
+      console.log('Formatted Selected Time: ', dateString)
     },
     handleEnd (value) {
       console.log(`selected ${value}`)
@@ -163,6 +163,9 @@ export default {
 #type-select {
   float: right;
   margin-right: 10px;
+}
+#type .ant-select-selection {
+  border: none!important;
 }
 #sender-select {
   float: right;
@@ -240,7 +243,7 @@ export default {
   color: red;
   margin-top: 15px;
   font-weight: bold;
-   position: absolute;
+  position: absolute;
 }
 #logout {
   position: absolute;
