@@ -11,7 +11,7 @@
     <div id="type">
       <a id="text"><span style="color: red">*</span>请假类型</a>
       <a-select
-        v-model="selectType"
+        v-model="form.selectType"
         id="type-select"
         style="width: 120px"
         @change="handleChange"
@@ -25,7 +25,7 @@
     <div id="start-time">
       <a id="text"><span style="color: red">*</span>开始时间</a>
       <a-date-picker
-        v-model="startTime"
+        v-model="form.startTime"
         id="startTime"
         v-decorator="['date-time-picker', config]"
         show-time
@@ -36,7 +36,7 @@
     <div id="end-time">
       <a id="text"><span style="color: red">*</span>结束时间</a>
       <a-date-picker
-        v-model="endTime"
+        v-model="form.endTime"
         id="endTime"
         v-decorator="['date-time-picker', config]"
         show-time
@@ -49,6 +49,7 @@
       <a-textarea
         class="causetext"
         placeholder="请输入请假理由"
+        v-model="form.cause"
         allow-clear
         @change="onChange"
         :auto-size="{ minRows: 3, maxRows: 5 }"
@@ -68,7 +69,7 @@
     <div id="sendto">
       <a id="text">抄送人</a>
       <a-select
-        v-model="selectSender"
+        v-model="form.selectSender"
         id="sender-select"
         style="width: 120px"
         @change="handleChange"
@@ -79,9 +80,7 @@
         <a-select-option value="sender3"> 管理员3 </a-select-option>
       </a-select>
     </div>
-    <div id="logout">
-      <div id="logout-button">退出登录</div>
-    </div>
+    <a-button id="submit" type="primary" block> 提交 </a-button>
   </div>
 </template>
 
@@ -89,10 +88,13 @@
 export default {
   data () {
     return {
-      selectType: '',
-      startTime: '',
-      endTime: '',
-      selectSender: '',
+      form: {
+        selectType: '',
+        startTime: '',
+        endTime: '',
+        selectSender: '',
+        cause: ''
+      },
       fileList: [
         {
           uid: '-1',
@@ -164,8 +166,8 @@ export default {
   float: right;
   margin-right: 10px;
 }
-#type .ant-select-selection {
-  border: none!important;
+#type-select .ant-select-selection {
+  border: none !important;
 }
 #sender-select {
   float: right;
@@ -239,19 +241,8 @@ export default {
   padding-left: 15px;
   padding-top: 8px;
 }
-#logout-button {
-  color: red;
-  margin-top: 15px;
-  font-weight: bold;
-  position: absolute;
-}
-#logout {
-  position: absolute;
-  margin-top: 550px;
-  width: calc(100% - 100px);
-  background-color: white;
-  height: 50px;
-  margin-left: 50px;
-  border-radius: 10px 10px 10px 10px;
+#submit {
+  height: 45px;
+  margin-top: 554px;
 }
 </style>
