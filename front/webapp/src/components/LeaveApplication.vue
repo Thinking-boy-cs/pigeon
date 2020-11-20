@@ -166,8 +166,9 @@ export default {
   float: right;
   margin-right: 10px;
 }
-#type-select .ant-select-selection {
-  border: none !important;
+.page > div:not(id=navigation-container) {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #sender-select {
   float: right;
