@@ -46,10 +46,25 @@ public class GovernController {
     /**
      * 2.修改用户信息
      */
-
+    @RequestMapping("addUser")
+    public Map<String,Object> addUser(@RequestBody User user,HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            governService.addUser(user);
+            map.put("status",0);
+            map.put("msg","登录成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
     /**
      * 3.添加用户信息
      */
+    
+
 
     /**
      * 4.删除用户信息
