@@ -34,10 +34,11 @@ public class RecordController {
     public Map<String,Object> sign(@RequestBody Record record, HttpServletRequest request){
         log.info("当前签到的用户信息：[{}]",record.toString());
         User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        log.info("当前用户的工号:[{}],",thisUser.getId());
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(record)){
-                record.setName(thisUser.getUsername());
+                record.setId(thisUser.getId());
                 recordService.isSign(record);
                 map.put("status",0);
                 map.put("msg","签到成功");
