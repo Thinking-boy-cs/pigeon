@@ -13,6 +13,7 @@ import Notification from '@/components/Notification'
 import Me from '@/components/Me'
 import Map from '@/components/Map'
 import Main from '@/components/Main'
+import Signin from '@/components/Signin'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
 import BaiduMap from 'vue-baidu-map'
@@ -60,6 +61,11 @@ export default new Router({
       path: '/Map',
       name: 'Map',
       component: Map
+    },
+    {
+      path: '/Signin',
+      name: 'Signin',
+      component: Signin
     },
     {
       path: '/',
