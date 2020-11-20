@@ -32,7 +32,7 @@ public class UserController {
 
 
     /**
-     * 用来处理用户登录
+     * 处理用户登录
      */
     @PostMapping("login")
     public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
@@ -103,6 +103,29 @@ public class UserController {
     }
 
     /**
+     * 查看用户个人信息
+     */
+    @RequestMapping("find")
+    public Map<String,Object> find(HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        User thisUser = (User)request.getServletContext().getAttribute("thisUser");
+        try {
+            userService.find(thisUser);
+            //更新广播
+            request.getServletContext().setAttribute("thisUser", thisUser);
+            map.put("status",0);
+            map.put("msg","查看成功!");
+            map.put("data",thisUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
+
+    /**
      * 设置用户个人信息
      */
     @PostMapping("changeInfo")
@@ -115,7 +138,7 @@ public class UserController {
                 //修改信息
                 thisUser.setSex(user.getSex());
                 changeInfoService.changeUserInfo(thisUser);
-                //加一个最新的thisUser
+                //更新thisUser
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {
