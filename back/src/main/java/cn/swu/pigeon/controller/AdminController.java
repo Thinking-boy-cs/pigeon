@@ -21,7 +21,7 @@ public class AdminController {
     private AdminService adminService;
 
     /**
-     * 用来处理管理员登录
+     * 处理管理员登录
      */
     @PostMapping("login")
     public Map<String,Object> login(@RequestBody User user, HttpServletRequest request){
@@ -42,4 +42,25 @@ public class AdminController {
         }
         return map;
     }
+
+
+
+    /**
+     * 统计操作
+     */
+    /**
+     * 1.签到统计
+     */
+
+    /**
+     * 2.表单统计
+     */
+
+    /**
+     * 3.请假统计
+     */
+
+    /**
+     * 活动管理
+     */
 }

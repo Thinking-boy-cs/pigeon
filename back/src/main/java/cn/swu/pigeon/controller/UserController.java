@@ -7,11 +7,14 @@ import cn.swu.pigeon.service.UserService;
 import cn.swu.pigeon.utils.VerifyCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,6 +27,7 @@ import java.util.Map;
 @Slf4j
 public class UserController {
 
+    @Resource
     @Autowired
     private UserService userService;
 
@@ -32,7 +36,7 @@ public class UserController {
 
 
     /**
-     * 用来处理用户登录
+     * 处理用户登录
      */
     @PostMapping("login")
     public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
@@ -66,7 +70,8 @@ public class UserController {
         thisPassword = "123456";
         Map<String, Object> map = new HashMap<>();
         try {
-            String key = (String) request.getServletContext().getAttribute("code");
+            String key = (String) request.getSession().getAttribute("code");
+            log.info(key);
             if (key.equalsIgnoreCase(code)) {
                 //1.调用业务方法
                 if((thisPassword.equals(user.getPassword()))){
@@ -95,7 +100,8 @@ public class UserController {
         //1.使用工具类生成验证码
         String code = VerifyCodeUtils.generateVerifyCode(4);
         //2.将验证码放入servletContext作用域
-        request.getServletContext().setAttribute("code", code);
+//        request.getServletContext().setAttribute("code", code);
+        request.getSession().setAttribute("code", code);
         //3.将图片转为base64
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         VerifyCodeUtils.outputImage(120, 30, byteArrayOutputStream, code);
@@ -103,19 +109,52 @@ public class UserController {
     }
 
     /**
+     * 查看用户个人信息
+     */
+    @RequestMapping("find")
+    public Map<String,Object> find(HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        User thisUser = (User)request.getServletContext().getAttribute("thisUser");
+        try {
+            userService.find(thisUser);
+            //更新广播
+            request.getServletContext().setAttribute("thisUser", thisUser);
+            map.put("status",0);
+            map.put("msg","查看成功!");
+            map.put("data",thisUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
+
+    /**
      * 设置用户个人信息
      */
-    @PostMapping("changeInfo")
-    public Map<String,Object> changeUserInfo(@RequestBody User user,HttpServletRequest request){
+   @RequestMapping(value = "/changeUserInfo" ,method = RequestMethod.POST)
+//    @ResponseBody
+    //@RequestMapping("changeUserInfo")
+    public Map<String,Object> changeUserInfo( User user, HttpServletRequest request, MultipartFile multipartFile){
         log.info("当前签到的用户信息：[{}]",user.toString());
         User thisUser = (User)request.getServletContext().getAttribute("thisUser");
+        log.info("[{}]",thisUser.toString());
         Map<String,Object> map = new HashMap<>();
+        log.info("[{}]",multipartFile);
+
         try {
+            if (multipartFile.isEmpty()){
+                map.put("status",1);
+                map.put("msg","文件不存在");
+            }
             if(!ObjectUtils.isEmpty(user)){
                 //修改信息
                 thisUser.setSex(user.getSex());
-                changeInfoService.changeUserInfo(thisUser);
-                //加一个最新的thisUser
+                log.info("修改性别后当前用户：[{}]",thisUser.toString());
+//                changeInfoService.changeUserInfo(thisUser);
+                changeInfoService.changeUserInfo(multipartFile,thisUser);
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {

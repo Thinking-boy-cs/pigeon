@@ -3,4 +3,9 @@
     <insert id="record" parameterType="Record">
         insert into signrecord values (#{id},#{temperature},#{nation},#{province},#{city},#{signTime})
     </insert>
+    <select id="find" parameterType="String" resultType="Record">
+        select id,temperature,nation,province,city,signTime
+        from signrecord
+        where id in (#{id})
+    </select>
 </mapper>
