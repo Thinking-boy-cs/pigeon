@@ -7,7 +7,7 @@
     <select id="findAct" parameterType="User" resultType="Activity">
         select activity.*
         from activity,staff
-        where activity.applicant={#username}
+        where activity.applicant={#id}
     </select>
     <delete id="backAct" parameterType="Activity">
         delete from activity
