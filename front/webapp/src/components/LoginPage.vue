@@ -40,6 +40,7 @@
         <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
       </a-input-password>
     </a-form-item>
+    
     <a-form-item>
       <a-checkbox class="checkbox-remember"
         v-decorator="[
