@@ -35,6 +35,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User find(User user) {
+        return userDAO.findById(user.getId());
+
+    }
+
+    @Override
     public void register(User user) {
         //根据用户输入用户名判断用户是否存在
         User userDB = userDAO.findById(user.getId());

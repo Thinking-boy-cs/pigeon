@@ -10,5 +10,5 @@ import java.util.List;
 public interface ActivityDao {
     void submitAct(Activity activity);
     void backAct(Activity activity);
-    List<Activity> findAct(User user);
+    List<Activity> findAct(String userId);
 }

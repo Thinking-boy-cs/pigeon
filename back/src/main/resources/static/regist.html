@@ -66,6 +66,14 @@
 							</tr>
 							<tr>
 								<td valign="middle" align="right">
+									确认密码:
+								</td>
+								<td valign="middle" align="left">
+									<input type="password" class="inputgri" v-model="thisPassword" />
+								</td>
+							</tr>
+							<tr>
+								<td valign="middle" align="right">
 									性别:
 								</td>
 								<td valign="middle" align="left">
@@ -114,6 +122,7 @@
 				sex:"男"
 			},
 			code:"",
+			thisPassword:"",
 		},
 		methods:{
 			//用来更换验证码实现

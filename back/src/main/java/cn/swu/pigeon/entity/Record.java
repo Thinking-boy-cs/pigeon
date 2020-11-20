@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @Accessors(chain = true)
 public class Record {
-    private String name;
+    private String id;
     private float temperature;
     private String nation;
     private String province;

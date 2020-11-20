@@ -36,7 +36,7 @@ public class UserController {
 
 
     /**
-     * 用来处理用户登录
+     * 处理用户登录
      */
     @PostMapping("login")
     public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
@@ -62,17 +62,24 @@ public class UserController {
      * 用来处理用户注册方法
      */
     @PostMapping("register")
-    public Map<String, Object> register(@RequestBody User user, String code, HttpServletRequest request){
+    public Map<String, Object> register(@RequestBody User user, String code,String thisPassword,HttpServletRequest request){
         log.info("用户信息:[{}]",user.toString());
         log.info("用户输入的验证码信息:[{}]",code);
+        log.info("用户确认的密码:[{}]",thisPassword);
+        //测试
+        thisPassword = "123456";
         Map<String, Object> map = new HashMap<>();
         try {
             String key = (String) request.getServletContext().getAttribute("code");
             if (key.equalsIgnoreCase(code)) {
                 //1.调用业务方法
-                userService.register(user);
-                map.put("status", 0);
-                map.put("msg", "提示: 注册成功!");
+                if((thisPassword.equals(user.getPassword()))){
+                    userService.register(user);
+                    map.put("status", 0);
+                    map.put("msg", "提示: 注册成功!");
+                }else{
+                    throw new RuntimeException("两次密码输入不一致!");
+                }
             } else {
                 throw new RuntimeException("验证码出现错误!");
             }
@@ -97,6 +104,29 @@ public class UserController {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         VerifyCodeUtils.outputImage(120, 30, byteArrayOutputStream, code);
         return "data:image/png;base64," + Base64Utils.encodeToString(byteArrayOutputStream.toByteArray());
+    }
+
+    /**
+     * 查看用户个人信息
+     */
+    @RequestMapping("find")
+    public Map<String,Object> find(HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        User thisUser = (User)request.getServletContext().getAttribute("thisUser");
+        try {
+            userService.find(thisUser);
+            //更新广播
+            request.getServletContext().setAttribute("thisUser", thisUser);
+            map.put("status",0);
+            map.put("msg","查看成功!");
+            map.put("data",thisUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
     }
 
     /**

@@ -1,17 +1,13 @@
 @import "~ant-design-vue/dist/antd.less";
-
 @font-face {
   font-family: 'PingFang SC';
   src: url("../../static/fonts/PingFang-Regular.ttf");
-  //  url('Sansation_Light.eot'); /* IE9 */
 }
 
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
-  
-  // color: @text-color;
 }
 *:not(class=fa) {
   font-family: 'PingFang SC';
@@ -36,7 +32,19 @@ body,
   margin-left: 20px;
 }
 
+
+.icon-container,
+.page-title {
+  display: inline-block;
+}
+.page {
+  background-color: #f8f8f8;
+}
 .icon-container {
   position: absolute;
   left: 0;
+}
+.page-title {
+  font-size: 20px;
+  font-weight: bold;
 }
