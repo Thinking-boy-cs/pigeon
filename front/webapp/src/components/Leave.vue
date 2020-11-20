@@ -87,17 +87,7 @@ export default {
 
 <style lang="less" scoped>
 @import "../style/index.less";
-.icon-container,
-.page-title {
-  display: inline-block;
-}
-.page {
-  background-color: #f8f8f8;
-}
-.page-title {
-  font-size: 20px;
-  font-weight: bold;
-}
+
 #content-container {
   position: absolute;
   width: 100%;

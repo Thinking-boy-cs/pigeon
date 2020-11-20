@@ -91,17 +91,15 @@ export default new Router({
       component: Leave,
       meta: {
         id: -10
+      }
+    },
+    {
+      path: '/getLeave/:leaveid',
+      name: 'LeaveDetail',
+      meta: {
+        id: -11
       },
-      children: [
-        {
-          path: 'getLeave/:leaveid',
-          name: 'LeaveDetail',
-          meta: {
-            id: -11
-          },
-          component: LeaveDetail
-        }
-      ]
+      component: LeaveDetail
     }
   ]
 })

@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 @import '../style/index.less';
 #status-container {
   width: 100%;
