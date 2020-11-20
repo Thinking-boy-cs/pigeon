@@ -1,39 +1,39 @@
 package cn.swu.pigeon.controller;
 
-
 import cn.swu.pigeon.entity.User;
-import cn.swu.pigeon.service.AdminService;
+import cn.swu.pigeon.service.GovernService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+/**
+ * 对用户的操作
+ */
 @RestController
 @CrossOrigin //允许跨域
-@RequestMapping("admin")
+@RequestMapping("govern")
 @Slf4j
-public class AdminController {
+public class GovernController {
 
     @Autowired
-    private AdminService adminService;
-
+    GovernService governService;
     /**
-     * 处理管理员登录
+     * 1.查看所有用户
      */
-    @PostMapping("login")
-    public Map<String,Object> login(@RequestBody User user, HttpServletRequest request){
-        log.info("当前登录用户的信息: [{}]",user.toString());
+    @RequestMapping("find")
+    public Map<String,Object> find(HttpServletRequest request){
+
         Map<String, Object> map =  new HashMap<>();
         try {
-            User adminDB = adminService.login(user);
-            //广播：一个变量
-            request.getServletContext().setAttribute("thisAdmin", adminDB);
+            List<User> thisUsers = governService.findUsers();
             map.put("status",0);
             map.put("msg","登录成功!");
-            map.put("data",adminDB);
+            map.put("data",thisUsers);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
@@ -43,24 +43,15 @@ public class AdminController {
         return map;
     }
 
-
-
     /**
-     * 统计操作
-     */
-    /**
-     * 1.签到统计
+     * 2.修改用户信息
      */
 
     /**
-     * 2.表单统计
+     * 3.添加用户信息
      */
 
     /**
-     * 3.请假统计
-     */
-
-    /**
-     * 活动管理
+     * 4.删除用户信息
      */
 }
