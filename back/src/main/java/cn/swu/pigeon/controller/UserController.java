@@ -70,7 +70,8 @@ public class UserController {
         thisPassword = "123456";
         Map<String, Object> map = new HashMap<>();
         try {
-            String key = (String) request.getServletContext().getAttribute("code");
+            String key = (String) request.getSession().getAttribute("code");
+            log.info(key);
             if (key.equalsIgnoreCase(code)) {
                 //1.调用业务方法
                 if((thisPassword.equals(user.getPassword()))){
@@ -99,7 +100,8 @@ public class UserController {
         //1.使用工具类生成验证码
         String code = VerifyCodeUtils.generateVerifyCode(4);
         //2.将验证码放入servletContext作用域
-        request.getServletContext().setAttribute("code", code);
+//        request.getServletContext().setAttribute("code", code);
+        request.getSession().setAttribute("code", code);
         //3.将图片转为base64
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         VerifyCodeUtils.outputImage(120, 30, byteArrayOutputStream, code);

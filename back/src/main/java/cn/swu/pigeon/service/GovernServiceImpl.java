@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,6 +24,19 @@ public class GovernServiceImpl implements GovernService{
 
     @Override
     public void addUser(User user) {
-        governDao.addUser(user.getId());
+        user.setRegisterTime(new Date());
+        user.setIcon("/default");
+        governDao.addUser(user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        governDao.deleteUser(user.getId());
+    }
+
+    @Override
+    public void updateUser(User user) {
+        user.setRegisterTime(new Date());
+        governDao.updateUser(user.getId());
     }
 }

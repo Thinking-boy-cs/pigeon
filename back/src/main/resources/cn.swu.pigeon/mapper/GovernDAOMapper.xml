@@ -5,16 +5,17 @@
         from staff
     </select>
 
-    <insert id="addUser" parameterType="String">
+    <insert id="addUser" parameterType="User">
         insert into staff value (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime},#{icon},#{telNumber},#{email})
     </insert>
 
-    <delete id="deleteUser" parameterType="int">
-        delete from userinfo where id=#{id}
+    <delete id="deleteUser" parameterType="String">
+        delete from staff where id=#{id}
     </delete>
 
     <update id="updateUser" parameterType="String">
-    update userinfo set id=#{id},username=#{username},password=#{password} where id=#{id}
+    update userinfo set id=#{id},username=#{username},password=#{password},sex=#{sex},
+    status=#{status},registerTime=#{registerTime},icon=#{icon},telNumber=#{telNumber},email=#{email} where id=#{id}
 </update>
 
     <select id="queryUser" parameterType="int" resultType="String">

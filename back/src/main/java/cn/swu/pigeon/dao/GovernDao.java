@@ -8,5 +8,7 @@ import java.util.List;
 @Mapper
 public interface GovernDao {
     List<User> find();
-    User addUser(String id);
+    User addUser(User user);
+    void deleteUser(String id);
+    void updateUser(String id);
 }
