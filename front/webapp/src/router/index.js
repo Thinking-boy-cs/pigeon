@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-20 11:19:12
+ * @LastEditTime: 2020-11-20 16:11:11
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -16,6 +16,7 @@ import Main from '@/components/Main'
 import Signin from '@/components/Signin'
 import LeaveDetail from '@/components/LeaveDetail'
 import Profile from '@/components/Profile'
+import EditProfile from '@/components/EditProfile'
 import LeaveApplication from '@/components/LeaveApplication'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
@@ -77,6 +78,11 @@ export default new Router({
       meta: {
         id: -13
       }
+    },
+    {
+      path: '/EditProfile',
+      name: 'EditProfile',
+      component: EditProfile
     },
     {
       path: '/LeaveApplication',
