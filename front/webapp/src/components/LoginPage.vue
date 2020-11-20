@@ -18,39 +18,23 @@
   >
     <a-form-item>
       <a-input size="large" id="username"
-      allow-clear @change="onChange"
-        v-decorator="[
-          'userName',
-          { rules: [{ required: true, message: '请输入用户名' }] },
-        ]"
+      allow-clear @change="onChange" v-model="form.username"
         placeholder="请输入用户名"
       >
         <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
       </a-input>
     </a-form-item>
     <a-form-item>
-      <a-input-password size="large" id="password"
-        v-decorator="[
-          'password',
-          { rules: [{ required: true, message: '请输入密码' }] },
-        ]"
+      <a-input-password size="large" id="password" v-model="form.password"
         type="password"
         placeholder="请输入密码"
       >
         <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
       </a-input-password>
     </a-form-item>
-    
+
     <a-form-item>
-      <a-checkbox class="checkbox-remember"
-        v-decorator="[
-          'remember',
-          {
-            valuePropName: 'checked',
-            initialValue: true,
-          },
-        ]"
-      >
+      <a-checkbox class="checkbox-remember">
         记住我
       </a-checkbox>
       <a class="login-form-forgot" href="">
@@ -73,13 +57,25 @@
 
 <script>
 export default {
+  data () {
+    return {
+      form: {
+        username: '',
+        password: ''
+      }
+    }
+  },
   methods: {
     handleSubmit (e) {
       e.preventDefault()
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          console.log('Received values of form: ', values)
-        }
+      console.log(this.form)
+      // this.form.validateFields((err, values) => {
+      //   if (!err) {
+      //     console.log('Received values of form: ', values)
+      //   }
+      // })
+      this.$axios.post('/api/pigeon/user/login', this.form).then(res => {
+        console.log(res)
       })
     },
     gotoregister () {
