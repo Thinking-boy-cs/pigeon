@@ -27,6 +27,7 @@ public class UploadServiceImpl implements UploadService {
         //设置存到数据库的img路径
 //        book.setImg(newPath);
         upload.setImgPath(newPath);
+//        upload.setUserna
 //        System.out.println(book.getImg());
         try {
 //            bookDao.addBook(book);

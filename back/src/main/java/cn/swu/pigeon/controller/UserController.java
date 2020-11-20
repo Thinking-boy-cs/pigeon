@@ -37,18 +37,19 @@ public class UserController {
     @PostMapping("login")
     public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
         log.info("当前登录用户的信息: [{}]",user.toString());
-        //广播：一个变量
-        request.getServletContext().setAttribute("thisUser", user);
         Map<String, Object> map =  new HashMap<>();
         try {
             User userDB = userService.login(user);
+            //广播：一个变量
+            request.getServletContext().setAttribute("thisUser", userDB);
             map.put("status",0);
             map.put("msg","登录成功!");
-            map.put("user",userDB);
+            map.put("data",userDB);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
             map.put("msg",e.getMessage());
+            map.put("data",null);
         }
         return map;
     }
@@ -104,7 +105,8 @@ public class UserController {
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(user)){
-                thisUser.setIcon(user.getIcon());
+                //修改信息
+                thisUser.setSex(user.getSex());
                 changeInfoService.changeUserInfo(thisUser);
                 map.put("status",0);
                 map.put("msg","修改成功");
