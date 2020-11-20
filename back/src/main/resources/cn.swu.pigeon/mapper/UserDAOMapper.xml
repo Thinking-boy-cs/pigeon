@@ -10,9 +10,9 @@
     </insert>
 
     <!--findByUserName-->
-    <select id="findByUserName" parameterType="String" resultType="User">
+    <select id="findById" parameterType="String" resultType="User">
         select id,username,dept,password,sex,status,registerTime,icon
-        from staff where username=#{username}
+        from staff where id=#{id}
     </select>
 
 </mapper>

@@ -2,7 +2,7 @@
 <mapper namespace="cn.swu.pigeon.dao.ChangeInfoDAO">
     <update id="changeInfo" parameterType="User">
         UPDATE staff
-        SET icon=#{icon}
-        where username=#{username};
+        SET sex=#{sex}
+        where id=#{id};
     </update>
 </mapper>
