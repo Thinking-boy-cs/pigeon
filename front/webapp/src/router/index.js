@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-19 20:56:46
+ * @LastEditTime: 2020-11-20 11:19:12
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -14,6 +14,7 @@ import Me from '@/components/Me'
 import Map from '@/components/Map'
 import Main from '@/components/Main'
 import Signin from '@/components/Signin'
+import LeaveDetail from '@/components/LeaveDetail'
 import Profile from '@/components/Profile'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
@@ -91,6 +92,14 @@ export default new Router({
       meta: {
         id: -10
       }
+    },
+    {
+      path: '/getLeave/:leaveid',
+      name: 'LeaveDetail',
+      meta: {
+        id: -11
+      },
+      component: LeaveDetail
     }
   ]
 })

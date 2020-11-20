@@ -93,7 +93,6 @@ public class ActivityController {
             if(!ObjectUtils.isEmpty(thisUser)){
                 //返回一个Activity数组
                 List<Activity> thisActivities = activityService.findActivity(thisUser);
-                //这个怎么交给前端？？？
                 request.getServletContext().setAttribute("thisActivities", thisActivities);
                 //System.out.println("所有的活动："+thisActivities.toString());
                 for(int i=0;i<thisActivities.size();i++){
