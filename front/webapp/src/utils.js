@@ -1,4 +1,4 @@
-function formatDate(date, fmt) { // author: meizz
+function formatDate (date, fmt) { // author: meizz
   var o = {
     'M+': date.getMonth() + 1, // 月份
     'd+': date.getDate(), // 日

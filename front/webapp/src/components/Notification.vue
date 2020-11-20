@@ -36,18 +36,10 @@ export default {
 </script>
 <style lang="less" scoped>
 @import "../style/index.less";
-// #navigation-container {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 58px;
-//   line-height: 58px;
-//   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
-// }
 #notification1 {
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   height: 90px;
+  background-color: white;
 }
 #notification1 a{
   color: black;
@@ -62,6 +54,7 @@ export default {
 }
 #notification2 {
   height: 90px;
+  background-color: white;
 }
 #notification2 a{
   color: black;
@@ -94,12 +87,12 @@ export default {
 }
 #navigation-wrapper {
   position: relative;
-  width: calc(100% - 40px);
-  margin-left: 20px;
+  width: 100%;
+  margin-left: 0px;
 }
 .title-container {
   font-size: 15px;
-  color: rgba(0, 0, 0, 0.65);
+  background-color: white;
 }
 #notification-header {
   position: relative;
