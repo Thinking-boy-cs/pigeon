@@ -79,7 +79,7 @@
             //用户登录
             login(){
                 //发送登录请求
-                axios.post("http://localhost:8989/pigeon/admin/login",this.user).then(res=>{
+                axios.post("http://localhost:8989/pigeon/user/login",this.user).then(res=>{
                     console.log(res.data);
                     if(!res.data.status){
                         alert(res.data.msg+",点击确定进入主页!");
