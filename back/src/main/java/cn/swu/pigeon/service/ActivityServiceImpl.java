@@ -31,6 +31,6 @@ public class ActivityServiceImpl implements ActivityService{
 
     @Override
     public List<Activity> findActivity(User user) {
-        return activityDao.findAct(user);
+        return activityDao.findAct(user.getId());
     }
 }

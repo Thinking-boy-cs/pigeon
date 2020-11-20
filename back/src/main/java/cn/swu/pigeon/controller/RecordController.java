@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -32,9 +33,7 @@ public class RecordController {
      */
     @PostMapping("sign")
     public Map<String,Object> sign(@RequestBody Record record, HttpServletRequest request){
-        log.info("当前签到的用户信息：[{}]",record.toString());
         User thisUser = (User) request.getServletContext().getAttribute("thisUser");
-        log.info("当前用户的工号:[{}],",thisUser.getId());
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(record)){
@@ -55,4 +54,32 @@ public class RecordController {
         }
 
     }
+
+    /**
+     * 查看用户签到
+     */
+    @RequestMapping("find")
+    public Map<String,Object> find(HttpServletRequest request){
+        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(thisUser)){
+                List<Record> thisRecords = recordService.findRec(thisUser);
+                map.put("status",0);
+                map.put("msg","查看成功");
+                map.put("data",thisRecords);
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
+
+    }
+
 }
