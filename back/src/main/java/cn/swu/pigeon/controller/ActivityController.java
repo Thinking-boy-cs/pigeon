@@ -64,10 +64,14 @@ public class ActivityController {
                 for(int i = 0;i<thisActivities.size();i++){
                     if(thisActivities.get(i).getId()==activity.getId()){
                         activityService.backActivity(activity);
+                        map.put("status",0);
+                        map.put("msg","撤销成功");
+                    }else{
+                        map.put("status",1);
+                        map.put("msg","撤销失败");
                     }
                 }
-                map.put("status",0);
-                map.put("msg","撤销成功");
+
             } else {
                 map.put("status",1);
                 map.put("msg","撤销失败");

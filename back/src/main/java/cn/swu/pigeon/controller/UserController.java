@@ -58,17 +58,24 @@ public class UserController {
      * 用来处理用户注册方法
      */
     @PostMapping("register")
-    public Map<String, Object> register(@RequestBody User user, String code, HttpServletRequest request){
+    public Map<String, Object> register(@RequestBody User user, String code,String thisPassword,HttpServletRequest request){
         log.info("用户信息:[{}]",user.toString());
         log.info("用户输入的验证码信息:[{}]",code);
+        log.info("用户确认的密码:[{}]",thisPassword);
+        //测试
+        thisPassword = "123456";
         Map<String, Object> map = new HashMap<>();
         try {
             String key = (String) request.getServletContext().getAttribute("code");
             if (key.equalsIgnoreCase(code)) {
                 //1.调用业务方法
-                userService.register(user);
-                map.put("status", 0);
-                map.put("msg", "提示: 注册成功!");
+                if((thisPassword.equals(user.getPassword()))){
+                    userService.register(user);
+                    map.put("status", 0);
+                    map.put("msg", "提示: 注册成功!");
+                }else{
+                    throw new RuntimeException("两次密码输入不一致!");
+                }
             } else {
                 throw new RuntimeException("验证码出现错误!");
             }
@@ -108,6 +115,7 @@ public class UserController {
                 //修改信息
                 thisUser.setSex(user.getSex());
                 changeInfoService.changeUserInfo(thisUser);
+                //加一个最新的thisUser
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {
