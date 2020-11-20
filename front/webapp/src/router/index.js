@@ -16,6 +16,7 @@ import Main from '@/components/Main'
 import Signin from '@/components/Signin'
 import LeaveDetail from '@/components/LeaveDetail'
 import Profile from '@/components/Profile'
+import LeaveApplication from '@/components/LeaveApplication'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
 import BaiduMap from 'vue-baidu-map'
@@ -74,7 +75,15 @@ export default new Router({
       name: 'Profile',
       component: Profile,
       meta: {
-        id: -11
+        id: -13
+      }
+    },
+    {
+      path: '/LeaveApplication',
+      name: 'LeaveApplication',
+      component: LeaveApplication,
+      meta: {
+        id: -14
       }
     },
     {

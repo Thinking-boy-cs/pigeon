@@ -9,27 +9,7 @@
       </div>
     </div>
     <div id="personalize">
-      <a-form id="form1">
-           <a-form-item v-bind="formItemLayout" label="E-mail">
-            <a-input
-                v-decorator="[
-                'email',
-                {
-                    rules: [
-                    {
-                        type: 'email',
-                        message: 'The input is not valid E-mail!',
-                    },
-                    {
-                        required: true,
-                        message: 'Please input your E-mail!',
-                    },
-                    ],
-                },
-                ]"
-            />
-        </a-form-item>
-      </a-form>
+      请假类型
     </div>
 
     <div id="basic-information"></div>
@@ -70,6 +50,6 @@ export default {}
   position: absolute;
 }
 #form1 {
-    width: 50%;
+  width: 50%;
 }
 </style>
