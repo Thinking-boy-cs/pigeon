@@ -149,7 +149,7 @@ export default {
 }
 #type {
   background: white;
-  height: 45px;
+  height: 50px;
   width: 100%;
   margin-top: 82px;
   position: absolute;
@@ -176,9 +176,9 @@ export default {
 }
 #start-time {
   background: white;
-  height: 45px;
+  height: 50px;
   width: 100%;
-  margin-top: 128px;
+  margin-top: 133px;
   position: absolute;
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -187,9 +187,9 @@ export default {
 }
 #end-time {
   background: white;
-  height: 45px;
+  height: 50px;
   width: 100%;
-  margin-top: 174px;
+  margin-top: 184px;
   position: absolute;
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -206,9 +206,9 @@ export default {
 }
 #cause {
   background: white;
-  height: 120px;
+  height: 135px;
   width: 100%;
-  margin-top: 220px;
+  margin-top: 235px;
   position: absolute;
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -222,9 +222,9 @@ export default {
 }
 #appendix {
   background: white;
-  height: 120px;
+  height: 124px;
   width: 100%;
-  margin-top: 341px;
+  margin-top: 371px;
   position: absolute;
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -233,9 +233,9 @@ export default {
 }
 #sendto {
   background: white;
-  height: 45px;
+  height: 50px;
   width: 100%;
-  margin-top: 462px;
+  margin-top: 497px;
   position: absolute;
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -243,7 +243,7 @@ export default {
   padding-top: 8px;
 }
 #submit {
-  height: 45px;
-  margin-top: 554px;
+  height: 50px;
+  margin-top: 570px;
 }
 </style>
