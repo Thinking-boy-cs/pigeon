@@ -1,14 +1,14 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-15 20:44:32
+ * @LastEditTime: 2020-11-19 20:42:45
 -->
 <template>
   <div>
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" />
+          <a-icon type="left"/>
         </div>
       </div>
     </div>
@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "~ant-design-vue/dist/antd.less";
+@import "../style/index.less";
 
 * {
   margin: 0;
@@ -99,24 +99,7 @@ export default {
   text-decoration: none;
   color: @text-color;
 }
-#navigation-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 58px;
-  line-height: 58px;
-  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
-}
-#navigation-wrapper {
-  position: relative;
-  width: calc(100% - 40px);
-  margin-left: 20px;
-}
-.icon-container {
-  position: absolute;
-  left: 0;
-}
+
 #header-container {
   position: relative;
   text-align: left;

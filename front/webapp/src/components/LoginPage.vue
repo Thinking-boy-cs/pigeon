@@ -59,7 +59,7 @@
         登 录
       </a-button>
       或者
-      <a href="">
+      <a @click="gotoregister">
         现在就注册!
       </a>
     </a-form-item>
@@ -81,6 +81,9 @@ export default {
         }
       })
     },
+    gotoregister () {
+      this.$router.push({ path: '/Register' })
+    },
     onChange (e) {
       console.log(e)
     }
@@ -92,7 +95,8 @@ export default {
 // @import "~ant-design-vue/dist/antd.less";
 @import "../style/index.less";
 #header-background {
-  background: url(../img/bg.png) no-repeat fixed;
+  background: url(../img/01.jpg ) no-repeat fixed;
+  background-size: 100% 100%;
   width:100%;
   height:100%;
   position: relative;
@@ -100,20 +104,24 @@ export default {
   z-index:1;
 }
 #header-background:after{
-  background: url(../img/gezi.png) no-repeat fixed;
+  // background: url(../img/gezi.png) no-repeat fixed;
   content: "";
   width:100%;
   height:100%;
   position: absolute;
   left:0;
   top:0;
-  filter: opacity(30%);
-  // background: inherit;
+  // filter: opacity(30%);
+  filter: blur(1px);
+  background: inherit;
   z-index: 2;
 }
 #header-container {
   position: relative;
   z-index: 3;
+}
+#header-title {
+  margin-bottom:50px;
 }
 * {
   margin: 0;
@@ -146,7 +154,7 @@ export default {
 }
 #cover {
   margin-top: 160px;
-  background-color: white;
+  background-color:rgba(255,255,255,1);
   width: calc(100% - 40px);
   margin-left: 20px;
   border-radius: 20px 20px 0px 0px;
