@@ -85,7 +85,7 @@ public class ActivityController {
     /**
      * 查看活动
      */
-    @PostMapping("find")
+    @RequestMapping("find")
     public Map<String,Object> find(HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
         User thisUser = (User) request.getServletContext().getAttribute("thisUser");

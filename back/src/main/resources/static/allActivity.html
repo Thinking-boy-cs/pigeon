@@ -26,15 +26,16 @@
     var app = new Vue({
         el: "#wrap",
         data: {
-
         },
-        methods:{    
+        methods:{
+
             //查看活动
             find(){
                 //发送查看活动请求
                 axios.post("http://localhost:8989/pigeon/activity/find").then(res=>{
                     console.log(res.data);
                 });
+
             }
         }
     });
