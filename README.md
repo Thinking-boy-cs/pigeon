@@ -11,8 +11,9 @@ POST http://localhost:8989/pigeon/user/login
 返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
-	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
 	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	user &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录用户
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
@@ -33,6 +34,16 @@ user{
   {
 	status:0
 	msg:"登录成功"
+        data:{
+                user.id:"001",
+                user.username:"小朋友",
+                user.dept:"幼儿园",
+                user.password:"123456",
+                user.sex:"男",
+                user.status:"已激活",
+                user.registerTime:2020-11-18 20:30:27,
+                user.icon:"/default"
+             }
   }
 ```
 
@@ -192,7 +203,7 @@ Activity{
 	msg:"提交成功"
   }
 ```   
-## 5. 查看用户活动(有问题，待定)
+## 5. 查看用户活动
 请求地址      
 POST http://localhost:8989/pigeon/activity/find      
 	请求参数         
@@ -232,7 +243,7 @@ user{
 POST http://localhost:8989/pigeon/activity/backout      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
-	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是  &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 当前的用户    
+	activity &nbsp; &nbsp; Activity&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 点击的活动    
 
 返回值     
 	Map<int,Object>    

@@ -44,11 +44,12 @@ public class UserController {
             User userDB = userService.login(user);
             map.put("status",0);
             map.put("msg","登录成功!");
-            map.put("user",userDB);
+            map.put("data",userDB);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
             map.put("msg",e.getMessage());
+            map.put("data",null);
         }
         return map;
     }
