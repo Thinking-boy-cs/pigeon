@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 15:48:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-19 20:42:45
+ * @LastEditTime: 2020-11-20 21:49:32
 -->
 <template>
   <div>
@@ -51,9 +51,13 @@
             <a-icon slot="prefix" type="check-circle" style="color:rgba(0,0,0,.25)" />
           </a-input-password>
         </a-form-model-item>
-        <a-form-item>
+        <a-form-model-item>
+          <a-input size="large" allow-clear placeholder="请输入图中的验证码"></a-input>
+          <img :src="getVerifyImage()" />
+        </a-form-model-item>
+        <a-form-model-item>
           <a-radio :defaultChecked="false" v-model="formInline.agree">勾选表示同意<a href="#">《用户使用协议》</a></a-radio>
-        </a-form-item>
+        </a-form-model-item>
         <a-form-model-item>
           <a-button
             id="register-button"
@@ -85,6 +89,9 @@ export default {
   methods: {
     handleSubmit (e) {
       console.log(this.formInline)
+    },
+    getVerifyImage() {
+      this.$axios.get("http://10.129.79.224:8989/")
     }
   }
 }

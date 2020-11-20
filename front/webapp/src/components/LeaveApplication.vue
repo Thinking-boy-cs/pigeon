@@ -166,6 +166,10 @@ export default {
   float: right;
   margin-right: 10px;
 }
+.page > div:not(id=navigation-container) {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 #sender-select {
   float: right;
   margin-right: 10px;
