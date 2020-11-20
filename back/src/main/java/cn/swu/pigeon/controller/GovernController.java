@@ -52,7 +52,7 @@ public class GovernController {
         try {
             governService.addUser(user);
             map.put("status",0);
-            map.put("msg","登录成功!");
+            map.put("msg","修改成功!");
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
@@ -63,10 +63,38 @@ public class GovernController {
     /**
      * 3.添加用户信息
      */
-    
+    @RequestMapping("updateUser")
+    public Map<String,Object> updateUser(@RequestBody User user,HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            governService.updateUser(user);
+            map.put("status",0);
+            map.put("msg","修改成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
+
 
 
     /**
      * 4.删除用户信息
      */
+    @RequestMapping("deleteUser")
+    public Map<String,Object> deleteUser(@RequestBody User user,HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            governService.deleteUser(user);
+            map.put("status",0);
+            map.put("msg","删除成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
 }

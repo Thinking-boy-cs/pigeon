@@ -9,4 +9,8 @@ public interface GovernService {
     List<User> findUsers();
     //添加用户信息
     void addUser(User user);
+    //删除用户信息
+    void deleteUser(User user);
+    //修改用户信息
+    void updateUser(User user);
 }
