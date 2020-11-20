@@ -7,7 +7,7 @@
         insert into staff values (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime},#{icon},#{telNumber},#{email})
     </insert>
     <select id="findById" parameterType="String" resultType="User">
-        select id,username,dept,password,sex,status,registerTime,icon
+        select id,username,dept,password,sex,status,registerTime,icon,telNumber,email
         from staff where id=#{id}
     </select>
 
