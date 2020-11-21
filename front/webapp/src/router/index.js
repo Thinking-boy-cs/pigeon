@@ -121,7 +121,7 @@ const router = new Router({
 
 router.beforeEach((route, redirect, next) => {
   if (!localStorage.getItem('user')) {
-    if (route.path !== '/login') {
+    if (route.path !== '/login' && route.path != '/register') {
       next({
         path: '/login',
         query: {redirect: route.fullPath}
