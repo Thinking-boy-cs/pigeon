@@ -37,6 +37,8 @@ public class RecordController {
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(record)){
+                //测试（默认签到活动）
+                record.setActivityId(1);
                 record.setId(thisUser.getId());
                 recordService.isSign(record);
                 map.put("status",0);
