@@ -9,11 +9,11 @@
     <select id="findAct" parameterType="String" resultType="Leave">
         select *
         from leave
-        where userId in (#{id})
+        where userId in (#{userId})
     </select>
-    <!--    根据工号删除-->
-    <delete id="backAct" parameterType="Leave">
+    <!--    根据编号删除-->
+    <delete id="backAct" parameterType="int">
         delete from leave
-        where userId=#{userId}
+        where id=#{id}
     </delete>
 </mapper>

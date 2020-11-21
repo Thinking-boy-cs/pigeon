@@ -96,7 +96,7 @@ public class ActivityController {
         try {
             if(!ObjectUtils.isEmpty(thisUser)){
                 //返回一个Activity数组
-                List<Activity> thisActivities = activityService.findActivity(thisUser);
+                List<Activity> thisActivities = activityService.findActivity(thisUser.getId());
                 request.getSession().setAttribute("thisActivities", thisActivities);
                 //System.out.println("所有的活动："+thisActivities.toString());
                 for(int i=0;i<thisActivities.size();i++){

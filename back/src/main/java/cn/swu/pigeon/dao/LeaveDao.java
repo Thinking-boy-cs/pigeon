@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface LeaveDao {
     void submitAct(Leave leave);
-    void backAct(Leave leave);
+    void backAct(int leaveId);
     List<Leave> findAct(String userId);
 
 }

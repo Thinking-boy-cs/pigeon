@@ -62,16 +62,14 @@ public class LeaveController {
     @PostMapping("back")
     @SuppressWarnings("unchecked")
 
-    public Map<String, Object> back(@RequestBody Leave leave, HttpServletRequest request) {
+    public Map<String, Object> back(@RequestBody int id, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
-//        List<Activity> thisActivities = (List<Activity>)request.getServletContext().getAttribute("thisActivities");
         List<Leave> thisLeaves = (List<Leave>) request.getSession().getAttribute("thisLeaves");
         try {
-            if (!ObjectUtils.isEmpty(leave)) {
+            if (id!=0) {
                 for (int i = 0; i < thisLeaves.size(); i++) {
-                    if (thisLeaves.get(i).getId() == leave.getId()) {
-//                        activityService.backActivity(activity);
-                        leaveService.backLeave(leave);
+                    if (thisLeaves.get(i).getId() == id) {
+                        leaveService.backLeave(id);
                         map.put("status", 0);
                         map.put("msg", "撤销成功");
                     } else {
@@ -104,13 +102,8 @@ public class LeaveController {
         User thisUser = (User) request.getSession().getAttribute("thisUser");
         try {
             if (!ObjectUtils.isEmpty(thisUser)) {
-                //返回一个Activity数组
-//                List<Activity> thisActivities = activityService.findActivity(thisUser);
-                List<Leave> thisLeaves = leaveService.findLeave(thisUser);
-//                request.getServletContext().setAttribute("thisActivities", thisActivities);
+                List<Leave> thisLeaves = leaveService.findLeave(thisUser.getId());
                 request.getSession().setAttribute("thisLeaves", thisLeaves);
-
-                //System.out.println("所有的活动："+thisActivities.toString());
                 for (int i = 0; i < thisLeaves.size(); i++) {
                     System.out.println(thisLeaves.get(i).getLeaveReason());
                 }

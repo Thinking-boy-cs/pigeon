@@ -41,13 +41,13 @@ public class LeaveServiceImpl implements LeaveService{
     }
 
     @Override
-    public void backLeave(Leave leave) {
-        leaveDao.backAct(leave);
+    public void backLeave(int LeaveId) {
+        leaveDao.backAct(LeaveId);
 
     }
 
     @Override
-    public List<Leave> findLeave(User user) {
-        return leaveDao.findAct(user.getId());
+    public List<Leave> findLeave(String userId) {
+        return leaveDao.findAct(userId);
     }
 }

@@ -12,5 +12,5 @@ public interface ActivityService {
     //撤销活动
     void backActivity(int activityId);
     //找到所有活动
-    List<Activity> findActivity(User user);
+    List<Activity> findActivity(String id);
 }
