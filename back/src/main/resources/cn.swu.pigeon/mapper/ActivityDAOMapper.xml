@@ -9,8 +9,8 @@
         from activity
         where applicant in (#{id})
     </select>
-    <delete id="backAct" parameterType="Activity">
+    <delete id="backAct" parameterType="int">
         delete from activity
-        where id={#id}
+        where id=#{id}
     </delete>
 </mapper>
