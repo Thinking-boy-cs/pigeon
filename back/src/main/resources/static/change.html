@@ -10,13 +10,19 @@
                 //$('#uploadForm')[0]为选择器，不规定为id选择器，前提是该选择器能获取file文件，然后放入到formData中
                 var formData = new FormData($('#changeForm')[0]);
                 var sex = $("#sex").val();
+                var telNumber = $("#telNumber").val();
+                var email = $("#email").val();
                 console.log(formData.get("file"))
                 console.log(sex)
+                console.log(telNumber)
+                console.log(email)
                 if (formData ==={} || formData===""){
                     alert("请选择文件")
                 }
                 formData.append("multipartFile",formData.get("file"));
                 formData.append("sex",sex);
+                formData.append("telNumber",telNumber);
+                formData.append("email",email);
                 //调用formData的append方法，将book属性都添加进去，img填空白即可。
                 // formData.append("name","龙哥传");
                 // formData.append("author","龙哥");
@@ -65,6 +71,22 @@
                 </td>
                 <td valign="middle" align="left">
                     <input type="text" id = "sex" class="inputgri" v-model="user.sex"  />
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" align="right">
+                    电话
+                </td>
+                <td valign="middle" align="left">
+                    <input type="text" id = "telNumber" class="inputgri" v-model="user.telNumber"  />
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" align="right">
+                    电子邮箱
+                </td>
+                <td valign="middle" align="left">
+                    <input type="text" id = "email" class="inputgri" v-model="user.email"  />
                 </td>
             </tr>
             <tr>

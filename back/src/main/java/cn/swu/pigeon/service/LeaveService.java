@@ -10,4 +10,6 @@ public interface LeaveService {
     void submitLeave(Leave leave);
     void backLeave(int id);
     List<Leave> findLeave(String userId);
+    //销假
+    void endLev(int id);
 }

@@ -64,7 +64,6 @@ public class LeaveController {
      */
     @PostMapping("back")
     @SuppressWarnings("unchecked")
-
     public Map<String, Object> back(@RequestBody int id, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
         List<Leave> thisLeaves = (List<Leave>) request.getSession().getAttribute("thisLeaves");
@@ -129,4 +128,36 @@ public class LeaveController {
 
     }
 
+    /**
+     * 销假
+     */
+    @PostMapping("end")
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> endLev(@RequestBody int id, HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
+        List<Leave> thisLeaves = (List<Leave>) request.getSession().getAttribute("thisLeaves");
+        try {
+            if (id!=0) {
+                for (int i = 0; i < thisLeaves.size(); i++) {
+                    if (thisLeaves.get(i).getId() == id) {
+                        leaveService.endLev(id);
+                        map.put("status", 0);
+                        map.put("msg", "销假成功");
+                    } else {
+                        map.put("status", 1);
+                        map.put("msg", "销假失败");
+                    }
+                }
+            }else{
+                map.put("status", 1);
+                map.put("msg", "销假失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status", 1);
+            map.put("msg", "销假失败");
+        }
+
+        return map;
+    }
 }

@@ -10,5 +10,7 @@ public interface LeaveDao {
     void submitAct(Leave leave);
     void backAct(int leaveId);
     List<Leave> findAct(String userId);
+    //销假
+    void endLev(int id);
 
 }

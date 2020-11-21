@@ -1,5 +1,5 @@
 GitHubTest
-#后端
+#后端~App
 ## 1. 登录/注册
 + 登录:输入用户名和密码登录   
 请求地址   
@@ -293,7 +293,7 @@ status的合法值
 请求数据实例   
 ```
 leave{
-  	leaveReason:"事假",
+  	Reason:"事假",
         userId:"001",
         approveUser:"002",
         startTime:"2020-11-19 09:07:34",
@@ -367,5 +367,8 @@ status的合法值
 	status:0
 	msg:"撤回成功"
   }
-```
+```   
+
+#后端~后台管理系统
+
 
