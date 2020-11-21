@@ -6,34 +6,36 @@
         <div class="page-title">消息</div>
       </div>
     </div>
-    <div class="title-container">
-      <a-icon id="feature-icon1" type="calendar"></a-icon>
-      <a id="calendar">日历</a>
-      <a-divider type="vertical" />
-      <i class="fa fa-check-square-o" id="feature-icon2" aria-hidden="true"></i>
-      <a id="todo">待办</a>
-    </div>
-    <div id="notification1">
-      <a-avatar
-        :size="64"
-        style="backgroundColor: #f56a00"
-        icon="bell"
-        id="bell"
-      />
-      <div id="info1">
-        待处理通知
-        <br /><span>【签到提醒】</span>
+    <div id="content-container">
+      <div class="title-container">
+        <a-icon id="feature-icon1" type="calendar"></a-icon>
+        <a id="calendar">日历</a>
+        <a-divider type="vertical" />
+        <i class="fa fa-check-square-o" id="feature-icon2" aria-hidden="true"></i>
+        <a id="todo">待办</a>
       </div>
-    </div>
-    <div id="notification2">
-      <a-avatar
-        :size="64"
-        style="backgroundColor: #1890ff"
-        icon="user"
-        id="admin"
-      />
-      <div id="info2">管理员通知
-      <br /><span>【管理员提醒】</span>
+      <div id="notification1">
+        <a-avatar
+          :size="64"
+          style="backgroundColor: #f56a00"
+          icon="bell"
+          id="bell"
+        />
+        <div id="info1">
+          待处理通知
+          <br /><span>【签到提醒】</span>
+        </div>
+      </div>
+      <div id="notification2">
+        <a-avatar
+          :size="64"
+          style="backgroundColor: #1890ff"
+          icon="user"
+          id="admin"
+        />
+        <div id="info2">管理员通知
+        <br /><span>【管理员提醒】</span>
+        </div>
       </div>
     </div>
   </div>
@@ -45,6 +47,11 @@ export default {
 </script>
 <style lang="less" scoped>
 @import "../style/index.less";
+#content-container {
+  position: absolute;
+  width: 100%;
+  top: 58px;
+}
 #notification1 {
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   height: 90px;
@@ -87,7 +94,7 @@ export default {
   position: relative;
   width: 100%;
   height: 10vh;
-  margin-top: 59px;
+  // margin-top: 59px;
 }
 #notification-header {
   position: relative;
