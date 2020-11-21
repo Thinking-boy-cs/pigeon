@@ -1,57 +1,72 @@
 <template>
   <div id="header-background">
-  <div id="header-container">
-    <div id="header-title">
-      <p id="welcome">
-        欢迎使用Pigeon
-        <p class="welcome1">更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生<br /><br /><br />
-      </p>
-    </div>
-    <div id="cover">
-    <div id="header-mid">
-      <p id="login">账号密码登录</p>
-      <a-form
-    id="components-form-demo-normal-login"
-    :form="form"
-    class="login-form"
-    @submit="handleSubmit"
-  >
-    <a-form-item>
-      <a-input size="large" id="username"
-      allow-clear @change="onChange" v-model="form.username"
-        placeholder="请输入用户名"
-      >
-        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
-      </a-input>
-    </a-form-item>
-    <a-form-item>
-      <a-input-password size="large" id="password" v-model="form.password"
-        type="password"
-        placeholder="请输入密码"
-      >
-        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-      </a-input-password>
-    </a-form-item>
+    <div id="header-container">
+      <div id="header-title">
+        <p id="welcome">欢迎使用Pigeon</p>
+          <a-icon
+            :style="{ fontSize: '120px',color:'white'}"
+            type="yuque"
+          />
+      </div>
+      <div id="cover">
+        <div id="header-mid">
+          <p id="login">账号密码登录</p>
+          <a-form
+            id="components-form-demo-normal-login"
+            :form="form"
+            class="login-form"
+            @submit="handleSubmit"
+          >
+            <a-form-item>
+              <a-input
+                size="large"
+                id="username"
+                allow-clear
+                @change="onChange"
+                v-model="form.username"
+                placeholder="请输入用户名"
+              >
+                <a-icon
+                  slot="prefix"
+                  type="user"
+                  style="color: rgba(0, 0, 0, 0.25)"
+                />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-input-password
+                size="large"
+                id="password"
+                v-model="form.password"
+                type="password"
+                placeholder="请输入密码"
+              >
+                <a-icon
+                  slot="prefix"
+                  type="lock"
+                  style="color: rgba(0, 0, 0, 0.25)"
+                />
+              </a-input-password>
+            </a-form-item>
 
-    <a-form-item>
-      <a-checkbox class="checkbox-remember">
-        记住我
-      </a-checkbox>
-      <a class="login-form-forgot" href="">
-        忘记密码
-      </a>
-      <a-button size="large" type="primary" html-type="submit" class="login-form-button">
-        登 录
-      </a-button>
-      或者
-      <a @click="gotoregister">
-        现在就注册!
-      </a>
-    </a-form-item>
-  </a-form>
+            <a-form-item>
+              <a-checkbox class="checkbox-remember"> 记住我 </a-checkbox>
+              <a class="login-form-forgot" href=""> 忘记密码 </a>
+              <a-button
+                size="large"
+                type="primary"
+                html-type="submit"
+                class="login-form-button"
+              >
+                登 录
+              </a-button>
+              或者
+              <a @click="gotoregister"> 现在就注册! </a>
+            </a-form-item>
+          </a-form>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
   </div>
 </template>
 
@@ -74,7 +89,7 @@ export default {
       //     console.log('Received values of form: ', values)
       //   }
       // })
-      this.$axios.post('/api/pigeon/user/login', this.form).then(res => {
+      this.$axios.post('/api/pigeon/user/login', this.form).then((res) => {
         console.log(res)
       })
     },
@@ -91,23 +106,38 @@ export default {
 <style lang="less" scoped>
 // @import "~ant-design-vue/dist/antd.less";
 @import "../style/index.less";
-#header-background {
-  background: url(../img/01.jpg ) no-repeat fixed;
-  background-size: 100% 100%;
-  width:100%;
-  height:100%;
-  position: relative;
-  box-sizing:border-box;
-  z-index:1;
+@keyframes gradientBG {
+0% {
+background-position: 0% 50%;
 }
-#header-background:after{
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+}
+
+#header-background {
+  // background: url(../img/05.jpg) no-repeat fixed;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  animation: gradientBG 10s ease infinite;
+  // background-size: 100% 100%;
+  background-size: 400% 400%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 1;
+}
+#header-background:after {
   // background: url(../img/gezi.png) no-repeat fixed;
   content: "";
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
   // filter: opacity(30%);
   filter: blur(1px);
   background: inherit;
@@ -118,7 +148,7 @@ export default {
   z-index: 3;
 }
 #header-title {
-  margin-bottom:50px;
+  margin-bottom: 50px;
 }
 * {
   margin: 0;
@@ -127,16 +157,12 @@ export default {
   font-family: PingFang SC;
 }
 #welcome {
-  padding-top: 65px;
+  padding-top: 75px;
   font-size: 26px;
   text-align: center;
   font-weight: bold;
   color: white;
-  margin-bottom: 0.5em;
-}
-.welcome1 {
-  font-size: 15px;
-  color: white;
+  margin-bottom: 1.5em;
 }
 #login {
   padding-top: 40px;
@@ -150,8 +176,8 @@ export default {
   width: calc(100% - 90px);
 }
 #cover {
-  margin-top: 160px;
-  background-color:rgba(255,255,255,1);
+  margin-top: 69px;
+  background-color: rgba(255, 255, 255, 1);
   width: calc(100% - 40px);
   margin-left: 20px;
   border-radius: 20px 20px 0px 0px;
