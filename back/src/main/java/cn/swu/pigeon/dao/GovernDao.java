@@ -3,6 +3,7 @@ package cn.swu.pigeon.dao;
 import cn.swu.pigeon.entity.Activity;
 import cn.swu.pigeon.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface GovernDao {
     //找到所有活动
     List<Activity> findActivity();
     //审批活动
-    void approveActivity(String id);
+    void approveActivity(@Param("id") String id,@Param("status") String status);
 }

@@ -14,9 +14,9 @@
     </delete>
 
     <update id="updateUser" parameterType="String">
-    update userinfo set id=#{id},username=#{username},password=#{password},sex=#{sex},
-    status=#{status},registerTime=#{registerTime},icon=#{icon},telNumber=#{telNumber},email=#{email} where id=#{id}
-</update>
+        update userinfo set id=#{id},username=#{username},password=#{password},sex=#{sex},
+        status=#{status},registerTime=#{registerTime},icon=#{icon},telNumber=#{telNumber},email=#{email} where id=#{id}
+    </update>
 
     <select id="queryUser" parameterType="int" resultType="String">
         select id,username,password from userinfo where id=#{id}
@@ -26,4 +26,10 @@
         select id,activityName,applicant,approver,startTime,endTime,status,submitTime
         from activity
     </select>
+
+    <update id="approveActivity" parameterType="String">
+        update activity
+        set status=#{param2}
+        where id=#{param1}
+    </update>
 </mapper>

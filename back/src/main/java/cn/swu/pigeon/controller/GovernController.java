@@ -115,10 +115,13 @@ public class GovernController {
      * 1.审批（通过/拒绝）
      */
     @RequestMapping("approveActivity")
-    public Map<String,Object> approveActivity(@RequestBody User user,HttpServletRequest request){
+    public Map<String,Object> approveActivity(String id ,String status){
         Map<String, Object> map =  new HashMap<>();
         try {
-            governService.deleteUser(user);
+            //测试
+            id="1";
+            status="已通过";
+            governService.approveActivity(id,status);
             map.put("status",0);
             map.put("msg","审批成功!");
         } catch (Exception e) {

@@ -47,7 +47,7 @@ public class GovernServiceImpl implements GovernService{
     }
 
     @Override
-    public void approveActivity() {
-
+    public void approveActivity(String id,String status) {
+        governDao.approveActivity(id,status);
     }
 }

@@ -17,5 +17,5 @@ public interface GovernService {
     //查看活动
     List<Activity> findActivity();
     //审批活动
-    void approveActivity();
+    void approveActivity(String id,String status);
 }
