@@ -120,7 +120,7 @@ const router = new Router({
 })
 
 router.beforeEach((route, redirect, next) => {
-  if (!localStorage.getItem('userid')) {
+  if (!localStorage.getItem('user')) {
     if (route.path !== '/login') {
       next({
         path: '/login',
