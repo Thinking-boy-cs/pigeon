@@ -25,9 +25,10 @@ public class ActivityServiceImpl implements ActivityService{
     }
 
     @Override
-    public void backActivity(Activity activity) {
-        activityDao.backAct(activity);
+    public void backActivity(int activityId) {
+        activityDao.backAct(activityId);
     }
+
 
     @Override
     public List<Activity> findActivity(User user) {

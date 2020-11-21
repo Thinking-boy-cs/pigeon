@@ -67,9 +67,13 @@
                 登 录
               </a-button>
               或者
+<<<<<<< HEAD
               <a @click="gotoregister">
                 现在就注册!
               </a>
+=======
+              <a @click="gotoregister"> 现在就注册! </a>
+>>>>>>> scarlet-dev
             </a-form-item>
           </a-form>
         </div>
@@ -98,7 +102,7 @@ export default {
       //     console.log('Received values of form: ', values)
       //   }
       // })
-      this.$axios.post('/api/pigeon/user/login', this.form).then(res => {
+      this.$axios.post('/api/pigeon/user/login', this.form).then((res) => {
         console.log(res)
         if (res.data && res.data.status === 0) {
           localStorage.setItem('user', JSON.stringify(res.data.data))
@@ -125,9 +129,24 @@ export default {
 <style lang="less" scoped>
 // @import "~ant-design-vue/dist/antd.less";
 @import "../style/index.less";
+@keyframes gradientBG {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+}
+
 #header-background {
-  background: url(../img/01.jpg) no-repeat fixed;
-  background-size: 100% 100%;
+  // background: url(../img/05.jpg) no-repeat fixed;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  animation: gradientBG 10s ease infinite;
+  // background-size: 100% 100%;
+  background-size: 400% 400%;
   width: 100%;
   height: 100%;
   position: relative;
@@ -161,16 +180,12 @@ export default {
   font-family: PingFang SC;
 }
 #welcome {
-  padding-top: 65px;
+  padding-top: 75px;
   font-size: 26px;
   text-align: center;
   font-weight: bold;
   color: white;
-  margin-bottom: 0.5em;
-}
-.welcome1 {
-  font-size: 15px;
-  color: white;
+  margin-bottom: 1.5em;
 }
 #login {
   padding-top: 40px;
@@ -184,7 +199,7 @@ export default {
   width: calc(100% - 90px);
 }
 #cover {
-  margin-top: 160px;
+  margin-top: 69px;
   background-color: rgba(255, 255, 255, 1);
   width: calc(100% - 40px);
   margin-left: 20px;
