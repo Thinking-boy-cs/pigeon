@@ -5,4 +5,4 @@
         SET sex=#{sex},icon = #{icon}
         where id=#{id};
     </update>
-</mapper>
+</mapper>    
