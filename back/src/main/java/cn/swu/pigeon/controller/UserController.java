@@ -45,7 +45,7 @@ public class UserController {
         try {
             User userDB = userService.login(user);
             //广播：一个变量
-            request.getServletContext().setAttribute("thisUser", userDB);
+            request.getSession().setAttribute("thisUser", userDB);
             map.put("status",0);
             map.put("msg","登录成功!");
             map.put("data",userDB);
@@ -70,7 +70,7 @@ public class UserController {
         thisPassword = "123456";
         Map<String, Object> map = new HashMap<>();
         try {
-            String key = (String) request.getServletContext().getAttribute("code");
+            String key = (String) request.getSession().getAttribute("code");
             if (key.equalsIgnoreCase(code)) {
                 //1.调用业务方法
                 if((thisPassword.equals(user.getPassword()))){
@@ -99,7 +99,7 @@ public class UserController {
         //1.使用工具类生成验证码
         String code = VerifyCodeUtils.generateVerifyCode(4);
         //2.将验证码放入servletContext作用域
-        request.getServletContext().setAttribute("code", code);
+        request.getSession().setAttribute("code", code);
         //3.将图片转为base64
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         VerifyCodeUtils.outputImage(120, 30, byteArrayOutputStream, code);
@@ -112,11 +112,11 @@ public class UserController {
     @RequestMapping("find")
     public Map<String,Object> find(HttpServletRequest request){
         Map<String, Object> map =  new HashMap<>();
-        User thisUser = (User)request.getServletContext().getAttribute("thisUser");
+        User thisUser = (User)request.getSession().getAttribute("thisUser");
         try {
             userService.find(thisUser);
             //更新广播
-            request.getServletContext().setAttribute("thisUser", thisUser);
+            request.getSession().setAttribute("thisUser", thisUser);
             map.put("status",0);
             map.put("msg","查看成功!");
             map.put("data",thisUser);
@@ -137,7 +137,7 @@ public class UserController {
     //@RequestMapping("changeUserInfo")
     public Map<String,Object> changeUserInfo( User user, HttpServletRequest request, MultipartFile multipartFile){
         log.info("当前签到的用户信息：[{}]",user.toString());
-        User thisUser = (User)request.getServletContext().getAttribute("thisUser");
+        User thisUser = (User)request.getSession().getAttribute("thisUser");
         log.info("[{}]",thisUser.toString());
         Map<String,Object> map = new HashMap<>();
         log.info("[{}]",multipartFile);

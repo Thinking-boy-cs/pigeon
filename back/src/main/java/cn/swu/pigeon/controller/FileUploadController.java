@@ -32,7 +32,7 @@ public class FileUploadController {
 
     @RequestMapping("uploadFile")
     public Result uploadFile(MultipartFile multipartFile, Upload upload,HttpServletRequest request){
-        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        User thisUser = (User) request.getSession().getAttribute("thisUser");
         try{
             if (multipartFile.isEmpty()){
                 return Result.error();

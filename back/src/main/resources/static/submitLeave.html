@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="wrap">
+    <form action="login.html" method="post">
+        <table cellpadding="0" cellspacing="0" border="0"
+               class="form_table">
+            <tr>
+                <td valign="middle" align="right">
+                    请假原因:
+                </td>
+                <td valign="middle" align="left">
+                    <input type="text" class="inputgri" v-model="leave.leaveReason"  />
+                </td>
+            </tr>
+<!--            <tr>-->
+<!--                <td valign="middle" align="right">-->
+<!--                    申请人:-->
+<!--                </td>-->
+<!--                <td valign="middle" align="left">-->
+<!--                    <input type="text" class="inputgri" v-model="activity.applicant"  />-->
+<!--                </td>-->
+<!--            </tr>-->
+            <tr>
+                <td valign="middle" align="right">
+                    审批人:
+                </td>
+                <td valign="middle" align="left">
+                    <input type="text" class="inputgri" v-model="leave.approve"  />
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" align="right">
+                    开始时间:
+                </td>
+                <td valign="middle" align="left">
+                    <input id="meeting" type="datetime-local" class="inputgri" v-model="leave.startTime"  />
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" align="right">
+                    结束时间:
+                </td>
+                <td valign="middle" align="left">
+                    <input type="datetime-local" class="inputgri" v-model="leave.endTime"  />
+                </td>
+            </tr>
+        </table>
+        <p>
+            <input type="button" @click="submitAct" class="button" value="Submit &raquo;" />
+        </p>
+    </form>
+</div>
+</body>
+</html>
+<script src="/pigeon/js/vue.js"></script>
+<script src="/pigeon/js/axios.min.js"></script>
+<script>
+    var app = new Vue({
+        el: "#wrap",
+        data: {
+            url: "",
+            leave: {},
+        },
+        methods: {
+            //提交活动
+            submitAct() {
+                axios.post("http://localhost:8989/pigeon/leave/submit?",this.leave).then(res => {
+                    console.log(res.data);
+                    if (!res.data.status) {
+                        alert(res.data.msg + ",提交成功!");
+                    } else {
+                        alert(res.data.msg);
+                    }
+                });
+            }
+        },
+    })
+</script>

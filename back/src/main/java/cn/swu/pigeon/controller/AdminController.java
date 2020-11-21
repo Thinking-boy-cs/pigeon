@@ -30,7 +30,7 @@ public class AdminController {
         try {
             User adminDB = adminService.login(user);
             //广播：一个变量
-            request.getServletContext().setAttribute("thisAdmin", adminDB);
+            request.getSession().setAttribute("thisAdmin", adminDB);
             map.put("status",0);
             map.put("msg","登录成功!");
             map.put("data",adminDB);
