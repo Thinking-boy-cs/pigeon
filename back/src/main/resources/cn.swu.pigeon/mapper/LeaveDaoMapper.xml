@@ -1,20 +1,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.LeaveDao">
     <!--    将记录添加到数据库-->
-    <insert id="submitAct" parameterType="Leave" useGeneratedKeys="true" keyProperty="id">
-        insert into leave
-        values (#{id},#{leaveReason},#{userId},#{approveUser},#{startTime},#{endTime},#{state},#{submitTime})
+    <insert id="submitAct" parameterType="Leave" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into vacation
+        values (#{id},#{Reason},#{userId},#{approveUser},#{startTime},#{endTime},#{state},#{submitTime})
     </insert>
     <!--save-->
     <!--    根据工号查询-->
     <select id="findAct" parameterType="String" resultType="Leave">
         select *
-        from leave
-        where userId=#{id}
+        from vacation
+        where userId=#{userId}
     </select>
     <!--    根据工号删除-->
     <delete id="backAct" parameterType="Leave">
-        delete from leave
-        where userId=#{userId}
+        delete from vacation
+        where id=#{id}
     </delete>
 </mapper>

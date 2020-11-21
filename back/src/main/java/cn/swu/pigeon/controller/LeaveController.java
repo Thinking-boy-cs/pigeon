@@ -5,6 +5,7 @@ import cn.swu.pigeon.entity.Leave;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.ActivityService;
 import cn.swu.pigeon.service.LeaveService;
+import cn.swu.pigeon.utils.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -30,7 +31,7 @@ public class LeaveController {
      * 处理提交请假
      */
     @PostMapping("submit")
-    public Map<String, Object> submit(@RequestBody Leave leave, HttpServletRequest request) {
+    public Map<String,Object> submit(@RequestBody Leave leave, HttpServletRequest request) {
         User thisUser = (User) request.getSession().getAttribute("thisUser");
         Map<String, Object> map = new HashMap<>();
         try {
@@ -41,16 +42,18 @@ public class LeaveController {
                 leaveService.submitLeave(leave);
                 map.put("status", 0);
                 map.put("msg", "提交成功");
+//                return Result.success(leave);
             } else {
                 map.put("status", 1);
                 map.put("msg", "提交失败");
+//                return Result.error();
             }
 //            return map;
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
             map.put("msg", "提交失败");
-//            return map;
+//            return Result.error();
         }
         return map;
 
@@ -62,7 +65,7 @@ public class LeaveController {
     @PostMapping("back")
     @SuppressWarnings("unchecked")
 
-    public Map<String, Object> back(@RequestBody Leave leave, HttpServletRequest request) {
+    public Map<String,Object> back(@RequestBody Leave leave, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
 //        List<Activity> thisActivities = (List<Activity>)request.getServletContext().getAttribute("thisActivities");
         List<Leave> thisLeaves = (List<Leave>) request.getSession().getAttribute("thisLeaves");
@@ -112,7 +115,7 @@ public class LeaveController {
 
                 //System.out.println("所有的活动："+thisActivities.toString());
                 for (int i = 0; i < thisLeaves.size(); i++) {
-                    System.out.println(thisLeaves.get(i).getLeaveReason());
+                    System.out.println(thisLeaves.get(i).getReason());
                 }
                 map.put("status", 0);
                 map.put("msg", "查看成功");

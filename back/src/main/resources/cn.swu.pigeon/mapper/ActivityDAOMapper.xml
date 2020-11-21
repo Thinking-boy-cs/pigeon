@@ -8,7 +8,7 @@
     <select id="findAct" parameterType="String" resultType="Activity">
         select *
         from activity
-        where applicant in (#{id})
+        where applicant = (#{id})
     </select>
     <delete id="backAct" parameterType="int">
         delete from activity

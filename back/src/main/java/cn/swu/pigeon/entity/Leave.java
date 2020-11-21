@@ -10,7 +10,7 @@ import java.util.Date;
 public class Leave {
 
     private int id;
-    private String leaveReason;
+    private String Reason;
     private String userId;
     private String approveUser;
     private Date startTime;
