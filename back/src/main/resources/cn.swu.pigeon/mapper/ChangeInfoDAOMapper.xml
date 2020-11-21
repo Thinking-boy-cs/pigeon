@@ -5,4 +5,4 @@
         SET sex=#{sex},icon = #{icon},telNumber=#{telNumber},email=#{email}
         where id=#{id};
     </update>
-</mapper>
+</mapper>    
