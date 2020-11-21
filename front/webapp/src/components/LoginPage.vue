@@ -1,66 +1,90 @@
 <template>
   <div id="header-background">
-  <div id="header-container">
-    <div id="header-title">
-      <p id="welcome">
-        欢迎使用Pigeon
-        <p class="welcome1">更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生<br /><br /><br />
-      </p>
-    </div>
-    <div id="cover">
-    <div id="header-mid">
-      <p id="login">账号密码登录</p>
-      <a-form
-    id="components-form-demo-normal-login"
-    :form="form"
-    class="login-form"
-    @submit="handleSubmit"
-  >
-    <a-form-item>
-      <a-input size="large" id="username"
-      allow-clear @change="onChange" v-model="form.username"
-        placeholder="请输入用户名"
-      >
-        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
-      </a-input>
-    </a-form-item>
-    <a-form-item>
-      <a-input-password size="large" id="password" v-model="form.password"
-        type="password"
-        placeholder="请输入密码"
-      >
-        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-      </a-input-password>
-    </a-form-item>
+    <div id="header-container">
+      <div id="header-title">
+        <p id="welcome">
+          欢迎使用Pigeon
+        </p>
 
-    <a-form-item>
-      <a-checkbox class="checkbox-remember">
-        记住我
-      </a-checkbox>
-      <a class="login-form-forgot" href="">
-        忘记密码
-      </a>
-      <a-button size="large" type="primary" html-type="submit" class="login-form-button">
-        登 录
-      </a-button>
-      或者
-      <a @click="gotoregister">
-        现在就注册!
-      </a>
-    </a-form-item>
-  </a-form>
+        <p class="welcome1">
+          更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生<br /><br /><br />
+        </p>
+      </div>
+      <div id="cover">
+        <div id="header-mid">
+          <p id="login">账号密码登录</p>
+          <a-form
+            id="components-form-demo-normal-login"
+            :form="form"
+            class="login-form"
+            @submit="handleSubmit"
+          >
+            <a-form-item>
+              <a-input
+                size="large"
+                id="username"
+                allow-clear
+                @change="onChange"
+                v-model="form.id"
+                placeholder="请输入用户名"
+              >
+                <a-icon
+                  slot="prefix"
+                  type="user"
+                  style="color: rgba(0,0,0,.25)"
+                />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-input-password
+                size="large"
+                id="password"
+                v-model="form.password"
+                type="password"
+                placeholder="请输入密码"
+              >
+                <a-icon
+                  slot="prefix"
+                  type="lock"
+                  style="color: rgba(0,0,0,.25)"
+                />
+              </a-input-password>
+            </a-form-item>
+
+            <a-form-item>
+              <a-checkbox class="checkbox-remember">
+                记住我
+              </a-checkbox>
+              <a class="login-form-forgot" href="">
+                忘记密码
+              </a>
+              <a-button
+                size="large"
+                type="primary"
+                html-type="submit"
+                class="login-form-button"
+              >
+                登 录
+              </a-button>
+              或者
+              <a @click="gotoregister">
+                现在就注册!
+              </a>
+            </a-form-item>
+          </a-form>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
   </div>
 </template>
 
 <script>
+const key = 'updatable'
 export default {
   data () {
     return {
       form: {
-        username: '',
+        id: '',
         password: ''
       }
     }
@@ -76,6 +100,16 @@ export default {
       // })
       this.$axios.post('/api/pigeon/user/login', this.form).then(res => {
         console.log(res)
+        if (res.data && res.data.status === 0) {
+          localStorage.setItem('user', JSON.stringify(res.data.data))
+          this.$message.loading({ content: '登录成功，跳转中', key })
+          setTimeout(() => {
+            this.$message.success({ content: '跳转成功', key, duration: 2 })
+            this.$router.push({ path: '/' })
+          }, 1000)
+        } else {
+          this.$message.error('登录失败，请检查账号和密码')
+        }
       })
     },
     gotoregister () {
@@ -92,22 +126,22 @@ export default {
 // @import "~ant-design-vue/dist/antd.less";
 @import "../style/index.less";
 #header-background {
-  background: url(../img/01.jpg ) no-repeat fixed;
+  background: url(../img/01.jpg) no-repeat fixed;
   background-size: 100% 100%;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   position: relative;
-  box-sizing:border-box;
-  z-index:1;
+  box-sizing: border-box;
+  z-index: 1;
 }
-#header-background:after{
+#header-background:after {
   // background: url(../img/gezi.png) no-repeat fixed;
   content: "";
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
   // filter: opacity(30%);
   filter: blur(1px);
   background: inherit;
@@ -118,7 +152,7 @@ export default {
   z-index: 3;
 }
 #header-title {
-  margin-bottom:50px;
+  margin-bottom: 50px;
 }
 * {
   margin: 0;
@@ -151,7 +185,7 @@ export default {
 }
 #cover {
   margin-top: 160px;
-  background-color:rgba(255,255,255,1);
+  background-color: rgba(255, 255, 255, 1);
   width: calc(100% - 40px);
   margin-left: 20px;
   border-radius: 20px 20px 0px 0px;
