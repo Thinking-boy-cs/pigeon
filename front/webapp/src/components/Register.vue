@@ -8,7 +8,7 @@
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left"/>
+          <a-icon type="left" />
         </div>
       </div>
     </div>
@@ -23,14 +23,22 @@
 
     <div id="form-container">
       <a-form-model
-
         :model="formInline"
         @submit="handleSubmit"
         @submit.native.prevent
       >
         <a-form-model-item>
-          <a-input v-model="formInline.user" placeholder="Username" allow-clear size="large">
-            <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
+          <a-input
+            v-model="formInline.user"
+            placeholder="Username"
+            allow-clear
+            size="large"
+          >
+            <a-icon
+              slot="prefix"
+              type="user"
+              style="color: rgba(0, 0, 0, 0.25)"
+            />
           </a-input>
         </a-form-model-item>
         <a-form-model-item>
@@ -39,7 +47,11 @@
             size="large"
             placeholder="Password"
           >
-            <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
+            <a-icon
+              slot="prefix"
+              type="lock"
+              style="color: rgba(0, 0, 0, 0.25)"
+            />
           </a-input-password>
         </a-form-model-item>
         <a-form-model-item>
@@ -48,15 +60,25 @@
             size="large"
             placeholder="Confirm your password"
           >
-            <a-icon slot="prefix" type="check-circle" style="color:rgba(0,0,0,.25)" />
+            <a-icon
+              slot="prefix"
+              type="check-circle"
+              style="color: rgba(0, 0, 0, 0.25)"
+            />
           </a-input-password>
         </a-form-model-item>
         <a-form-model-item>
-          <a-input size="large" allow-clear placeholder="请输入图中的验证码"></a-input>
-          <img :src="getVerifyImage()" />
+          <a-input
+            size="large"
+            allow-clear
+            placeholder="请输入图中的验证码"
+          ></a-input>
+          <img :src="imageData" alt="???"></img>
         </a-form-model-item>
         <a-form-model-item>
-          <a-radio :defaultChecked="false" v-model="formInline.agree">勾选表示同意<a href="#">《用户使用协议》</a></a-radio>
+          <a-radio :defaultChecked="false" v-model="formInline.agree"
+            >勾选表示同意<a href="#">《用户使用协议》</a></a-radio
+          >
         </a-form-model-item>
         <a-form-model-item>
           <a-button
@@ -64,7 +86,12 @@
             type="primary"
             size="large"
             html-type="submit"
-            :disabled="formInline.user === '' || formInline.password === '' || formInline.password !== formInline.confirm || formInline.agree !== true"
+            :disabled="
+              formInline.user === '' ||
+              formInline.password === '' ||
+              formInline.password !== formInline.confirm ||
+              formInline.agree !== true
+            "
           >
             注册
           </a-button>
@@ -82,17 +109,28 @@ export default {
         user: '',
         password: '',
         confirm: '',
-        agree: false
+        agree: false,
+        imageData: ''
       }
     }
   },
   methods: {
     handleSubmit (e) {
       console.log(this.formInline)
-    },
-    getVerifyImage () {
-      // this.$axios.get("http://10.129.79.224:8989/")
     }
+  },
+  mounted () {
+    var that = this
+    this.$axios
+      .get('/api/pigeon/user/getImage?time=0.1')
+      .then((res) => {
+        console.log(res.data)
+        that.imageData = res.data
+      })
+      .catch((err) => {
+        that.$message.error('获取验证码失败:' + err)
+        // return ''
+      })
   }
 }
 </script>
