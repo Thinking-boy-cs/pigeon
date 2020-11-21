@@ -2,19 +2,19 @@
 <mapper namespace="cn.swu.pigeon.dao.LeaveDao">
     <!--    将记录添加到数据库-->
     <insert id="submitAct" parameterType="Leave" useGeneratedKeys="true" keyProperty="id">
-        insert into leave
+        insert into vacation
         values (#{id},#{leaveReason},#{userId},#{approveUser},#{startTime},#{endTime},#{state},#{submitTime})
     </insert>
     <!--save-->
     <!--    根据工号查询-->
     <select id="findAct" parameterType="String" resultType="Leave">
         select *
-        from leave
+        from vacation
         where userId in (#{userId})
     </select>
     <!--    根据编号删除-->
     <delete id="backAct" parameterType="int">
-        delete from leave
+        delete from vacation
         where id=#{id}
     </delete>
 </mapper>
