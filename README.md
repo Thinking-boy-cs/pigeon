@@ -6,25 +6,25 @@ GitHubTest
 POST http://localhost:8989/pigeon/user/login   
 请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
-	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; 用户类    
+	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp;&nbsp; &nbsp; 用户类    
 
 返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
 	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
-	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
-	user &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录用户
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 状态信息   
+	user &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录用户
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
 	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;登录成功   
-	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;登录失败   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;登录失败   
 
 请求数据实例   
 ```
 user{
-  	user.username:"小朋友"
-  	user.password:"123456"
+  	username:"小朋友"
+  	password:"123456"
    }
 ```   
 
@@ -34,17 +34,17 @@ user{
   {
 	status:0,
 	msg:"登录成功"
-        data:{
-                user.id:"001",
-                user.username:"小朋友",
-                user.dept:"幼儿园",
-                user.password:"123456",
-                user.sex:"男",
-                user.status:"已激活",
-                user.registerTime:2020-11-18 20:30:27,
-                user.icon:"/default",
-                user.telNumber:null,
-                user.email:null
+        user:{
+                id:"001",
+                username:"小朋友",
+                dept:"幼儿园",
+                password:"123456",
+                sex:"男",
+                status:"已激活",
+                registerTime:2020-11-18 20:30:27,
+                icon:"/default",
+                telNumber:null,
+                email:null
              }
   }
 ```
@@ -54,15 +54,15 @@ user{
 请求地址   
 POST http://localhost:8989/pigeon/user/register?code   
 	请求参数         
-	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
-	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; &nbsp;用户类    
-	code &nbsp; &nbsp; String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是  &nbsp; &nbsp; &nbsp;验证码    
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp;说明    
+	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是  &nbsp; &nbsp; &nbsp; &nbsp;用户类    
+	code &nbsp;&nbsp; String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是  &nbsp; &nbsp; &nbsp; &nbsp;验证码    
 
 返回值     
 	Map<int,Object>    
-	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
-	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
-	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; number&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;String&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;状态信息   
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
@@ -71,14 +71,14 @@ status的合法值
 请求数据实例   
 ```
 user{
-	user.id:"001",
-  	user.username:"小朋友",
-  	user.dept:"幼儿园",
-  	user.password:"123456",
-        thisPassword:"123456",
-  	uesr.sex:"男",
-        code:"ABCD"
+	id:"001",
+  	username:"小朋友",
+  	dept:"幼儿园",
+  	password:"123456",
+  	sex:"男",
    }
+
+code:"ABCD"
 ```   
 
 返回数据实例
@@ -96,7 +96,7 @@ user{
 	POST http://localhost:8989/pigeon/user/getImage?time   
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;说明    
-	time &nbsp; &nbsp; number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; &nbsp;Math.random()    
+	time &nbsp; &nbsp; number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; &nbsp;Math.random()    
 
 	返回值     
 	String    
@@ -114,8 +114,8 @@ POST http://localhost:8989/pigeon/user/sign
 返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
-	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
-	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
@@ -129,6 +129,9 @@ record{
   	record.nation:"中国"
   	record.province:"重庆市"
   	record.city:"荣昌区"
+        record.location:"昌元街道学院路160号西南大学荣昌校区"
+        record.longitude:"27.0"
+        recourd.latitude:"116.5"
    }
 ```
 返回数据实例
@@ -149,8 +152,8 @@ POST http://localhost:8989/pigeon/user/changeInfo
 返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
-	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
-	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
@@ -160,7 +163,9 @@ status的合法值
 请求数据实例   
 ```
 User{
-  	User.icon:"text.png"
+  	sex:"女"
+        telNumber:"xxxxxxxxxxx"
+        email:"xxx@xxx.com"
    }
 ```
 返回数据实例
@@ -168,14 +173,11 @@ User{
   {
 	status:0
 	msg:"修改成功"
-    data{
-            
-        }
   }
 ```   
 ## 4. 提交活动请求
 请求地址      
-POST http://localhost:8989/pigeon/activity/submit?      
+POST http://localhost:8989/pigeon/activity/submit      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	activity &nbsp; &nbsp; Activity&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;是  &nbsp; &nbsp; 提交活动申请    
@@ -183,7 +185,7 @@ POST http://localhost:8989/pigeon/activity/submit?
 返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
-	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
 	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
 
 status的合法值   
@@ -196,7 +198,7 @@ status的合法值
 Activity{
   	activityName:"请假",
         applicant:"001",
-        approver:"大家长",
+        approver:"002",
         startTime:"2020-11-19 09:07:34",
         endTime:"2020-11-19 09:07:35" 
    }
@@ -213,27 +215,89 @@ Activity{
 POST http://localhost:8989/pigeon/activity/find      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
-	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是  &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 当前的用户    
+	&nbsp; id &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp;&nbsp; &nbsp; 当前的用户    
 
 返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
-	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
-	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
 	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看成功   
-	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看失败   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 查看失败   
 
 请求数据实例   
 ```
-user{
-	user.id:"001"
-  	user.username:"小朋友"
-  	user.dept:"幼儿园"
-  	user.password:"123456"
-  	uesr.sex:"男"
+    null
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"提交成功"
+        List<Activity>:{
+                            xxx
+                        }
+  }
+```   
+## 6. 撤回活动
+请求地址      
+POST http://localhost:8989/pigeon/activity/backout      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	&nbsp; id &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 点击的活动    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;撤回成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;撤回失败   
+
+请求数据实例   
+```
+    id:1
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"撤回成功"
+  }
+```   
+
+## 7. 提交请假请求
+请求地址      
+POST http://localhost:8989/pigeon/leave/submit      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	leave &nbsp; &nbsp; Leave&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;是  &nbsp; &nbsp; 提交请假申请    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;提交成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 提交失败   
+
+请求数据实例   
+```
+leave{
+  	leaveReason:"事假",
+        userId:"001",
+        approveUser:"002",
+        startTime:"2020-11-19 09:07:34",
+        endTime:"2020-11-19 09:07:35" 
    }
 ```
 返回数据实例
@@ -243,35 +307,65 @@ user{
 	msg:"提交成功"
   }
 ```   
-## 6. 撤回活动
+## 8. 查看用户请假
 请求地址      
-POST http://localhost:8989/pigeon/activity/backout      
+POST http://localhost:8989/pigeon/leave/find      
 	请求参数         
-	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
-	activity &nbsp; &nbsp; Activity&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 点击的活动    
+	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明    
+	userId &nbsp;&nbsp; &nbsp;String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp;&nbsp; &nbsp; 当前的用户工号    
 
 返回值     
 	Map<int,Object>    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
-	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
-	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
-	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;撤回成功   
-	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;撤回失败   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 查看失败   
 
 请求数据实例   
 ```
-activity{
-	      ???
-        }
+    null
 ```
 返回数据实例
 ```
   {
 	status:0
 	msg:"提交成功"
+        List<Leave>:{
+                            xxx
+                        }
+  }
+```   
+## 9. 撤回请假
+请求地址      
+POST http://localhost:8989/pigeon/leave/back      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	&nbsp; id&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 点击的请假    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;撤回成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;撤回失败   
+
+请求数据实例   
+```
+    id:1
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"撤回成功"
   }
 ```
 
