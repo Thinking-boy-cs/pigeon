@@ -36,7 +36,7 @@
     </div>
     <div id="usual">常用操作</div>
     <div id="profile">
-      <div id="title1">
+      <div id="title1" @click="toPage('/EditProfile')">
         个人资料
         <a-icon type="user" id="title3" />
       </div>
@@ -70,7 +70,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    toPage (uri) {
+      this.$router.push({ path: uri })
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
