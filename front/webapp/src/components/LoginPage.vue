@@ -2,11 +2,13 @@
   <div id="header-background">
     <div id="header-container">
       <div id="header-title">
-        <p id="welcome">欢迎使用Pigeon</p>
-          <a-icon
-            :style="{ fontSize: '120px',color:'white'}"
-            type="yuque"
-          />
+        <p id="welcome">
+          欢迎使用Pigeon
+        </p>
+
+        <p class="welcome1">
+          更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生<br /><br /><br />
+        </p>
       </div>
       <div id="cover">
         <div id="header-mid">
@@ -23,13 +25,13 @@
                 id="username"
                 allow-clear
                 @change="onChange"
-                v-model="form.username"
+                v-model="form.id"
                 placeholder="请输入用户名"
               >
                 <a-icon
                   slot="prefix"
                   type="user"
-                  style="color: rgba(0, 0, 0, 0.25)"
+                  style="color: rgba(0,0,0,.25)"
                 />
               </a-input>
             </a-form-item>
@@ -44,14 +46,18 @@
                 <a-icon
                   slot="prefix"
                   type="lock"
-                  style="color: rgba(0, 0, 0, 0.25)"
+                  style="color: rgba(0,0,0,.25)"
                 />
               </a-input-password>
             </a-form-item>
 
             <a-form-item>
-              <a-checkbox class="checkbox-remember"> 记住我 </a-checkbox>
-              <a class="login-form-forgot" href=""> 忘记密码 </a>
+              <a-checkbox class="checkbox-remember">
+                记住我
+              </a-checkbox>
+              <a class="login-form-forgot" href="">
+                忘记密码
+              </a>
               <a-button
                 size="large"
                 type="primary"
@@ -61,7 +67,13 @@
                 登 录
               </a-button>
               或者
+<<<<<<< HEAD
+              <a @click="gotoregister">
+                现在就注册!
+              </a>
+=======
               <a @click="gotoregister"> 现在就注册! </a>
+>>>>>>> scarlet-dev
             </a-form-item>
           </a-form>
         </div>
@@ -71,11 +83,12 @@
 </template>
 
 <script>
+const key = 'updatable'
 export default {
   data () {
     return {
       form: {
-        username: '',
+        id: '',
         password: ''
       }
     }
@@ -91,6 +104,16 @@ export default {
       // })
       this.$axios.post('/api/pigeon/user/login', this.form).then((res) => {
         console.log(res)
+        if (res.data && res.data.status === 0) {
+          localStorage.setItem('user', JSON.stringify(res.data.data))
+          this.$message.loading({ content: '登录成功，跳转中', key })
+          setTimeout(() => {
+            this.$message.success({ content: '跳转成功', key, duration: 2 })
+            this.$router.push({ path: '/' })
+          }, 1000)
+        } else {
+          this.$message.error('登录失败，请检查账号和密码')
+        }
       })
     },
     gotoregister () {

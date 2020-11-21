@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>submit</title>
+    <title>Title</title>
 </head>
 <body>
 <div id="wrap">
@@ -11,18 +11,26 @@
                class="form_table">
             <tr>
                 <td valign="middle" align="right">
-                    活动名称:
+                    请假原因:
                 </td>
                 <td valign="middle" align="left">
-                    <input type="text" class="inputgri" v-model="activity.activityName"  />
+                    <input type="text" class="inputgri" v-model="leave.leaveReason"  />
                 </td>
             </tr>
+<!--            <tr>-->
+<!--                <td valign="middle" align="right">-->
+<!--                    申请人:-->
+<!--                </td>-->
+<!--                <td valign="middle" align="left">-->
+<!--                    <input type="text" class="inputgri" v-model="activity.applicant"  />-->
+<!--                </td>-->
+<!--            </tr>-->
             <tr>
                 <td valign="middle" align="right">
                     审批人:
                 </td>
                 <td valign="middle" align="left">
-                    <input type="text" class="inputgri" v-model="activity.approver"  />
+                    <input type="text" class="inputgri" v-model="leave.approve"  />
                 </td>
             </tr>
             <tr>
@@ -30,7 +38,7 @@
                     开始时间:
                 </td>
                 <td valign="middle" align="left">
-                    <input id="meeting" type="datetime-local" class="inputgri" v-model="activity.startTime"  />
+                    <input id="meeting" type="datetime-local" class="inputgri" v-model="leave.startTime"  />
                 </td>
             </tr>
             <tr>
@@ -38,7 +46,7 @@
                     结束时间:
                 </td>
                 <td valign="middle" align="left">
-                    <input type="datetime-local" class="inputgri" v-model="activity.endTime"  />
+                    <input type="datetime-local" class="inputgri" v-model="leave.endTime"  />
                 </td>
             </tr>
         </table>
@@ -56,12 +64,12 @@
         el: "#wrap",
         data: {
             url: "",
-            activity: {},
+            leave: {},
         },
         methods: {
             //提交活动
             submitAct() {
-                axios.post("http://localhost:8989/pigeon/activity/submit?",this.activity).then(res => {
+                axios.post("http://localhost:8989/pigeon/leave/submit?",this.leave).then(res => {
                     console.log(res.data);
                     if (!res.data.status) {
                         alert(res.data.msg + ",提交成功!");
