@@ -1,6 +1,7 @@
 package cn.swu.pigeon.controller;
 
 import cn.swu.pigeon.entity.Record;
+import cn.swu.pigeon.entity.RequestType;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.ChangeInfoService;
 import cn.swu.pigeon.service.UserService;
@@ -16,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -61,17 +64,59 @@ public class UserController {
      * 用来处理用户注册方法
      */
     @PostMapping("register")
-    public Map<String, Object> register(@RequestBody User user, String code, String thisPassword,
+    public Map<String, Object> register(@RequestParam @RequestBody User user,@RequestParam String code, String thisPassword,
             HttpServletRequest request) {
         log.info("用户信息:[{}]", user.toString());
         log.info("用户输入的验证码信息:[{}]", code);
         log.info("用户确认的密码:[{}]", thisPassword);
         Map<String, Object> map = new HashMap<>();
         try {
-            String key = (String) request.getSession().getAttribute("code");
-            if (key.equalsIgnoreCase(code)) {
+            HttpSession session = request.getSession(false); 
+            String key = "";
+            if(session != null)
+            {
+              key = (String)session.getAttribute("code");
+              log.info("Current Key", key);
+            } else {
+              log.info("Session Not Exists");
+            }
+            if ( key != "" && key.equalsIgnoreCase(code)) {
                 // 1.调用业务方法
                 userService.register(user);
+                map.put("status", 0);
+                map.put("msg", "提示: 注册成功!");
+            } else {
+                throw new RuntimeException("验证码出现错误!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status", 1);
+            map.put("msg", "提示:" + e.getMessage());
+        }
+        return map;
+    }
+
+
+    @PostMapping("register1")
+    public Map<String, Object> register1(@RequestBody RequestType req, HttpServletRequest request) {
+        log.info("用户信息:[{}]", req.getData().toString());
+        log.info("用户输入的验证码信息:[{}]", req.getCode());
+        Map<String, Object> map = new HashMap<>();
+        try {
+            HttpSession session = request.getSession(); 
+            String key = "";
+            if(session != null)
+            {
+              log.info("in regist sessionid: " + request.getSession().getId());
+
+              key = (String)session.getAttribute("code");
+              log.info("Current Key", key);
+            } else {
+              log.info("Session Not Exists");
+            }
+            if ( key != "" && key.equalsIgnoreCase(req.getCode())) {
+                // 1.调用业务方法
+                userService.register(req.getData());
                 map.put("status", 0);
                 map.put("msg", "提示: 注册成功!");
             } else {
@@ -92,8 +137,10 @@ public class UserController {
     public String getImageCode(HttpServletRequest request) throws IOException {
         // 1.使用工具类生成验证码
         String code = VerifyCodeUtils.generateVerifyCode(4);
+        log.info("Current key: " + code);
         //2.将验证码放入servletContext作用域
         request.getSession().setAttribute("code", code);
+        log.info("sessionid: " + request.getSession().getId());
         //3.将图片转为base64
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         VerifyCodeUtils.outputImage(120, 30, byteArrayOutputStream, code);

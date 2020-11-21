@@ -1,8 +1,14 @@
+/*
+ * @Date: 2020-11-16 19:34:11
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-11-22 04:09:52
+ */
 'use strict'
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const { plugins } = require('../.eslintrc')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -88,5 +94,5 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  }  
 }
