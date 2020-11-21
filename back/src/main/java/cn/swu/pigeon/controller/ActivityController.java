@@ -33,7 +33,7 @@ public class ActivityController {
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(activity)){
-                activity.setApplicant(thisUser.getUsername());
+                activity.setApplicant(thisUser.getId());
                 activityService.submitActivity(activity);
                 map.put("status",0);
                 map.put("msg","提交成功");
@@ -54,16 +54,16 @@ public class ActivityController {
     /**
      * 处理撤销活动
      */
-    @PostMapping("backout")
+    @RequestMapping("backout")
     @SuppressWarnings("unchecked")
-    public Map<String,Object> backout(@RequestBody Activity activity,HttpServletRequest request){
+    public Map<String,Object> backout(@RequestBody int activityId,HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
         List<Activity> thisActivities = (List<Activity>)request.getSession().getAttribute("thisActivities");
         try {
-            if(!ObjectUtils.isEmpty(activity)){
+            if(activityId!=0){
                 for(int i = 0;i<thisActivities.size();i++){
-                    if(thisActivities.get(i).getId()==activity.getId()){
-                        activityService.backActivity(activity);
+                    if(thisActivities.get(i).getId()==activityId){
+                        activityService.backActivity(activityId);
                         map.put("status",0);
                         map.put("msg","撤销成功");
                     }else{

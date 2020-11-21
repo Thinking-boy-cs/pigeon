@@ -4,6 +4,8 @@ package cn.swu.pigeon.controller;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
+
+// import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +23,7 @@ public class AdminController {
     private AdminService adminService;
 
     /**
-     * 用来处理管理员登录
+     * 处理管理员登录
      */
     @PostMapping("login")
     public Map<String,Object> login(@RequestBody User user, HttpServletRequest request){
@@ -42,4 +44,7 @@ public class AdminController {
         }
         return map;
     }
+
+
+
 }

@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin //允许跨域
+@CrossOrigin // 允许跨域
 @RequestMapping("user")
 @Slf4j
 public class UserController {
@@ -34,14 +34,13 @@ public class UserController {
     @Autowired
     private ChangeInfoService changeInfoService;
 
-
     /**
      * 处理用户登录
      */
     @PostMapping("login")
-    public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
-        log.info("当前登录用户的信息: [{}]",user.toString());
-        Map<String, Object> map =  new HashMap<>();
+    public Map<String, Object> login(@RequestBody User user, HttpServletRequest request) {
+        log.info("当前登录用户的信息: [{}]", user.toString());
+        Map<String, Object> map = new HashMap<>();
         try {
             User userDB = userService.login(user);
             //广播：一个变量
@@ -51,9 +50,9 @@ public class UserController {
             map.put("data",userDB);
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("status",1);
-            map.put("msg",e.getMessage());
-            map.put("data",null);
+            map.put("status", 1);
+            map.put("msg", e.getMessage());
+            map.put("data", null);
         }
         return map;
     }
@@ -62,22 +61,23 @@ public class UserController {
      * 用来处理用户注册方法
      */
     @PostMapping("register")
-    public Map<String, Object> register(@RequestBody User user, String code,String thisPassword,HttpServletRequest request){
-        log.info("用户信息:[{}]",user.toString());
-        log.info("用户输入的验证码信息:[{}]",code);
-        log.info("用户确认的密码:[{}]",thisPassword);
-        //测试
+    public Map<String, Object> register(@RequestBody User user, String code, String thisPassword,
+            HttpServletRequest request) {
+        log.info("用户信息:[{}]", user.toString());
+        log.info("用户输入的验证码信息:[{}]", code);
+        log.info("用户确认的密码:[{}]", thisPassword);
+        // 测试
         thisPassword = "123456";
         Map<String, Object> map = new HashMap<>();
         try {
             String key = (String) request.getSession().getAttribute("code");
             if (key.equalsIgnoreCase(code)) {
-                //1.调用业务方法
-                if((thisPassword.equals(user.getPassword()))){
+                // 1.调用业务方法
+                if ((thisPassword.equals(user.getPassword()))) {
                     userService.register(user);
                     map.put("status", 0);
                     map.put("msg", "提示: 注册成功!");
-                }else{
+                } else {
                     throw new RuntimeException("两次密码输入不一致!");
                 }
             } else {
@@ -86,7 +86,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
-            map.put("msg", "提示:"+e.getMessage());
+            map.put("msg", "提示:" + e.getMessage());
         }
         return map;
     }
@@ -96,7 +96,7 @@ public class UserController {
      */
     @GetMapping("getImage")
     public String getImageCode(HttpServletRequest request) throws IOException {
-        //1.使用工具类生成验证码
+        // 1.使用工具类生成验证码
         String code = VerifyCodeUtils.generateVerifyCode(4);
         //2.将验证码放入servletContext作用域
         request.getSession().setAttribute("code", code);
@@ -122,9 +122,9 @@ public class UserController {
             map.put("data",thisUser);
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("status",1);
-            map.put("msg",e.getMessage());
-            map.put("data",null);
+            map.put("status", 1);
+            map.put("msg", e.getMessage());
+            map.put("data", null);
         }
         return map;
     }
@@ -143,12 +143,12 @@ public class UserController {
         log.info("[{}]",multipartFile);
 
         try {
-            if (multipartFile.isEmpty()){
-                map.put("status",1);
-                map.put("msg","文件不存在");
+            if (multipartFile.isEmpty()) {
+                map.put("status", 1);
+                map.put("msg", "文件不存在");
             }
-            if(!ObjectUtils.isEmpty(user)){
-                //修改信息
+            if (!ObjectUtils.isEmpty(user)) {
+                // 修改信息
                 thisUser.setSex(user.getSex());
                 log.info("修改性别后当前用户：[{}]",thisUser.toString());
 //                changeInfoService.changeUserInfo(thisUser);
@@ -156,14 +156,14 @@ public class UserController {
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {
-                map.put("status",1);
-                map.put("msg","修改失败");
+                map.put("status", 1);
+                map.put("msg", "修改失败");
             }
             return map;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            map.put("status",1);
-            map.put("msg","修改失败");
+            map.put("status", 1);
+            map.put("msg", "修改失败");
             return map;
         }
 

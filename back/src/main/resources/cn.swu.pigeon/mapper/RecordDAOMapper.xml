@@ -1,10 +1,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.RecordDAO">
     <insert id="record" parameterType="Record">
-        insert into signrecord values (#{id},#{temperature},#{nation},#{province},#{city},#{signTime})
+        insert into signrecord values (#{id},#{temperature},#{nation},#{province},#{city},#{signTime},#{location},#{longitude},#{latitude})
     </insert>
     <select id="find" parameterType="String" resultType="Record">
-        select id,temperature,nation,province,city,signTime
+        select id,temperature,nation,province,city,signTime,location,longitude,latitude
         from signrecord
         where id in (#{id})
     </select>

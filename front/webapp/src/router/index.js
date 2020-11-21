@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-20 11:19:12
+ * @LastEditTime: 2020-11-20 16:11:11
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -16,6 +16,7 @@ import Main from '@/components/Main'
 import Signin from '@/components/Signin'
 import LeaveDetail from '@/components/LeaveDetail'
 import Profile from '@/components/Profile'
+import EditProfile from '@/components/EditProfile'
 import LeaveApplication from '@/components/LeaveApplication'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
@@ -26,7 +27,7 @@ Vue.use(BaiduMap, {
   ak: 'pXbxmFWZNykvWBGwt9jVD6grmkpVkzwg'
 })
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/login',
@@ -79,6 +80,11 @@ export default new Router({
       }
     },
     {
+      path: '/EditProfile',
+      name: 'EditProfile',
+      component: EditProfile
+    },
+    {
       path: '/LeaveApplication',
       name: 'LeaveApplication',
       component: LeaveApplication,
@@ -112,3 +118,27 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((route, redirect, next) => {
+  if (!localStorage.getItem('user')) {
+    if (route.path !== '/login') {
+      next({
+        path: '/login',
+        query: {redirect: route.fullPath}
+      })
+    } else {
+      next()
+    }
+  } else {
+    if (route.path === '/login') {
+      next({
+        path: '/',
+        query: {redirect: route.fullPath}
+      })
+    }
+    console.log('-------------------', route, redirect)
+    next()
+  }
+})
+
+export default router
