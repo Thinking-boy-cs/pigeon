@@ -32,7 +32,7 @@ public class AdminController {
         try {
             User adminDB = adminService.login(user);
             //广播：一个变量
-            request.getServletContext().setAttribute("thisAdmin", adminDB);
+            request.getSession().setAttribute("thisAdmin", adminDB);
             map.put("status",0);
             map.put("msg","登录成功!");
             map.put("data",adminDB);
@@ -47,22 +47,4 @@ public class AdminController {
 
 
 
-    /**
-     * 统计操作
-     */
-    /**
-     * 1.签到统计
-     */
-
-    /**
-     * 2.表单统计
-     */
-
-    /**
-     * 3.请假统计
-     */
-
-    /**
-     * 活动管理
-     */
 }

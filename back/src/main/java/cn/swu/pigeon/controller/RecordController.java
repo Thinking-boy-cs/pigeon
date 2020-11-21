@@ -33,7 +33,7 @@ public class RecordController {
      */
     @PostMapping("sign")
     public Map<String,Object> sign(@RequestBody Record record, HttpServletRequest request){
-        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        User thisUser = (User) request.getSession().getAttribute("thisUser");
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(record)){
@@ -60,7 +60,7 @@ public class RecordController {
      */
     @RequestMapping("find")
     public Map<String,Object> find(HttpServletRequest request){
-        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        User thisUser = (User) request.getSession().getAttribute("thisUser");
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(thisUser)){

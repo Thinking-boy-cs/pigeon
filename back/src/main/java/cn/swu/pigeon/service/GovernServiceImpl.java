@@ -1,6 +1,7 @@
 package cn.swu.pigeon.service;
 
 import cn.swu.pigeon.dao.GovernDao;
+import cn.swu.pigeon.entity.Activity;
 import cn.swu.pigeon.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class GovernServiceImpl implements GovernService{
 
     @Override
     public List<User> findUsers() {
-        return governDao.find();
+        return governDao.findUser();
     }
 
     @Override
@@ -38,5 +39,15 @@ public class GovernServiceImpl implements GovernService{
     public void updateUser(User user) {
         user.setRegisterTime(new Date());
         governDao.updateUser(user.getId());
+    }
+
+    @Override
+    public List<Activity> findActivity() {
+        return governDao.findActivity();
+    }
+
+    @Override
+    public void approveActivity(String id,String status) {
+        governDao.approveActivity(id,status);
     }
 }
