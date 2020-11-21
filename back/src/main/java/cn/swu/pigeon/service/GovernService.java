@@ -1,5 +1,6 @@
 package cn.swu.pigeon.service;
 
+import cn.swu.pigeon.entity.Activity;
 import cn.swu.pigeon.entity.User;
 
 import java.util.List;
@@ -13,4 +14,8 @@ public interface GovernService {
     void deleteUser(User user);
     //修改用户信息
     void updateUser(User user);
+    //查看活动
+    List<Activity> findActivity();
+    //审批活动
+    void approveActivity();
 }

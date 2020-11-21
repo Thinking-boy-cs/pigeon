@@ -1,5 +1,6 @@
 package cn.swu.pigeon.controller;
 
+import cn.swu.pigeon.entity.Activity;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.GovernService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,8 @@ public class GovernController {
     /**
      * 1.查看所有用户
      */
-    @RequestMapping("find")
-    public Map<String,Object> find(HttpServletRequest request){
+    @RequestMapping("findUser")
+    public Map<String,Object> find(){
 
         Map<String, Object> map =  new HashMap<>();
         try {
@@ -113,10 +114,40 @@ public class GovernController {
     /**
      * 1.审批（通过/拒绝）
      */
+    @RequestMapping("approveActivity")
+    public Map<String,Object> approveActivity(@RequestBody User user,HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            governService.deleteUser(user);
+            map.put("status",0);
+            map.put("msg","审批成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
 
     /**
      * 2.查看所有活动（结束/进行中）
      */
+    @RequestMapping("findActivity")
+    public Map<String,Object> findActivity(){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            List<Activity> thisActivities = governService.findActivity();
+            map.put("status",0);
+            map.put("msg","查看成功!");
+            map.put("data",thisActivities);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
 
     /**
      * 对请假的操作
