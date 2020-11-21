@@ -3,7 +3,8 @@
     <div id="header-container">
       <div id="header-title">
         <p id="welcome">欢迎使用Pigeon</p>
-        <a-icon :style="{ fontSize: '120px', color: 'white' }" type="yuque" />
+        <!-- <a-icon :style="{ fontSize: '120px', color: 'white' }" type="yuque" /> -->
+        <img src="../img/APP_LOGO1.png" style="width: 35%">
       </div>
     </div>
     <div id="cover">
