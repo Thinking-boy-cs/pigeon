@@ -29,7 +29,7 @@ public class ActivityController {
      */
     @PostMapping("submit")
     public Map<String,Object> submit(@RequestBody Activity activity, HttpServletRequest request){
-        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        User thisUser = (User) request.getSession().getAttribute("thisUser");
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(activity)){
@@ -58,7 +58,7 @@ public class ActivityController {
     @SuppressWarnings("unchecked")
     public Map<String,Object> backout(@RequestBody int activityId,HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
-        List<Activity> thisActivities = (List<Activity>)request.getServletContext().getAttribute("thisActivities");
+        List<Activity> thisActivities = (List<Activity>)request.getSession().getAttribute("thisActivities");
         try {
             if(activityId!=0){
                 for(int i = 0;i<thisActivities.size();i++){
@@ -92,12 +92,12 @@ public class ActivityController {
     @RequestMapping("find")
     public Map<String,Object> find(HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
-        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        User thisUser = (User) request.getSession().getAttribute("thisUser");
         try {
             if(!ObjectUtils.isEmpty(thisUser)){
                 //返回一个Activity数组
                 List<Activity> thisActivities = activityService.findActivity(thisUser);
-                request.getServletContext().setAttribute("thisActivities", thisActivities);
+                request.getSession().setAttribute("thisActivities", thisActivities);
                 //System.out.println("所有的活动："+thisActivities.toString());
                 for(int i=0;i<thisActivities.size();i++){
                     System.out.println(thisActivities.get(i).getActivityName());

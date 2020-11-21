@@ -43,11 +43,11 @@ public class UserController {
         Map<String, Object> map = new HashMap<>();
         try {
             User userDB = userService.login(user);
-            // 广播：一个变量
+            //广播：一个变量
             request.getSession().setAttribute("thisUser", userDB);
-            map.put("status", 0);
-            map.put("msg", "登录成功!");
-            map.put("data", userDB);
+            map.put("status",0);
+            map.put("msg","登录成功!");
+            map.put("data",userDB);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
@@ -71,7 +71,6 @@ public class UserController {
         Map<String, Object> map = new HashMap<>();
         try {
             String key = (String) request.getSession().getAttribute("code");
-            log.info(key);
             if (key.equalsIgnoreCase(code)) {
                 // 1.调用业务方法
                 if ((thisPassword.equals(user.getPassword()))) {
@@ -99,10 +98,9 @@ public class UserController {
     public String getImageCode(HttpServletRequest request) throws IOException {
         // 1.使用工具类生成验证码
         String code = VerifyCodeUtils.generateVerifyCode(4);
-        // 2.将验证码放入servletContext作用域
-        // request.getServletContext().setAttribute("code", code);
+        //2.将验证码放入servletContext作用域
         request.getSession().setAttribute("code", code);
-        // 3.将图片转为base64
+        //3.将图片转为base64
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         VerifyCodeUtils.outputImage(120, 30, byteArrayOutputStream, code);
         return "data:image/png;base64," + Base64Utils.encodeToString(byteArrayOutputStream.toByteArray());
@@ -112,16 +110,16 @@ public class UserController {
      * 查看用户个人信息
      */
     @RequestMapping("find")
-    public Map<String, Object> find(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<>();
-        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+    public Map<String,Object> find(HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        User thisUser = (User)request.getSession().getAttribute("thisUser");
         try {
             userService.find(thisUser);
-            // 更新广播
-            request.getServletContext().setAttribute("thisUser", thisUser);
-            map.put("status", 0);
-            map.put("msg", "查看成功!");
-            map.put("data", thisUser);
+            //更新广播
+            request.getSession().setAttribute("thisUser", thisUser);
+            map.put("status",0);
+            map.put("msg","查看成功!");
+            map.put("data",thisUser);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
@@ -134,15 +132,15 @@ public class UserController {
     /**
      * 设置用户个人信息
      */
-    @RequestMapping(value = "/changeUserInfo", method = RequestMethod.POST)
-    // @ResponseBody
-    // @RequestMapping("changeUserInfo")
-    public Map<String, Object> changeUserInfo(User user, HttpServletRequest request, MultipartFile multipartFile) {
-        log.info("当前签到的用户信息：[{}]", user.toString());
-        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
-        log.info("[{}]", thisUser.toString());
-        Map<String, Object> map = new HashMap<>();
-        log.info("[{}]", multipartFile);
+   @RequestMapping(value = "/changeUserInfo" ,method = RequestMethod.POST)
+//    @ResponseBody
+    //@RequestMapping("changeUserInfo")
+    public Map<String,Object> changeUserInfo( User user, HttpServletRequest request, MultipartFile multipartFile){
+        log.info("当前签到的用户信息：[{}]",user.toString());
+        User thisUser = (User)request.getSession().getAttribute("thisUser");
+        log.info("[{}]",thisUser.toString());
+        Map<String,Object> map = new HashMap<>();
+        log.info("[{}]",multipartFile);
 
         try {
             if (multipartFile.isEmpty()) {
@@ -152,11 +150,11 @@ public class UserController {
             if (!ObjectUtils.isEmpty(user)) {
                 // 修改信息
                 thisUser.setSex(user.getSex());
-                log.info("修改性别后当前用户：[{}]", thisUser.toString());
-                // changeInfoService.changeUserInfo(thisUser);
-                changeInfoService.changeUserInfo(multipartFile, thisUser);
-                map.put("status", 0);
-                map.put("msg", "修改成功");
+                log.info("修改性别后当前用户：[{}]",thisUser.toString());
+//                changeInfoService.changeUserInfo(thisUser);
+                changeInfoService.changeUserInfo(multipartFile,thisUser);
+                map.put("status",0);
+                map.put("msg","修改成功");
             } else {
                 map.put("status", 1);
                 map.put("msg", "修改失败");
