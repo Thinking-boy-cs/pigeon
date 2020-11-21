@@ -105,7 +105,30 @@ public class GovernController {
 
     /**
      * 1.已签到/未签到/请假全表查看（根据时间）
+     * 三个分开写
      */
+
+    /**
+     * 1.1已签到
+     */
+    @RequestMapping("findSigned")
+    public Map<String,Object> findSigned(){
+
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            //List<User> thisUsers = governService.findUsers();
+            map.put("status",0);
+            map.put("msg","查询成功!");
+            //map.put("data",thisUsers);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            //map.put("data",null);
+        }
+        return map;
+    }
+
 
     /**
      * 对活动的操作
@@ -160,9 +183,6 @@ public class GovernController {
      * 1.审批
      */
 
-    /**
-     * 2.销假
-     */
 
     /**
      * 发信息收集表单
