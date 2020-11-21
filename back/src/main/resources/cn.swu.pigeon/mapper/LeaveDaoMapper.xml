@@ -3,7 +3,7 @@
     <!--    将记录添加到数据库-->
     <insert id="submitAct" parameterType="Leave" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into vacation
-        values (#{id},#{Reason},#{userId},#{approveUser},#{startTime},#{endTime},#{state},#{submitTime})
+        values (#{id},#{reason},#{userId},#{approveUser},#{startTime},#{endTime},#{state},#{submitTime})
     </insert>
     <!--save-->
     <!--    根据工号查询-->
