@@ -16,4 +16,11 @@
         delete from leave
         where id=#{id}
     </delete>
+    <!--    销假-->
+    <update id="end" parameterType="int">
+        update vocation
+        set status="已销假"
+        where id=#{id}
+    </update>
+
 </mapper>

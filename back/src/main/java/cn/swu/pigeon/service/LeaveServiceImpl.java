@@ -50,4 +50,9 @@ public class LeaveServiceImpl implements LeaveService{
     public List<Leave> findLeave(String userId) {
         return leaveDao.findAct(userId);
     }
+
+    @Override
+    public void endLev(int id) {
+        leaveDao.endLev(id);
+    }
 }
