@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface LeaveService {
     void submitLeave(Leave leave);
-    void backLeave(Leave leave);
-    List<Leave> findLeave(User user);
+    void backLeave(int id);
+    List<Leave> findLeave(String userId);
+    //销假
+    void endLev(int id);
 }
