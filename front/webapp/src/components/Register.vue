@@ -90,8 +90,8 @@ export default {
     handleSubmit (e) {
       console.log(this.formInline)
     },
-    getVerifyImage() {
-      this.$axios.get("http://10.129.79.224:8989/")
+    getVerifyImage () {
+      // this.$axios.get("http://10.129.79.224:8989/")
     }
   }
 }

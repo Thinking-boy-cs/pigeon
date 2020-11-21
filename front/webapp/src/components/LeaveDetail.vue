@@ -64,7 +64,7 @@ export default {
     }
   },
   created () {
-    var that = this
+    // var that = this
     this.leaveId = this.$route.params.leaveId
     if (this.leaveId !== null) {
       this.leaveData = {

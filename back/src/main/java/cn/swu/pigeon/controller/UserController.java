@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin //允许跨域
+@CrossOrigin // 允许跨域
 @RequestMapping("user")
 @Slf4j
 public class UserController {
@@ -34,26 +34,25 @@ public class UserController {
     @Autowired
     private ChangeInfoService changeInfoService;
 
-
     /**
      * 处理用户登录
      */
     @PostMapping("login")
-    public Map<String,Object> login(@RequestBody User user,HttpServletRequest request){
-        log.info("当前登录用户的信息: [{}]",user.toString());
-        Map<String, Object> map =  new HashMap<>();
+    public Map<String, Object> login(@RequestBody User user, HttpServletRequest request) {
+        log.info("当前登录用户的信息: [{}]", user.toString());
+        Map<String, Object> map = new HashMap<>();
         try {
             User userDB = userService.login(user);
-            //广播：一个变量
-            request.getServletContext().setAttribute("thisUser", userDB);
-            map.put("status",0);
-            map.put("msg","登录成功!");
-            map.put("data",userDB);
+            // 广播：一个变量
+            request.getSession().setAttribute("thisUser", userDB);
+            map.put("status", 0);
+            map.put("msg", "登录成功!");
+            map.put("data", userDB);
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("status",1);
-            map.put("msg",e.getMessage());
-            map.put("data",null);
+            map.put("status", 1);
+            map.put("msg", e.getMessage());
+            map.put("data", null);
         }
         return map;
     }
@@ -62,23 +61,24 @@ public class UserController {
      * 用来处理用户注册方法
      */
     @PostMapping("register")
-    public Map<String, Object> register(@RequestBody User user, String code,String thisPassword,HttpServletRequest request){
-        log.info("用户信息:[{}]",user.toString());
-        log.info("用户输入的验证码信息:[{}]",code);
-        log.info("用户确认的密码:[{}]",thisPassword);
-        //测试
+    public Map<String, Object> register(@RequestBody User user, String code, String thisPassword,
+            HttpServletRequest request) {
+        log.info("用户信息:[{}]", user.toString());
+        log.info("用户输入的验证码信息:[{}]", code);
+        log.info("用户确认的密码:[{}]", thisPassword);
+        // 测试
         thisPassword = "123456";
         Map<String, Object> map = new HashMap<>();
         try {
             String key = (String) request.getSession().getAttribute("code");
             log.info(key);
             if (key.equalsIgnoreCase(code)) {
-                //1.调用业务方法
-                if((thisPassword.equals(user.getPassword()))){
+                // 1.调用业务方法
+                if ((thisPassword.equals(user.getPassword()))) {
                     userService.register(user);
                     map.put("status", 0);
                     map.put("msg", "提示: 注册成功!");
-                }else{
+                } else {
                     throw new RuntimeException("两次密码输入不一致!");
                 }
             } else {
@@ -87,7 +87,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
-            map.put("msg", "提示:"+e.getMessage());
+            map.put("msg", "提示:" + e.getMessage());
         }
         return map;
     }
@@ -97,12 +97,12 @@ public class UserController {
      */
     @GetMapping("getImage")
     public String getImageCode(HttpServletRequest request) throws IOException {
-        //1.使用工具类生成验证码
+        // 1.使用工具类生成验证码
         String code = VerifyCodeUtils.generateVerifyCode(4);
-        //2.将验证码放入servletContext作用域
-//        request.getServletContext().setAttribute("code", code);
+        // 2.将验证码放入servletContext作用域
+        // request.getServletContext().setAttribute("code", code);
         request.getSession().setAttribute("code", code);
-        //3.将图片转为base64
+        // 3.将图片转为base64
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         VerifyCodeUtils.outputImage(120, 30, byteArrayOutputStream, code);
         return "data:image/png;base64," + Base64Utils.encodeToString(byteArrayOutputStream.toByteArray());
@@ -112,21 +112,21 @@ public class UserController {
      * 查看用户个人信息
      */
     @RequestMapping("find")
-    public Map<String,Object> find(HttpServletRequest request){
-        Map<String, Object> map =  new HashMap<>();
-        User thisUser = (User)request.getServletContext().getAttribute("thisUser");
+    public Map<String, Object> find(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
+        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
         try {
             userService.find(thisUser);
-            //更新广播
+            // 更新广播
             request.getServletContext().setAttribute("thisUser", thisUser);
-            map.put("status",0);
-            map.put("msg","查看成功!");
-            map.put("data",thisUser);
+            map.put("status", 0);
+            map.put("msg", "查看成功!");
+            map.put("data", thisUser);
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("status",1);
-            map.put("msg",e.getMessage());
-            map.put("data",null);
+            map.put("status", 1);
+            map.put("msg", e.getMessage());
+            map.put("data", null);
         }
         return map;
     }
@@ -134,38 +134,38 @@ public class UserController {
     /**
      * 设置用户个人信息
      */
-   @RequestMapping(value = "/changeUserInfo" ,method = RequestMethod.POST)
-//    @ResponseBody
-    //@RequestMapping("changeUserInfo")
-    public Map<String,Object> changeUserInfo( User user, HttpServletRequest request, MultipartFile multipartFile){
-        log.info("当前签到的用户信息：[{}]",user.toString());
-        User thisUser = (User)request.getServletContext().getAttribute("thisUser");
-        log.info("[{}]",thisUser.toString());
-        Map<String,Object> map = new HashMap<>();
-        log.info("[{}]",multipartFile);
+    @RequestMapping(value = "/changeUserInfo", method = RequestMethod.POST)
+    // @ResponseBody
+    // @RequestMapping("changeUserInfo")
+    public Map<String, Object> changeUserInfo(User user, HttpServletRequest request, MultipartFile multipartFile) {
+        log.info("当前签到的用户信息：[{}]", user.toString());
+        User thisUser = (User) request.getServletContext().getAttribute("thisUser");
+        log.info("[{}]", thisUser.toString());
+        Map<String, Object> map = new HashMap<>();
+        log.info("[{}]", multipartFile);
 
         try {
-            if (multipartFile.isEmpty()){
-                map.put("status",1);
-                map.put("msg","文件不存在");
+            if (multipartFile.isEmpty()) {
+                map.put("status", 1);
+                map.put("msg", "文件不存在");
             }
-            if(!ObjectUtils.isEmpty(user)){
-                //修改信息
+            if (!ObjectUtils.isEmpty(user)) {
+                // 修改信息
                 thisUser.setSex(user.getSex());
-                log.info("修改性别后当前用户：[{}]",thisUser.toString());
-//                changeInfoService.changeUserInfo(thisUser);
-                changeInfoService.changeUserInfo(multipartFile,thisUser);
-                map.put("status",0);
-                map.put("msg","修改成功");
+                log.info("修改性别后当前用户：[{}]", thisUser.toString());
+                // changeInfoService.changeUserInfo(thisUser);
+                changeInfoService.changeUserInfo(multipartFile, thisUser);
+                map.put("status", 0);
+                map.put("msg", "修改成功");
             } else {
-                map.put("status",1);
-                map.put("msg","修改失败");
+                map.put("status", 1);
+                map.put("msg", "修改失败");
             }
             return map;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            map.put("status",1);
-            map.put("msg","修改失败");
+            map.put("status", 1);
+            map.put("msg", "修改失败");
             return map;
         }
 
