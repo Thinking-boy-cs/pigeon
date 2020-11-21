@@ -3,72 +3,65 @@
     <div id="header-container">
       <div id="header-title">
         <p id="welcome">欢迎使用Pigeon</p>
-          <a-icon
-            :style="{ fontSize: '120px',color:'white'}"
-            type="yuque"
-          />
+        <a-icon :style="{ fontSize: '120px', color: 'white' }" type="yuque" />
       </div>
-      <div id="cover">
-        <div id="header-mid">
-          <p id="login">账号密码登录</p>
-          <a-form
-            id="components-form-demo-normal-login"
-            :form="form"
-            class="login-form"
-            @submit="handleSubmit"
-          >
-            <a-form-item>
-              <a-input
-                size="large"
-                id="username"
-                allow-clear
-                @change="onChange"
-                v-model="form.id"
-                placeholder="请输入用户名"
-              >
-                <a-icon
-                  slot="prefix"
-                  type="user"
-                  style="color: rgba(0,0,0,.25)"
-                />
-              </a-input>
-            </a-form-item>
-            <a-form-item>
-              <a-input-password
-                size="large"
-                id="password"
-                v-model="form.password"
-                type="password"
-                placeholder="请输入密码"
-              >
-                <a-icon
-                  slot="prefix"
-                  type="lock"
-                  style="color: rgba(0,0,0,.25)"
-                />
-              </a-input-password>
-            </a-form-item>
+    </div>
+    <div id="cover">
+      <div id="header-mid">
+        <p id="login">账号密码登录</p>
+        <a-form
+          id="components-form-demo-normal-login"
+          :form="form"
+          class="login-form"
+          @submit="handleSubmit"
+        >
+          <a-form-item>
+            <a-input
+              size="large"
+              id="username"
+              allow-clear
+              @change="onChange"
+              v-model="form.id"
+              placeholder="请输入用户名"
+            >
+              <a-icon
+                slot="prefix"
+                type="user"
+                style="color: rgba(0, 0, 0, 0.25)"
+              />
+            </a-input>
+          </a-form-item>
+          <a-form-item>
+            <a-input-password
+              size="large"
+              id="password"
+              v-model="form.password"
+              type="password"
+              placeholder="请输入密码"
+            >
+              <a-icon
+                slot="prefix"
+                type="lock"
+                style="color: rgba(0, 0, 0, 0.25)"
+              />
+            </a-input-password>
+          </a-form-item>
 
-            <a-form-item>
-              <a-checkbox class="checkbox-remember">
-                记住我
-              </a-checkbox>
-              <a class="login-form-forgot" href="">
-                忘记密码
-              </a>
-              <a-button
-                size="large"
-                type="primary"
-                html-type="submit"
-                class="login-form-button"
-              >
-                登 录
-              </a-button>
-              或者
-              <a @click="gotoregister"> 现在就注册! </a>
-            </a-form-item>
-          </a-form>
-        </div>
+          <a-form-item>
+            <a-checkbox class="checkbox-remember"> 记住我 </a-checkbox>
+            <a class="login-form-forgot" href=""> 忘记密码 </a>
+            <a-button
+              size="large"
+              type="primary"
+              html-type="submit"
+              class="login-form-button"
+            >
+              登 录
+            </a-button>
+            或者
+            <a @click="gotoregister"> 现在就注册! </a>
+          </a-form-item>
+        </a-form>
       </div>
     </div>
   </div>
@@ -122,21 +115,21 @@ export default {
 // @import "~ant-design-vue/dist/antd.less";
 @import "../style/index.less";
 @keyframes gradientBG {
-0% {
-background-position: 0% 50%;
-}
-50% {
-background-position: 100% 50%;
-}
-100% {
-background-position: 0% 50%;
-}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 #header-background {
   // background: url(../img/05.jpg) no-repeat fixed;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  animation: gradientBG 10s ease infinite;
+  animation: gradientBG 7s ease infinite;
   // background-size: 100% 100%;
   background-size: 400% 400%;
   width: 100%;
@@ -191,12 +184,14 @@ background-position: 0% 50%;
   width: calc(100% - 90px);
 }
 #cover {
-  margin-top: 69px;
   background-color: rgba(255, 255, 255, 1);
   width: calc(100% - 40px);
   margin-left: 20px;
   border-radius: 20px 20px 0px 0px;
   height: 390px;
+  bottom: 0;
+  position: absolute;
+  z-index: 4;
 }
 #username,
 #password {
