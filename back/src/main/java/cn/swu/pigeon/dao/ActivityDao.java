@@ -8,7 +8,10 @@ import java.util.List;
 
 @Mapper
 public interface ActivityDao {
+    //提交活动
     void submitAct(Activity activity);
-    void backAct(Activity activity);
+    //撤销活动
+    void backAct(int activityId);
+    //找到所有活动
     List<Activity> findAct(String userId);
 }
