@@ -115,7 +115,7 @@ export default {
   mounted () {}
 }
 </script>
-  
+
 <style lang="less" scoped>
 @import "../style/index.less";
 

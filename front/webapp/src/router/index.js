@@ -27,7 +27,7 @@ Vue.use(BaiduMap, {
   ak: 'pXbxmFWZNykvWBGwt9jVD6grmkpVkzwg'
 })
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/login',
@@ -118,3 +118,27 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((route, redirect, next) => {
+  if (!localStorage.getItem('userid')) {
+    if (route.path !== '/login') {
+      next({
+        path: '/login',
+        query: {redirect: route.fullPath}
+      })
+    } else {
+      next()
+    }
+  } else {
+    if (route.path === '/login') {
+      next({
+        path: '/',
+        query: {redirect: route.fullPath}
+      })
+    }
+    console.log('-------------------', route, redirect)
+    next()
+  }
+})
+
+export default router
