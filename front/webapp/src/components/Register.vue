@@ -29,7 +29,7 @@
       >
         <a-form-model-item>
           <a-input
-            v-model="formInline.user"
+            v-model="formInline.username"
             placeholder="Username"
             allow-clear
             size="large"
@@ -68,13 +68,21 @@
           </a-input-password>
         </a-form-model-item>
         <a-form-model-item>
-          <a-input
-            size="large"
-            allow-clear
-            placeholder="请输入图中的验证码"
-          ></a-input>
-          <img :src="imageData" alt="???"></img>
+          <a-row :gutter="20">
+            <a-col :span="12"
+              ><a-input
+                size="large"
+                allow-clear
+                placeholder="请输入图中的验证码"
+                v-model="formInline.code"
+              ></a-input
+            ></a-col>
+            <a-col :span="12"
+              ><img :src="imageData" id="verifyimage" @click="changeImage" alt="???"
+            /></a-col>
+          </a-row>
         </a-form-model-item>
+
         <a-form-model-item>
           <a-radio :defaultChecked="false" v-model="formInline.agree"
             >勾选表示同意<a href="#">《用户使用协议》</a></a-radio
@@ -88,9 +96,9 @@
             html-type="submit"
             :disabled="
               formInline.user === '' ||
-              formInline.password === '' ||
-              formInline.password !== formInline.confirm ||
-              formInline.agree !== true
+                formInline.password === '' ||
+                formInline.password !== formInline.confirm ||
+                formInline.agree !== true
             "
           >
             注册
@@ -106,28 +114,61 @@ export default {
   data () {
     return {
       formInline: {
-        user: '',
+        id: new Date().getTime().toString(),
+        username: '',
         password: '',
         confirm: '',
         agree: false,
-        imageData: ''
-      }
+        code: ''
+      },
+      imageData: ''
     }
   },
   methods: {
     handleSubmit (e) {
+      var that = this
       console.log(this.formInline)
+      this.$axios
+        .post('/api/pigeon/user/register', this.formInline)
+        .then(res => {
+          console.log(res.data)
+          if (res.data) {
+            if (res.data.status === 1) {
+              that.$message.loading('注册成功！跳转中')
+              that.$router.push({ path: '/login' })
+            } else {
+              that.$message.error('注册失败: ' + res.data.msg)
+            }
+          }
+        })
+        .catch(err => {
+          that.$message.error('注册失败: ' + err)
+        // return ''
+        })
+    },
+    changeImage () {
+      var that = this
+      this.$axios
+        .get('/api/pigeon/user/getImage?time=0.1')
+        .then(res => {
+          console.log(res.data)
+          that.imageData = res.data
+        })
+        .catch(err => {
+          that.$message.error('获取验证码失败:' + err)
+        // return ''
+        })
     }
   },
-  mounted () {
+  created () {
     var that = this
     this.$axios
       .get('/api/pigeon/user/getImage?time=0.1')
-      .then((res) => {
+      .then(res => {
         console.log(res.data)
         that.imageData = res.data
       })
-      .catch((err) => {
+      .catch(err => {
         that.$message.error('获取验证码失败:' + err)
         // return ''
       })
@@ -171,6 +212,14 @@ export default {
   margin-left: 45px;
 }
 #register-button {
+  width: 100%;
+}
+#verifycode {
+  display: inline-block;
+  width: 70%;
+}
+#verifyimage {
+  display: inline-block;
   width: 100%;
 }
 </style>

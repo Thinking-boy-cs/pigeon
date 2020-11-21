@@ -15,14 +15,16 @@
           个性签名：志向但是是记忆的奴隶，生气勃勃地降生，但却很难成长。
         </a>
         <a-row id="userdetail">
-          <a-col  :span="12" class="detail-bar">
-            <div class="detail-title"><a-icon
+          <a-col :span="12" class="detail-bar">
+            <div class="detail-title">
+              <a-icon
                 type="smile"
                 theme="twoTone"
                 two-tone-color="#fb7299"
                 id="smile"
               />
-              &nbsp;<span>部门</span></div>
+              &nbsp;<span>部门</span>
+            </div>
             <div class="detail-content">人力资源部</div>
           </a-col>
           <a-col :span="12" class="detail-bar">
@@ -36,31 +38,29 @@
               <span>工号</span>
             </div>
             <div class="detail-content">001</div>
-
           </a-col>
         </a-row>
-
       </div>
     </div>
     <div id="usual">常用操作</div>
     <div id="operate-container">
-      <a-row :gutter="[16,16]" >
+      <a-row :gutter="[16, 16]">
         <a-col :span="12">
           <div id="profile" class="operate-item">
-          <div id="title1">
-            个人资料
-            <a-icon type="user" id="title3" />
-          </div>
-          <div id="title2">修改个人信息</div>
+            <div id="title1">
+              个人资料
+              <a-icon type="user" id="title3" />
+            </div>
+            <div id="title2">修改个人信息</div>
           </div>
         </a-col>
-        <a-col :span="12" >
+        <a-col :span="12">
           <div id="record" class="operate-item">
-          <div id="title1">
-            打卡记录
-            <a-icon type="carry-out" id="title3" />
-          </div>
-          <div id="title2">查看打卡考勤记录</div>
+            <div id="title1">
+              打卡记录
+              <a-icon type="carry-out" id="title3" />
+            </div>
+            <div id="title2">查看打卡考勤记录</div>
           </div>
         </a-col>
         <a-col :span="12">
@@ -72,19 +72,19 @@
             <div id="title2">了解设计团队</div>
           </div>
         </a-col>
-        <a-col :span="12" >
+        <a-col :span="12">
           <div id="settings" class="operate-item">
-          <div id="title1">
-            设置中心
-            <a-icon type="setting" id="title3" />
-          </div>
-          <div id="title2">关于APP的设置</div>
+            <div id="title1">
+              设置中心
+              <a-icon type="setting" id="title3" />
+            </div>
+            <div id="title2">关于APP的设置</div>
           </div>
         </a-col>
       </a-row>
     </div>
     <div id="logout">
-      <a-button type="danger" size="large" id="logout-button">
+      <a-button type="danger" size="large" id="logout-button" @click="logout">
         退出登录
       </a-button>
     </div>
@@ -96,6 +96,12 @@ export default {
   methods: {
     toPage (uri) {
       this.$router.push({ path: uri })
+    },
+    logout () {
+      if (localStorage.getItem('user')) {
+        localStorage.removeItem('user')
+      }
+      this.$router.push({ path: '/login' })
     }
   }
 }
@@ -157,7 +163,6 @@ export default {
 .detail-bar {
   // display: inline-block;
   text-align: center;
-
 }
 #avatar-container {
   position: absolute;
@@ -249,7 +254,7 @@ export default {
 .operate-item {
   background: white;
   border-radius: 10px;
-  padding: 5px;
+  padding: 10px;
 
   // margin-top: 10px;
 }
@@ -290,6 +295,5 @@ export default {
   width: calc(100% - 40px);
   margin-left: 20px;
   text-align: center;
-
 }
 </style>
