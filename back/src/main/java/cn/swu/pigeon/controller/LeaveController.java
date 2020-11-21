@@ -38,8 +38,10 @@ public class LeaveController {
             if (!ObjectUtils.isEmpty(leave)) {
                 leave.setUserId(thisUser.getId());
 //                activityService.submitActivity(activity);
-
+                //测试问题
+                log.info(leave.getReason());
                 leaveService.submitLeave(leave);
+
                 map.put("status", 0);
                 map.put("msg", "提交成功");
 //                return Result.success(leave);

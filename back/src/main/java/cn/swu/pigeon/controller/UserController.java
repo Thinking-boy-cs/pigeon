@@ -66,20 +66,14 @@ public class UserController {
         log.info("用户信息:[{}]", user.toString());
         log.info("用户输入的验证码信息:[{}]", code);
         log.info("用户确认的密码:[{}]", thisPassword);
-        // 测试
-        thisPassword = "123456";
         Map<String, Object> map = new HashMap<>();
         try {
             String key = (String) request.getSession().getAttribute("code");
             if (key.equalsIgnoreCase(code)) {
                 // 1.调用业务方法
-                if ((thisPassword.equals(user.getPassword()))) {
-                    userService.register(user);
-                    map.put("status", 0);
-                    map.put("msg", "提示: 注册成功!");
-                } else {
-                    throw new RuntimeException("两次密码输入不一致!");
-                }
+                userService.register(user);
+                map.put("status", 0);
+                map.put("msg", "提示: 注册成功!");
             } else {
                 throw new RuntimeException("验证码出现错误!");
             }
