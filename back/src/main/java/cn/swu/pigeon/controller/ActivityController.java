@@ -33,7 +33,7 @@ public class ActivityController {
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(activity)){
-                activity.setApplicant(thisUser.getUsername());
+                activity.setApplicant(thisUser.getId());
                 activityService.submitActivity(activity);
                 map.put("status",0);
                 map.put("msg","提交成功");
