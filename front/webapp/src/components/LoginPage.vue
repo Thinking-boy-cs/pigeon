@@ -107,7 +107,7 @@ export default {
       })
     },
     gotoregister () {
-      this.$router.push({ path: '/Register' })
+      this.$router.push({ path: '/register' })
     },
     onChange (e) {
       console.log(e)
