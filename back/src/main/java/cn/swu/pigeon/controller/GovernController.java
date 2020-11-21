@@ -11,9 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 对用户的操作
- */
+
 @RestController
 @CrossOrigin //允许跨域
 @RequestMapping("govern")
@@ -22,6 +20,9 @@ public class GovernController {
 
     @Autowired
     GovernService governService;
+    /**
+     * 对用户的操作
+     */
     /**
      * 1.查看所有用户
      */
@@ -44,7 +45,7 @@ public class GovernController {
     }
 
     /**
-     * 2.修改用户信息
+     * 2.添加用户信息
      */
     @RequestMapping("addUser")
     public Map<String,Object> addUser(@RequestBody User user,HttpServletRequest request){
@@ -52,7 +53,7 @@ public class GovernController {
         try {
             governService.addUser(user);
             map.put("status",0);
-            map.put("msg","修改成功!");
+            map.put("msg","添加成功!");
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
@@ -61,7 +62,7 @@ public class GovernController {
         return map;
     }
     /**
-     * 3.添加用户信息
+     * 3.修改用户信息
      */
     @RequestMapping("updateUser")
     public Map<String,Object> updateUser(@RequestBody User user,HttpServletRequest request){
@@ -97,4 +98,43 @@ public class GovernController {
         }
         return map;
     }
+    /**
+     * 对签到的操作
+     */
+
+    /**
+     * 1.已签到/未签到/请假全表查看（根据时间）
+     */
+
+    /**
+     * 对活动的操作
+     */
+
+    /**
+     * 1.审批（通过/拒绝）
+     */
+
+    /**
+     * 2.查看所有活动（结束/进行中）
+     */
+
+    /**
+     * 对请假的操作
+     */
+
+    /**
+     * 1.审批
+     */
+
+    /**
+     * 2.销假
+     */
+
+    /**
+     * 发信息收集表单
+     */
+
+    /**
+     * 发通知
+     */
 }
