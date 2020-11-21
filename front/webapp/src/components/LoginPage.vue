@@ -2,7 +2,8 @@
   <div id="header-background">
     <div id="header-container">
       <div id="header-title">
-        <p id="welcome">欢迎使用Pigeon</p>
+        <p id="welcome">Pigeon</p>
+        <p id="welcome1">坚持每天打卡，拒绝下次一定</p>
         <!-- <a-icon :style="{ fontSize: '120px', color: 'white' }" type="yuque" /> -->
         <img src="../img/APP_LOGO1.png" style="width: 35%">
       </div>
@@ -167,11 +168,16 @@ export default {
 }
 #welcome {
   padding-top: 75px;
-  font-size: 26px;
+  font-size: 30px;
   text-align: center;
   font-weight: bold;
   color: white;
-  margin-bottom: 1.5em;
+  margin-bottom:0.1em;
+}
+#welcome1 {
+  font-size: 16px;
+  text-align: center;
+  color: white;
 }
 #login {
   padding-top: 40px;
