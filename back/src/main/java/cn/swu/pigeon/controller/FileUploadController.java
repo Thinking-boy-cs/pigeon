@@ -41,7 +41,7 @@ public class FileUploadController {
             int rows =uploadService.saveFile(multipartFile,upload);
             System.out.println(rows);
 
-            return Result.success(rows);
+            return Result.success(upload);
         } catch (Exception e){
             log.error(e.getMessage());
         }

@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -25,7 +27,7 @@ public class LeaveServiceImpl implements LeaveService{
     private LeaveDao leaveDao;
 
     @Override
-    public void submitLeave(Leave leave) {
+    public void submitLeave( Leave leave) {
         leave.setSubmitTime(new Date());
 //        leave.setSubmitTime()
 //        leave.setStatus()
@@ -41,13 +43,18 @@ public class LeaveServiceImpl implements LeaveService{
     }
 
     @Override
-    public void backLeave(Leave leave) {
-        leaveDao.backAct(leave);
+    public void backLeave(int LeaveId) {
+        leaveDao.backAct(LeaveId);
 
     }
 
     @Override
-    public List<Leave> findLeave(User user) {
-        return leaveDao.findAct(user.getId());
+    public List<Leave> findLeave(String userId) {
+        return leaveDao.findAct(userId);
+    }
+
+    @Override
+    public void endLev(int id) {
+        leaveDao.endLev(id);
     }
 }

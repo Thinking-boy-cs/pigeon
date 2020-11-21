@@ -6,6 +6,7 @@ import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.ActivityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ import java.util.Map;
 @CrossOrigin //允许跨域
 @RequestMapping("activity")
 @Slf4j
+@Service
 public class ActivityController {
 
     @Autowired
@@ -96,7 +98,7 @@ public class ActivityController {
         try {
             if(!ObjectUtils.isEmpty(thisUser)){
                 //返回一个Activity数组
-                List<Activity> thisActivities = activityService.findActivity(thisUser);
+                List<Activity> thisActivities = activityService.findActivity(thisUser.getId());
                 request.getSession().setAttribute("thisActivities", thisActivities);
                 //System.out.println("所有的活动："+thisActivities.toString());
                 for(int i=0;i<thisActivities.size();i++){

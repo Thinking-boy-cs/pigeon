@@ -5,6 +5,7 @@ import cn.swu.pigeon.entity.Leave;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.ActivityService;
 import cn.swu.pigeon.service.LeaveService;
+import cn.swu.pigeon.utils.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -30,7 +31,7 @@ public class LeaveController {
      * 处理提交请假
      */
     @PostMapping("submit")
-    public Map<String, Object> submit(@RequestBody Leave leave, HttpServletRequest request) {
+    public Map<String,Object> submit(@RequestBody Leave leave, HttpServletRequest request) {
         User thisUser = (User) request.getSession().getAttribute("thisUser");
         Map<String, Object> map = new HashMap<>();
         try {
@@ -41,16 +42,18 @@ public class LeaveController {
                 leaveService.submitLeave(leave);
                 map.put("status", 0);
                 map.put("msg", "提交成功");
+//                return Result.success(leave);
             } else {
                 map.put("status", 1);
                 map.put("msg", "提交失败");
+//                return Result.error();
             }
 //            return map;
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
             map.put("msg", "提交失败");
-//            return map;
+//            return Result.error();
         }
         return map;
 
@@ -61,17 +64,14 @@ public class LeaveController {
      */
     @PostMapping("back")
     @SuppressWarnings("unchecked")
-
-    public Map<String, Object> back(@RequestBody Leave leave, HttpServletRequest request) {
+    public Map<String, Object> back(@RequestBody int id, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
-//        List<Activity> thisActivities = (List<Activity>)request.getServletContext().getAttribute("thisActivities");
         List<Leave> thisLeaves = (List<Leave>) request.getSession().getAttribute("thisLeaves");
         try {
-            if (!ObjectUtils.isEmpty(leave)) {
+            if (id!=0) {
                 for (int i = 0; i < thisLeaves.size(); i++) {
-                    if (thisLeaves.get(i).getId() == leave.getId()) {
-//                        activityService.backActivity(activity);
-                        leaveService.backLeave(leave);
+                    if (thisLeaves.get(i).getId() == id) {
+                        leaveService.backLeave(id);
                         map.put("status", 0);
                         map.put("msg", "撤销成功");
                     } else {
@@ -104,15 +104,10 @@ public class LeaveController {
         User thisUser = (User) request.getSession().getAttribute("thisUser");
         try {
             if (!ObjectUtils.isEmpty(thisUser)) {
-                //返回一个Activity数组
-//                List<Activity> thisActivities = activityService.findActivity(thisUser);
-                List<Leave> thisLeaves = leaveService.findLeave(thisUser);
-//                request.getServletContext().setAttribute("thisActivities", thisActivities);
+                List<Leave> thisLeaves = leaveService.findLeave(thisUser.getId());
                 request.getSession().setAttribute("thisLeaves", thisLeaves);
-
-                //System.out.println("所有的活动："+thisActivities.toString());
                 for (int i = 0; i < thisLeaves.size(); i++) {
-                    System.out.println(thisLeaves.get(i).getLeaveReason());
+                    System.out.println(thisLeaves.get(i).getReason());
                 }
                 map.put("status", 0);
                 map.put("msg", "查看成功");
@@ -133,4 +128,36 @@ public class LeaveController {
 
     }
 
+    /**
+     * 销假
+     */
+    @PostMapping("end")
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> endLev(@RequestBody int id, HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
+        List<Leave> thisLeaves = (List<Leave>) request.getSession().getAttribute("thisLeaves");
+        try {
+            if (id!=0) {
+                for (int i = 0; i < thisLeaves.size(); i++) {
+                    if (thisLeaves.get(i).getId() == id) {
+                        leaveService.endLev(id);
+                        map.put("status", 0);
+                        map.put("msg", "销假成功");
+                    } else {
+                        map.put("status", 1);
+                        map.put("msg", "销假失败");
+                    }
+                }
+            }else{
+                map.put("status", 1);
+                map.put("msg", "销假失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status", 1);
+            map.put("msg", "销假失败");
+        }
+
+        return map;
+    }
 }

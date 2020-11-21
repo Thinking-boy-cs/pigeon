@@ -150,6 +150,8 @@ public class UserController {
             if (!ObjectUtils.isEmpty(user)) {
                 // 修改信息
                 thisUser.setSex(user.getSex());
+                thisUser.setTelNumber(user.getTelNumber());
+                thisUser.setEmail(user.getEmail());
                 log.info("修改性别后当前用户：[{}]",thisUser.toString());
 //                changeInfoService.changeUserInfo(thisUser);
                 changeInfoService.changeUserInfo(multipartFile,thisUser);

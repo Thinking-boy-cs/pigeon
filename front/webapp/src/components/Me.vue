@@ -92,7 +92,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    toPage (uri) {
+      this.$router.push({ path: uri })
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
