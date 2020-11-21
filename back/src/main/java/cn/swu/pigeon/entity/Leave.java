@@ -12,9 +12,9 @@ public class Leave {
     private int id;
     private String leaveReason;
     private String userId;
-    private String approve;
+    private String approveUser;
     private Date startTime;
     private Date endTime;
-    private String status;
+    private String state;
     private Date submitTime;
 }
