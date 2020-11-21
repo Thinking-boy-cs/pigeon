@@ -39,42 +39,52 @@
 
           </a-col>
         </a-row>
-        
+
       </div>
     </div>
     <div id="usual">常用操作</div>
     <div id="operate-container">
-      <div id="profile">
-        <div id="title1">
-          个人资料
-          <a-icon type="user" id="title3" />
-        </div>
-        <div id="title2">修改个人信息</div>
-      </div>
-      <div id="record">
-        <div id="title1">
-          打卡记录
-          <a-icon type="carry-out" id="title3" />
-        </div>
-        <div id="title2">查看打卡考勤记录</div>
-      </div>
-      <div id="about">
-        <div id="title1">
-          关于我们
-          <a-icon type="team" id="title3" />
-        </div>
-        <div id="title2">了解设计团队</div>
-      </div>
-      <div id="settings">
-        <div id="title1">
-          设置中心
-          <a-icon type="setting" id="title3" />
-        </div>
-        <div id="title2">关于APP的设置</div>
-      </div>
+      <a-row :gutter="[16,16]" >
+        <a-col :span="12">
+          <div id="profile" class="operate-item">
+          <div id="title1">
+            个人资料
+            <a-icon type="user" id="title3" />
+          </div>
+          <div id="title2">修改个人信息</div>
+          </div>
+        </a-col>
+        <a-col :span="12" >
+          <div id="record" class="operate-item">
+          <div id="title1">
+            打卡记录
+            <a-icon type="carry-out" id="title3" />
+          </div>
+          <div id="title2">查看打卡考勤记录</div>
+          </div>
+        </a-col>
+        <a-col :span="12">
+          <div id="about" class="operate-item">
+            <div id="title1">
+              关于我们
+              <a-icon type="team" id="title3" />
+            </div>
+            <div id="title2">了解设计团队</div>
+          </div>
+        </a-col>
+        <a-col :span="12" >
+          <div id="settings" class="operate-item">
+          <div id="title1">
+            设置中心
+            <a-icon type="setting" id="title3" />
+          </div>
+          <div id="title2">关于APP的设置</div>
+          </div>
+        </a-col>
+      </a-row>
     </div>
     <div id="logout">
-      <a-button type="danger" id="logout-button">
+      <a-button type="danger" size="large" id="logout-button">
         退出登录
       </a-button>
     </div>
@@ -82,7 +92,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="less" scoped>
@@ -174,6 +184,7 @@ export default {};
   width: 140px;
   margin-top: 10px;
 }
+
 #usual {
   position: relative;
   width: calc(100% - 40px);
@@ -183,33 +194,33 @@ export default {};
   font-size: 16px;
   text-align: left;
 }
-#profile {
-  position: absolute;
-  margin-top: 370px;
-  background-color: white;
-  width: 165px;
-  height: 63px;
-  margin-left: 35px;
-  border-radius: 10px 10px 10px 10px;
-}
-#record {
-  position: absolute;
-  margin-top: 445px;
-  background-color: white;
-  width: 165px;
-  height: 63px;
-  margin-left: 35px;
-  border-radius: 10px 10px 10px 10px;
-}
-#about {
-  position: absolute;
-  margin-top: 445px;
-  background-color: white;
-  width: 165px;
-  height: 63px;
-  margin-left: 212px;
-  border-radius: 10px 10px 10px 10px;
-}
+// #profile {
+//   position: absolute;
+//   margin-top: 370px;
+//   background-color: white;
+//   width: 165px;
+//   height: 63px;
+//   margin-left: 35px;
+//   border-radius: 10px 10px 10px 10px;
+// }
+// #record {
+//   position: absolute;
+//   margin-top: 445px;
+//   background-color: white;
+//   width: 165px;
+//   height: 63px;
+//   margin-left: 35px;
+//   border-radius: 10px 10px 10px 10px;
+// }
+// #about {
+//   position: absolute;
+//   margin-top: 445px;
+//   background-color: white;
+//   width: 165px;
+//   height: 63px;
+//   margin-left: 212px;
+//   border-radius: 10px 10px 10px 10px;
+// }
 .detail-title {
   line-height: 30px;
   font-weight: bold;
@@ -220,22 +231,30 @@ export default {};
   font-size: 14px;
   color: @text-color-secondary;
 }
-#settings {
-  position: absolute;
-  margin-top: 370px;
-  background-color: white;
-  width: 165px;
-  height: 63px;
-  margin-left: 212px;
-  border-radius: 10px 10px 10px 10px;
+// #settings {
+//   position: absolute;
+//   margin-top: 370px;
+//   background-color: white;
+//   width: 165px;
+//   height: 63px;
+//   margin-left: 212px;
+//   border-radius: 10px 10px 10px 10px;
+// }
+.operate-item {
+  background: white;
+  border-radius: 10px;
+  padding: 5px;
+
+  // margin-top: 10px;
 }
 #logout {
-  position: absolute;
-  margin-top: 550px;
-  width: calc(100% - 100px);
+  // position: absolute;
+  // margin-top: 550px;
+  width: calc(100% - 40px);
   background-color: white;
   height: 50px;
-  margin-left: 50px;
+  margin-left: 20px;
+  margin-top: 20px;
   border-radius: 10px 10px 10px 10px;
 }
 #title1 {
@@ -264,6 +283,7 @@ export default {};
 #operate-container {
   width: calc(100% - 40px);
   margin-left: 20px;
-  
+  text-align: center;
+
 }
 </style>
