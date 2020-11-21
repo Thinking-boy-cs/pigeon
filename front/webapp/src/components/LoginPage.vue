@@ -6,9 +6,10 @@
           欢迎使用Pigeon
         </p>
 
-        <p class="welcome1">
-          更&nbsp;&nbsp;懂&nbsp;&nbsp;大&nbsp;&nbsp;学&nbsp;&nbsp;生<br /><br /><br />
-        </p>
+        <a-icon
+            :style="{ fontSize: '120px',color:'white'}"
+            type="yuque"
+          />
       </div>
       <div id="cover">
         <div id="header-mid">
@@ -67,13 +68,7 @@
                 登 录
               </a-button>
               或者
-<<<<<<< HEAD
-              <a @click="gotoregister">
-                现在就注册!
-              </a>
-=======
               <a @click="gotoregister"> 现在就注册! </a>
->>>>>>> scarlet-dev
             </a-form-item>
           </a-form>
         </div>
