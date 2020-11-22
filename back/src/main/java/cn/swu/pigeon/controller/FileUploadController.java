@@ -38,9 +38,11 @@ public class FileUploadController {
         User thisUser = (User) request.getSession().getAttribute("thisUser");
         try{
             if (multipartFile.isEmpty()){
+                log.info("here");
                 return Result.error();
             }
             upload.setUsername(thisUser.getUsername());
+            log.info("here:[{}]",upload);
             int rows =uploadService.saveFile(multipartFile,upload);
             System.out.println(rows);
 
@@ -54,23 +56,24 @@ public class FileUploadController {
     /**
      * 上传文件的查看
      */
-    @RequestMapping("findFile")
-    public Result findFile(MultipartFile multipartFile, Upload upload,HttpServletRequest request){
-        User thisUser = (User) request.getSession().getAttribute("thisUser");
-        try{
-            if (multipartFile.isEmpty()){
-                return Result.error();
-            }
-            upload.setUsername(thisUser.getUsername());
-            int rows =uploadService.saveFile(multipartFile,upload);
-            System.out.println(rows);
-
-            return Result.success(upload);
-        } catch (Exception e){
-            log.error(e.getMessage());
-        }
-        return Result.error();
-    }
+//    @RequestMapping("findFile")
+//    public Result findFile(MultipartFile multipartFile, Upload upload,HttpServletRequest request){
+//        User thisUser = (User) request.getSession().getAttribute("thisUser");
+//        try{
+//            if (multipartFile.isEmpty()){
+//                log.info("isempty");
+//                return Result.error();
+//            }
+//            upload.setUsername(thisUser.getUsername());
+//            int rows =uploadService.saveFile(multipartFile,upload);
+//            System.out.println(rows);
+//
+//            return Result.success(upload);
+//        } catch (Exception e){
+//            log.error(e.getMessage());
+//        }
+//        return Result.error();
+//    }
 
 
 }

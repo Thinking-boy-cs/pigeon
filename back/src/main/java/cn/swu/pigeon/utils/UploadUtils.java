@@ -62,7 +62,7 @@ public class UploadUtils {
                 }
             }
         }
-        System.out.println(newFileName);
+        System.out.println("UploadUtils: "+newFileName);
         //返回文件的路径，以便保存到数据库中
 //        return dir1+File.separator+dir2+File.separator+newFileName;
         return newFileName;
