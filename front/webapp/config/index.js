@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-22 04:21:25
+ * @LastEditTime: 2020-11-22 18:30:36
  */
 'use strict'
 // Template version: 1.3.1
@@ -64,7 +64,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps
