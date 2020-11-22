@@ -7,8 +7,8 @@
         where #{theTime} between startTime and endTime
     </select>
 <!--用户提交信息收集-->
-    <insert id="submitInfoCollect" parameterType="InfoCollect">
-        insert into infocollect values(#{info1},#{info2},#{info3})
+    <insert id="submitInfoCollect" parameterType="InfoCollect" useGeneratedKeys="true" keyProperty="id">
+        insert into infocollect(info1,info2,info3) VALUES (#{info1},#{info2},#{info3})
     </insert>
 
 </mapper>

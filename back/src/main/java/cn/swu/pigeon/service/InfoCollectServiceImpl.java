@@ -20,4 +20,9 @@ public class InfoCollectServiceImpl implements InfoCollectService{
     public List<InfoCollect> findInfoCollect(Date theTime) {
         return infoCollectDao.findInfoCollect(theTime);
     }
+
+    @Override
+    public void submitInfoCollect(InfoCollect infoCollect) {
+        infoCollectDao.submitInfoCollect(infoCollect);
+    }
 }
