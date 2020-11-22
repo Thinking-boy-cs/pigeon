@@ -17,7 +17,7 @@ public class ChangeInfoServiceImpl implements ChangeInfoService{
     @Resource
     ChangeInfoDAO changeInfoDAO;
 
-    public static final String UPLOAD_DIR = "webapp\\upload";
+    public static final String UPLOAD_DIR = "webapp\\Icon";
 
     private UploadUtils uploadUtils = new UploadUtils();
 
