@@ -37,12 +37,42 @@
         <br /><span>【管理员提醒】</span>
         </div>
       </div>
+       <a-button type="primary" @click="showDrawer">
+      Open
+    </a-button>
+    <a-drawer
+      title="Basic Drawer"
+      placement="bottom"
+      :closable="false"
+      :visible="visible"
+      :after-visible-change="afterVisibleChange"
+      @close="onClose"
+    >
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </a-drawer>
     </div>
   </div>
 </template>
 <script>
 export default {
-  methods: {}
+  data () {
+    return {
+      visible: false
+    }
+  },
+  methods: {
+    afterVisibleChange (val) {
+      console.log('visible', val)
+    },
+    showDrawer () {
+      this.visible = true
+    },
+    onClose () {
+      this.visible = false
+    }
+  }
 }
 </script>
 <style lang="less" scoped>
