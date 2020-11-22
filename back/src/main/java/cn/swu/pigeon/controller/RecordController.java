@@ -54,7 +54,6 @@ public class RecordController {
             map.put("msg","签到失败");
             return map;
         }
-
     }
 
     /**
