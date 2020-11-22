@@ -48,7 +48,7 @@
         @close="onClose"
         width="350px"
       >
-        <a-calendar :fullscreen="false" :validRange="[value,value1]">
+        <a-calendar :fullscreen="false">
           <ul slot="dateCellRender" slot-scope="value" class="events">
             <li v-for="item in getListData(value)" :key="item.content">
               <a-badge :status="item.type" />
@@ -64,9 +64,11 @@ import moment from 'moment'
 export default {
   data () {
     return {
-      value: moment('2020-11-1'),
-      value1: moment('2020-11-30'),
-      visible: false
+      visible: false,
+      check: {
+        date: 1,
+        type: 'warning'
+      }
     }
   },
   methods: {
@@ -84,20 +86,23 @@ export default {
     },
     getListData (value) {
       let listData
-      switch (value.date()) {
-        case 8:
-          listData = [
-            { type: 'warning' }
-          ]
-          break
-        case 10:
-          listData = [
-            { type: 'success' }
-          ]
-          break
-        default:
+      let currentmonth = moment().format('MM')
+      if (value.month() === currentmonth - 1) {
+        switch (value.date()) {
+          case 8:
+            listData = [
+              { type: 'warning' }
+            ]
+            break
+          case 10:
+            listData = [
+              { type: 'success' }
+            ]
+            break
+          default:
+        }
       }
-      return listData || []
+      return listData
     }
   }
 }
