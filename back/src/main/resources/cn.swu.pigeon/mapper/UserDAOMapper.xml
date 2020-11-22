@@ -3,9 +3,9 @@
     <insert id="save" parameterType="User" >
         insert into staff values (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime},#{icon},#{telNumber},#{email})
     </insert>
-    <select id="findById" parameterType="String" resultType="User">
+    <select id="findByTel" parameterType="String" resultType="User">
         select id,username,dept,password,sex,status,registerTime,icon,telNumber,email
-        from staff where id=#{id}
+        from staff where telNumber=#{telNumber}
     </select>
 
 </mapper>

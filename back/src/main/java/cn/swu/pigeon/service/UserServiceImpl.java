@@ -19,8 +19,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(User user) {
         //System.out.println(user.getUsername()+": "+user.getId());
-        //1.根据用户输入用户名进行查询
-        User userDB = userDAO.findById(user.getId());
+        //1.根据用户输入的电话号码进行查询
+        User userDB = userDAO.findByTel(user.getTelNumber());
 
         if(!ObjectUtils.isEmpty(userDB)){
             //2.比较密码
@@ -36,14 +36,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User find(User user) {
-        return userDAO.findById(user.getId());
+        return userDAO.findByTel(user.getTelNumber());
 
     }
 
     @Override
     public void register(User user) {
         //根据用户输入用户名判断用户是否存在
-        User userDB = userDAO.findById(user.getId());
+        User userDB = userDAO.findByTel(user.getId());
         if(userDB==null){
             //1.生成用户状态
             user.setStatus("已激活");

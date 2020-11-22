@@ -8,5 +8,5 @@ public interface UserDAO {
     //注册存入用户
     void save(User user);
 
-    User findById(String id);
+    User findByTel(String telNumber);
 }
