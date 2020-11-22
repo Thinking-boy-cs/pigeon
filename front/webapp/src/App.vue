@@ -46,7 +46,7 @@ export default {
   data () {
     return {
       paths: ['/', '/notification', '/me'],
-      currentTab: this.$route.meta.id,
+      currentTab: null,
       animationName: 'slide-left'
     }
   },
@@ -54,9 +54,16 @@ export default {
     switchTab: function (t) {
       var that = this
       if (this.currentTab === t) { return }
-      this.$router.push({ path: that.paths[t] })
       this.currentTab = t
+      this.$router.push({ path: that.paths[t] })
+      
     }
+  },
+  created () {
+    setTimeout(() => {
+      this.currentTab = this.$route.meta.id
+    }, 500)
+    window.myApp = this
   },
   // beforeRouteUpdate (to, from, next) {
   //   const toDepth = to.path.split('/').length
@@ -68,6 +75,7 @@ export default {
   watch: {
     $route (to, from) {
       console.log(to)
+      this.currentTab = to.meta.id
       if (to.meta.id > from.meta.id) {
         this.animationName = 'slide-left'
       } else {

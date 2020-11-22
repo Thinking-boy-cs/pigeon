@@ -3,14 +3,11 @@
     <div id="title-background"></div>
     <div id="profile-panel">
       <div id="avatar-container">
-        <a-avatar
-          id="avatar"
-          :size="100"
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-        />
+        <a-avatar id="avatar" :size="100" :src="iconUrl" />
       </div>
       <div id="userinfo">
-        <a id="username">老张</a><br />
+        <a id="username">{{ userData.username }}</a
+        ><br />
         <a id="signature">
           个性签名：志向但是是记忆的奴隶，生气勃勃地降生，但却很难成长。
         </a>
@@ -25,7 +22,9 @@
               />
               &nbsp;<span>部门</span>
             </div>
-            <div class="detail-content">人力资源部</div>
+            <div class="detail-content">
+              {{ userData.dept ? userData.dept : "无" }}
+            </div>
           </a-col>
           <a-col :span="12" class="detail-bar">
             <div class="detail-title">
@@ -37,7 +36,7 @@
               />&nbsp;
               <span>工号</span>
             </div>
-            <div class="detail-content">001</div>
+            <div class="detail-content">{{ userData.id }}</div>
           </a-col>
         </a-row>
       </div>
@@ -93,6 +92,22 @@
 
 <script>
 export default {
+  data () {
+    return {
+      userData: null
+    }
+  },
+  computed: {
+    iconUrl () {
+      var that = this
+      console.log(this.userData.icon
+        ? '/api/pigeon/pthotos/' + this.userData.icon
+        : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png')
+      return this.userData.icon
+        ? '/api/pigeon/pthotos/' + this.userData.icon
+        : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+    }
+  },
   methods: {
     toPage (uri) {
       this.$router.push({ path: uri })
@@ -101,6 +116,16 @@ export default {
       if (localStorage.getItem('user')) {
         localStorage.removeItem('user')
       }
+      this.$router.push({ path: '/login' })
+    }
+  },
+  created () {
+    this.userData = window.localStorage.getItem('user')
+
+    console.log(this.userData)
+    if (this.userData) {
+      this.userData = JSON.parse(this.userData)
+    } else {
       this.$router.push({ path: '/login' })
     }
   }
