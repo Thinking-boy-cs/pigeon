@@ -8,7 +8,7 @@
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" @click="$router.go(-1)"/>
+          <a-icon type="left" @click="$router.go(-1)" />
         </div>
       </div>
     </div>
@@ -23,15 +23,16 @@
 
     <div id="form-container">
       <a-form-model
+        ref="ruleForm"
         :model="submitForm.user"
+        :rules="rules"
         @submit="handleSubmit"
         @submit.native.prevent
-        :rules="rules"
       >
         <a-form-model-item>
           <a-input
             v-model="submitForm.user.username"
-            placeholder="Username"
+            placeholder="用户名"
             allow-clear
             size="large"
           >
@@ -42,11 +43,11 @@
             />
           </a-input>
         </a-form-model-item>
-        <a-form-model-item has-feedback label="Password" prop="pass">
+        <a-form-model-item has-feedback prop="password">
           <a-input-password
             v-model="submitForm.user.password"
             size="large"
-            placeholder="Password"
+            placeholder="密码"
           >
             <a-icon
               slot="prefix"
@@ -55,11 +56,11 @@
             />
           </a-input-password>
         </a-form-model-item>
-        <a-form-model-item has-feedback label="Confirm" prop="checkPass">
+        <a-form-model-item has-feedback prop="confirm">
           <a-input-password
             v-model="submitForm.user.confirm"
             size="large"
-            placeholder="Confirm your password"
+            placeholder="请再输入一次密码"
           >
             <a-icon
               slot="prefix"
@@ -100,10 +101,10 @@
             size="large"
             html-type="submit"
             :disabled="
-              submitForm.user.user === '' ||
-                submitForm.user.password === '' ||
-                submitForm.user.password !== submitForm.user.confirm ||
-                submitForm.user.agree !== true
+              submitForm.user.username === '' ||
+              submitForm.user.password === '' ||
+              submitForm.user.password !== submitForm.user.confirm ||
+              submitForm.user.agree !== true
             "
           >
             注册
@@ -115,9 +116,27 @@
 </template>
 
 <script>
-
 export default {
   data () {
+    let validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('密码不能为空'))
+      } else {
+        if (this.submitForm.user.confirm !== '') {
+          this.$refs.ruleForm.validateField('confirm')
+        }
+        callback()
+      }
+    }
+    let validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再输入一次密码'))
+      } else if (value !== this.submitForm.user.password) {
+        callback(new Error('两次输入不一致！'))
+      } else {
+        callback()
+      }
+    }
     return {
       submitForm: {
         user: {
@@ -128,6 +147,10 @@ export default {
           agree: false
         },
         code: ''
+      },
+      rules: {
+        password: [{ validator: validatePass, trigger: 'change' }],
+        confirm: [{ validator: validatePass2, trigger: 'change' }]
       },
       imageData: ''
     }
@@ -142,7 +165,7 @@ export default {
       // postData.append('user', this.submitForm.user)
       this.$axios
         .post('/api/pigeon/user/register1', that.submitForm)
-        .then(res => {
+        .then((res) => {
           console.log(res.data)
           if (res.data) {
             if (res.data.status === 0) {
@@ -153,7 +176,7 @@ export default {
             }
           }
         })
-        .catch(err => {
+        .catch((err) => {
           that.$message.error('注册失败: ' + err)
           // return ''
         })
@@ -162,11 +185,11 @@ export default {
       var that = this
       this.$axios
         .get('/api/pigeon/user/getImage?time=0.1')
-        .then(res => {
+        .then((res) => {
           console.log(res)
           that.imageData = res.data
         })
-        .catch(err => {
+        .catch((err) => {
           that.$message.error('获取验证码失败:' + err)
           // return ''
         })
@@ -176,11 +199,11 @@ export default {
     var that = this
     this.$axios
       .get('/api/pigeon/user/getImage?time=0.1')
-      .then(res => {
+      .then((res) => {
         console.log(res.data)
         that.imageData = res.data
       })
-      .catch(err => {
+      .catch((err) => {
         that.$message.error('获取验证码失败:' + err)
         // return ''
       })
