@@ -9,9 +9,13 @@
     <div id="content-container">
       <div class="title-container">
         <a-icon id="feature-icon1" type="calendar"></a-icon>
-        <a id="calendar">日历</a>
+        <a id="calendar" @click="showDrawer">日历</a>
         <a-divider type="vertical" />
-        <i class="fa fa-check-square-o" id="feature-icon2" aria-hidden="true"></i>
+        <i
+          class="fa fa-check-square-o"
+          id="feature-icon2"
+          aria-hidden="true"
+        ></i>
         <a id="todo">待办</a>
       </div>
       <div id="notification1">
@@ -33,16 +37,74 @@
           icon="user"
           id="admin"
         />
-        <div id="info2">管理员通知
-        <br /><span>【管理员提醒】</span>
-        </div>
+        <div id="info2">管理员通知 <br /><span>【管理员提醒】</span></div>
       </div>
+      <a-drawer
+        title="Basic Drawer"
+        placement="left"
+        :closable="false"
+        :visible="visible"
+        :after-visible-change="afterVisibleChange"
+        @close="onClose"
+        width="350px"
+      >
+        <a-calendar :fullscreen="false">
+          <ul slot="dateCellRender" slot-scope="value" class="events">
+            <li v-for="item in getListData(value)" :key="item.content">
+              <a-badge :status="item.type" />
+            </li>
+          </ul>
+        </a-calendar>
+      </a-drawer>
     </div>
   </div>
 </template>
 <script>
+import moment from 'moment'
 export default {
-  methods: {}
+  data () {
+    return {
+      visible: false,
+      check: {
+        date: 1,
+        type: 'warning'
+      }
+    }
+  },
+  methods: {
+    afterVisibleChange (val) {
+      console.log('visible', val)
+    },
+    showDrawer () {
+      this.visible = true
+    },
+    onClose () {
+      this.visible = false
+    },
+    onPanelChange (value, mode) {
+      console.log(value, mode)
+    },
+    getListData (value) {
+      let listData
+      let currentmonth = moment().format('MM')
+      if (value.month() === currentmonth - 1) {
+        switch (value.date()) {
+          case 8:
+            listData = [
+              { type: 'warning' }
+            ]
+            break
+          case 10:
+            listData = [
+              { type: 'success' }
+            ]
+            break
+          default:
+        }
+      }
+      return listData
+    }
+  }
 }
 </script>
 <style lang="less" scoped>
@@ -57,6 +119,7 @@ export default {
   height: 90px;
   background-color: white;
   position: relative;
+  margin-top: 1px;
 }
 #bell {
   float: left;
@@ -73,15 +136,17 @@ export default {
   margin-left: 20px;
   margin-top: 15px;
 }
-#info1, #info2 {
+#info1,
+#info2 {
   position: relative;
   text-align: left;
   padding-top: 3vh;
   color: @text-color;
   font-weight: bold;
-  padding-left: 23vw
+  padding-left: 23vw;
 }
-#info1 span, #info2 span{
+#info1 span,
+#info2 span {
   font-weight: normal;
 }
 #title {
@@ -94,7 +159,7 @@ export default {
   position: relative;
   width: 100%;
   height: 10vh;
-  // margin-top: 59px;
+  box-shadow:1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 #notification-header {
   position: relative;
@@ -103,22 +168,42 @@ export default {
 #feature-icon1 {
   font-size: 24px;
   height: 40px;
-  color:  @text-color;
+  color: @text-color;
   padding-top: 2vh;
 }
 #feature-icon2 {
   font-size: 24px;
   height: 40px;
-  color:  @text-color;
+  color: @text-color;
   padding-left: 70px;
 }
 #calendar {
   padding-right: 70px;
-  color:  @text-color;
+  color: @text-color;
   font-weight: bold;
 }
 #todo {
-  color:  @text-color;
+  color: @text-color;
   font-weight: bold;
+}
+.events {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.events .ant-badge-status {
+  white-space: nowrap;
+  width: 100%;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+.notes-month {
+  text-align: center;
+  font-size: 28px;
+}
+.notes-month section {
+  font-size: 28px;
 }
 </style>

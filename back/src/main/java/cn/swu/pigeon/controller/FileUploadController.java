@@ -30,6 +30,9 @@ public class FileUploadController {
     @Resource
     private UploadService uploadService;
 
+    /**
+     *文件上传
+     */
     @RequestMapping("uploadFile")
     public Result uploadFile(MultipartFile multipartFile, Upload upload,HttpServletRequest request){
         User thisUser = (User) request.getSession().getAttribute("thisUser");
@@ -47,4 +50,27 @@ public class FileUploadController {
         }
         return Result.error();
     }
+
+    /**
+     * 上传文件的查看
+     */
+    @RequestMapping("findFile")
+    public Result findFile(MultipartFile multipartFile, Upload upload,HttpServletRequest request){
+        User thisUser = (User) request.getSession().getAttribute("thisUser");
+        try{
+            if (multipartFile.isEmpty()){
+                return Result.error();
+            }
+            upload.setUsername(thisUser.getUsername());
+            int rows =uploadService.saveFile(multipartFile,upload);
+            System.out.println(rows);
+
+            return Result.success(upload);
+        } catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return Result.error();
+    }
+
+
 }

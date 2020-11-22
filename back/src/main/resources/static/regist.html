@@ -103,8 +103,8 @@
 		</div>
 	</body>
 </html>
-<script src="/pigeon/js/vue.js"></script>
-<script src="/pigeon/js/axios.min.js"></script>
+<script src="/api/pigeon/js/vue.js"></script>
+<script src="/api/pigeon/js/axios.min.js"></script>
 <script>
 	var app = new Vue({
 		el:"#wrap",
@@ -124,7 +124,7 @@
 			//获取验证码的
 			getSrc(){
 				var  _this = this;
-				axios.get("http://localhost:8989/pigeon/user/getImage?time="+Math.random()).then(res=>{
+				axios.get("http://localhost:8989/api/pigeon/user/getImage?time="+Math.random()).then(res=>{
 					console.log(res.data);
 					_this.url = res.data;
 
@@ -132,11 +132,11 @@
 			},
 			//用来注册用户信息
 			register(){
-				axios.post("http://localhost:8989/pigeon/user/register?code="+this.code,this.user).then(res=>{
+				axios.post("http://localhost:8989/api/pigeon/user/register?code="+this.code,this.user).then(res=>{
 					console.log(res.data);
 					if(res.data.state){
 						alert(res.data.msg+",点击确定跳转至登录页面!");
-						location.href="/pigeon/login.html";
+						location.href="/api/pigeon/login.html";
 					}else{
 						alert(res.data.msg);
 					}

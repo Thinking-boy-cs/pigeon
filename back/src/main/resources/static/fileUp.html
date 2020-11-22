@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="/pigeon/js/jquery-3.5.1.js"></script>
+    <script src="/api/pigeon/js/jquery-3.5.1.js"></script>
     <script>
         $(function () {
             $("#upload").click(function () {
@@ -23,7 +23,7 @@
 
                 $.ajax({
                     type: 'post',
-                    url: "http://localhost:8989/pigeon/upload/uploadFile",
+                    url: "http://localhost:8989/api/pigeon/upload/uploadFile",
                     data: formData,
                     cache: false,
                     processData: false,
