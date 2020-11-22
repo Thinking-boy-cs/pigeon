@@ -1,5 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.GovernDao">
+<!--    对用户的增删改查-->
     <select id="findUser" parameterType="String" resultType="User">
         select id,username,dept,password,sex,status,registerTime,icon,telNumber,email
         from staff
@@ -22,6 +23,7 @@
         select id,username,password from userinfo where id=#{id}
     </select>
 
+<!--    对活动的管理(未考虑时间)-->
     <select id="findActivity" parameterType="String" resultType="Activity">
         select id,activityName,applicant,approver,startTime,endTime,status,submitTime
         from activity
@@ -48,9 +50,21 @@
         where staff.id=signrecord.id and signTime not in #{theTime}
     </select>
 
-    <select id="findLeave" parameterType="Date" resultType="Leave">
+    <select id="findLeaved" parameterType="Date" resultType="Leave">
         select *
-        from vocation
+        from vacation
         where #{theTime} between startTime and endTime
     </select>
+
+    <!--    对请假的管理（未考虑时间）-->
+    <select id="findLeave" parameterType="String" resultType="Leave">
+        select *
+        from vacation
+    </select>
+
+    <update id="approveLeave" parameterType="String">
+        update vacation
+        set state=#{param2}
+        where id=#{param1}
+    </update>
 </mapper>

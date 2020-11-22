@@ -155,12 +155,12 @@ public class GovernController {
     /**
      * 1.3请假记录
      */
-    @RequestMapping("findLeave")
-    public Map<String,Object> findLeave(Date theTime){
+    @RequestMapping("findLeaved")
+    public Map<String,Object> findLeaved(Date theTime){
 
         Map<String, Object> map =  new HashMap<>();
         try {
-            List<Record> thisLeave = governService.findLeave(theTime);
+            List<Record> thisLeave = governService.findLeaved(theTime);
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data",thisLeave);
@@ -223,10 +223,45 @@ public class GovernController {
     /**
      * 对请假的操作
      */
-
     /**
      * 1.审批
      */
+    @RequestMapping("approveLeave")
+    public Map<String,Object> approveLeave(String id ,String status){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            //测试
+            id="1";
+            status="已通过";
+            governService.approveLeave(id,status);
+            map.put("status",0);
+            map.put("msg","审批成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
+    /**
+     * 2.查看所有活动（结束/进行中）
+     */
+    @RequestMapping("findLeave")
+    public Map<String,Object> findLeave(){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            List<Record> thisLeave = governService.findLeave();
+            map.put("status",0);
+            map.put("msg","查看成功!");
+            map.put("data",thisLeave);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
 
 
     /**

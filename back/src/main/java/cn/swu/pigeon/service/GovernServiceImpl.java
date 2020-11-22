@@ -19,6 +19,10 @@ public class GovernServiceImpl implements GovernService{
     GovernDao governDao;
 
 
+    /**
+     * 对用户的管理
+     * @return
+     */
     @Override
     public List<User> findUsers() {
         return governDao.findUser();
@@ -42,6 +46,10 @@ public class GovernServiceImpl implements GovernService{
         governDao.updateUser(user.getId());
     }
 
+    /**
+     * 对活动的管理
+     * @return
+     */
     @Override
     public List<Activity> findActivity() {
         return governDao.findActivity();
@@ -52,6 +60,11 @@ public class GovernServiceImpl implements GovernService{
         governDao.approveActivity(id,status);
     }
 
+    /**
+     * 查看签到/未签到/请假情况
+     * @param theTime
+     * @return
+     */
     @Override
     public List<Record> findSigned(Date theTime) {
         return governDao.findSigned(theTime);
@@ -63,7 +76,19 @@ public class GovernServiceImpl implements GovernService{
     }
 
     @Override
-    public List<Record> findLeave(Date theTime) {
-        return governDao.findLeave(theTime);
+    public List<Record> findLeaved(Date theTime) {
+        return governDao.findLeaved(theTime);
     }
+
+    @Override
+    public List<Record> findLeave() {
+        return governDao.findLeave();
+    }
+
+    @Override
+    public void approveLeave(String id, String status) {
+        governDao.approveLeave(id,status);
+    }
+
+
 }
