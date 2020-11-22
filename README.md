@@ -368,7 +368,39 @@ status的合法值
 	msg:"撤回成功"
   }
 ```   
+## 10. 文件上传
+请求地址      
+POST http://localhost:8989/pigeon/upload/uploadFile      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	multipartFile&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; MultipartFile&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 上传的文件   
+	upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 上传类
 
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;上传成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;上传失败   
+
+请求数据实例   
+```
+    multipartFile:file
+    upload{
+            null
+          }
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"上传成功"
+  }
+```   
 #后端~后台管理系统
 
 

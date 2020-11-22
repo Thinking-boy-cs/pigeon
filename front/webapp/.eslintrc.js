@@ -1,3 +1,8 @@
+/*
+ * @Date: 2020-11-16 19:34:11
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-11-22 04:07:04
+ */
 // https://eslint.org/docs/user-guide/configuring
 
 module.exports = {
@@ -7,6 +12,7 @@ module.exports = {
   },
   env: {
     browser: true,
+    jquery:true
   },
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention

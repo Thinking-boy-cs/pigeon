@@ -32,8 +32,7 @@ public class LeaveServiceImpl implements LeaveService{
 //        leave.setSubmitTime()
 //        leave.setStatus()
         leave.setState("待审核");
-        System.out.println(leave.getSubmitTime());
-        System.out.println(leave.getState());
+        log.info("[{}]",leave.getReason());
         log.info("[{}]",leave.toString());
         /**
          * 注意需要获取当前用户的id
