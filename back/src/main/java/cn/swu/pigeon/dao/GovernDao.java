@@ -45,6 +45,10 @@ public interface GovernDao {
     //查询某天处于请假的记录
     List<Record> findLeaved(Date theTime);
 
+    /**
+     * 请假管理
+     * @return
+     */
     //找到所有请假
     List<Record> findLeave();
     //审批请假

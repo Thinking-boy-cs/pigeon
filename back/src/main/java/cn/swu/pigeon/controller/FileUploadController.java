@@ -30,6 +30,9 @@ public class FileUploadController {
     @Resource
     private UploadService uploadService;
 
+    /**
+     *文件上传
+     */
     @RequestMapping("uploadFile")
     public Result uploadFile(MultipartFile multipartFile, Upload upload,HttpServletRequest request){
         User thisUser = (User) request.getSession().getAttribute("thisUser");

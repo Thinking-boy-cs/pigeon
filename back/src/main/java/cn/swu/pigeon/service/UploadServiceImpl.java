@@ -20,6 +20,8 @@ public class UploadServiceImpl implements UploadService {
     private UploadUtils uploadUtils = new UploadUtils();
     @Resource
     UploadDao uploadDao;
+
+    //存上传的文件
     @Override
     public int saveFile(MultipartFile multipartFile, Upload upload) {
         String newPath = uploadUtils.upload(UPLOAD_DIR, multipartFile);

@@ -80,6 +80,10 @@ public class GovernServiceImpl implements GovernService{
         return governDao.findLeaved(theTime);
     }
 
+    /**
+     * 对请假的管理
+     * @return
+     */
     @Override
     public List<Record> findLeave() {
         return governDao.findLeave();
