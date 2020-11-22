@@ -36,4 +36,21 @@
 <!--    已签到/未签到/请假-->
 <!--    采用时间查询，当前存在于signrecord就是签到了的，存在于请假表的就是请假的，不存在于上述两个表的就是未签到的-->
 <!--    （都是一些表的查询）-->
+    <select id="findSigned" parameterType="Date" resultType="Record">
+        select *
+        from signrecord
+        where signTime in (#{theTime})
+    </select>
+
+    <select id="findUnsigned" parameterType="Date" resultType="Record">
+        select *
+        from signrecord,staff
+        where staff.id=signrecord.id and signTime not in #{theTime}
+    </select>
+
+    <select id="findLeave" parameterType="Date" resultType="Leave">
+        select *
+        from vocation
+        where #{theTime} between startTime and endTime
+    </select>
 </mapper>

@@ -1,10 +1,12 @@
 package cn.swu.pigeon.dao;
 
 import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -21,4 +23,10 @@ public interface GovernDao {
     List<Activity> findActivity();
     //审批活动
     void approveActivity(@Param("id") String id,@Param("status") String status);
+    //查询某天已签到记录
+    List<Record> findSigned(Date theTime);
+    //查询某天未签到记录
+    List<Record> findUnsigned(Date theTime);
+    //查询某天处于请假的记录
+    List<Record> findLeave(Date theTime);
 }

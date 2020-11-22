@@ -1,6 +1,7 @@
 package cn.swu.pigeon.controller;
 
 import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.GovernService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,25 +111,68 @@ public class GovernController {
      */
 
     /**
-     * 1.1已签到
+     * 1.1已签到记录
      */
     @RequestMapping("findSigned")
-    public Map<String,Object> findSigned(){
+    public Map<String,Object> findSigned(Date theTime){
 
         Map<String, Object> map =  new HashMap<>();
         try {
-            //List<User> thisUsers = governService.findUsers();
+            List<Record> thisSigned = governService.findSigned(theTime);
             map.put("status",0);
             map.put("msg","查询成功!");
-            //map.put("data",thisUsers);
+            map.put("data",thisSigned);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
             map.put("msg",e.getMessage());
-            //map.put("data",null);
+            map.put("data",null);
         }
         return map;
     }
+
+    /**
+     * 1.2未签到记录
+     */
+    @RequestMapping("findUnsigned")
+    public Map<String,Object> findUnsigned(Date theTime){
+
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            List<Record> thisUnsigned = governService.findUnsigned(theTime);
+            map.put("status",0);
+            map.put("msg","查询成功!");
+            map.put("data",thisUnsigned);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
+
+    /**
+     * 1.3请假记录
+     */
+    @RequestMapping("findLeave")
+    public Map<String,Object> findLeave(Date theTime){
+
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            List<Record> thisLeave = governService.findLeave(theTime);
+            map.put("status",0);
+            map.put("msg","查询成功!");
+            map.put("data",thisLeave);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
+
 
 
     /**

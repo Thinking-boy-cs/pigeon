@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>change</title>
-    <script src="/pigeon/js/jquery-3.5.1.js"></script>
+    <script src="/api/pigeon/js/jquery-3.5.1.js"></script>
     <script>
         $(function () {
             $("#upload").click(function () {
@@ -41,7 +41,7 @@
 
                 $.ajax({
                     type: 'post',
-                    url: "http://localhost:8989/pigeon/user/changeUserInfo",
+                    url: "http://localhost:8989/api/pigeon/user/changeUserInfo",
                     data: formData,
                     dataType:'json',
                     cache: false,

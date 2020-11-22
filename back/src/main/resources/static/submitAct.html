@@ -49,8 +49,8 @@
 </div>
 </body>
 </html>
-<script src="/pigeon/js/vue.js"></script>
-<script src="/pigeon/js/axios.min.js"></script>
+<script src="/api/pigeon/js/vue.js"></script>
+<script src="/api/pigeon/js/axios.min.js"></script>
 <script>
     var app = new Vue({
         el: "#wrap",
@@ -61,7 +61,7 @@
         methods: {
             //提交活动
             submitAct() {
-                axios.post("http://localhost:8989/pigeon/activity/submit?",this.activity).then(res => {
+                axios.post("http://localhost:8989/api/pigeon/activity/submit?",this.activity).then(res => {
                     console.log(res.data);
                     if (!res.data.status) {
                         alert(res.data.msg + ",提交成功!");
