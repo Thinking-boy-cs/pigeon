@@ -95,7 +95,7 @@ export default {
       this.$axios.post('/api/pigeon/user/login', this.form).then((res) => {
         console.log(res)
         if (res.data && res.data.status === 0) {
-          localStorage.setItem('user', JSON.stringify(res.data.data))
+          window.localStorage.setItem('user', JSON.stringify(res.data.data))
           this.$message.loading({ content: '登录成功，跳转中', key })
           setTimeout(() => {
             this.$message.success({ content: '跳转成功', key, duration: 2 })
