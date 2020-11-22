@@ -2,6 +2,7 @@ package cn.swu.pigeon.service;
 
 import cn.swu.pigeon.dao.GovernDao;
 import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,10 @@ public class GovernServiceImpl implements GovernService{
     GovernDao governDao;
 
 
+    /**
+     * 对用户的管理
+     * @return
+     */
     @Override
     public List<User> findUsers() {
         return governDao.findUser();
@@ -41,6 +46,10 @@ public class GovernServiceImpl implements GovernService{
         governDao.updateUser(user.getId());
     }
 
+    /**
+     * 对活动的管理
+     * @return
+     */
     @Override
     public List<Activity> findActivity() {
         return governDao.findActivity();
@@ -50,4 +59,36 @@ public class GovernServiceImpl implements GovernService{
     public void approveActivity(String id,String status) {
         governDao.approveActivity(id,status);
     }
+
+    /**
+     * 查看签到/未签到/请假情况
+     * @param theTime
+     * @return
+     */
+    @Override
+    public List<Record> findSigned(Date theTime) {
+        return governDao.findSigned(theTime);
+    }
+
+    @Override
+    public List<Record> findUnsigned(Date theTime) {
+        return governDao.findUnsigned(theTime);
+    }
+
+    @Override
+    public List<Record> findLeaved(Date theTime) {
+        return governDao.findLeaved(theTime);
+    }
+
+    @Override
+    public List<Record> findLeave() {
+        return governDao.findLeave();
+    }
+
+    @Override
+    public void approveLeave(String id, String status) {
+        governDao.approveLeave(id,status);
+    }
+
+
 }
