@@ -26,6 +26,7 @@
         :model="submitForm.user"
         @submit="handleSubmit"
         @submit.native.prevent
+        :rules="rules"
       >
         <a-form-model-item>
           <a-input
@@ -41,7 +42,7 @@
             />
           </a-input>
         </a-form-model-item>
-        <a-form-model-item>
+        <a-form-model-item has-feedback label="Password" prop="pass">
           <a-input-password
             v-model="submitForm.user.password"
             size="large"
@@ -54,7 +55,7 @@
             />
           </a-input-password>
         </a-form-model-item>
-        <a-form-model-item>
+        <a-form-model-item has-feedback label="Confirm" prop="checkPass">
           <a-input-password
             v-model="submitForm.user.confirm"
             size="large"
