@@ -13,6 +13,9 @@
       </div>
 
     </div>
+    <div id="mask">
+
+    </div>
     <div id="header-container">
       <div id="header-wrapper">
         <div class="header-title">注册</div>
@@ -127,9 +130,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-        <div id="mask">
-
-    </div>
+        
   </div>
 </template>
 
@@ -316,7 +317,7 @@ export default {
   z-index: 2;
 }
 #navigation-container {
-  z-index: 4;
+  z-index: 999;
   box-shadow: none;
   background-color: transparent;
 }
