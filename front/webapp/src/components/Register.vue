@@ -13,6 +13,9 @@
       </div>
 
     </div>
+    <div id="mask">
+
+    </div>
     <div id="header-container">
       <div id="header-wrapper">
         <div class="header-title">注册</div>
@@ -40,6 +43,20 @@
             <a-icon
               slot="prefix"
               type="user"
+              style="color: rgba(0, 0, 0, 0.25)"
+            />
+          </a-input>
+        </a-form-model-item>
+        <a-form-model-item>
+          <a-input
+            v-model="submitForm.user.telNumber"
+            placeholder="手机号"
+            allow-clear
+            size="large"
+          >
+            <a-icon
+              slot="prefix"
+              type="phone"
               style="color: rgba(0, 0, 0, 0.25)"
             />
           </a-input>
@@ -113,9 +130,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-        <div id="mask">
-
-    </div>
+        
   </div>
 </template>
 
@@ -146,6 +161,7 @@ export default {
         user: {
           id: new Date().getTime().toString(),
           username: '',
+          telNumber: '',
           password: '',
           confirm: '',
           agree: false
@@ -153,8 +169,8 @@ export default {
         code: ''
       },
       rules: {
-        password: [{ validator: validatePass, trigger: 'change' }],
-        confirm: [{ validator: validatePass2, trigger: 'change' }]
+        password: [{ validator: validatePass, trigger: 'blur' }],
+        confirm: [{ validator: validatePass2, trigger: 'blur' }]
       },
       imageData: ''
     }
@@ -301,7 +317,7 @@ export default {
   z-index: 2;
 }
 #navigation-container {
-  z-index: 4;
+  z-index: 999;
   box-shadow: none;
   background-color: transparent;
 }

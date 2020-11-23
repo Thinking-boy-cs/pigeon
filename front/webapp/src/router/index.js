@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-22 16:18:14
+ * @LastEditTime: 2020-11-22 19:46:02
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -131,7 +131,7 @@ const router = new Router({
 })
 
 router.beforeEach((route, redirect, next) => {
-  if (!localStorage.getItem('user')) {
+  if (!window.localStorage.getItem('user')) {
     if (route.path !== '/login' && route.path !== '/register') {
       next({
         path: '/login',
