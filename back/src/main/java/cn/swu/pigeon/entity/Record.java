@@ -18,6 +18,7 @@ public class Record {
     private float longitude;
     private float latitude;
     private int activityId;
+    private String companyId;
 
     /**
      * @return String return the id

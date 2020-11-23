@@ -26,8 +26,8 @@
               id="username"
               allow-clear
               @change="onChange"
-              v-model="form.id"
-              placeholder="请输入用户名"
+              v-model="form.telNumber"
+              placeholder="请输入手机号码"
             >
               <a-icon
                 slot="prefix"
@@ -95,7 +95,7 @@ export default {
       this.$axios.post('/api/pigeon/user/login', this.form).then((res) => {
         console.log(res)
         if (res.data && res.data.status === 0) {
-          localStorage.setItem('user', JSON.stringify(res.data.data))
+          window.localStorage.setItem('user', JSON.stringify(res.data.data))
           this.$message.loading({ content: '登录成功，跳转中', key })
           setTimeout(() => {
             this.$message.success({ content: '跳转成功', key, duration: 2 })
@@ -162,6 +162,7 @@ export default {
 }
 #header-title {
   margin-bottom: 50px;
+  text-align: center  ;
 }
 * {
   margin: 0;
@@ -170,7 +171,7 @@ export default {
   font-family: PingFang SC;
 }
 #welcome {
-  padding-top: 75px;
+  padding-top: 65px;
   font-size: 30px;
   text-align: center;
   font-weight: bold;

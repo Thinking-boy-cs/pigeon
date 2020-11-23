@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-22 16:18:14
+ * @LastEditTime: 2020-11-22 19:46:02
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -21,7 +21,8 @@ import Router from 'vue-router'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
 import BaiduMap from 'vue-baidu-map'
-import { component } from 'vue/types/umd'
+// import { ResolvePlugin } from 'webpack'
+// import { component } from 'vue/types/umd'
 Vue.use(Router)
 Vue.use(Antd)
 Vue.use(BaiduMap, {
@@ -76,13 +77,13 @@ const router = new Router({
       path: '/Signin',
       name: 'Signin',
       // component: Signin
-      component: () => import('@/components/Signin')
+      component: resolve => require(['@/components/Signin'], resolve)
     },
     {
       path: '/Profile',
       name: 'Profile',
       // component: Profile,
-      component: () => import('@/components/Profile'),
+      component: resolve => require(['@/components/Profile'], resolve),
       meta: {
         id: -13
       }
@@ -91,13 +92,13 @@ const router = new Router({
       path: '/EditProfile',
       name: 'EditProfile',
       // component: EditProfile
-      component: () => import('@/components/EditProfile')
+      component: resolve => require(['@/components/EditProfile'], resolve)
     },
     {
       path: '/LeaveApplication',
       name: 'LeaveApplication',
       // component: LeaveApplication,
-      component: () => import('@/components/LeaveApplication'),
+      component: resolve => require(['@/components/LeaveApplication'], resolve),
       meta: {
         id: -14
       }
@@ -105,7 +106,7 @@ const router = new Router({
     {
       path: '/',
       name: 'Main',
-      component: () => import('@/components/Main'),
+      component: resolve => require(['@/components/Main'], resolve),
       meta: {
         id: 0
       }
@@ -113,7 +114,7 @@ const router = new Router({
     {
       path: '/leave',
       name: 'Leave',
-      component: () => import('@/components/Leave'),
+      component: resolve => require(['@/components/Leave'], resolve),
       meta: {
         id: -10
       }
@@ -124,13 +125,13 @@ const router = new Router({
       meta: {
         id: -11
       },
-      component: () => import('@/components/LeaveDetail')
+      component: resolve => require(['@/components/LeaveDetail'], resolve)
     }
   ]
 })
 
 router.beforeEach((route, redirect, next) => {
-  if (!localStorage.getItem('user')) {
+  if (!window.localStorage.getItem('user')) {
     if (route.path !== '/login' && route.path !== '/register') {
       next({
         path: '/login',

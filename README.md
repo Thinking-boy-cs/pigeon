@@ -23,7 +23,7 @@ status的合法值
 请求数据实例   
 ```
 user{
-  	username:"小朋友"
+  	telNumber:"xxxxxxxxxxx"
   	password:"123456"
    }
 ```   
@@ -40,11 +40,13 @@ user{
                 dept:"幼儿园",
                 password:"123456",
                 sex:"男",
-                status:"已激活",
-                registerTime:2020-11-18 20:30:27,
-                icon:"/default",
                 telNumber:null,
-                email:null
+                email:null,
+                icon:"/default"
+                companyId:00001,
+                originId:001,
+                status:"已激活",
+                registerTime:2020-11-18 20:30:27
              }
   }
 ```
@@ -377,15 +379,15 @@ POST http://localhost:8989/api/pigeon/upload/uploadFile
 	upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 上传类
 
 返回值     
-	Map<int,Object>    
+	Result    
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
 	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
 	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
 
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
-	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;上传成功   
-	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;上传失败   
+	200&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;上传成功   
+	404&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;上传失败   
 
 请求数据实例   
 ```
@@ -397,7 +399,7 @@ status的合法值
 返回数据实例
 ```
   {
-	status:0
+	status:200
 	msg:"上传成功"
   }
 ```   
