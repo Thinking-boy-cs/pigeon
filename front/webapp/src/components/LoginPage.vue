@@ -128,7 +128,7 @@ export default {
         if (res.data && res.data.status === 0) {
           window.localStorage.setItem('user', JSON.stringify(res.data.data))
           that.msg = that.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
-          that.initWS()
+          // that.initWS()
           // setTimeout(() => {
           //   // this.$message.success({ content: '跳转成功', key, duration: 2 })
           // }, 1000)
