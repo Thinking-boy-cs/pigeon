@@ -4,13 +4,17 @@
  * @LastEditTime: 2020-11-22 04:14:48
 -->
 <template>
-  <div>
+  <div id="header-background">
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
           <a-icon type="left" @click="$router.go(-1)" />
         </div>
       </div>
+
+    </div>
+    <div id="mask">
+
     </div>
     <div id="header-container">
       <div id="header-wrapper">
@@ -39,6 +43,20 @@
             <a-icon
               slot="prefix"
               type="user"
+              style="color: rgba(0, 0, 0, 0.25)"
+            />
+          </a-input>
+        </a-form-model-item>
+        <a-form-model-item>
+          <a-input
+            v-model="submitForm.user.telNumber"
+            placeholder="手机号"
+            allow-clear
+            size="large"
+          >
+            <a-icon
+              slot="prefix"
+              type="phone"
               style="color: rgba(0, 0, 0, 0.25)"
             />
           </a-input>
@@ -75,7 +93,7 @@
               ><a-input
                 size="large"
                 allow-clear
-                placeholder="请输入图中的验证码"
+                placeholder="请输入验证码"
                 v-model="submitForm.code"
               ></a-input
             ></a-col>
@@ -112,6 +130,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
+        
   </div>
 </template>
 
@@ -142,6 +161,7 @@ export default {
         user: {
           id: new Date().getTime().toString(),
           username: '',
+          telNumber: '',
           password: '',
           confirm: '',
           agree: false
@@ -149,8 +169,8 @@ export default {
         code: ''
       },
       rules: {
-        password: [{ validator: validatePass, trigger: 'change' }],
-        confirm: [{ validator: validatePass2, trigger: 'change' }]
+        password: [{ validator: validatePass, trigger: 'blur' }],
+        confirm: [{ validator: validatePass2, trigger: 'blur' }]
       },
       imageData: ''
     }
@@ -226,6 +246,7 @@ export default {
   text-align: left;
   /* height: calc(100vh - 40px); */
   padding-top: 100px;
+  z-index: 4;
 }
 #header-wrapper {
   width: calc(100% - 90px);
@@ -245,6 +266,7 @@ export default {
   width: calc(100% - 90px);
   margin-top: 40px;
   margin-left: 45px;
+  z-index: 4;
 }
 #register-button {
   width: 100%;
@@ -256,5 +278,55 @@ export default {
 #verifyimage {
   display: inline-block;
   width: 100%;
+}
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#header-background {
+  // background: url(../img/05.jpg) no-repeat fixed;
+  background: linear-gradient(-45deg,#1904E5 10%, #FAB2FF,#F6D242, #FF52E5);
+  animation: gradientBG 7s ease infinite;
+  // background-size: 100% 100%;
+  background-size: 400% 400%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 1;
+}
+#header-background:after {
+  // background: url(../img/gezi.png) no-repeat fixed;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  // filter: opacity(30%);
+  filter: blur(1px);
+  background: inherit;
+  z-index: 2;
+}
+#navigation-container {
+  z-index: 999;
+  box-shadow: none;
+  background-color: transparent;
+}
+#mask {
+  position: absolute;
+  top: 0;
+  background: url(../img/dot.gif);
+  width: 100%;
+  height: 100%;
+  z-index: 3;
 }
 </style>
