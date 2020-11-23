@@ -119,6 +119,7 @@ export default {
   height: 90px;
   background-color: white;
   position: relative;
+  margin-top: 1px;
 }
 #bell {
   float: left;
@@ -158,7 +159,7 @@ export default {
   position: relative;
   width: 100%;
   height: 10vh;
-  // margin-top: 59px;
+  box-shadow:1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 #notification-header {
   position: relative;

@@ -3,6 +3,7 @@ package cn.swu.pigeon.service;
 import cn.swu.pigeon.dao.UploadDao;
 import cn.swu.pigeon.entity.Upload;
 import cn.swu.pigeon.utils.UploadUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 
 @Service
 @Transactional
+@Slf4j
 public class UploadServiceImpl implements UploadService {
 
     private static final String UPLOAD_DIR= "webapp\\upload";
@@ -25,12 +27,11 @@ public class UploadServiceImpl implements UploadService {
     @Override
     public int saveFile(MultipartFile multipartFile, Upload upload) {
         String newPath = uploadUtils.upload(UPLOAD_DIR, multipartFile);
-        System.out.println(newPath);
+        System.out.println("UploadServiceImpl" + newPath);
         //设置存到数据库的img路径
-//        book.setImg(newPath);
         upload.setImgPath(newPath);
-//        upload.setUserna
-//        System.out.println(book.getImg());
+        log.info("此时的图片路径[{}]",upload.getImgPath());
+        uploadDao.upload(upload);
         try {
 //            bookDao.addBook(book);
 

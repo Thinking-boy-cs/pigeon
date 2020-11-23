@@ -131,8 +131,6 @@ export default {
   width: calc(100% - 40px);
   margin-left: 20px;
 }
-#avatar {
-}
 #userinfo {
   position: relative;
   width: 100%;
@@ -262,14 +260,12 @@ export default {
   // position: absolute;
   // margin-top: 550px;
   width: calc(100% - 40px);
-  background-color: white;
   height: 50px;
   margin-left: 20px;
   margin-top: 20px;
   border-radius: 10px 10px 10px 10px;
 }
 #title1 {
-  margin-top: 5px;
   text-align: left;
   margin-left: 20px;
   font-weight: bold;
@@ -278,7 +274,7 @@ export default {
 #title2 {
   text-align: left;
   margin-left: 20px;
-  color: #81848d;
+  color: @text-color;
   font-size: 10px;
 }
 #title3 {
