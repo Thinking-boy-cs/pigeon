@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 00:36:09
- * @LastEditTime: 2020-11-24 00:47:17
+ * @LastEditTime: 2020-11-24 01:15:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \back\src\main\java\cn\swu\pigeon\listener\DeadListener.java
@@ -30,11 +30,11 @@ public class DeadListener {
     @Autowired
     private SimpMessagingTemplate template;
     @RabbitListener(queues = "order.dead.queue")
-    public void orderConsumer(Notification notification) {
-      if (notification == null) {
+    public void orderConsumer(Map<String, Object> data) {
+      if (data == null) {
           return;
       }
-      log.info("Get Message:" + notification.getContent());
+      log.info("[RabbitMQ]: Get Message");
       
       // ResponseType<List<Order>> resp = orderService.getByParentId(orderId);
       // if (resp.getData() == null) {
@@ -51,6 +51,7 @@ public class DeadListener {
       // }
       List<String> idList = (List<String>)data.get("data");
       for (String id : idList) {
+        // notification save
         template.convertAndSendToUser(id, "/queue/getResponse", "Test!");
       }
   }
