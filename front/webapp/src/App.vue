@@ -47,7 +47,8 @@ export default {
     return {
       paths: ['/', '/notification', '/me'],
       currentTab: null,
-      animationName: 'slide-left'
+      animationName: 'slide-left',
+      wsUrl: 'ws://127.0.0.1:5000/api/pigeon/ws'
     }
   },
   methods: {
@@ -56,14 +57,24 @@ export default {
       if (this.currentTab === t) { return }
       this.currentTab = t
       this.$router.push({ path: that.paths[t] })
-      
     }
+
   },
   created () {
+    var that = this
     setTimeout(() => {
       this.currentTab = this.$route.meta.id
     }, 500)
     window.myApp = this
+    // open websocket
+    // this.$store.dispatch('openWebSocketFunction', {
+    //   url: that.wsUrl,
+    //   onOpenHandler: that.onOpen,
+    //   onCloseHandler: that.onClose,
+    //   onErrorHandler: that.onError,
+    //   onMessageHandler: that.onMessage
+    // })
+    // this.$store.dispatch('setWebSocketHandlerFunction', this.onOpen, this.onClose, this.onMessage, this.onError)
   },
   // beforeRouteUpdate (to, from, next) {
   //   const toDepth = to.path.split('/').length
