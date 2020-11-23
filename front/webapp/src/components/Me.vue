@@ -45,7 +45,7 @@
     <div id="operate-container">
       <a-row :gutter="[16, 16]">
         <a-col :span="12">
-          <div id="profile" class="operate-item" @click="$router.push({path: '/Profile'})">
+          <div id="profile" class="operate-item" @click="$router.push({path: '/EditProfile'})">
             <div id="title1">
               个人资料
               <a-icon type="user" id="title3" />
