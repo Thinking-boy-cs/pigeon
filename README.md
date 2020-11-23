@@ -23,7 +23,7 @@ status的合法值
 请求数据实例   
 ```
 user{
-  	username:"小朋友"
+  	telNumber:"xxxxxxxxxxx"
   	password:"123456"
    }
 ```   
@@ -40,11 +40,13 @@ user{
                 dept:"幼儿园",
                 password:"123456",
                 sex:"男",
-                status:"已激活",
-                registerTime:2020-11-18 20:30:27,
-                icon:"/default",
                 telNumber:null,
-                email:null
+                email:null,
+                icon:"/default"
+                companyId:00001,
+                originId:001,
+                status:"已激活",
+                registerTime:2020-11-18 20:30:27
              }
   }
 ```
