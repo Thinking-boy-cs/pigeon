@@ -17,7 +17,9 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
 import cn.swu.pigeon.entity.User;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class WebSocketInterceptor implements HandshakeInterceptor
 {
@@ -30,11 +32,21 @@ public class WebSocketInterceptor implements HandshakeInterceptor
       ServletServerHttpRequest serverHttpRequest = (ServletServerHttpRequest) request;
       HttpSession session = serverHttpRequest.getServletRequest().getSession();
       // Map parameterMap = serverHttpRequest.getServletRequest().getParameterMap();
+      log.info("In Interceptor:");
       // System.out.println(parameterMap);
       if (session != null)
       {
-        map.put("userId", (User)session.getAttribute("user"));
-      }
+        log.info("session is not null");
+        User user = (User)session.getAttribute("user");
+        if (user != null) 
+          map.put("user", user);
+        else {
+          user = new User();
+          user.setId("999999");
+          map.put("user", user);
+        }
+      } else 
+        log.info(" but session is Null");
 
     }
     return true;

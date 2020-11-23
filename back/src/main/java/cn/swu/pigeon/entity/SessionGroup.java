@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
-@Component
+// @Component
 public class SessionGroup {
     private Map<String, WebSocketSession> sessionMap = new HashMap<String, WebSocketSession>();
     public void releaseSessions() {

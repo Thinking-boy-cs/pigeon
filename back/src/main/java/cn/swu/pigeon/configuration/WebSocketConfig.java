@@ -27,7 +27,8 @@ public class WebSocketConfig implements WebSocketConfigurer {
     private WebSocketInterceptor webSocketInterceptor;
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSockethandler, "/ws").addInterceptors(webSocketInterceptor);
+        // TODO Unsafe!
+        registry.addHandler(webSockethandler, "/ws").addInterceptors(webSocketInterceptor).setAllowedOrigins("*");
     }
 
     @Bean
