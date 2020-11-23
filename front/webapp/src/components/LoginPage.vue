@@ -79,15 +79,18 @@ export default {
     return {
       form: {
         id: '',
-        password: '',
-        wsUrl: 'ws://127.0.0.1:5000/api/pigeon/ws',
-        loadingWS: this.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
-      }
+        password: ''
+        // loadingWS: this.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
+      },
+      wsUrl: '/api/pigeon/ws',
+      msg: null
     }
   },
   methods: {
-    onOpen: function () {
+    onOpen () {
       console.log('Opened')
+      setTimeout(this.msg, 100)
+      this.$router.push({ path: '/' })
     },
     onMessage: function (e) {
       console.log('GetMessage: ', e)
@@ -124,12 +127,8 @@ export default {
         console.log(res)
         if (res.data && res.data.status === 0) {
           window.localStorage.setItem('user', JSON.stringify(res.data.data))
-          const msg = this.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
-          that.initWS().then(() => {
-            setTimeout(msg, 100)
-            that.$router.push({ path: '/' })
-          })
-
+          that.msg = that.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
+          that.initWS()
           // setTimeout(() => {
           //   // this.$message.success({ content: '跳转成功', key, duration: 2 })
           // }, 1000)

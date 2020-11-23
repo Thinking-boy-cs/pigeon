@@ -43,6 +43,8 @@ public class UserController {
     @PostMapping("login")
     public Map<String, Object> login(@RequestBody User user, HttpServletRequest request) {
         log.info("当前登录用户的表单信息: [{}]", user.toString());
+        log.info("in login sessionid: " + request.getSession().getId());
+
         Map<String, Object> map = new HashMap<>();
         try {
             User userDB = userService.login(user);
