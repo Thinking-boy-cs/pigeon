@@ -5,8 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper //用来创建DAO对象
 public interface UserDAO {
-
+    //注册存入用户
     void save(User user);
 
-    User findById(String id);
+    User findByTel(String telNumber);
 }

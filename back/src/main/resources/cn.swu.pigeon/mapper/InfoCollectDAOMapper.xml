@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.swu.pigeon.dao.InfoCollectDao">
+<!--    查询用户的信息收集事项-->
+    <select id="findInfoCollect" parameterType="Date" resultType="InfoCollect">
+        select *
+        from infocollect
+        where #{theTime} between startTime and endTime
+    </select>
+<!--用户提交信息收集-->
+    <insert id="submitInfoCollect" parameterType="InfoCollect" useGeneratedKeys="true" keyProperty="id">
+        insert into infocollect(info1,info2,info3) VALUES (#{info1},#{info2},#{info3})
+    </insert>
+
+</mapper>

@@ -1,26 +1,28 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-20 16:11:11
+ * @LastEditTime: 2020-11-22 19:46:02
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
-import LoginPage from '@/components/LoginPage'
-import Register from '@/components/Register'
-import Leave from '@/components/Leave'
-import Notification from '@/components/Notification'
-import Me from '@/components/Me'
-import Map from '@/components/Map'
-import Main from '@/components/Main'
-import Signin from '@/components/Signin'
-import LeaveDetail from '@/components/LeaveDetail'
-import Profile from '@/components/Profile'
-import EditProfile from '@/components/EditProfile'
-import LeaveApplication from '@/components/LeaveApplication'
+// import LoginPage from '@/components/LoginPage'
+// import Register from '@/components/Register'
+// import Leave from '@/components/Leave'
+// import Notification from '@/components/Notification'
+// import Me from '@/components/Me'
+// import Map from '@/components/Map'
+// import Main from '@/components/Main'
+// import Signin from '@/components/Signin'
+// import LeaveDetail from '@/components/LeaveDetail'
+// import Profile from '@/components/Profile'
+// import EditProfile from '@/components/EditProfile'
+// import LeaveApplication from '@/components/LeaveApplication'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
 import BaiduMap from 'vue-baidu-map'
+// import { ResolvePlugin } from 'webpack'
+// import { component } from 'vue/types/umd'
 Vue.use(Router)
 Vue.use(Antd)
 Vue.use(BaiduMap, {
@@ -32,7 +34,9 @@ const router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: LoginPage,
+      // component: LoginPage,
+      component: () => import('@/components/LoginPage'),
+
       meta: {
         id: -1
       }
@@ -40,7 +44,9 @@ const router = new Router({
     {
       path: '/register',
       name: 'Regist',
-      component: Register,
+      // component: Register,
+      component: () => import('@/components/Register'),
+
       meta: {
         id: -2
       }
@@ -48,7 +54,8 @@ const router = new Router({
     {
       path: '/Notification',
       name: 'Notification',
-      component: Notification,
+      // component: Notification,
+      component: () => import('@/components/Notification'),
       meta: {
         id: 1
       }
@@ -56,7 +63,7 @@ const router = new Router({
     {
       path: '/Me',
       name: 'Me',
-      component: Me,
+      component: () => import('@/components/Me'),
       meta: {
         id: 2
       }
@@ -69,12 +76,14 @@ const router = new Router({
     {
       path: '/Signin',
       name: 'Signin',
-      component: Signin
+      // component: Signin
+      component: resolve => require(['@/components/Signin'], resolve)
     },
     {
       path: '/Profile',
       name: 'Profile',
-      component: Profile,
+      // component: Profile,
+      component: resolve => require(['@/components/Profile'], resolve),
       meta: {
         id: -13
       }
@@ -82,12 +91,14 @@ const router = new Router({
     {
       path: '/EditProfile',
       name: 'EditProfile',
-      component: EditProfile
+      // component: EditProfile
+      component: resolve => require(['@/components/EditProfile'], resolve)
     },
     {
       path: '/LeaveApplication',
       name: 'LeaveApplication',
-      component: LeaveApplication,
+      // component: LeaveApplication,
+      component: resolve => require(['@/components/LeaveApplication'], resolve),
       meta: {
         id: -14
       }
@@ -95,7 +106,7 @@ const router = new Router({
     {
       path: '/',
       name: 'Main',
-      component: Main,
+      component: resolve => require(['@/components/Main'], resolve),
       meta: {
         id: 0
       }
@@ -103,7 +114,7 @@ const router = new Router({
     {
       path: '/leave',
       name: 'Leave',
-      component: Leave,
+      component: resolve => require(['@/components/Leave'], resolve),
       meta: {
         id: -10
       }
@@ -114,17 +125,17 @@ const router = new Router({
       meta: {
         id: -11
       },
-      component: LeaveDetail
+      component: resolve => require(['@/components/LeaveDetail'], resolve)
     }
   ]
 })
 
 router.beforeEach((route, redirect, next) => {
-  if (!localStorage.getItem('user')) {
-    if (route.path !== '/login') {
+  if (!window.localStorage.getItem('user')) {
+    if (route.path !== '/login' && route.path !== '/register') {
       next({
         path: '/login',
-        query: {redirect: route.fullPath}
+        query: { redirect: route.fullPath }
       })
     } else {
       next()
@@ -133,7 +144,7 @@ router.beforeEach((route, redirect, next) => {
     if (route.path === '/login') {
       next({
         path: '/',
-        query: {redirect: route.fullPath}
+        query: { redirect: route.fullPath }
       })
     }
     console.log('-------------------', route, redirect)

@@ -8,8 +8,9 @@ import lombok.experimental.Accessors;
 public class Upload {
 
     private int id;
-    private String username;
+    private String userId;
     private String imgPath;
+    private String companyId;
 
 
     /**
@@ -30,14 +31,14 @@ public class Upload {
      * @return String return the username
      */
     public String getUsername() {
-        return username;
+        return userId;
     }
 
     /**
      * @param username the username to set
      */
     public void setUsername(String username) {
-        this.username = username;
+        this.userId = username;
     }
 
     /**

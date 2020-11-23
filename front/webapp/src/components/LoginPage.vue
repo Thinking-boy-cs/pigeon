@@ -8,6 +8,9 @@
         <img src="../img/APP_LOGO1.png" style="width: 35%">
       </div>
     </div>
+    <div id="mask">
+
+    </div>
     <div id="cover">
       <div id="header-mid">
         <p id="login">账号密码登录</p>
@@ -23,8 +26,8 @@
               id="username"
               allow-clear
               @change="onChange"
-              v-model="form.id"
-              placeholder="请输入用户名"
+              v-model="form.telNumber"
+              placeholder="请输入手机号码"
             >
               <a-icon
                 slot="prefix"
@@ -92,7 +95,7 @@ export default {
       this.$axios.post('/api/pigeon/user/login', this.form).then((res) => {
         console.log(res)
         if (res.data && res.data.status === 0) {
-          localStorage.setItem('user', JSON.stringify(res.data.data))
+          window.localStorage.setItem('user', JSON.stringify(res.data.data))
           this.$message.loading({ content: '登录成功，跳转中', key })
           setTimeout(() => {
             this.$message.success({ content: '跳转成功', key, duration: 2 })
@@ -104,7 +107,7 @@ export default {
       })
     },
     gotoregister () {
-      this.$router.push({ path: '/Register' })
+      this.$router.push({ path: '/register' })
     },
     onChange (e) {
       console.log(e)
@@ -159,6 +162,7 @@ export default {
 }
 #header-title {
   margin-bottom: 50px;
+  text-align: center  ;
 }
 * {
   margin: 0;
@@ -167,7 +171,7 @@ export default {
   font-family: PingFang SC;
 }
 #welcome {
-  padding-top: 75px;
+  padding-top: 65px;
   font-size: 30px;
   text-align: center;
   font-weight: bold;
@@ -192,13 +196,13 @@ export default {
 }
 #cover {
   background-color: rgba(255, 255, 255, 1);
-  width: calc(100% - 40px);
-  margin-left: 20px;
+  width: calc(100% - 60px);
+  margin-left: 30px;
   border-radius: 20px 20px 0px 0px;
   height: 390px;
   bottom: 0;
   position: absolute;
-  z-index: 4;
+  z-index: 99;
 }
 #username,
 #password {
@@ -220,5 +224,13 @@ export default {
 }
 #components-form-demo-normal-login .login-form-button {
   width: 100%;
+}
+#mask {
+  position: absolute;
+  top: 0;
+  background: url(../img/dot.gif);
+  width: 100%;
+  height: 100%;
+  z-index: 90;
 }
 </style>

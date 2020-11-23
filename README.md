@@ -3,7 +3,7 @@ GitHubTest
 ## 1. 登录/注册
 + 登录:输入用户名和密码登录   
 请求地址   
-POST http://localhost:8989/pigeon/user/login   
+POST http://localhost:8989/api/pigeon/user/login   
 请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp;&nbsp; &nbsp; 用户类    
@@ -23,7 +23,7 @@ status的合法值
 请求数据实例   
 ```
 user{
-  	username:"小朋友"
+  	telNumber:"xxxxxxxxxxx"
   	password:"123456"
    }
 ```   
@@ -40,11 +40,13 @@ user{
                 dept:"幼儿园",
                 password:"123456",
                 sex:"男",
-                status:"已激活",
-                registerTime:2020-11-18 20:30:27,
-                icon:"/default",
                 telNumber:null,
-                email:null
+                email:null,
+                icon:"/default"
+                companyId:00001,
+                originId:001,
+                status:"已激活",
+                registerTime:2020-11-18 20:30:27
              }
   }
 ```
@@ -52,7 +54,7 @@ user{
 
 + 注册   
 请求地址   
-POST http://localhost:8989/pigeon/user/register?code   
+POST http://localhost:8989/api/pigeon/user/register?code   
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp;说明    
 	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是  &nbsp; &nbsp; &nbsp; &nbsp;用户类    
@@ -93,7 +95,7 @@ code:"ABCD"
 	 
 + 验证码生成   
 	请求地址   
-	POST http://localhost:8989/pigeon/user/getImage?time   
+	POST http://localhost:8989/api/pigeon/user/getImage?time   
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;说明    
 	time &nbsp; &nbsp; number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; &nbsp;Math.random()    
@@ -106,7 +108,7 @@ code:"ABCD"
 
 ## 2. 签到
 请求地址      
-POST http://localhost:8989/pigeon/user/sign      
+POST http://localhost:8989/api/pigeon/user/sign      
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	record &nbsp; &nbsp; Record&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;是  &nbsp; &nbsp; 签到记录类    
@@ -144,7 +146,7 @@ record{
 
 ## 3. 修改个人信息
 请求地址      
-POST http://localhost:8989/pigeon/user/changeInfo      
+POST http://localhost:8989/api/pigeon/user/changeInfo      
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 修改用户    
@@ -177,7 +179,7 @@ User{
 ```   
 ## 4. 提交活动请求
 请求地址      
-POST http://localhost:8989/pigeon/activity/submit      
+POST http://localhost:8989/api/pigeon/activity/submit      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	activity &nbsp; &nbsp; Activity&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;是  &nbsp; &nbsp; 提交活动申请    
@@ -212,7 +214,7 @@ Activity{
 ```   
 ## 5. 查看用户活动
 请求地址      
-POST http://localhost:8989/pigeon/activity/find      
+POST http://localhost:8989/api/pigeon/activity/find      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	&nbsp; id &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp;&nbsp; &nbsp; 当前的用户    
@@ -244,7 +246,7 @@ status的合法值
 ```   
 ## 6. 撤回活动
 请求地址      
-POST http://localhost:8989/pigeon/activity/backout      
+POST http://localhost:8989/api/pigeon/activity/backout      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
 	&nbsp; id &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 点击的活动    
@@ -274,7 +276,7 @@ status的合法值
 
 ## 7. 提交请假请求
 请求地址      
-POST http://localhost:8989/pigeon/leave/submit      
+POST http://localhost:8989/api/pigeon/leave/submit      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	leave &nbsp; &nbsp; Leave&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;是  &nbsp; &nbsp; 提交请假申请    
@@ -309,7 +311,7 @@ leave{
 ```   
 ## 8. 查看用户请假
 请求地址      
-POST http://localhost:8989/pigeon/leave/find      
+POST http://localhost:8989/api/pigeon/leave/find      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明    
 	userId &nbsp;&nbsp; &nbsp;String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp;&nbsp; &nbsp; 当前的用户工号    
@@ -341,7 +343,7 @@ status的合法值
 ```   
 ## 9. 撤回请假
 请求地址      
-POST http://localhost:8989/pigeon/leave/back      
+POST http://localhost:8989/api/pigeon/leave/back      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
 	&nbsp; id&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 点击的请假    
@@ -368,7 +370,39 @@ status的合法值
 	msg:"撤回成功"
   }
 ```   
+## 10. 文件上传
+请求地址      
+POST http://localhost:8989/api/pigeon/upload/uploadFile      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	multipartFile&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; MultipartFile&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 上传的文件   
+	upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 上传类
 
+返回值     
+	Result    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	200&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;上传成功   
+	404&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;上传失败   
+
+请求数据实例   
+```
+    multipartFile:file
+    upload{
+            null
+          }
+```
+返回数据实例
+```
+  {
+	status:200
+	msg:"上传成功"
+  }
+```   
 #后端~后台管理系统
 
 
