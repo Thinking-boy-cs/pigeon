@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 00:24:00
- * @LastEditTime: 2020-11-24 00:24:26
- * @LastEditors: your name
+ * @LastEditTime: 2020-11-24 16:32:42
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \back\src\main\java\cn\swu\pigeon\entity\ExpirationMessagePostProcessor.java
  */
@@ -13,9 +13,9 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePostProcessor;
 
 public class ExpirationMessagePostProcessor implements MessagePostProcessor {
-  private final Long ttl; // 毫秒
+  private final Integer ttl; // 毫秒
 
-  public ExpirationMessagePostProcessor(Long ttl) {
+  public ExpirationMessagePostProcessor(Integer ttl) {
       this.ttl = ttl;
   }
 

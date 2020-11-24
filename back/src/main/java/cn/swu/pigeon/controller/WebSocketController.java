@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 15:35:52
- * @LastEditTime: 2020-11-23 17:54:43
+ * @LastEditTime: 2020-11-24 16:03:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \back\src\main\java\cn\swu\pigeon\controller\WebSocketController.java
@@ -38,7 +38,7 @@ public class WebSocketController {
         // User user = new User();
         log.info("--- send ---");
         
-        this.template.convertAndSendToUser("1606060960448", "/queue/getResponse", "test!");
+        this.template.convertAndSendToUser("1606060960", "/queue/getResponse", "test!");
     }
     @ResponseBody
     @RequestMapping("/batchSender")
