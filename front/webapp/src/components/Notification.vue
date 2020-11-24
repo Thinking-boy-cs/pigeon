@@ -9,7 +9,7 @@
     <div id="content-container">
       <div class="title-container">
         <a-row>
-        <a-col :span="12">
+        <a-col :span="12" @click="showDrawer">
         <!-- <a-icon id="feature-icon1" type="calendar"></a-icon> -->
           <a-avatar
           :size="64"
@@ -17,7 +17,7 @@
           icon="calendar"
           id="feature-icon1"
         /><br />
-        <a id="calendar" @click="showDrawer">日历</a>
+        <a id="calendar">日历</a>
             </a-col>
              <a-col :span="12">
         <!-- <i
@@ -272,7 +272,7 @@ export default {
   background-color: white;
   position: relative;
   width: 100%;
-  height: 16vh;
+  height: 13vh;
   box-shadow:1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 #notification-header {
@@ -280,18 +280,18 @@ export default {
   padding-top: 70px;
 }
 #feature-icon1 {
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #feature-icon2 {
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #calendar {
   color: @text-color;
-  font-weight: bold;
 }
 #todo {
   color: @text-color;
-  font-weight: bold;
 }
 .events {
   list-style: none;
