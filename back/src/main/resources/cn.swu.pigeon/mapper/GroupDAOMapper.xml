@@ -20,12 +20,8 @@
     </select>
 
 <!--    管理员的操作：-->
-<!--    1.插入company表-->
-<!--    2.插入group表-->
-<!--    3.插入user_group表-->
-    <insert id="addCompany" parameterType="Company">
-        insert into company values (#{id},#{name},#{username})
-    </insert>
+<!--    1.插入group表-->
+<!--    2.插入user_group表-->
 
     <insert id="addGroup" parameterType="Group">
         insert into `group` values (#{id},#{name},#{parentId},#{companyId})

@@ -85,8 +85,8 @@ public class GovernServiceImpl implements GovernService{
      * @return
      */
     @Override
-    public List<Record> findLeave() {
-        return governDao.findLeave();
+    public List<Record> findLeave(Date date) {
+        return governDao.findLeave(date);
     }
 
     @Override

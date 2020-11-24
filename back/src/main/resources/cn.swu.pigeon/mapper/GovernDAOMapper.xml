@@ -57,7 +57,7 @@
     </select>
 
     <!--    对请假的管理（未考虑时间）-->
-    <select id="findLeave" parameterType="String" resultType="Leave">
+    <select id="findLeave" parameterType="Date" resultType="Leave">
         select *
         from vacation
     </select>

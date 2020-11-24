@@ -50,7 +50,7 @@ public interface GovernDao {
      * @return
      */
     //找到所有请假
-    List<Record> findLeave();
+    List<Record> findLeave(Date date);
     //审批请假
     void approveLeave(@Param("id") String id,@Param("status") String status);
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 @Transactional
@@ -17,7 +18,10 @@ public class ChangeInfoServiceImpl implements ChangeInfoService{
     @Resource
     ChangeInfoDAO changeInfoDAO;
 
-    public static final String UPLOAD_DIR = "webapp\\Icon";
+    HttpServletRequest request;
+    //public static final String UPLOAD_DIR = httpServletRequest.getServletPath()+"../../../resources/static/photos";
+//    public static final String UPLOAD_DIR = "../../../resources/static/photos";
+    public static final String UPLOAD_DIR = request.getServletContext().getRealPath("/photos");
 
     private UploadUtils uploadUtils = new UploadUtils();
 
