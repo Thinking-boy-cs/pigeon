@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 13:30:50
- * @LastEditTime: 2020-11-24 23:30:28
+ * @LastEditTime: 2020-11-25 00:18:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webapp\src\store\index.js
@@ -38,9 +38,6 @@ const store = new Vuex.Store({
         state.commit('disconnect')
       }
       state.ws = new SockJS('/api/pigeon/sjs', null, {timeout: 15000})
-      state.ws.on('error', (e) => {
-        console.log('Error: ', e)
-      })
       state.stompClient = Stomp.over(state.ws)
       state.stompClient.connect({}, (res) => {
         config.subscribes.forEach((item, i) => {
@@ -62,6 +59,9 @@ const store = new Vuex.Store({
   actions: {
     connectFunc (context, config) {
       context.commit('connect', config)
+    },
+    disconnectFunc (context) {
+      context.commit('disconnect')
     }
   }
 })

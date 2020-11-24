@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 14:56:27
+ * @LastEditTime: 2020-11-24 23:57:36
  */
 'use strict'
 // Template version: 1.3.1
@@ -31,7 +31,6 @@ module.exports = {
       //   changeOrigin: true
       // }
     },
-
     // Various Dev Server settings
     host: '0.0.0.0', // can be overwritten by process.env.HOST
     port: 5000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
