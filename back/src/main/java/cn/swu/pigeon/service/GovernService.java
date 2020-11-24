@@ -43,7 +43,7 @@ public interface GovernService {
     List<Record> findLeaved(Date theTime);
 
     //查看请假
-    List<Record> findLeave();
+    List<Record> findLeave(Date date);
     //审批请假
     void approveLeave(String id,String status);
 

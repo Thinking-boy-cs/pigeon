@@ -33,11 +33,6 @@ public class GroupServiceImpl implements GroupService{
     }
 
     @Override
-    public void addCompany(Company company) {
-        groupDao.addCompany(company);
-    }
-
-    @Override
     public void addGroup(Group group) {
         groupDao.addGroup(group);
     }
