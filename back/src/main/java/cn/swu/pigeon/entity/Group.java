@@ -20,5 +20,6 @@ public class Group implements Serializable {
     private String id;
     private String groupName;
     private String parentId;
+    private String companyId;
     // private String 
 }

@@ -16,11 +16,17 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 
 public class TestActivity extends AppCompatActivity {
+    WebView webView = null;
+    WebSettings webSettings = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Uri uri = Uri.parse("assets://dist/index.html");
-        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-        startActivity(intent);
+        webViewUtil webViewutil = new webViewUtil(this);
+        webView = webViewutil.getWebView();
+        webSettings = webViewutil.getSetting(webView);
+        setContentView(webView);
+        Bundle bundle = getIntent().getExtras();
+        String url = bundle.getString("url");
+        webView.loadUrl(url);
     }
 
 }

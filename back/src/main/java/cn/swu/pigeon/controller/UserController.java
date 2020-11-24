@@ -195,6 +195,7 @@ public class UserController {
                 thisUser.setSex(user.getSex());
                 thisUser.setTelNumber(user.getTelNumber());
                 thisUser.setEmail(user.getEmail());
+                thisUser.setSignature(user.getSignature());
                 log.info("修改性别后当前用户：[{}]",thisUser.toString());
 //                changeInfoService.changeUserInfo(thisUser);
                 changeInfoService.changeUserInfo(multipartFile,thisUser);

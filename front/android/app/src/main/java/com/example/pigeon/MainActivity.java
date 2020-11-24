@@ -15,33 +15,28 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
-    private WebView webView;
-    private WebSettings webSettings;
+    private WebView webView = null;
+    private WebSettings webSettings = null;
+    String url = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        webView = new WebView(this);
-        webView.clearCache(true);
-        webView.getSettings().setDomStorageEnabled(true);
+        webViewUtil webViewutil = new webViewUtil(this);
+        webView = webViewutil.getWebView();
+        webSettings = webViewutil.getSetting(webView);
         setContentView(webView);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);  //提高渲染的优先级
-        webSettings.setAppCacheEnabled(false);
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //关闭webview中缓存
-        webSettings.setAllowFileAccess(true); //设置可以访问文件
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
-        webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
 
-        webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
-        webSettings.setGeolocationEnabled(true);//允许网页执行定位操作
-        webSettings.setUserAgentString("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0");//设置User-Agent
-
-        webView.addJavascriptInterface(new webViewUtil(this),"webViewUtil");
-        webView.clearHistory();
-        webView.clearFormData();
-        String url = "file:///android_asset/webFile/test.html";
+        //webView.clearHistory();
+        //webView.clearFormData();
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null)
+            url = bundle.getString("url");
+        if(url == null){
+            url = "file:///android_asset/webFile/test.html";
+        }
+        //System.out.println(url);
         webView.setWebChromeClient(new WebChromeClient());
+        webView.addJavascriptInterface(webViewutil,"webViewUtil");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
@@ -52,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         });
         webView.loadUrl(url);
     }
+
+
     protected void onResume() {
         super.onResume();
         //恢复webview的状态（不靠谱）
