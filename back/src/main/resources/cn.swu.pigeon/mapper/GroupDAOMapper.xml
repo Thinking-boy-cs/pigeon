@@ -8,14 +8,28 @@
     </select>
     <!--通过userId找到对应的Group对象-->
     <select id="findGroupObject" parameterType="String" resultType="Group">
-        select *
-        from group
-        where userId in (#{userId})
+        select `group`.*
+        from `group`,user_group
+        where `group`.id = user_group.groupId and user_group.userId in (#{userId})
     </select>
-    
+    <!--通过groupId找到对应的用户对象-->
     <select id="findUserByGroupId" parameterType="String" resultType="User">
-        select *
-        from staff
+        select staff.*
+        from staff,user_group
+        where staff.id = user_group.userId and user_group.groupId in (#{groupId})
     </select>
 
+<!--    管理员的操作：-->
+<!--    1.插入company表-->
+<!--    2.插入group表-->
+<!--    3.插入user_group表-->
+    <insert id="addCompany" parameterType="Company">
+        insert into company values (#{id},#{name},#{username})
+    </insert>
+
+    <insert id="addGroup" parameterType="Group">
+        insert into `group` values (#{id},#{name},#{parentId},#{companyId})
+    </insert>
+
+<!--    <insert id="addUser_group" parameterType=""-->
 </mapper>

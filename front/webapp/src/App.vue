@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-23 17:34:22
+ * @LastEditTime: 2020-11-24 17:20:16
 -->
 <template>
   <div id="app">
@@ -9,6 +9,7 @@
     <transition :name="animationName" mode="out-in">
       <router-view class="page" :key="$route.name" />
     </transition>
+    <!-- <a-spin size="large" v-if="loading" /> -->
     <div id="navigator-container" v-if="$route.meta.id >= 0">
       <a-row>
         <a-col :span="8" class="menu-item" @click="switchTab(0)">
@@ -25,6 +26,9 @@
             type="bell"
             :class="{ 'menu-icon': true, selected: currentTab === 1 }"
           />
+          <div id="red-icon">
+            <div>{{ unreadCount }}</div>
+          </div>
           <div class="menu-name">消息</div>
         </a-col>
         <a-col :span="8" class="menu-item" @click="switchTab(2)">
@@ -51,7 +55,9 @@ export default {
       currentTab: null,
       animationName: 'slide-left',
       // wsUrl: 'ws://127.0.0.1:5000/api/pigeon/ws'
-      ws: null
+      ws: null,
+      loading: false,
+      unreadCount: 1
     }
   },
   beforeDestroy () {
@@ -63,21 +69,27 @@ export default {
   methods: {
     switchTab: function (t) {
       var that = this
-      if (this.currentTab === t) { return }
+      if (this.currentTab === t) {
+        return
+      }
       this.currentTab = t
       this.$router.push({ path: that.paths[t] })
     },
     connection () {
-      let socket = new this.SockJS('/api/pigeon/sjs', null, {timeout: 15000})// 后端提供协议字段
+      let socket = new this.SockJS('/api/pigeon/sjs', null, { timeout: 15000 }) // 后端提供协议字段
       this.stompClient = this.Stomp.over(socket)
       let that = this
       this.stompClient.connect(
         {},
         function connectCallback () {
           console.log('Connect success!')
-          that.stompClient.subscribe('/user/1606060960448/queue/getResponse', (res) => { // 后端提供订阅地址
-            console.log(res)// 接收后端response数据
-          })
+          that.stompClient.subscribe(
+            '/user/1606060960448/queue/getResponse',
+            res => {
+              // 后端提供订阅地址
+              console.log(res) // 接收后端response数据
+            }
+          )
         },
         function errorCallBack (error) {
           console.log('连接失败:' + error)
@@ -85,8 +97,8 @@ export default {
       )
     },
     disconnect () {
-    // console.log(this.timer)
-    // clearInterval(this.timer)
+      // console.log(this.timer)
+      // clearInterval(this.timer)
       if (this.stompClient) {
         this.stompClient.disconnect()
       }
@@ -94,7 +106,6 @@ export default {
     onmessage (res) {
       console.log(this.animationName, res)
     }
-
   },
   created () {
     var that = this
@@ -122,6 +133,7 @@ export default {
   watch: {
     $route (to, from) {
       console.log(to)
+      this.loading = true
       this.currentTab = to.meta.id
       if (to.meta.id > from.meta.id) {
         this.animationName = 'slide-left'
@@ -131,6 +143,7 @@ export default {
     }
   },
   mounted () {
+    var that = this
     window.Vue = this
     // this.connection()
     this.$store.dispatch('connectFunc', {
@@ -139,6 +152,11 @@ export default {
       onmessage: this.onmessage,
       connectCallback: this.onmessage,
       errorCallBack: this.onmessage
+    })
+    this.$router.onReady(() => {
+      setTimeout(() => {
+        that.loading = false
+      }, 500)
     })
   }
 }
@@ -196,21 +214,21 @@ export default {
   }
 }
 .slide-left-enter-active {
-  animation: slideInLeft 0.3s forwards;
+  animation: slideInLeft 0.1s forwards;
   z-index: 5;
 }
 
 .slide-left-leave-active {
-  animation: slideLeftOut 0.3s forwards;
+  animation: slideLeftOut 0.1s forwards;
   z-index: 3;
 }
 .slide-right-enter-active {
-  animation: slideInRight 0.3s forwards;
+  animation: slideInRight 0.1s forwards;
   z-index: 5;
 }
 
 .slide-right-leave-active {
-  animation: slideRightOut 0.3s forwards;
+  animation: slideRightOut 0.1s forwards;
   z-index: 3;
 }
 #app {
@@ -246,5 +264,17 @@ export default {
   height: 14px;
   line-height: 14px;
   font-size: 12px;
+}
+#red-icon {
+  position: absolute;
+  right: calc(50% - 20px);
+  top: 5px;
+  background-color: red;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  color: white;
+  font-size: 10px;
+  text-align: center;
 }
 </style>
