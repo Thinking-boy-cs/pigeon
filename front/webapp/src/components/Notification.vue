@@ -31,10 +31,10 @@
             <div class="notify-time">{{item.lastest}}</div>
           </div>
           <div class="notify-preview">{{item.preview}}</div>
-          <div class="notify-red-icon">{{item.unRead}}</div>
+          <div class="notify-red-icon" v-if="item.unRead !== 0">{{item.unRead}}</div>
         </div>
       </div>
-      <div id="notification1">
+      <!-- <div id="notification1">
         <a-avatar
           :size="64"
           style="backgroundColor: #f56a00"
@@ -54,7 +54,7 @@
           id="admin"
         />
         <div id="info2">管理员通知 <br /><span>【管理员提醒】</span></div>
-      </div>
+      </div> -->
       <a-drawer
         title="Basic Drawer"
         placement="left"
@@ -165,9 +165,10 @@ export default {
 }
 .notify-container {
   width: 100%;
-  padding-left: 20px;
   height: 90px;
   padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: white;
   position: relative;
   border-bottom: solid 1px rgba(0, 0, 0, 0.1);
@@ -198,14 +199,15 @@ export default {
 }
 .notify-red-icon {
   position: absolute;
-  right: 20px;
+  right: 0px;
   top: 35px;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   background-color: red;
   border-radius: 50%;
   text-align: center;
-  font-size: 10px;
+  font-size: 12px;
+  line-height: 20px;
   color: white;
 }
 #notification1 {
