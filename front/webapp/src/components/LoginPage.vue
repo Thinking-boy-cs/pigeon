@@ -129,6 +129,7 @@ export default {
           window.localStorage.setItem('user', JSON.stringify(res.data.data))
           that.msg = that.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
           that.$router.push({ path: '/' })
+          setTimeout(that.msg, 1000)
           // that.initWS()
           // setTimeout(() => {
           //   // this.$message.success({ content: '跳转成功', key, duration: 2 })
