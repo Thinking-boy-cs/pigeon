@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-22 19:46:02
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-24 16:51:08
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -21,6 +21,7 @@ import Router from 'vue-router'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
 import BaiduMap from 'vue-baidu-map'
+
 // import { ResolvePlugin } from 'webpack'
 // import { component } from 'vue/types/umd'
 Vue.use(Router)
