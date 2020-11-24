@@ -1,5 +1,6 @@
 package com.example.pigeon.Util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -7,9 +8,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import androidx.annotation.RequiresApi;
@@ -20,6 +25,10 @@ import com.example.pigeon.R;
 import com.example.pigeon.TestActivity;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class webViewUtil {
@@ -76,4 +85,59 @@ public class webViewUtil {
         //webView.addJavascriptInterface(new webViewUtil(activity),"webViewUtil");
         return webSettings;
     }
+    @SuppressLint("MissingPermission")
+    @JavascriptInterface
+    public String getLocationInfo(){
+        String result;
+        LocationManager locationManager = (LocationManager) activity.getSystemService(activity.LOCATION_SERVICE);
+        Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if(!isGpsAble(locationManager)) {
+            openGPS();
+        }
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 8, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                update(location);
+            }
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+            @Override
+            public void onProviderEnabled(String s) {
+                update(locationManager.getLastKnownLocation(s));
+            }
+            @Override
+            public void onProviderDisabled(String s) {
+                update(null);
+            }
+        });
+        result = update(location);
+        return result;
+    }
+    @JavascriptInterface
+    public String jsonToHtml(double Longitude, double Latitude){
+        JSONObject json;
+        JSONArray jsonArray = new JSONArray();
+        try{
+            json = new JSONObject();
+            json.put("Longitude",Longitude);
+            json.put("Latitude",Latitude);
+            jsonArray.put(json);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return jsonArray.toString();
+    }
+    private boolean isGpsAble(LocationManager lm){
+        return lm.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)?true:false;
+    }
+    private void openGPS(){
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        activity.startActivityForResult(intent,0);
+    }
+    private String update(Location location){
+        return jsonToHtml(location.getLongitude(),location.getLatitude());
+    }
+
 }
