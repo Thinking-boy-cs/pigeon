@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @Service
@@ -41,5 +42,10 @@ public class UploadServiceImpl implements UploadService {
             e.printStackTrace();
             return -1; //添加数据库失败
         }
+    }
+
+    @Override
+    public List<Upload> findFile(String userId) {
+        return uploadDao.findFile(userId);
     }
 }
