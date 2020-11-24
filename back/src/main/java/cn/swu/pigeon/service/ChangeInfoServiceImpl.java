@@ -21,7 +21,8 @@ public class ChangeInfoServiceImpl implements ChangeInfoService{
     HttpServletRequest request;
     //public static final String UPLOAD_DIR = httpServletRequest.getServletPath()+"../../../resources/static/photos";
 //    public static final String UPLOAD_DIR = "../../../resources/static/photos";
-    public static final String UPLOAD_DIR = request.getServletContext().getRealPath("/photos");
+    //public static final String UPLOAD_DIR = request.getServletContext().getRealPath("/photos");
+    public static final String UPLOAD_DIR = "webapp\\upload";
 
     private UploadUtils uploadUtils = new UploadUtils();
 
