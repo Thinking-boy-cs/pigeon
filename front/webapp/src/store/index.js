@@ -1,33 +1,60 @@
+/*
+ * @Author: your name
+ * @Date: 2020-11-23 13:30:50
+ * @LastEditTime: 2020-11-23 17:38:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \webapp\src\store\index.js
+ */
 import Vue from 'vue'
 import Vuex from 'vuex'
+import SockJS from 'sockjs-client'
+import Stomp from 'stompjs'
+// import { ContextExclusionPlugin } from 'webpack'
 
 Vue.use(Vuex)
-
 const store = new Vuex.Store({
   state: {
-    ws: {}
+    stompClient: null,
+    ws: null,
+    subscribes: {}
   },
   mutations: {
-    openWebSocket (state, config) {
-      state.ws = new WebSocket(config.url)
-      state.ws.onopen = config.onOpenHandler
-      state.ws.onclose = config.onCloseHandler
-      state.ws.onerror = config.onErrorHandler
-      state.ws.onmessage = config.onMessageHandler
+    /**
+     * @description:
+     * @param {*} state
+     * @param {*} config
+      {
+        'userId': '',
+        'subscibes': [],
+        'onmessage': f,
+        'connectCallBack': f,
+        'errorCallBack': f
+      }
+     * @return {*}
+     */
+    connect (state, config) {
+      state.ws = new SockJS('/api/pigeon/sjs', null, {timeout: 15000})
+      state.stompClient = Stomp.over(state.ws)
+      state.stompClient.connect({}, (res) => {
+        config.subscribes.forEach((item, i) => {
+          console.log(item)
+          state.subscribes[item] = state.stompClient.subscribe(item, config.onmessage)
+        })
+      }, config.errorCallBack)
     },
-    setWebSocketHandler (state, onOpenHandler, onCloseHandler, onMessageHandler, onErrorHandler) {
-      state.ws.onopen = onOpenHandler
-      state.ws.onclose = onCloseHandler
-      state.ws.onerror = onErrorHandler
-      state.ws.onmessage = onMessageHandler
+    disconnect (state) {
+      if (state.stompClient) {
+        state.stompClient.disconnect()
+      }
+    },
+    send (state) {
+
     }
   },
   actions: {
-    openWebSocketFunction (context, config) {
-      context.commit('openWebSocket', config)
-    },
-    setWebSocketHandlerFunction (context, onOpenHandler, onCloseHandler, onMessageHandler, onErrorHandler) {
-      context.commit('setWebSocketHandler', onOpenHandler, onCloseHandler, onMessageHandler, onErrorHandler)
+    connectFunc (context, config) {
+      context.commit('connect', config)
     }
   }
 })
