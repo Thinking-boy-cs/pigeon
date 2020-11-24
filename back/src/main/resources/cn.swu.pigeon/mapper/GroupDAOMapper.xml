@@ -8,14 +8,15 @@
     </select>
     <!--通过userId找到对应的Group对象-->
     <select id="findGroupObject" parameterType="String" resultType="Group">
-        select *
-        from group
-        where userId in (#{userId})
+        select `group`.*
+        from `group`,user_group
+        where `group`.id = user_group.groupId and user_group.userId in (#{userId})
     </select>
-    
+    <!--通过groupId找到对应的用户对象-->
     <select id="findUserByGroupId" parameterType="String" resultType="User">
         select *
         from staff
+        where groupId in (#{groupId})
     </select>
 
 </mapper>

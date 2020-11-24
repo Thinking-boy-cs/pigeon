@@ -1,6 +1,8 @@
 package cn.swu.pigeon.controller;
 
+import cn.swu.pigeon.entity.Group;
 import cn.swu.pigeon.entity.Record;
+import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,31 @@ public class GroupController {
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data",thisGroupId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
+
+    /**
+     * 通过userId找到其所有group的group对象
+     * @param userId
+     * @return
+     */
+    @RequestMapping("findGroupObject")
+    public Map<String,Object> findGroupObject(String userId){
+
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            //测试
+            userId = "1606016550";
+            List<Group> thisGroupObject = groupService.findGroupObject(userId);
+            map.put("status",0);
+            map.put("msg","查询成功!");
+            map.put("data",thisGroupObject);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
