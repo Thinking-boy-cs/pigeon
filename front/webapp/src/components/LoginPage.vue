@@ -175,6 +175,8 @@ export default {
   position: relative;
   box-sizing: border-box;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 #header-background:after {
   // background: url(../img/gezi.png) no-repeat fixed;
@@ -196,6 +198,7 @@ export default {
 #header-title {
   margin-bottom: 50px;
   text-align: center  ;
+  position: relative;
 }
 * {
   margin: 0;
@@ -232,9 +235,9 @@ export default {
   width: calc(100% - 60px);
   margin-left: 30px;
   border-radius: 20px 20px 0px 0px;
-  height: 390px;
+  height: 52vh;
   bottom: 0;
-  position: absolute;
+  position: fixed;
   z-index: 99;
 }
 #username,

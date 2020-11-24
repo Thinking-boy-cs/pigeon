@@ -8,15 +8,32 @@
     </div>
     <div id="content-container">
       <div class="title-container">
-        <a-icon id="feature-icon1" type="calendar"></a-icon>
+        <a-row>
+        <a-col :span="12">
+        <!-- <a-icon id="feature-icon1" type="calendar"></a-icon> -->
+          <a-avatar
+          :size="64"
+          style="backgroundColor: #52c41a"
+          icon="calendar"
+          id="feature-icon1"
+        /><br />
         <a id="calendar" @click="showDrawer">日历</a>
-        <a-divider type="vertical" />
-        <i
+            </a-col>
+             <a-col :span="12">
+        <!-- <i
           class="fa fa-check-square-o"
           id="feature-icon2"
           aria-hidden="true"
-        ></i>
+        ></i> -->
+        <a-avatar
+          :size="64"
+          style="backgroundColor: #FCCF31"
+          icon="schedule"
+          id="feature-icon1"
+        /><br />
         <a id="todo">待办</a>
+         </a-col>
+        </a-row>
       </div>
       <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i">
         <a-avatar
@@ -219,7 +236,6 @@ export default {
 }
 #bell {
   float: left;
-  margin-left: 20px;
   margin-top: 15px;
 }
 #notification2 {
@@ -254,7 +270,7 @@ export default {
   background-color: white;
   position: relative;
   width: 100%;
-  height: 10vh;
+  height: 16vh;
   box-shadow:1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 #notification-header {
@@ -262,19 +278,12 @@ export default {
   padding-top: 70px;
 }
 #feature-icon1 {
-  font-size: 24px;
-  height: 40px;
-  color: @text-color;
-  padding-top: 2vh;
+  margin-top: 10px;
 }
 #feature-icon2 {
-  font-size: 24px;
-  height: 40px;
-  color: @text-color;
-  padding-left: 70px;
+  margin-top: 10px;
 }
 #calendar {
-  padding-right: 70px;
   color: @text-color;
   font-weight: bold;
 }
