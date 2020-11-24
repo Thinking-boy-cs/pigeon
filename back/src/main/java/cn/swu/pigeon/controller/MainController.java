@@ -65,12 +65,12 @@ public class MainController {
         return false;
     }
 
-    @RequestMapping({"404"})
+    @RequestMapping("404")
     public String errorPage404() {
         return "404.html";
     }
 
-    @RequestMapping({"500"})
+    @RequestMapping("500")
     public String errorPage500() {
         return "500";
     }
