@@ -82,7 +82,7 @@ export default {
       that.webSocketTimer = setInterval(() => {
         if (!that.stompClient.connected) {
           console.log('websocket reconnecting ...')
-          that.connectWebSocket()
+          that.$store.dispatch('connectFunc')
         }
       }, 5000)
     },
