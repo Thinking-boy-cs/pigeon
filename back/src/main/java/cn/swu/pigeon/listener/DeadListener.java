@@ -1,14 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 00:36:09
- * @LastEditTime: 2020-11-24 01:15:17
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-24 09:53:21
+ * @LastEditors: Jecosine
  * @Description: In User Settings Edit
  * @FilePath: \back\src\main\java\cn\swu\pigeon\listener\DeadListener.java
  */
 package cn.swu.pigeon.listener;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class DeadListener {
     @Autowired
     private SimpMessagingTemplate template;
     @RabbitListener(queues = "order.dead.queue")
-    public void orderConsumer(Map<String, Object> data) {
+    public void orderConsumer(Notification data) {
       if (data == null) {
           return;
       }
@@ -49,7 +50,7 @@ public class DeadListener {
       //     orderService.cancelOrder(order);
       //   }
       // }
-      List<String> idList = (List<String>)data.get("data");
+      List<String> idList = data.getReceiverList();
       for (String id : idList) {
         // notification save
         template.convertAndSendToUser(id, "/queue/getResponse", "Test!");

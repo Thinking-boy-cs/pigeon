@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-11 09:58:43
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-23 23:33:26
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-11-24 09:27:14
  */
 'use strict'
 // Template version: 1.3.1
@@ -17,7 +17,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://www.jecosine.com', // 接口的域名
+        target: 'http://localhost:8989', // 接口的域名
         ws: true,
         // secure: false,  // 如果是https接口，需要配置这个参数
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置，为true的话，请求的header将会设置为匹配目标服务器的规则（Access-Control-Allow-Origin）
