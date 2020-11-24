@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.pigeon.Util.webViewUtil;
 import com.tencent.smtt.export.external.interfaces.WebResourceError;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.sdk.WebChromeClient;
@@ -36,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setGeolocationEnabled(true);//允许网页执行定位操作
         webSettings.setUserAgentString("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0");//设置User-Agent
 
-        //webView.addJavascriptInterface(new webAppInterface(this,this, webView),"webInterface");
+        webView.addJavascriptInterface(new webViewUtil(this),"webViewUtil");
         webView.clearHistory();
         webView.clearFormData();
-        String url = "file:///android_asset/dist/index.html";
+        String url = "file:///android_asset/webFile/test.html";
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient() {
             @Override
