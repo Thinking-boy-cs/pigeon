@@ -6,20 +6,21 @@
           <a-icon type="left" @click="$router.go(-1)" />
         </div>
         <div class="page-title">
-          
+          {{titleName}}
         </div>
       </div>
     </div>
   <div id="content-container">
-
   </div>
 </div>
 </template>
 
 <script>
+const nameMap = ['通知公告', '待办消息', '活动信息']
 export default {
   data () {
     return {
+      titleName: '',
       conData: {
         'name': 'test',
         'data': [
@@ -47,6 +48,10 @@ export default {
     }
   },
   computed: {
+
+  },
+  created () {
+    this.titleName = nameMap[parseInt[this.$router.params.conId]]
   }
 }
 </script>
