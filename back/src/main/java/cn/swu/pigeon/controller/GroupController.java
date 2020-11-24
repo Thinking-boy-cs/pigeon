@@ -73,4 +73,24 @@ public class GroupController {
         }
         return map;
     }
+
+    @RequestMapping("findUserByGroupId")
+    public Map<String,Object> findUserByGroupId(String groupId){
+
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            //测试
+            groupId = "925014575aa049b";
+            List<User> thisUser = groupService.findUserByGroupId(groupId);
+            map.put("status",0);
+            map.put("msg","查询成功!");
+            map.put("data",thisUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
 }
