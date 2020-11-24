@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.example.pigeon.Util.webViewUtil;
@@ -66,5 +67,14 @@ public class MainActivity extends AppCompatActivity {
         //当应用程序(存在webview)被切换到后台时，这个方法不仅仅针对当前的webview而是全局的全应用程序的webview
         //它会暂停所有webview的layout，parsing，javascripttimer。降低CPU功耗。（不靠谱）
         //webView.pauseTimers();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode==KeyEvent.KEYCODE_BACK)&&webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }
