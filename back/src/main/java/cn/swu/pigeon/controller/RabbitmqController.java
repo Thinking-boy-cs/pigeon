@@ -60,7 +60,7 @@ public class RabbitmqController
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    rabbitTemplate.convertAndSend(exchangeName, directKey, (Notification)(objectMapper.readValue(objectMapper.writeValueAsString(data.get("data")), Notification.class)), new ExpirationMessagePostProcessor((Long)data.get("ttl")));
+    rabbitTemplate.convertAndSend(exchangeName, directKey, (Notification)(objectMapper.readValue(objectMapper.writeValueAsString(data.get("data")), Notification.class)), new ExpirationMessagePostProcessor((Integer)data.get("ttl")));
     return response;
   }
 }
