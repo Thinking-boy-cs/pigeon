@@ -8,7 +8,7 @@
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" @click="$router.go(-1)" />
+          <a-icon type="left" @click="$router.go(-1)" style="color: white"/>
         </div>
       </div>
 
@@ -109,6 +109,7 @@
 
         <a-form-model-item>
           <a-radio :defaultChecked="false" v-model="submitForm.user.agree"
+          style="color: white"
             >勾选表示同意<a href="#">《用户使用协议》</a></a-radio
           >
         </a-form-model-item>
@@ -130,7 +131,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-        
+
   </div>
 </template>
 
@@ -237,7 +238,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "../style/index.less";
 
 * {
@@ -261,11 +262,11 @@ export default {
 .header-title {
   font-size: 37px;
   font-weight: bolder;
-  color: @text-color;
+  color: white;
 }
 .header-second-title {
   font-size: 18px;
-  color: @text-color-secondary;
+  color: white;
 }
 #form-container {
   position: relative;
@@ -299,7 +300,7 @@ export default {
 
 #header-background {
   // background: url(../img/05.jpg) no-repeat fixed;
-  background: linear-gradient(-45deg,#1904E5 10%, #FAB2FF,#F6D242, #FF52E5);
+  background: linear-gradient(-45deg,#1904E5 10%, #F067B4,#3C8CE7, #FF52E5);
   animation: gradientBG 7s ease infinite;
   // background-size: 100% 100%;
   background-size: 400% 400%;
