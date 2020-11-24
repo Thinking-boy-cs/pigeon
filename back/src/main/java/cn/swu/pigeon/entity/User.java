@@ -20,4 +20,5 @@ public class User {
     private String email;
     private String companyId;
     private String originId;
+    private String signature;
 }
