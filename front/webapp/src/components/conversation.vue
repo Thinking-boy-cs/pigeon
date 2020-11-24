@@ -1,18 +1,19 @@
 <template>
+<div>
   <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
           <a-icon type="left" @click="$router.go(-1)" />
         </div>
         <div class="page-title">
-          {{}}
+          
         </div>
       </div>
     </div>
   <div id="content-container">
 
   </div>
-
+</div>
 </template>
 
 <script>
@@ -46,14 +47,11 @@ export default {
     }
   },
   computed: {
-    titleName() {
-      
-    }
   }
 }
 </script>
 
 <style lang="less" scoped>
 @import '../style/index.less';
-  
+
 </style>
