@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 17:17:41
+ * @LastEditTime: 2020-11-24 17:20:16
 -->
 <template>
   <div id="app">
@@ -9,7 +9,7 @@
     <transition :name="animationName" mode="out-in">
       <router-view class="page" :key="$route.name" />
     </transition>
-    <a-spin size="large" v-if="loading" />
+    <!-- <a-spin size="large" v-if="loading" /> -->
     <div id="navigator-container" v-if="$route.meta.id >= 0">
       <a-row>
         <a-col :span="8" class="menu-item" @click="switchTab(0)">
