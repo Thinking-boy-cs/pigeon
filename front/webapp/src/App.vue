@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 17:20:16
+ * @LastEditTime: 2020-11-24 23:36:36
 -->
 <template>
   <div id="app">
@@ -74,6 +74,16 @@ export default {
       }
       this.currentTab = t
       this.$router.push({ path: that.paths[t] })
+    },
+    init () {
+      const that = this
+      that.connection()
+      that.webSocketTimer = setInterval(() => {
+        if (!that.stompClient.connected) {
+          console.log('websocket reconnecting ...')
+          that.connectWebSocket()
+        }
+      }, 5000)
     },
     connection () {
       let socket = new this.SockJS('/api/pigeon/sjs', null, { timeout: 15000 }) // 后端提供协议字段

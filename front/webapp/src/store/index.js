@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 13:30:50
- * @LastEditTime: 2020-11-23 17:38:25
+ * @LastEditTime: 2020-11-24 23:30:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webapp\src\store\index.js
@@ -34,7 +34,13 @@ const store = new Vuex.Store({
      * @return {*}
      */
     connect (state, config) {
+      window.onunload = function () {
+        state.commit('disconnect')
+      }
       state.ws = new SockJS('/api/pigeon/sjs', null, {timeout: 15000})
+      state.ws.on('error', (e) => {
+        console.log('Error: ', e)
+      })
       state.stompClient = Stomp.over(state.ws)
       state.stompClient.connect({}, (res) => {
         config.subscribes.forEach((item, i) => {
@@ -46,6 +52,7 @@ const store = new Vuex.Store({
     disconnect (state) {
       if (state.stompClient) {
         state.stompClient.disconnect()
+        console.log('Disconnected')
       }
     },
     send (state) {
