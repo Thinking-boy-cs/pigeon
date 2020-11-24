@@ -65,9 +65,17 @@ export default {
   data () {
     return {
       visible: false,
-      check: {
-        date: 1,
-        type: 'warning'
+      CheckinStatus: {
+        'attendanceDate': [
+          {
+            date: '2020-04-1',
+            state: 0// 正常 green
+          },
+          {
+            date: '2020-04-2',
+            state: 1// 缺勤 yellow
+          }
+        ]
       }
     }
   },

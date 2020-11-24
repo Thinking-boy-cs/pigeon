@@ -304,7 +304,7 @@ export default {
 }
 #title3 {
   font-size: 25px;
-  margin-left: 50px;
+  margin-left: 20px;
 }
 #logout-button {
   // color: red;
