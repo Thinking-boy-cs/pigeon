@@ -42,16 +42,16 @@ public class UserController {
      */
     @PostMapping("login")
     public Map<String, Object> login(@RequestBody User user, HttpServletRequest request) {
-        log.info("当前登录用户的表单信息: [{}]", user.toString());
+        log.info("当前登录用户的信息1: [{}]", user.toString());
         log.info("in login sessionid: " + request.getSession().getId());
 
         Map<String, Object> map = new HashMap<>();
         try {
             User userDB = userService.login(user);
             //广播：一个变量
-            request.getSession().setAttribute("thisUser", userDB);
-            log.info("当前登录用户的信息: [{}]", userDB.toString());
-
+            User thisUser = userService.find(user);
+            request.getSession().setAttribute("thisUser", thisUser);
+            log.info("当前登录用户的信息2: [{}]", thisUser.toString());
             map.put("status",0);
             map.put("msg","登录成功!");
             map.put("data",userDB);
@@ -160,8 +160,6 @@ public class UserController {
         User thisUser = (User)request.getSession().getAttribute("thisUser");
         try {
             userService.find(thisUser);
-            //更新广播
-            request.getSession().setAttribute("thisUser", thisUser);
             map.put("status",0);
             map.put("msg","查看成功!");
             map.put("data",thisUser);
@@ -200,6 +198,8 @@ public class UserController {
                 log.info("修改性别后当前用户：[{}]",thisUser.toString());
 //                changeInfoService.changeUserInfo(thisUser);
                 changeInfoService.changeUserInfo(multipartFile,thisUser);
+                //更新广播
+                request.getSession().setAttribute("thisUser", thisUser);
                 map.put("status",0);
                 map.put("msg","修改成功");
             } else {

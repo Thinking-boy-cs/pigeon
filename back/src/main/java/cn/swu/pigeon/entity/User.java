@@ -18,4 +18,6 @@ public class User {
     private String icon;
     private String telNumber;
     private String email;
+    private String companyId;
+    private String originId;
 }
