@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-21 21:19:10
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-23 17:34:22
 -->
 <template>
   <div id="app">
@@ -41,29 +41,76 @@
 </template>
 
 <script>
+// import SockJS from 'sockjs-client'
+// import Stomp from 'stompjs'
 export default {
   name: 'App',
   data () {
     return {
       paths: ['/', '/notification', '/me'],
       currentTab: null,
-      animationName: 'slide-left'
+      animationName: 'slide-left',
+      // wsUrl: 'ws://127.0.0.1:5000/api/pigeon/ws'
+      ws: null
     }
   },
+  beforeDestroy () {
+    // 如果跳转别的页面的时候不仍保持websocket通信，此步可注释，否则定时器要清除
+    // clearInterval(this.timer)
+    this.$store.state.ws.dispatch('disconnect')
+  },
+
   methods: {
     switchTab: function (t) {
       var that = this
       if (this.currentTab === t) { return }
       this.currentTab = t
       this.$router.push({ path: that.paths[t] })
-      
+    },
+    connection () {
+      let socket = new this.SockJS('/api/pigeon/sjs', null, {timeout: 15000})// 后端提供协议字段
+      this.stompClient = this.Stomp.over(socket)
+      let that = this
+      this.stompClient.connect(
+        {},
+        function connectCallback () {
+          console.log('Connect success!')
+          that.stompClient.subscribe('/user/1606060960448/queue/getResponse', (res) => { // 后端提供订阅地址
+            console.log(res)// 接收后端response数据
+          })
+        },
+        function errorCallBack (error) {
+          console.log('连接失败:' + error)
+        }
+      )
+    },
+    disconnect () {
+    // console.log(this.timer)
+    // clearInterval(this.timer)
+      if (this.stompClient) {
+        this.stompClient.disconnect()
+      }
+    },
+    onmessage (res) {
+      console.log(this.animationName, res)
     }
+
   },
   created () {
+    var that = this
     setTimeout(() => {
       this.currentTab = this.$route.meta.id
     }, 500)
     window.myApp = this
+    // open websocket
+    // this.$store.dispatch('openWebSocketFunction', {
+    //   url: that.wsUrl,
+    //   onOpenHandler: that.onOpen,
+    //   onCloseHandler: that.onClose,
+    //   onErrorHandler: that.onError,
+    //   onMessageHandler: that.onMessage
+    // })
+    // this.$store.dispatch('setWebSocketHandlerFunction', this.onOpen, this.onClose, this.onMessage, this.onError)
   },
   // beforeRouteUpdate (to, from, next) {
   //   const toDepth = to.path.split('/').length
@@ -85,6 +132,14 @@ export default {
   },
   mounted () {
     window.Vue = this
+    // this.connection()
+    this.$store.dispatch('connectFunc', {
+      userId: '1606060960448',
+      subscribes: ['/user/1606060960448/queue/getResponse'],
+      onmessage: this.onmessage,
+      connectCallback: this.onmessage,
+      errorCallBack: this.onmessage
+    })
   }
 }
 </script>

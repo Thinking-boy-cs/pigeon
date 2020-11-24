@@ -179,12 +179,18 @@ export default {
     handleSubmit (e) {
       var that = this
       console.log(this.submitForm)
-      this.submitForm.data = this.submitForm.user
+      const user = this.submitForm.user
       // let postData = new FormData()
       // postData.append('code', this.submitForm.code)
       // postData.append('user', this.submitForm.user)
       this.$axios
-        .post('/api/pigeon/user/register1', that.submitForm)
+        .post('/api/pigeon/user/register1', {
+          'data': {
+            'username': user.username,
+            'password': user.password
+          },
+          'code': that.submitForm.code
+        })
         .then((res) => {
           console.log(res.data)
           if (res.data) {

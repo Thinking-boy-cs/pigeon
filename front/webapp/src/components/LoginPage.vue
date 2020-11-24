@@ -80,11 +80,42 @@ export default {
       form: {
         id: '',
         password: ''
-      }
+        // loadingWS: this.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
+      },
+      wsUrl: '/api/pigeon/ws',
+      msg: null
     }
   },
   methods: {
+    onOpen () {
+      console.log('Opened')
+      setTimeout(this.msg, 100)
+      this.$router.push({ path: '/' })
+    },
+    onMessage: function (e) {
+      console.log('GetMessage: ', e)
+    },
+    onError: function (e) {
+      console.log('Error da☆ze', e)
+    },
+    onClose: function (e) {
+      console.log('Closed')
+    },
+    sendMessage: function (msg) {
+      this.$store.state.ws.send(msg)
+    },
+    initWS () {
+      var that = this
+      this.$store.dispatch('openWebSocketFunction', {
+        url: that.wsUrl,
+        onOpenHandler: that.onOpen,
+        onCloseHandler: that.onClose,
+        onErrorHandler: that.onError,
+        onMessageHandler: that.onMessage
+      })
+    },
     handleSubmit (e) {
+      var that = this
       e.preventDefault()
       console.log(this.form)
       // this.form.validateFields((err, values) => {
@@ -96,11 +127,13 @@ export default {
         console.log(res)
         if (res.data && res.data.status === 0) {
           window.localStorage.setItem('user', JSON.stringify(res.data.data))
-          this.$message.loading({ content: '登录成功，跳转中', key })
-          setTimeout(() => {
-            this.$message.success({ content: '跳转成功', key, duration: 2 })
-            this.$router.push({ path: '/' })
-          }, 1000)
+          that.msg = that.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
+          that.$router.push({ path: '/' })
+          setTimeout(that.msg, 1000)
+          // that.initWS()
+          // setTimeout(() => {
+          //   // this.$message.success({ content: '跳转成功', key, duration: 2 })
+          // }, 1000)
         } else {
           this.$message.error('登录失败，请检查账号和密码')
         }
