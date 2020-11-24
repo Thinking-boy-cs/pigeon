@@ -14,9 +14,9 @@
     </select>
     <!--通过groupId找到对应的用户对象-->
     <select id="findUserByGroupId" parameterType="String" resultType="User">
-        select *
-        from staff
-        where groupId in (#{groupId})
+        select staff.*
+        from staff,user_group
+        where staff.id = user_group.userId and user_group.groupId in (#{groupId})
     </select>
 
 </mapper>
