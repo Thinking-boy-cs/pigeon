@@ -1,10 +1,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.GroupDao">
+    <!--通过userId找到对应的groupId-->
     <select id="findGroupId" parameterType="String" resultType="String">
         select groupId
         from user_group
         where userId in (#{userId});
     </select>
-
+    <!--通过userId找到对应的Group对象-->
+    <select id="findGroupObject" parameterType="String" resultType="Group">
+        select *
+        from group
+        where userId in (#{userId})
+    </select>
+    
+    <select id="findUserByGroupId" parameterType="String" resultType="User">
+        select *
+        from staff
+    </select>
 
 </mapper>

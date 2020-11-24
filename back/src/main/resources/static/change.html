@@ -12,10 +12,12 @@
                 var sex = $("#sex").val();
                 var telNumber = $("#telNumber").val();
                 var email = $("#email").val();
+                var signature = $("#signature").val();
                 console.log(formData.get("file"))
                 console.log(sex)
                 console.log(telNumber)
                 console.log(email)
+                console.log(signature)
                 if (formData ==={} || formData===""){
                     alert("请选择文件")
                 }
@@ -23,6 +25,7 @@
                 formData.append("sex",sex);
                 formData.append("telNumber",telNumber);
                 formData.append("email",email);
+                formData.append("signature",signature);
                 //调用formData的append方法，将book属性都添加进去，img填空白即可。
                 // formData.append("name","龙哥传");
                 // formData.append("author","龙哥");
@@ -87,6 +90,14 @@
                 </td>
                 <td valign="middle" align="left">
                     <input type="text" id = "email" class="inputgri" v-model="user.email"  />
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" align="right">
+                    个性签名
+                </td>
+                <td valign="middle" align="left">
+                    <input type="text" id = "signature" class="inputgri" v-model="user.signature"  />
                 </td>
             </tr>
             <tr>
