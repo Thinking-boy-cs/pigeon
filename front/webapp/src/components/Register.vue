@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 15:48:03
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-22 04:14:48
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-24 18:36:04
 -->
 <template>
   <div id="header-background">
