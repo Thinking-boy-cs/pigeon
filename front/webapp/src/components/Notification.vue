@@ -18,6 +18,22 @@
         ></i>
         <a id="todo">待办</a>
       </div>
+      <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i">
+        <a-avatar
+          class="notify-avatar"
+          :size="64"
+          :style="{backgroundColor: item.background}"
+          :icon="item.icon"
+        />
+        <div class="notify-right">
+          <div class="notify-head">
+            <div class="notify-title">{{item.name}}</div>
+            <div class="notify-time">{{item.lastest}}</div>
+          </div>
+          <div class="notify-preview">{{item.preview}}</div>
+          <div class="notify-red-icon">{{item.unRead}}</div>
+        </div>
+      </div>
       <div id="notification1">
         <a-avatar
           :size="64"
@@ -76,6 +92,30 @@ export default {
             state: 1// 缺勤 yellow
           }
         ]
+      },
+      messageData: {
+        chats: [
+          {
+            type: 'build-in',
+            name: '待处理提醒',
+            icon: 'bell',
+            background: '#f56a00',
+            avatar: '',
+            preview: '【签到提醒】2020-11-24 部门签到',
+            lastest: '2020-11-24 17:00',
+            unRead: 1
+          },
+          {
+            type: 'build-in',
+            name: '通知公告',
+            icon: 'user',
+            background: '#1890ff',
+            avatar: '',
+            preview: '【通知】下午进行体检',
+            lastest: '2020-11-24 17:00',
+            unRead: 0
+          }
+        ]
       }
     }
   },
@@ -120,7 +160,53 @@ export default {
 #content-container {
   position: absolute;
   width: 100%;
+
   top: 58px;
+}
+.notify-container {
+  width: 100%;
+  padding-left: 20px;
+  height: 90px;
+  padding: 10px;
+  background-color: white;
+  position: relative;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+.notify-avatar {
+  float: left;
+  margin-right: 20px;
+}
+.notify-right {
+  position: relative;
+  width: calc(100% - 84px);
+  // height: 90px;
+  margin-left: 84px;
+}
+.notify-head {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.notify-title {
+  font-weight: bold;
+  float: left;
+}
+.notify-time {
+  float: right;
+  font-size: 10px;
+}
+.notify-red-icon {
+  position: absolute;
+  right: 20px;
+  top: 35px;
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 10px;
+  color: white;
 }
 #notification1 {
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
