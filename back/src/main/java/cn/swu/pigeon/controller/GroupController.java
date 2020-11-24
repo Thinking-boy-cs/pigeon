@@ -1,5 +1,6 @@
 package cn.swu.pigeon.controller;
 
+import cn.swu.pigeon.entity.Company;
 import cn.swu.pigeon.entity.Group;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
@@ -7,6 +8,7 @@ import cn.swu.pigeon.service.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -74,6 +76,11 @@ public class GroupController {
         return map;
     }
 
+    /**
+     * 通过groupId找到该group的所有成员user
+     * @param groupId
+     * @return
+     */
     @RequestMapping("findUserByGroupId")
     public Map<String,Object> findUserByGroupId(String groupId){
 
@@ -90,6 +97,48 @@ public class GroupController {
             map.put("status",1);
             map.put("msg",e.getMessage());
             map.put("data",null);
+        }
+        return map;
+    }
+
+    /**
+     * 添加company表
+     * @param company
+     * @return
+     */
+    @RequestMapping("addCompany")
+    public Map<String,Object> addCompany(@RequestBody Company company){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            //测试
+            groupService.addCompany(company);
+            map.put("status",0);
+            map.put("msg","查询成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
+
+    /**
+     * 在addGroup表里添加数据
+     * @param group
+     * @return
+     */
+    @RequestMapping("addGroup")
+    public Map<String,Object> addGroup(@RequestBody Group group){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            //测试
+            groupService.addGroup(group);
+            map.put("status",0);
+            map.put("msg","查询成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
         }
         return map;
     }

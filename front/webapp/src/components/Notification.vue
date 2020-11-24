@@ -35,7 +35,7 @@
          </a-col>
         </a-row>
       </div>
-      <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i">
+      <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i" @click="$router.push({path:'/getConv/'+item.id})">
         <a-avatar
           class="notify-avatar"
           :size="64"
@@ -120,7 +120,8 @@ export default {
             avatar: '',
             preview: '【签到提醒】2020-11-24 部门签到',
             lastest: '2020-11-24 17:00',
-            unRead: 1
+            unRead: 1,
+            id: '1'
           },
           {
             type: 'build-in',
@@ -130,7 +131,8 @@ export default {
             avatar: '',
             preview: '【通知】下午进行体检',
             lastest: '2020-11-24 17:00',
-            unRead: 0
+            unRead: 0,
+            id: '0'
           }
         ]
       }

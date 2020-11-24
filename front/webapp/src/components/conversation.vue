@@ -1,24 +1,26 @@
 <template>
+<div>
   <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
           <a-icon type="left" @click="$router.go(-1)" />
         </div>
         <div class="page-title">
-          {{}}
+          {{titleName}}
         </div>
       </div>
     </div>
   <div id="content-container">
-
   </div>
-
+</div>
 </template>
 
 <script>
+const nameMap = ['通知公告', '待办消息', '活动信息']
 export default {
   data () {
     return {
+      titleName: '',
       conData: {
         'name': 'test',
         'data': [
@@ -46,14 +48,15 @@ export default {
     }
   },
   computed: {
-    titleName() {
-      
-    }
+
+  },
+  created () {
+    this.titleName = nameMap[parseInt[this.$router.params.conId]]
   }
 }
 </script>
 
 <style lang="less" scoped>
 @import '../style/index.less';
-  
+
 </style>
