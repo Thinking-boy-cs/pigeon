@@ -1,6 +1,6 @@
 package cn.swu.pigeon.dao;
 
-import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.Application;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,9 +29,9 @@ public interface GovernDao {
      * @return
      */
     //找到所有活动
-    List<Activity> findActivity();
+    List<Application> findApplication();
     //审批活动
-    void approveActivity(@Param("id") String id,@Param("status") String status);
+    void approveApplication(@Param("id") String id,@Param("status") String status);
 
     /**
      * 查看某天的签到/未签到/请假情况

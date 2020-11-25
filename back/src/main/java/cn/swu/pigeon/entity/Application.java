@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class Activity {
+public class Application {
     private int id;
     private String activityName;
     private String applicant;

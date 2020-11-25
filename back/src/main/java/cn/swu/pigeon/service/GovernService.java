@@ -1,6 +1,6 @@
 package cn.swu.pigeon.service;
 
-import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.Application;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 
@@ -26,9 +26,9 @@ public interface GovernService {
      * @return
      */
     //查看活动
-    List<Activity> findActivity();
+    List<Application> findApplication();
     //审批活动
-    void approveActivity(String id,String status);
+    void approveApplication(String id,String status);
 
     /**
      * 查看签到/未签到/请假情况

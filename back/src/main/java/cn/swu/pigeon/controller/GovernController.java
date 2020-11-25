@@ -1,6 +1,6 @@
 package cn.swu.pigeon.controller;
 
-import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.Application;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.GovernService;
@@ -189,7 +189,7 @@ public class GovernController {
             //测试
             id="1";
             status="已通过";
-            governService.approveActivity(id,status);
+            governService.approveApplication(id,status);
             map.put("status",0);
             map.put("msg","审批成功!");
         } catch (Exception e) {
@@ -207,7 +207,7 @@ public class GovernController {
     public Map<String,Object> findActivity(){
         Map<String, Object> map =  new HashMap<>();
         try {
-            List<Activity> thisActivities = governService.findActivity();
+            List<Application> thisActivities = governService.findApplication();
             map.put("status",0);
             map.put("msg","查看成功!");
             map.put("data",thisActivities);
