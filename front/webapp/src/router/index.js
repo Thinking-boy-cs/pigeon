@@ -21,6 +21,9 @@ import Router from 'vue-router'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
 import BaiduMap from 'vue-baidu-map'
+import infiniteScroll from 'vue-infinite-scroll'
+Vue.use(infiniteScroll)
+console.log(infiniteScroll, 'InfiniteScroll')
 
 // import { ResolvePlugin } from 'webpack'
 // import { component } from 'vue/types/umd'
@@ -84,6 +87,11 @@ const router = new Router({
       path: '/ManagePage',
       name: 'ManagePage',
       component: resolve => require(['@/components/ManagePage'], resolve)
+    },
+    {
+      path: '/SigninData',
+      name: 'SigninData',
+      component: resolve => require(['@/components/SigninData'], resolve)
     },
     {
       path: '/Profile',

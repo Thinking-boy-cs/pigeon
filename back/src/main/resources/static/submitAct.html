@@ -14,7 +14,7 @@
                     活动名称:
                 </td>
                 <td valign="middle" align="left">
-                    <input type="text" class="inputgri" v-model="activity.activityName"  />
+                    <input type="text" class="inputgri" v-model="application.activityName"  />
                 </td>
             </tr>
             <tr>
@@ -22,7 +22,7 @@
                     审批人:
                 </td>
                 <td valign="middle" align="left">
-                    <input type="text" class="inputgri" v-model="activity.approver"  />
+                    <input type="text" class="inputgri" v-model="application.approver"  />
                 </td>
             </tr>
             <tr>
@@ -30,7 +30,7 @@
                     开始时间:
                 </td>
                 <td valign="middle" align="left">
-                    <input id="meeting" type="datetime-local" class="inputgri" v-model="activity.startTime"  />
+                    <input id="meeting" type="datetime-local" class="inputgri" v-model="application.startTime"  />
                 </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@
                     结束时间:
                 </td>
                 <td valign="middle" align="left">
-                    <input type="datetime-local" class="inputgri" v-model="activity.endTime"  />
+                    <input type="datetime-local" class="inputgri" v-model="application.endTime"  />
                 </td>
             </tr>
         </table>
@@ -56,12 +56,12 @@
         el: "#wrap",
         data: {
             url: "",
-            activity: {},
+            application: {},
         },
         methods: {
             //提交活动
             submitAct() {
-                axios.post("http://localhost:8989/api/pigeon/activity/submit?",this.activity).then(res => {
+                axios.post("http://localhost:8989/api/pigeon/application/submit?",this.application).then(res => {
                     console.log(res.data);
                     if (!res.data.status) {
                         alert(res.data.msg + ",提交成功!");

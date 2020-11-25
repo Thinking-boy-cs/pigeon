@@ -179,10 +179,10 @@ User{
 ```   
 ## 4. 提交活动请求
 请求地址      
-POST http://localhost:8989/api/pigeon/activity/submit      
+POST http://localhost:8989/api/pigeon/application/submit      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
-	activity &nbsp; &nbsp; Activity&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;是  &nbsp; &nbsp; 提交活动申请    
+	application &nbsp; &nbsp; Activity&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;是  &nbsp; &nbsp; 提交活动申请    
 
 返回值     
 	Map<int,Object>    
@@ -214,7 +214,7 @@ Activity{
 ```   
 ## 5. 查看用户活动
 请求地址      
-POST http://localhost:8989/api/pigeon/activity/find      
+POST http://localhost:8989/api/pigeon/application/find      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	&nbsp; id &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp;&nbsp; &nbsp; 当前的用户    
@@ -246,7 +246,7 @@ status的合法值
 ```   
 ## 6. 撤回活动
 请求地址      
-POST http://localhost:8989/api/pigeon/activity/backout      
+POST http://localhost:8989/api/pigeon/application/backout      
 	请求参数         
 	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
 	&nbsp; id &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 点击的活动    
