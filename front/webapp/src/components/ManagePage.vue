@@ -31,28 +31,37 @@
                   "
                 />
               </a-form-model-item>
-              <a-form-model-item label="签到对象" prop="target">
+              <a-form-model-item label="签到对象" prop="participants">
                 <a-cascader
                   :options="options"
                   change-on-select
-                  v-model="form.target"
+                  v-model="form.participants"
                 />
               </a-form-model-item>
-              <a-form-model-item label="签到开始时间" required prop="date">
+              <a-form-model-item label="签到开始时间" required prop="startTime">
                 <a-date-picker
-                  v-model="form.date"
+                  v-model="form.startTime"
                   show-time
                   type="date"
                   placeholder="Pick a date"
                   style="width: 100%"
                 />
               </a-form-model-item>
-              <a-form-model-item label="请选择持续时间" required prop="during">
+              <a-form-model-item label="签到结束时间" required prop="endTime">
+                <a-date-picker
+                  v-model="form.endTime"
+                  show-time
+                  type="date"
+                  placeholder="Pick a date"
+                  style="width: 100%"
+                />
+              </a-form-model-item>
+              <!-- <a-form-model-item label="请选择持续时间" required prop="during">
                 <a-time-picker
                   v-model="form.during"
                   :default-open-value="moment('00:00:00', 'HH:mm:ss')"
                 />
-              </a-form-model-item>
+              </a-form-model-item> -->
               <a-form-model-item :wrapper-col="{ span: 10, offset: 4 }">
                 <a-button type="primary" @click="onSubmit"> Create </a-button>
                 <a-button style="margin-left: 25px" @click="resetForm">
@@ -125,9 +134,11 @@ export default {
       other: '',
       form: {
         name: '',
-        target: undefined,
-        date: undefined,
-        during: undefined
+        participants: null,
+        startTime: null,
+        endTime: null,
+        status: null,
+        submitTime: null
       },
       rules: {
         name: [

@@ -4,7 +4,10 @@ import lombok.Data;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 @Data
+@Component
 public class TimeUtils {
     private Date startTime;
     private Date endTime;
@@ -22,6 +25,9 @@ public class TimeUtils {
         timeUtils.setStartTime(start);
         timeUtils.setEndTime(end);
         return timeUtils;
+    }
+    public static Long getDistinateTimeDelta(Date date) {
+        return date.getTime() - new Date().getTime();
     }
 }
 

@@ -3,6 +3,7 @@ package cn.swu.pigeon.controller;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.RecordService;
+import cn.swu.pigeon.utils.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ public class RecordController {
 
     @Autowired
     private RecordService recordService;
-
+    @Autowired
+    private TimeUtils timeUtils;
 
     /**
      * 处理签到
@@ -81,6 +83,30 @@ public class RecordController {
             return map;
         }
 
+    }
+    
+    public Map<String, Object> initiate(@RequestBody Map<String, Object> req, HttpServletRequest request) {
+        User thisUser = (User) request.getSession().getAttribute("thisUser");
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(thisUser)){
+                // TODO check if is admin
+                // send to queue
+                Long delta = 
+                map.put("status",0);
+                map.put("msg","查看成功");
+                map.put("data", req);
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
     }
 
 }
