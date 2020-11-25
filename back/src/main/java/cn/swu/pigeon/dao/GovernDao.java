@@ -53,4 +53,11 @@ public interface GovernDao {
     List<Record> findLeave(Date date);
     //审批请假
     void approveLeave(@Param("id") String id,@Param("status") String status);
+
+    /**
+     * 统计已签到的人数和未签到的人数，根据当前用户注册表而言
+     * @return
+     */
+    int cSigned();
+    int cUnsigned();
 }

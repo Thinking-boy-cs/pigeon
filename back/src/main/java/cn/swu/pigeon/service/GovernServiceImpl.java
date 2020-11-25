@@ -95,4 +95,21 @@ public class GovernServiceImpl implements GovernService{
     }
 
 
+    /**
+     * 对已签到人数的统计
+     * @return
+     */
+    @Override
+    public int cSigned() {
+        return governDao.cSigned();
+    }
+
+    /**
+     * 对未签到人数的统计
+     * @return
+     */
+    @Override
+    public int cUnsigned() {
+        return governDao.cUnsigned();
+    }
 }
