@@ -193,10 +193,18 @@ public class UserController {
             }
             if (!ObjectUtils.isEmpty(user)) {
                 // 修改信息
-                thisUser.setSex(user.getSex());
-                thisUser.setTelNumber(user.getTelNumber());
-                thisUser.setEmail(user.getEmail());
-                thisUser.setSignature(user.getSignature());
+                if(!user.getSex().equals("")){
+                    thisUser.setSex(user.getSex());
+                }
+                if(!user.getTelNumber().equals("")){
+                    thisUser.setTelNumber(user.getTelNumber());
+                }
+                if(!user.getEmail().equals("")){
+                    thisUser.setEmail(user.getEmail());
+                }
+                if(!user.getSignature().equals("")){
+                    thisUser.setSignature(user.getSignature());
+                }
                 log.info("修改性别后当前用户：[{}]",thisUser.toString());
 //                changeInfoService.changeUserInfo(thisUser);
                 changeInfoService.changeUserInfo(multipartFile,thisUser);
