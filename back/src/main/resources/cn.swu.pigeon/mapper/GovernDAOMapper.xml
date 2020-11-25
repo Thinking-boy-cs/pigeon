@@ -61,7 +61,7 @@
         select *
         from vacation
     </select>
-
+<!--    对用户请假的处理-->
     <update id="approveLeave" parameterType="String">
         update vacation
         set state=#{param2}

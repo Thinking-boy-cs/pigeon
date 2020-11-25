@@ -81,6 +81,11 @@ const router = new Router({
       component: resolve => require(['@/components/Signin'], resolve)
     },
     {
+      path: '/ManagePage',
+      name: 'ManagePage',
+      component: resolve => require(['@/components/ManagePage'], resolve)
+    },
+    {
       path: '/Profile',
       name: 'Profile',
       // component: Profile,
