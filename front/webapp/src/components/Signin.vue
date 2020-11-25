@@ -116,6 +116,7 @@ export default {
   margin: 0 auto;
   align-self: end;
   bottom: 30px;
+  top:20px;
 }
 #main-container {
   position: relative;

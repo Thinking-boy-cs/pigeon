@@ -179,7 +179,6 @@ export default {
 #content-container {
   position: absolute;
   width: 100%;
-
   top: 58px;
 }
 .notify-container {

@@ -2,7 +2,7 @@
   <div id="page-container">
     <div id="navigation-container">
       <div id="navigation-wrapper">
-        <div class="icon-container"></div>
+        <div class="icon-container"><a-icon type="left" @click="$router.go(-1)" style="color: black"/></div>
         <div class="page-title">管理</div>
       </div>
     </div>
