@@ -47,5 +47,12 @@ public interface GovernService {
     //审批请假
     void approveLeave(String id,String status);
 
+    /**
+     * 统计已签到的人数和未签到的人数，根据当前用户注册表而言
+     * @return
+     */
+    int cSigned();
+    int cUnsigned();
+
 
 }

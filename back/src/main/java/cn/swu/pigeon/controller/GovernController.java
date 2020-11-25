@@ -263,6 +263,48 @@ public class GovernController {
         return map;
     }
 
+    /**
+     * 统计已签到的人数
+     * @return
+     */
+    @RequestMapping("countSigned")
+    public Map<String,Object> countSigned(){
+        Map<String,Object> map = new HashMap<>();
+        try{
+
+            int sum = governService.cSigned();
+            map.put("status",0);
+            map.put("msg","查询成功");
+            map.put("data",sum);
+        }catch (Exception e){
+
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
+
+    @RequestMapping("countUnsigned")
+    public Map<String,Object> countUnsigned(){
+        Map<String,Object> map = new HashMap<>();
+        try{
+            int sum = governService.cUnsigned();
+            map.put("status",0);
+            map.put("msg","查询成功");
+            map.put("data",sum);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
+
+
 
     /**
      * 发信息收集表单（调用大厂接口API）
