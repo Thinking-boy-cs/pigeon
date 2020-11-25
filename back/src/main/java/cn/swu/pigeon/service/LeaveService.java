@@ -1,8 +1,6 @@
 package cn.swu.pigeon.service;
 
-import cn.swu.pigeon.entity.Activity;
 import cn.swu.pigeon.entity.Leave;
-import cn.swu.pigeon.entity.User;
 
 import java.util.List;
 

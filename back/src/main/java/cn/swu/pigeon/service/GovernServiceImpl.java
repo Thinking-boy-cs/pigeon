@@ -1,7 +1,7 @@
 package cn.swu.pigeon.service;
 
 import cn.swu.pigeon.dao.GovernDao;
-import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.Application;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,13 +51,13 @@ public class GovernServiceImpl implements GovernService{
      * @return
      */
     @Override
-    public List<Activity> findActivity() {
-        return governDao.findActivity();
+    public List<Application> findApplication() {
+        return governDao.findApplication();
     }
 
     @Override
-    public void approveActivity(String id,String status) {
-        governDao.approveActivity(id,status);
+    public void approveApplication(String id,String status) {
+        governDao.approveApplication(id,status);
     }
 
     /**
@@ -95,4 +95,21 @@ public class GovernServiceImpl implements GovernService{
     }
 
 
+    /**
+     * 对已签到人数的统计
+     * @return
+     */
+    @Override
+    public int cSigned() {
+        return governDao.cSigned();
+    }
+
+    /**
+     * 对未签到人数的统计
+     * @return
+     */
+    @Override
+    public int cUnsigned() {
+        return governDao.cUnsigned();
+    }
 }
