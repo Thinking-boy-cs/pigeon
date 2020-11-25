@@ -1,10 +1,7 @@
 package cn.swu.pigeon.controller;
 
 import cn.swu.pigeon.entity.Company;
-import cn.swu.pigeon.entity.Group;
-import cn.swu.pigeon.entity.Record;
-import cn.swu.pigeon.entity.User;
-import cn.swu.pigeon.service.GroupService;
+import cn.swu.pigeon.service.CompanyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,36 +9,72 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @RestController
 @CrossOrigin //允许跨域
-@RequestMapping("group")
+@RequestMapping("company")
 @Slf4j
-public class GroupController {
+public class CompanyController {
 
     @Autowired
-    GroupService groupService;
+    CompanyService companyService;
 
     /**
-     * 通过userId找到其所有group的groupId
-     * @param userId
+     * 添加company表
+     * @param company
      * @return
      */
-    @RequestMapping("findGroupId")
-    public Map<String,Object> findGroupId(String userId){
-
+    @RequestMapping("addCompany")
+    public Map<String,Object> addCompany(@RequestBody Company company){
         Map<String, Object> map =  new HashMap<>();
         try {
-            //测试
-            userId = "1606016550";
-            List<String> thisGroupId = groupService.findGroupId(userId);
+            companyService.addCompany(company);
             map.put("status",0);
-            map.put("msg","查询成功!");
-            map.put("data",thisGroupId);
+            map.put("msg","插入成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
+
+    /**
+     * 修改企业信息
+     * @param company
+     * @return
+     */
+    @RequestMapping("changeCompany")
+    public Map<String,Object> changeCompany(@RequestBody Company company){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            companyService.changeCompany(company);
+            map.put("status",0);
+            map.put("msg","修改成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
+
+    /**
+     * 找到企业信息
+     * @return
+     */
+    @RequestMapping("findCompany")
+    public Map<String,Object> findCompany(){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            List<Company> thisCompany = companyService.findCompany();
+            map.put("status",0);
+            map.put("msg","修改成功!");
+            map.put("data",thisCompany);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
@@ -52,21 +85,18 @@ public class GroupController {
     }
 
     /**
-     * 通过userId找到其所有group的group对象
-     * @param userId
+     * 查询某个企业信息
+     * @param id
      * @return
      */
-    @RequestMapping("findGroupObject")
-    public Map<String,Object> findGroupObject(String userId){
-
+    @RequestMapping("queryCompany")
+    public Map<String,Object> queryCompany(String id){
         Map<String, Object> map =  new HashMap<>();
         try {
-            //测试
-            userId = "1606016550";
-            List<Group> thisGroupObject = groupService.findGroupObject(userId);
+            Company thisCompany = companyService.queryCompany(id);
             map.put("status",0);
-            map.put("msg","查询成功!");
-            map.put("data",thisGroupObject);
+            map.put("msg","修改成功!");
+            map.put("data",thisCompany);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
@@ -77,43 +107,17 @@ public class GroupController {
     }
 
     /**
-     * 通过groupId找到该group的所有成员user
-     * @param groupId
+     * 删除企业信息
+     * @param id
      * @return
      */
-    @RequestMapping("findUserByGroupId")
-    public Map<String,Object> findUserByGroupId(String groupId){
-
+    @RequestMapping("deleteCompany")
+    public Map<String,Object> deleteCompany(String id){
         Map<String, Object> map =  new HashMap<>();
         try {
-            //测试
-            groupId = "925014575aa049b";
-            List<User> thisUser = groupService.findUserByGroupId(groupId);
+            companyService.deleteCompany(id);
             map.put("status",0);
-            map.put("msg","查询成功!");
-            map.put("data",thisUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-            map.put("status",1);
-            map.put("msg",e.getMessage());
-            map.put("data",null);
-        }
-        return map;
-    }
-
-    /**
-     * 在addGroup表里添加数据
-     * @param group
-     * @return
-     */
-    @RequestMapping("addGroup")
-    public Map<String,Object> addGroup(@RequestBody Group group){
-        Map<String, Object> map =  new HashMap<>();
-        try {
-            //测试
-            groupService.addGroup(group);
-            map.put("status",0);
-            map.put("msg","查询成功!");
+            map.put("msg","修改成功!");
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
@@ -121,4 +125,6 @@ public class GroupController {
         }
         return map;
     }
+
+
 }

@@ -56,8 +56,8 @@
         where #{theTime} between startTime and endTime
     </select>
 
-    <!--    对请假的管理（未考虑时间）-->
-    <select id="findLeave" parameterType="String" resultType="Leave">
+    <!--    对请假的管理（未考虑时间）还要考虑其他的分类，比如已处理的和未处理的....-->
+    <select id="findLeave" parameterType="Date" resultType="Leave">
         select *
         from vacation
     </select>

@@ -44,7 +44,8 @@ public class UserController {
     public Map<String, Object> login(@RequestBody User user, HttpServletRequest request) {
         log.info("当前登录用户的信息1: [{}]", user.toString());
         log.info("in login sessionid: " + request.getSession().getId());
-
+        System.out.println(request.getContextPath());
+        System.out.println(request.getServletPath());
         Map<String, Object> map = new HashMap<>();
         try {
             User userDB = userService.login(user);

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 13:30:50
- * @LastEditTime: 2020-11-23 17:38:25
+ * @LastEditTime: 2020-11-25 01:18:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webapp\src\store\index.js
@@ -38,7 +38,7 @@ const store = new Vuex.Store({
       state.stompClient = Stomp.over(state.ws)
       state.stompClient.connect({}, (res) => {
         config.subscribes.forEach((item, i) => {
-          console.log(item)
+          console.log('in store:', item)
           state.subscribes[item] = state.stompClient.subscribe(item, config.onmessage)
         })
       }, config.errorCallBack)
@@ -46,6 +46,7 @@ const store = new Vuex.Store({
     disconnect (state) {
       if (state.stompClient) {
         state.stompClient.disconnect()
+        console.log('Disconnected')
       }
     },
     send (state) {
@@ -55,6 +56,9 @@ const store = new Vuex.Store({
   actions: {
     connectFunc (context, config) {
       context.commit('connect', config)
+    },
+    disconnectFunc (context) {
+      context.commit('disconnect')
     }
   }
 })

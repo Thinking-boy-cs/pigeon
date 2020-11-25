@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-11-24 00:25:00
- * @LastEditTime: 2020-11-24 10:26:17
- * @LastEditors: Jecosine
- * @Description: In User Settings Edit
- * @FilePath: \back\src\main\java\cn\swu\pigeon\controller\RabbitmqController.java
- */
 package cn.swu.pigeon.controller;
 
 import java.util.HashMap;
