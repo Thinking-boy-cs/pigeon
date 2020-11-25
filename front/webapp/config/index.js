@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-25 18:28:18
+ * @LastEditTime: 2020-11-25 21:24:01
  */
 'use strict'
 // Template version: 1.3.1
@@ -85,8 +85,6 @@ module.exports = {
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
-    
-    disableHostCheck: true,
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:
     // `npm run build --report`
