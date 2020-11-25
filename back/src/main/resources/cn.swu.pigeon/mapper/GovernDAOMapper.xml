@@ -24,13 +24,13 @@
     </select>
 
 <!--    对活动的管理(未考虑时间)-->
-    <select id="findActivity" parameterType="String" resultType="Activity">
+    <select id="findApplication" parameterType="String" resultType="Application">
         select id,activityName,applicant,approver,startTime,endTime,status,submitTime
-        from activity
+        from application
     </select>
 
-    <update id="approveActivity" parameterType="String">
-        update activity
+    <update id="approveApplication" parameterType="String">
+        update application
         set status=#{param2}
         where id=#{param1}
     </update>

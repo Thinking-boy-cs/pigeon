@@ -16,10 +16,10 @@ Date: 2020-11-23 16:25:27
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for activity
+-- Table structure for application
 -- ----------------------------
-DROP TABLE IF EXISTS `activity`;
-CREATE TABLE `activity` (
+DROP TABLE IF EXISTS `application`;
+CREATE TABLE `application` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `activityName` varchar(255) DEFAULT NULL,
   `applicant` varchar(10) DEFAULT NULL,
@@ -32,14 +32,14 @@ CREATE TABLE `activity` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of activity
+-- Records of application
 -- ----------------------------
-INSERT INTO `activity` VALUES ('1', 'dfs', '001', 'a', '2020-10-30 17:05:00', '2020-11-22 17:06:00', '已通过', '2020-11-21 14:38:31');
-INSERT INTO `activity` VALUES ('2', 'dfs', '001', 'a', '2020-10-30 17:05:00', '2020-11-22 17:06:00', '待审核', '2020-11-21 09:34:57');
-INSERT INTO `activity` VALUES ('3', '申请奖学金', '001', '李雅丽', '2020-11-13 19:24:00', '2020-11-29 19:22:00', '待审核', '2020-11-21 09:35:00');
-INSERT INTO `activity` VALUES ('4', 'fds', '余帅文', '234', '2020-11-05 14:49:00', '2020-11-12 14:49:00', '待审核', '2020-11-21 06:49:44');
-INSERT INTO `activity` VALUES ('5', 'dasf', '001', 'dsf', '2020-10-30 14:52:00', '2020-11-14 14:52:00', '待审核', '2020-11-21 06:52:14');
-INSERT INTO `activity` VALUES ('6', 'casc', '001', 'wcdc', '2020-11-21 16:58:00', '2020-11-22 16:58:00', '待审核', '2020-11-21 08:58:28');
+INSERT INTO `application` VALUES ('1', 'dfs', '001', 'a', '2020-10-30 17:05:00', '2020-11-22 17:06:00', '已通过', '2020-11-21 14:38:31');
+INSERT INTO `application` VALUES ('2', 'dfs', '001', 'a', '2020-10-30 17:05:00', '2020-11-22 17:06:00', '待审核', '2020-11-21 09:34:57');
+INSERT INTO `application` VALUES ('3', '申请奖学金', '001', '李雅丽', '2020-11-13 19:24:00', '2020-11-29 19:22:00', '待审核', '2020-11-21 09:35:00');
+INSERT INTO `application` VALUES ('4', 'fds', '余帅文', '234', '2020-11-05 14:49:00', '2020-11-12 14:49:00', '待审核', '2020-11-21 06:49:44');
+INSERT INTO `application` VALUES ('5', 'dasf', '001', 'dsf', '2020-10-30 14:52:00', '2020-11-14 14:52:00', '待审核', '2020-11-21 06:52:14');
+INSERT INTO `application` VALUES ('6', 'casc', '001', 'wcdc', '2020-11-21 16:58:00', '2020-11-22 16:58:00', '待审核', '2020-11-21 08:58:28');
 
 -- ----------------------------
 -- Table structure for admin

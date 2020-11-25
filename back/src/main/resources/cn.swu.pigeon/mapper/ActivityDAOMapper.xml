@@ -1,19 +1,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.ActivityDao">
 <!--    用户向管理员提交申请-->
-    <insert id="submitAct" parameterType="Activity" useGeneratedKeys="true" keyProperty="id">
-        insert into activity
+    <insert id="submitApp" parameterType="Application" useGeneratedKeys="true" keyProperty="id">
+        insert into application
         values (#{id},#{activityName},#{applicant},#{approver},#{startTime},#{endTime},#{status},#{submitTime})
     </insert>
 <!--    用户查看自己的申请-->
-    <select id="findAct" parameterType="String" resultType="Activity">
+    <select id="findApp" parameterType="String" resultType="Application">
         select *
-        from activity
+        from application
         where applicant = (#{id})
     </select>
 <!--    用户撤回自己的申请-->
-    <delete id="backAct" parameterType="int">
-        delete from activity
+    <delete id="backApp" parameterType="int">
+        delete from application
         where id= #{id}
     </delete>
 </mapper>
