@@ -1,0 +1,28 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.swu.pigeon.dao.CompanyDao">
+<!--    插入企业信息-->
+    <insert id="addCompany" parameterType="Company">
+        insert into company values (#{id},#{name},#{username})
+    </insert>
+<!--    修改企业信息-->
+    <update id="changeCompany" parameterType="Company">
+        update company
+        set id=#{id},`name`=#{name},userId=#{userId}
+    </update>
+<!--    查看企业信息-->
+    <select id="findCompany" parameterType="Company">
+        select *
+        from company
+    </select>
+<!--    查询某个企业信息-->
+    <select id="queryCompany" parameterType="String">
+        select *
+        from company
+        where id=#{id}
+    </select>
+<!--    删除某个企业信息-->
+    <delete id="deleteCompany" parameterType="String">
+        delete from company
+        where id=#{id}
+    </delete>
+</mapper>

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 17:20:16
+ * @LastEditTime: 2020-11-25 00:21:31
 -->
 <template>
   <div id="app">
@@ -57,13 +57,14 @@ export default {
       // wsUrl: 'ws://127.0.0.1:5000/api/pigeon/ws'
       ws: null,
       loading: false,
-      unreadCount: 1
+      unreadCount: 1,
+      webSocketTimer: null
     }
   },
   beforeDestroy () {
     // 如果跳转别的页面的时候不仍保持websocket通信，此步可注释，否则定时器要清除
-    // clearInterval(this.timer)
-    this.$store.state.ws.dispatch('disconnect')
+    clearInterval(this.webSocketTimer)
+    this.$store.dispatch('disconnectFunc')
   },
 
   methods: {
@@ -75,43 +76,28 @@ export default {
       this.currentTab = t
       this.$router.push({ path: that.paths[t] })
     },
-    connection () {
-      let socket = new this.SockJS('/api/pigeon/sjs', null, { timeout: 15000 }) // 后端提供协议字段
-      this.stompClient = this.Stomp.over(socket)
-      let that = this
-      this.stompClient.connect(
-        {},
-        function connectCallback () {
-          console.log('Connect success!')
-          that.stompClient.subscribe(
-            '/user/1606060960448/queue/getResponse',
-            res => {
-              // 后端提供订阅地址
-              console.log(res) // 接收后端response数据
-            }
-          )
-        },
-        function errorCallBack (error) {
-          console.log('连接失败:' + error)
+    init () {
+      const that = this
+      that.$store.dispatch('connectFunc')
+      that.webSocketTimer = setInterval(() => {
+        if (!that.stompClient.connected) {
+          console.log('websocket reconnecting ...')
+          that.$store.dispatch('connectFunc')
         }
-      )
-    },
-    disconnect () {
-      // console.log(this.timer)
-      // clearInterval(this.timer)
-      if (this.stompClient) {
-        this.stompClient.disconnect()
-      }
+      }, 5000)
     },
     onmessage (res) {
       console.log(this.animationName, res)
+    },
+    onerror (res) {
+      console.log('err!!!: ', res)
     }
   },
   created () {
-    var that = this
-    setTimeout(() => {
-      this.currentTab = this.$route.meta.id
-    }, 500)
+    const that = this
+    this.$router.onReady(() => {
+      that.currentTab = that.$route.meta.id
+    })
     window.myApp = this
     // open websocket
     // this.$store.dispatch('openWebSocketFunction', {
@@ -145,18 +131,20 @@ export default {
   mounted () {
     var that = this
     window.Vue = this
+    window.addEventListener('beforeunload', function (e) {
+      console.log('I want to cancel')
+      // Cancel the event
+      e.preventDefault()
+      // Chrome requires returnValue to be set
+      that.$store.dispatch('disconnectFunc')
+    })
     // this.connection()
     this.$store.dispatch('connectFunc', {
-      userId: '1606060960448',
-      subscribes: ['/user/1606060960448/queue/getResponse'],
+      userId: '1606060960',
+      subscribes: ['/user/1606060960/queue/getResponse'],
       onmessage: this.onmessage,
       connectCallback: this.onmessage,
-      errorCallBack: this.onmessage
-    })
-    this.$router.onReady(() => {
-      setTimeout(() => {
-        that.loading = false
-      }, 500)
+      errorCallBack: this.onerror
     })
   }
 }

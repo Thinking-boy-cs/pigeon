@@ -244,13 +244,13 @@ public class GovernController {
         return map;
     }
     /**
-     * 2.查看所有活动（结束/进行中）
+     * 2.查看所有请假（结束/进行中）
      */
     @RequestMapping("findLeave")
-    public Map<String,Object> findLeave(){
+    public Map<String,Object> findLeave(Date date){
         Map<String, Object> map =  new HashMap<>();
         try {
-            List<Record> thisLeave = governService.findLeave();
+            List<Record> thisLeave = governService.findLeave(date);
             map.put("status",0);
             map.put("msg","查看成功!");
             map.put("data",thisLeave);

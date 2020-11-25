@@ -383,7 +383,8 @@ POST http://localhost:8989/api/pigeon/upload/uploadFile
 	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
 	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
 	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
-
+    data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; Upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; 文件
+    
 status的合法值   
 	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
 	200&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;上传成功   
@@ -401,8 +402,249 @@ status的合法值
   {
 	status:200
 	msg:"上传成功"
+        data:upload
+  }
+```   
+## 10. 文件上传
+请求地址      
+POST http://localhost:8989/api/pigeon/upload/uploadFile      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	multipartFile&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; MultipartFile&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 上传的文件   
+	upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;是&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 上传类
+
+返回值     
+	Result    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+    data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; Upload &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; 文件
+    
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	200&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;上传成功   
+	404&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;上传失败   
+
+请求数据实例   
+```
+    multipartFile:file
+    upload{
+            null
+          }
+```
+返回数据实例
+```
+  {
+	status:200
+	msg:"上传成功"
+        data:upload
   }
 ```   
 #后端~后台管理系统
 
+#后端~其他
+## 1. 插入company表（管理员操作）
+请求地址      
+POST http://localhost:8989/api/pigeon/company/addCompany      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	company&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; 公司对象   
+
+返回值     
+	Map<String,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+    
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;插入成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;插入失败   
+
+请求数据实例   
+```
+    company:{
+            id:"xxx"
+            name:"xxx"
+            userId:"xxx"
+            }
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"插入成功"
+  }
+```   
+## 2. 插入group表（管理员操作）
+请求地址      
+POST http://localhost:8989/api/pigeon/group/addGroup      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	group&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Group&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; group对象   
+
+返回值     
+	Map<String,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+    
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;插入成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;插入失败   
+
+请求数据实例   
+```
+     group:{
+            id:"xxx"
+            name:"xxx"
+            parentId:"xxx"
+            companyId:"xxx"
+            }
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"插入成功"
+  }
+```   
+## 3. 插入user_group表（管理员操作）（有问题，还没写先占个位）
+请求地址      
+POST http://localhost:8989/api/pigeon/group/addUser_group      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	group&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Group&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; group对象   
+
+返回值     
+	Map<String,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+    
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;插入成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;插入失败   
+
+请求数据实例   
+```
+     group:{
+            id:"xxx"
+            name:"xxx"
+            parentId:"xxx"
+            companyId:"xxx"
+            }
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"插入成功"
+  }
+```   
+## 4. 给定group的id返回包含“组内所有人的列表“的响应对象
+请求地址      
+POST http://localhost:8989/api/pigeon/group/findUserByGroupId     
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	groupId&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; String&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是   &nbsp;&nbsp; &nbsp; &nbsp; groupId   
+
+返回值     
+	Map<String,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+    
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查看成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看失败   
+
+请求数据实例   
+```
+     groupId:"xxx"
+```
+返回数据实例
+```
+  {
+        status:0
+        msg:"查看成功"
+            data:{
+                 user:{
+                       xxx
+                       }
+                 }
+  }
+```   
+## 5. 给定一个人的id返回包含“他所属的所有组的id的列表”的响应对象
+请求地址      
+POST http://localhost:8989/api/pigeon/group/findGroupId   
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	userId&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; String&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; userId   
+
+返回值     
+	Map<String,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+    
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查看成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看失败   
+
+请求数据实例   
+```
+     userId:"xxx"
+```
+返回数据实例
+```
+  {
+	status:0
+    	msg:"查看成功"
+            data:{
+                 List<String> groupId
+                 }
+  }
+```   
+## 6. 给定一个人的id返回包含“他所属的所有组的对象的列表”的响应对象
+请求地址      
+POST http://localhost:8989/api/pigeon/group/findGroupObject   
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;类型 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; &nbsp; &nbsp; 说明    
+	userId&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; String&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; userId   
+
+返回值     
+	Map<String,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; String &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;状态信息   
+    
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查看成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看失败   
+
+请求数据实例   
+```
+     userId:"xxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查看成功"
+        data:{
+             group:{
+                   id:"xxx"
+                   name:"xxx"
+                   parentId:"xxx"
+                   companyId:"xxx"
+                   }
+             }
+  }
+```   
 

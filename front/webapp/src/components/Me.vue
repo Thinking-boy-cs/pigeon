@@ -9,7 +9,7 @@
         <a id="username">{{ userData.username }}</a
         ><br />
         <a id="signature">
-          个性签名：志向但是是记忆的奴隶，生气勃勃地降生，但却很难成长。
+          {{ userData.signature }}
         </a>
         <a-row id="userdetail">
           <a-col :span="12" class="detail-bar">

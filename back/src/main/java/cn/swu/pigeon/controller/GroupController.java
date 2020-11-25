@@ -102,27 +102,6 @@ public class GroupController {
     }
 
     /**
-     * 添加company表
-     * @param company
-     * @return
-     */
-    @RequestMapping("addCompany")
-    public Map<String,Object> addCompany(@RequestBody Company company){
-        Map<String, Object> map =  new HashMap<>();
-        try {
-            //测试
-            groupService.addCompany(company);
-            map.put("status",0);
-            map.put("msg","查询成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            map.put("status",1);
-            map.put("msg",e.getMessage());
-        }
-        return map;
-    }
-
-    /**
      * 在addGroup表里添加数据
      * @param group
      * @return

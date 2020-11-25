@@ -8,17 +8,34 @@
     </div>
     <div id="content-container">
       <div class="title-container">
-        <a-icon id="feature-icon1" type="calendar"></a-icon>
-        <a id="calendar" @click="showDrawer">日历</a>
-        <a-divider type="vertical" />
-        <i
+        <a-row>
+        <a-col :span="12" @click="showDrawer">
+        <!-- <a-icon id="feature-icon1" type="calendar"></a-icon> -->
+          <a-avatar
+          :size="64"
+          style="backgroundColor: #52c41a"
+          icon="calendar"
+          id="feature-icon1"
+        /><br />
+        <a id="calendar">日历</a>
+            </a-col>
+             <a-col :span="12">
+        <!-- <i
           class="fa fa-check-square-o"
           id="feature-icon2"
           aria-hidden="true"
-        ></i>
+        ></i> -->
+        <a-avatar
+          :size="64"
+          style="backgroundColor: #FCCF31"
+          icon="schedule"
+          id="feature-icon1"
+        /><br />
         <a id="todo">待办</a>
+         </a-col>
+        </a-row>
       </div>
-      <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i">
+      <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i" @click="$router.push({path:'/getConv/'+item.id})">
         <a-avatar
           class="notify-avatar"
           :size="64"
@@ -103,7 +120,8 @@ export default {
             avatar: '',
             preview: '【签到提醒】2020-11-24 部门签到',
             lastest: '2020-11-24 17:00',
-            unRead: 1
+            unRead: 1,
+            id: '1'
           },
           {
             type: 'build-in',
@@ -113,7 +131,8 @@ export default {
             avatar: '',
             preview: '【通知】下午进行体检',
             lastest: '2020-11-24 17:00',
-            unRead: 0
+            unRead: 0,
+            id: '0'
           }
         ]
       }
@@ -219,7 +238,6 @@ export default {
 }
 #bell {
   float: left;
-  margin-left: 20px;
   margin-top: 15px;
 }
 #notification2 {
@@ -254,7 +272,7 @@ export default {
   background-color: white;
   position: relative;
   width: 100%;
-  height: 10vh;
+  height: 13vh;
   box-shadow:1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 #notification-header {
@@ -262,25 +280,18 @@ export default {
   padding-top: 70px;
 }
 #feature-icon1 {
-  font-size: 24px;
-  height: 40px;
-  color: @text-color;
-  padding-top: 2vh;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #feature-icon2 {
-  font-size: 24px;
-  height: 40px;
-  color: @text-color;
-  padding-left: 70px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #calendar {
-  padding-right: 70px;
   color: @text-color;
-  font-weight: bold;
 }
 #todo {
   color: @text-color;
-  font-weight: bold;
 }
 .events {
   list-style: none;
