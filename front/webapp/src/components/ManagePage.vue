@@ -188,11 +188,16 @@ export default {
   left: 15px;
   top: 30px;
   height: 75vh;
+  line-height: 40px;
 }
+
 #content-container {
   background-color: white;
   position: absolute;
   width: 100%;
   top: 59px;
+}
+.ant-form-item-label {
+  line-height: 40px;
 }
 </style>
