@@ -140,7 +140,8 @@ export default {
   data () {
     let validatePass = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('密码不能为空'))
+        callback(new Error(' '))
+        this.$message.error('密码不能为空')
       } else {
         if (this.submitForm.user.confirm !== '') {
           this.$refs.ruleForm.validateField('confirm')
@@ -150,9 +151,11 @@ export default {
     }
     let validatePass2 = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请再输入一次密码'))
+        callback(new Error(' '))
+        this.$message.error('请再输入一次密码')
       } else if (value !== this.submitForm.user.password) {
-        callback(new Error('两次输入不一致！'))
+        callback(new Error(' '))
+        this.$message.error('两次输入不一致！')
       } else {
         callback()
       }
