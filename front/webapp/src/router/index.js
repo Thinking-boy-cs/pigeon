@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-26 00:17:36
+ * @LastEditTime: 2020-11-26 05:43:09
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -73,12 +73,12 @@ const router = new Router({
       }
     },
     {
-      path: '/Map',
-      name: 'Map',
-      component: Map
+      path: '/ViewMap',
+      name: 'ViewMap',
+      component: resolve => require(['@/components/ViewMap'], resolve)
     },
     {
-      path: '/Signin',
+      path: '/Signin/:id',
       name: 'Signin',
       // component: Signin
       component: resolve => require(['@/components/Signin'], resolve)
@@ -89,7 +89,7 @@ const router = new Router({
       component: resolve => require(['@/components/ManagePage'], resolve)
     },
     {
-      path: '/SigninData',
+      path: '/SigninData/:id',
       name: 'SigninData',
       component: resolve => require(['@/components/SigninData'], resolve)
     },
@@ -147,7 +147,7 @@ const router = new Router({
       meta: {
         id: -15
       },
-      component: resolve => require(['@/components/Conversation'], resolve)
+      component: resolve => require(['@/components/conversation'], resolve)
     },
     {
       path: '/test',

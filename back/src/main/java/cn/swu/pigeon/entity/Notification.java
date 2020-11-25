@@ -1,11 +1,12 @@
 /*
  * @Date: 2020-11-23 09:03:26
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-23 09:47:23
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-26 04:48:14
  */
 package cn.swu.pigeon.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -21,4 +22,5 @@ public class Notification implements Serializable {
     private String isToGroup;
     private String content;
     private String url;
+    private String time;
 }

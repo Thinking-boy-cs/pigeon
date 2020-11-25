@@ -1,9 +1,12 @@
 package cn.swu.pigeon.controller;
 
+import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.ActivityType;
 import cn.swu.pigeon.entity.ExpirationMessagePostProcessor;
 import cn.swu.pigeon.entity.Notification;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
+import cn.swu.pigeon.service.ActivityService;
 import cn.swu.pigeon.service.GroupService;
 import cn.swu.pigeon.service.RecordService;
 import cn.swu.pigeon.utils.TimeUtils;
@@ -26,6 +29,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin // 允许跨域
@@ -37,6 +41,8 @@ public class RecordController {
     private RecordService recordService;
     @Autowired
     GroupService groupService;
+    @Autowired
+    ActivityService activityService;
     @Autowired
     private TimeUtils timeUtils;
 
@@ -61,9 +67,10 @@ public class RecordController {
         try {
             if (!ObjectUtils.isEmpty(record)) {
                 // 测试（默认签到活动）
-                record.setActivityId(1);
+                // record.setActivityId(1);
                 record.setId(thisUser.getId());
                 recordService.isSign(record);
+                
                 map.put("status", 0);
                 map.put("msg", "签到成功");
             } else {
@@ -78,7 +85,29 @@ public class RecordController {
             return map;
         }
     }
+    // @RequestMapping("find")
+    // public Map<String, Object> find(HttpServletRequest request, @RequestParam String id) {
+    //     User thisUser = (User) request.getSession().getAttribute("thisUser");
+    //     Map<String, Object> map = new HashMap<>();
+    //     try {
+    //         if (!ObjectUtils.isEmpty(thisUser)) {
+    //             List<Record> thisRecords = recordService.findRec(thisUser);
+    //             map.put("status", 0);
+    //             map.put("msg", "查看成功");
+    //             map.put("data", thisRecords);
+    //         } else {
+    //             map.put("status", 1);
+    //             map.put("msg", "查看失败");
+    //         }
+    //         return map;
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         map.put("status", 1);
+    //         map.put("msg", "查看失败");
+    //         return map;
+    //     }
 
+    // }
     /**
      * 查看用户签到
      */
@@ -122,19 +151,42 @@ public class RecordController {
                 map.put("msg", "提交成功");
                 map.put("deltaToStart", deltaToStart);
                 map.put("deltaToEnd", deltaToEnd);
+                log.info(((List<String>)req.get("participants")).toString());
+                List<String> receivers = groupService.findUserIdsByGroupList((List<String>)req.get("participants"));
+                // connect with record
+                // Record record = new Record();
+                Activity activity = new Activity();
+                activity.setId(UuidGenerator.getUuid(15));
+                activity.setName((String)req.get("name"));
+                activity.setIsOnce("1");
+                activity.setApproverId((String)req.get("userId"));
+                activity.setType(ActivityType.CHECKIN.getId());
+                activityService.insertActivity(activity);
+                // connect 
+                for (String receiver : receivers) {
+                    activityService.participate(UuidGenerator.getUuid(15), activity.getId(), receiver);
+                }
+                // notify
                 Notification eventStart = new Notification();
                 Notification eventEnd = new Notification();
                 eventStart.setContent(req.get("name") + " 开始了");
                 eventStart.setId(UuidGenerator.getUuid(15));
                 eventStart.setUserId((String) req.get("userId"));
+                eventStart.setUrl(activity.getId());
+                eventStart.setTime((String)req.get("startTime"));
+                eventEnd.setTime((String)req.get("endTime"));
                 eventEnd.setContent(req.get("name") + " 结束了");
                 eventEnd.setId(UuidGenerator.getUuid(15));
                 eventEnd.setUserId((String) req.get("userId"));
-                log.info(((List<String>)req.get("participants")).toString());
-                List<String> receivers = groupService.findUserIdsByGroupList((List<String>)req.get("participants"));
+                eventEnd.setUrl(activity.getId());
+
+                
                 eventStart.setReceiverList(receivers);
                 eventEnd.setReceiverList(receivers);
                 map.put("receivers", receivers);
+                
+                
+
                 deltaToStart = (deltaToStart <= 0) ? 1 : deltaToStart;
                 deltaToEnd = (deltaToEnd <= 0) ? 10 : deltaToEnd;
                 try {
@@ -153,7 +205,7 @@ public class RecordController {
                 } catch(Exception e) {
                     log.error("ERROR HERE");
                 }
-                log.info("ERROR HERE!!!!!");
+                // log.info("ERROR HERE!!!!!");
                 
             } else {
                 map.put("status", 1);

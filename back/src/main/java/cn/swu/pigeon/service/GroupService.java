@@ -23,5 +23,7 @@ public interface GroupService {
     public List<String> findUserIdsByGroupList(List<String> groupList);
 
     public List<String> findUserIdsByGroupId(String groupId) ;
+
+	public List<Group> findAllGroup();
     
 }

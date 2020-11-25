@@ -33,7 +33,7 @@
               </a-form-model-item>
               <a-form-model-item label="签到对象" prop="participants">
                 <a-cascader
-                  :options="options"
+                  :options="groups"
                   change-on-select
                   v-model="form.participants"
                 />
@@ -166,7 +166,8 @@ export default {
         date: [
           { required: true, message: '请选择一个时间', trigger: 'change' }
         ]
-      }
+      },
+      groups: []
     }
   },
   methods: {
@@ -177,6 +178,9 @@ export default {
           this.form.startTime = this.form.startTime.format('YYYY-MM-DD HH:mm:ss')
           this.form.endTime = this.form.endTime.format('YYYY-MM-DD HH:mm:ss')
           console.log('submit!', this.form)
+          this.$axios.get('/api/pigeon/group/findUserIdsByGroupId?groupId=' + this.form.participants).then((res) => {
+            console.log('user data', res)
+          })
           // submit
           this.$axios.post('/api/pigeon/record/initiate', this.form).then((res) => {
             console.log('Submitted!')
@@ -197,6 +201,19 @@ export default {
     resetForm () {
       this.$refs.ruleForm.resetFields()
     }
+  },
+  created () {
+    const that = this
+    this.$axios.get('/api/pigeon/group/findAllGroup').then((res) => {
+      console.log(res)
+      if (res.data && res.data.status === 0) {
+        that.groups = res.data.data
+        that.groups.forEach((item, i) => {
+          item.value = item.id
+          item.label = item.groupName
+        })
+      }
+    })
   }
 }
 </script>
