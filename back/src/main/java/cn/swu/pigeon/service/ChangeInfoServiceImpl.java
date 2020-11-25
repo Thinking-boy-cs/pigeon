@@ -39,7 +39,7 @@ public class ChangeInfoServiceImpl implements ChangeInfoService{
             changeInfoDAO.changeInfo(user);
         } catch (Exception e){
             e.printStackTrace();
-        }
+        }   
 
     }
 }
