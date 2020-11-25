@@ -19,6 +19,12 @@
         where staff.id = user_group.userId and user_group.groupId in (#{groupId})
     </select>
 
+    <select id="findUserIdsByGroupId" parameterType="String" resultType="String">
+        select staff.id
+        from staff,user_group
+        where staff.id = user_group.userId and user_group.groupId in (#{groupId})
+    </select>
+
 <!--    管理员的操作：-->
 <!--    1.插入group表-->
 <!--    2.插入user_group表-->

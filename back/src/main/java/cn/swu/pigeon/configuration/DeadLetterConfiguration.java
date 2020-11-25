@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-23 14:44:35
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 00:15:37
+ * @LastEditTime: 2020-11-26 02:08:45
  */
 package cn.swu.pigeon.configuration;
 
@@ -69,7 +69,8 @@ public class DeadLetterConfiguration
         arguments.put("x-dead-letter-exchange", deadExchangeName);
         // 绑定我们的路由key
         arguments.put("x-dead-letter-routing-key", deadkey);
-        return new Queue(exchangeName, true, false, false, arguments);
+        // return new Queue(exchangeName, true, false, false, arguments);
+        return new Queue(queueName, true, false, false, arguments);
     }
 
     @Bean

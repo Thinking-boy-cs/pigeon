@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 18:18:34
+ * @LastEditTime: 2020-11-26 00:17:36
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -148,6 +148,14 @@ const router = new Router({
         id: -15
       },
       component: resolve => require(['@/components/Conversation'], resolve)
+    },
+    {
+      path: '/test',
+      name: 'Test',
+      meta: {
+        id: -19
+      },
+      component: resolve => require(['@/components/Test'], resolve)
     }
   ]
 })

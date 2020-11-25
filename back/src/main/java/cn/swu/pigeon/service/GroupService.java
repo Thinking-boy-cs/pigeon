@@ -15,9 +15,13 @@ public interface GroupService {
     //根据groupId找到对应的用户对象
     List<User> findUserByGroupId(String groupId);
 
-
+    List<User> findUserByGroupList(List<String> groupList);
     //添加group字段
     void addGroup(Group group);
 
     //void addUser_group()
+    public List<String> findUserIdsByGroupList(List<String> groupList);
+
+    public List<String> findUserIdsByGroupId(String groupId) ;
+    
 }

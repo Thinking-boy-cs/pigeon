@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-11-24 00:36:09
- * @LastEditTime: 2020-11-24 09:53:21
- * @LastEditors: Jecosine
+ * @LastEditTime: 2020-11-26 01:28:08
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \back\src\main\java\cn\swu\pigeon\listener\DeadListener.java
  */
@@ -53,7 +53,7 @@ public class DeadListener {
       List<String> idList = data.getReceiverList();
       for (String id : idList) {
         // notification save
-        template.convertAndSendToUser(id, "/queue/getResponse", "Test!");
+        template.convertAndSendToUser(id, "/queue/getResponse", data.getContent());
       }
   }
 }

@@ -2,6 +2,9 @@ package cn.swu.pigeon.utils;
 
 import lombok.Data;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -28,6 +31,22 @@ public class TimeUtils {
     }
     public static Long getDistinateTimeDelta(Date date) {
         return date.getTime() - new Date().getTime();
+    }
+    public static Date convertToDate(String dateStr, String format) {
+        DateFormat dateFormat = new SimpleDateFormat(format);//日期格式
+        Date date = null;
+        try {
+            date = dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+    public static String convertToString(Date date, String format) {
+        SimpleDateFormat sformat = new SimpleDateFormat(format);//日期格式
+        String dateStr = sformat.format(date);
+
+        return dateStr;
     }
 }
 

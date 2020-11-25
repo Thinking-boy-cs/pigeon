@@ -17,6 +17,9 @@ public interface GroupDao {
     //根据groupId找到对应的用户对象
     List<User> findUserByGroupId(String groupId);
 
+    List<String> findUserIdsByGroupId(String groupId);
+    // List<String> findUserIdsByGroupList(List<String> groupList);
+
 
     //添加group字段
     void addGroup(Group group);

@@ -43,7 +43,8 @@
                   v-model="form.startTime"
                   show-time
                   type="date"
-                  placeholder="Pick a date"
+                  format="YYYY-MM-DD HH:mm:ss"
+                  placeholder="选择日期时间"
                   style="width: 100%"
                 />
               </a-form-model-item>
@@ -53,6 +54,7 @@
                   show-time
                   type="date"
                   placeholder="Pick a date"
+                  format="YYYY-MM-DD HH:mm:ss"
                   style="width: 100%"
                 />
               </a-form-model-item>
@@ -168,11 +170,24 @@ export default {
     }
   },
   methods: {
-    moment,
     onSubmit () {
+      const that = this
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
+          this.form.startTime = this.form.startTime.format('YYYY-MM-DD HH:mm:ss')
+          this.form.endTime = this.form.endTime.format('YYYY-MM-DD HH:mm:ss')
           console.log('submit!', this.form)
+          // submit
+          this.$axios.post('/api/pigeon/record/initiate', this.form).then((res) => {
+            console.log('Submitted!')
+            if (res.data && res.data.status === 0) {
+              that.$message.success('提交签到成功！')
+            } else {
+              that.$message.error('提交签到失败！' + res.data.msg)
+            }
+          }).catch((res) => {
+            that.$message.error('提交签到失败，请检查网络连接')
+          })
         } else {
           console.log('error submit!!')
           return false
