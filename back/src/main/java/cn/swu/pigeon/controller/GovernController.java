@@ -279,7 +279,7 @@ public class GovernController {
         }catch (Exception e){
 
             e.printStackTrace();
-            map.put("status",1);
+            map.put("status",1);   
             map.put("msg",e.getMessage());
             map.put("data",null);
         }
