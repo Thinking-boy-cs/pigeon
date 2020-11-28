@@ -1,13 +1,9 @@
 package cn.swu.pigeon.controller;
 
-import cn.swu.pigeon.entity.Activity;
 import cn.swu.pigeon.entity.Leave;
 import cn.swu.pigeon.entity.User;
-import cn.swu.pigeon.service.ActivityService;
 import cn.swu.pigeon.service.LeaveService;
-import cn.swu.pigeon.utils.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 

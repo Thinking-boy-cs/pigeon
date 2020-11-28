@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-21 21:19:10
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-26 05:13:42
 -->
 <template>
   <div id="app">
@@ -9,6 +9,7 @@
     <transition :name="animationName" mode="out-in">
       <router-view class="page" :key="$route.name" />
     </transition>
+    <!-- <a-spin size="large" v-if="loading" /> -->
     <div id="navigator-container" v-if="$route.meta.id >= 0">
       <a-row>
         <a-col :span="8" class="menu-item" @click="switchTab(0)">
@@ -25,6 +26,9 @@
             type="bell"
             :class="{ 'menu-icon': true, selected: currentTab === 1 }"
           />
+          <div id="red-icon" v-if="$store.state.outerCount">
+            <div>{{ $store.state.outerCount }}</div>
+          </div>
           <div class="menu-name">消息</div>
         </a-col>
         <a-col :span="8" class="menu-item" @click="switchTab(2)">
@@ -41,6 +45,8 @@
 </template>
 
 <script>
+// import SockJS from 'sockjs-client'
+// import Stomp from 'stompjs'
 export default {
   name: 'App',
   data () {
@@ -48,23 +54,52 @@ export default {
       paths: ['/', '/notification', '/me'],
       currentTab: null,
       animationName: 'slide-left',
-      wsUrl: 'ws://127.0.0.1:5000/api/pigeon/ws'
+      // wsUrl: 'ws://127.0.0.1:5000/api/pigeon/ws'
+      ws: null,
+      loading: false,
+      unreadCount: 1,
+      webSocketTimer: null
     }
   },
+  beforeDestroy () {
+    // 如果跳转别的页面的时候不仍保持websocket通信，此步可注释，否则定时器要清除
+    clearInterval(this.webSocketTimer)
+    this.$store.dispatch('disconnectFunc')
+  },
+
   methods: {
     switchTab: function (t) {
       var that = this
-      if (this.currentTab === t) { return }
+      if (this.currentTab === t) {
+        return
+      }
       this.currentTab = t
       this.$router.push({ path: that.paths[t] })
+    },
+    init () {
+      const that = this
+      that.$store.dispatch('connectFunc')
+      that.webSocketTimer = setInterval(() => {
+        if (!that.stompClient.connected) {
+          console.log('websocket reconnecting ...')
+          that.$store.dispatch('connectFunc')
+        }
+      }, 5000)
+    },
+    onmessage (res) {
+      console.log(this.animationName, res)
+      this.$store.dispatch('addCountFunc', 1)
+      this.$store.dispatch('addMessageFunc', JSON.parse(res.body))
+    },
+    onerror (res) {
+      console.log('err!!!: ', res)
     }
-
   },
   created () {
-    var that = this
-    setTimeout(() => {
-      this.currentTab = this.$route.meta.id
-    }, 500)
+    const that = this
+    this.$router.onReady(() => {
+      that.currentTab = that.$route.meta.id
+    })
     window.myApp = this
     // open websocket
     // this.$store.dispatch('openWebSocketFunction', {
@@ -86,6 +121,7 @@ export default {
   watch: {
     $route (to, from) {
       console.log(to)
+      this.loading = true
       this.currentTab = to.meta.id
       if (to.meta.id > from.meta.id) {
         this.animationName = 'slide-left'
@@ -95,7 +131,23 @@ export default {
     }
   },
   mounted () {
+    var that = this
     window.Vue = this
+    window.addEventListener('beforeunload', function (e) {
+      console.log('I want to cancel')
+      // Cancel the event
+      e.preventDefault()
+      // Chrome requires returnValue to be set
+      that.$store.dispatch('disconnectFunc')
+    })
+    // this.connection()
+    this.$store.dispatch('connectFunc', {
+      userId: '1606060960',
+      subscribes: ['/user/1606060960/queue/getResponse'],
+      onmessage: this.onmessage,
+      connectCallback: this.onmessage,
+      errorCallBack: this.onerror
+    })
   }
 }
 </script>
@@ -152,21 +204,21 @@ export default {
   }
 }
 .slide-left-enter-active {
-  animation: slideInLeft 0.3s forwards;
+  animation: slideInLeft 0.1s forwards;
   z-index: 5;
 }
 
 .slide-left-leave-active {
-  animation: slideLeftOut 0.3s forwards;
+  animation: slideLeftOut 0.1s forwards;
   z-index: 3;
 }
 .slide-right-enter-active {
-  animation: slideInRight 0.3s forwards;
+  animation: slideInRight 0.1s forwards;
   z-index: 5;
 }
 
 .slide-right-leave-active {
-  animation: slideRightOut 0.3s forwards;
+  animation: slideRightOut 0.1s forwards;
   z-index: 3;
 }
 #app {
@@ -202,5 +254,17 @@ export default {
   height: 14px;
   line-height: 14px;
   font-size: 12px;
+}
+#red-icon {
+  position: absolute;
+  right: calc(50% - 20px);
+  top: 5px;
+  background-color: red;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  color: white;
+  font-size: 10px;
+  text-align: center;
 }
 </style>

@@ -1,10 +1,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.UserDAO">
+<!--    注册-->
     <insert id="save" parameterType="User" >
-        insert into staff values (#{id},#{username},#{dept},#{password},#{sex},#{status},#{registerTime},#{icon},#{telNumber},#{email})
+        insert into staff values (#{id},#{username},#{dept},
+        #{password},#{sex},#{telNumber},#{email},#{icon},
+        #{status},#{conpanyId},#{originId},#{registerTime})
     </insert>
+<!--    找到用户-->
     <select id="findByTel" parameterType="String" resultType="User">
-        select id,username,dept,password,sex,status,registerTime,icon,telNumber,email
+        select *
         from staff where telNumber=#{telNumber}
     </select>
 

@@ -1,6 +1,6 @@
 package cn.swu.pigeon.service;
 
-import cn.swu.pigeon.entity.Activity;
+import cn.swu.pigeon.entity.Application;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 
@@ -26,9 +26,9 @@ public interface GovernService {
      * @return
      */
     //查看活动
-    List<Activity> findActivity();
+    List<Application> findApplication();
     //审批活动
-    void approveActivity(String id,String status);
+    void approveApplication(String id,String status);
 
     /**
      * 查看签到/未签到/请假情况
@@ -43,9 +43,16 @@ public interface GovernService {
     List<Record> findLeaved(Date theTime);
 
     //查看请假
-    List<Record> findLeave();
+    List<Record> findLeave(Date date);
     //审批请假
     void approveLeave(String id,String status);
+
+    /**
+     * 统计已签到的人数和未签到的人数，根据当前用户注册表而言
+     * @return
+     */
+    int cSigned();
+    int cUnsigned();
 
 
 }

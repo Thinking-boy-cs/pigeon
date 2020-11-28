@@ -45,7 +45,7 @@
         methods: {
             //提交活动
             backAct() {
-                axios.post("http://localhost:8989/api/pigeon/activity/approveActivity?",this.activityId,this.status).then(res => {
+                axios.post("http://localhost:8989/api/pigeon/application/approveActivity?",this.activityId,this.status).then(res => {
                     console.log(res.data);
                     if (!res.data.status) {
                         alert(res.data.msg + "修改成功!");

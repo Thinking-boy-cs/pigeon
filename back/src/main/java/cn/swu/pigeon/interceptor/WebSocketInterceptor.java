@@ -33,6 +33,8 @@ public class WebSocketInterceptor implements HandshakeInterceptor
       HttpSession session = serverHttpRequest.getServletRequest().getSession();
       // Map parameterMap = serverHttpRequest.getServletRequest().getParameterMap();
       log.info("In Interceptor:");
+      log.info("[Interceptor]:  sessionid:" + session.getId());
+
       // System.out.println(parameterMap);
       if (session != null)
       {

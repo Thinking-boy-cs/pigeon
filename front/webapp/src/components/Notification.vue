@@ -8,17 +8,50 @@
     </div>
     <div id="content-container">
       <div class="title-container">
-        <a-icon id="feature-icon1" type="calendar"></a-icon>
-        <a id="calendar" @click="showDrawer">日历</a>
-        <a-divider type="vertical" />
-        <i
+        <a-row>
+        <a-col :span="12" @click="showDrawer">
+        <!-- <a-icon id="feature-icon1" type="calendar"></a-icon> -->
+          <a-avatar
+          :size="30"
+          style="backgroundColor: #52c41a"
+          icon="calendar"
+          id="feature-icon1"
+        /><br />
+        <a id="calendar">日历</a>
+            </a-col>
+             <a-col :span="12">
+        <!-- <i
           class="fa fa-check-square-o"
           id="feature-icon2"
           aria-hidden="true"
-        ></i>
+        ></i> -->
+        <a-avatar
+          :size="30"
+          style="backgroundColor: #FCCF31"
+          icon="schedule"
+          id="feature-icon1"
+        /><br />
         <a id="todo">待办</a>
+         </a-col>
+        </a-row>
       </div>
-      <div id="notification1">
+      <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i" @click="$router.push({path:'/getConv/'+item.id})">
+        <a-avatar
+          class="notify-avatar"
+          :size="64"
+          :style="{backgroundColor: item.background}"
+          :icon="item.icon"
+        />
+        <div class="notify-right">
+          <div class="notify-head">
+            <div class="notify-title">{{item.name}}</div>
+            <div class="notify-time">{{item.lastest}}</div>
+          </div>
+          <div class="notify-preview">{{item.preview}}</div>
+          <div class="notify-red-icon" v-if="item.unRead !== 0">{{item.unRead}}</div>
+        </div>
+      </div>
+      <!-- <div id="notification1">
         <a-avatar
           :size="64"
           style="backgroundColor: #f56a00"
@@ -38,7 +71,7 @@
           id="admin"
         />
         <div id="info2">管理员通知 <br /><span>【管理员提醒】</span></div>
-      </div>
+      </div> -->
       <a-drawer
         title="Basic Drawer"
         placement="left"
@@ -65,9 +98,49 @@ export default {
   data () {
     return {
       visible: false,
-      check: {
-        date: 1,
-        type: 'warning'
+      CheckinStatus: {
+        'attendanceDate': [
+          {
+            date: '2020-04-1',
+            state: 0// 正常 green
+          },
+          {
+            date: '2020-04-2',
+            state: 1// 缺勤 yellow
+          }
+        ]
+      },
+      messageData: {
+        chats: [
+          {
+            type: 'build-in',
+            name: '待处理提醒',
+            icon: 'bell',
+            background: '#f56a00',
+            avatar: '',
+            preview: '【签到提醒】2020-11-24 部门签到',
+            lastest: '2020-11-24 17:00',
+            unRead: 0,
+            id: '1',
+            data: [
+              {'id': '192f01199d0c499', 'userId': '1606060960', 'receiverList': ['1606016550', '1606060960'], 'isToGroup': null, 'content': 'dada 结束了', 'url': '41d145f2941846c', 'time': '2020-11-26 01:34:10'}
+            ]
+          },
+          {
+            type: 'build-in',
+            name: '通知公告',
+            icon: 'user',
+            background: '#1890ff',
+            avatar: '',
+            preview: '【通知】下午进行体检',
+            lastest: '2020-11-24 17:00',
+            unRead: 0,
+            id: '0',
+            data: [
+
+            ]
+          }
+        ]
       }
     }
   },
@@ -114,6 +187,53 @@ export default {
   width: 100%;
   top: 58px;
 }
+.notify-container {
+  width: 100%;
+  height: 90px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  position: relative;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+.notify-avatar {
+  float: left;
+  margin-right: 20px;
+}
+.notify-right {
+  position: relative;
+  width: calc(100% - 84px);
+  // height: 90px;
+  margin-left: 84px;
+}
+.notify-head {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.notify-title {
+  font-weight: bold;
+  float: left;
+}
+.notify-time {
+  float: right;
+  font-size: 10px;
+}
+.notify-red-icon {
+  position: absolute;
+  right: 0px;
+  top: 35px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: white;
+}
 #notification1 {
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   height: 90px;
@@ -123,7 +243,6 @@ export default {
 }
 #bell {
   float: left;
-  margin-left: 20px;
   margin-top: 15px;
 }
 #notification2 {
@@ -158,7 +277,8 @@ export default {
   background-color: white;
   position: relative;
   width: 100%;
-  height: 10vh;
+  // height:
+  padding: 10px;
   box-shadow:1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 #notification-header {
@@ -166,25 +286,18 @@ export default {
   padding-top: 70px;
 }
 #feature-icon1 {
-  font-size: 24px;
-  height: 40px;
-  color: @text-color;
-  padding-top: 2vh;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #feature-icon2 {
-  font-size: 24px;
-  height: 40px;
-  color: @text-color;
-  padding-left: 70px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #calendar {
-  padding-right: 70px;
   color: @text-color;
-  font-weight: bold;
 }
 #todo {
   color: @text-color;
-  font-weight: bold;
 }
 .events {
   list-style: none;

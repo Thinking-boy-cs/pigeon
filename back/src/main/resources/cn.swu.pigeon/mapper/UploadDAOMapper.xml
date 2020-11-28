@@ -1,6 +1,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.UploadDao">
+<!--    上传文件-->
     <insert id="upload" parameterType="Upload" useGeneratedKeys="true" keyProperty="id">
-        insert into picrecord values (#{id},#{username},#{imgPath})
+        insert into picrecord values (#{id},#{userId},#{imgPath},#{companyId})
     </insert>
+<!--    找到用户对应的上传文件信息-->
+    <select id="findFile" parameterType="String" resultType="Upload">
+        select *
+        from picrecord
+        where userId=#{userId}
+    </select>
 </mapper>
