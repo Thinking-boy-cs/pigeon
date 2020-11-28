@@ -2,7 +2,8 @@
     "recents": [
         {
             "name": "签到",
-            "icon": "environment"
+            "icon": "environment",
+            "link": "/Signin"
         },
         {
             "name": "请假",
@@ -19,6 +20,11 @@
         {
             "name": "地图",
             "icon": "compass"
+        },
+        {
+            "name": "发布",
+            "icon": "upload",
+            "link": "/ManagePage"
         }
     ]
 }

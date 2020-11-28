@@ -1,14 +1,14 @@
 <!--
  * @Date: 2020-11-15 15:48:03
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-22 04:14:48
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-24 18:36:04
 -->
 <template>
   <div id="header-background">
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" @click="$router.go(-1)" />
+          <a-icon type="left" @click="$router.go(-1)" style="color: white"/>
         </div>
       </div>
 
@@ -109,6 +109,7 @@
 
         <a-form-model-item>
           <a-radio :defaultChecked="false" v-model="submitForm.user.agree"
+          style="color: white"
             >勾选表示同意<a href="#">《用户使用协议》</a></a-radio
           >
         </a-form-model-item>
@@ -130,7 +131,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-        
+
   </div>
 </template>
 
@@ -139,7 +140,8 @@ export default {
   data () {
     let validatePass = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('密码不能为空'))
+        callback(new Error(' '))
+        this.$message.error('密码不能为空')
       } else {
         if (this.submitForm.user.confirm !== '') {
           this.$refs.ruleForm.validateField('confirm')
@@ -149,9 +151,11 @@ export default {
     }
     let validatePass2 = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请再输入一次密码'))
+        callback(new Error(' '))
+        this.$message.error('请再输入一次密码')
       } else if (value !== this.submitForm.user.password) {
-        callback(new Error('两次输入不一致！'))
+        callback(new Error(' '))
+        this.$message.error('两次输入不一致！')
       } else {
         callback()
       }
@@ -179,12 +183,18 @@ export default {
     handleSubmit (e) {
       var that = this
       console.log(this.submitForm)
-      this.submitForm.data = this.submitForm.user
+      const user = this.submitForm.user
       // let postData = new FormData()
       // postData.append('code', this.submitForm.code)
       // postData.append('user', this.submitForm.user)
       this.$axios
-        .post('/api/pigeon/user/register1', that.submitForm)
+        .post('/api/pigeon/user/register1', {
+          'data': {
+            'username': user.username,
+            'password': user.password
+          },
+          'code': that.submitForm.code
+        })
         .then((res) => {
           console.log(res.data)
           if (res.data) {
@@ -231,7 +241,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "../style/index.less";
 
 * {
@@ -255,11 +265,11 @@ export default {
 .header-title {
   font-size: 37px;
   font-weight: bolder;
-  color: @text-color;
+  color: white;
 }
 .header-second-title {
   font-size: 18px;
-  color: @text-color-secondary;
+  color: white;
 }
 #form-container {
   position: relative;
@@ -293,7 +303,7 @@ export default {
 
 #header-background {
   // background: url(../img/05.jpg) no-repeat fixed;
-  background: linear-gradient(-45deg,#1904E5 10%, #FAB2FF,#F6D242, #FF52E5);
+  background: linear-gradient(-45deg,#1904E5 10%, #F067B4,#3C8CE7, #FF52E5);
   animation: gradientBG 7s ease infinite;
   // background-size: 100% 100%;
   background-size: 400% 400%;

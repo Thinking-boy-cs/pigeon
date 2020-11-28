@@ -79,15 +79,18 @@ export default {
     return {
       form: {
         id: '',
-        password: '',
-        wsUrl: 'ws://127.0.0.1:5000/api/pigeon/ws',
-        loadingWS: this.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
-      }
+        password: ''
+        // loadingWS: this.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
+      },
+      wsUrl: '/api/pigeon/ws',
+      msg: null
     }
   },
   methods: {
-    onOpen: function () {
+    onOpen () {
       console.log('Opened')
+      setTimeout(this.msg, 100)
+      this.$router.push({ path: '/' })
     },
     onMessage: function (e) {
       console.log('GetMessage: ', e)
@@ -124,12 +127,10 @@ export default {
         console.log(res)
         if (res.data && res.data.status === 0) {
           window.localStorage.setItem('user', JSON.stringify(res.data.data))
-          const msg = this.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
-          that.initWS().then(() => {
-            setTimeout(msg, 100)
-            that.$router.push({ path: '/' })
-          })
-
+          that.msg = that.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
+          that.$router.push({ path: '/' })
+          setTimeout(that.msg, 1000)
+          // that.initWS()
           // setTimeout(() => {
           //   // this.$message.success({ content: '跳转成功', key, duration: 2 })
           // }, 1000)
@@ -174,6 +175,8 @@ export default {
   position: relative;
   box-sizing: border-box;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 #header-background:after {
   // background: url(../img/gezi.png) no-repeat fixed;
@@ -195,6 +198,7 @@ export default {
 #header-title {
   margin-bottom: 50px;
   text-align: center  ;
+  position: relative;
 }
 * {
   margin: 0;
@@ -231,9 +235,9 @@ export default {
   width: calc(100% - 60px);
   margin-left: 30px;
   border-radius: 20px 20px 0px 0px;
-  height: 390px;
+  height: 52vh;
   bottom: 0;
-  position: absolute;
+  position: fixed;
   z-index: 99;
 }
 #username,

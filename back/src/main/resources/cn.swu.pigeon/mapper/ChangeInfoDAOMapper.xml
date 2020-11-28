@@ -1,8 +1,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.ChangeInfoDAO">
+<!--    修改用户信息-->
     <update id="changeInfo" parameterType="User">
         UPDATE staff
-        SET sex=#{sex},icon = #{icon},telNumber=#{telNumber},email=#{email}
+        SET sex=#{sex},icon = #{icon},telNumber=#{telNumber},email=#{email},signature=#{signature}
         where id=#{id};
     </update>
 </mapper>    

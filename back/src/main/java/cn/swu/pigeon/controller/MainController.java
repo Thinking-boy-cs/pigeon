@@ -12,10 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import cn.swu.pigeon.entity.User;
-
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,10 +26,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 @Controller
+@Slf4j
 public class MainController {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private SimpMessagingTemplate template;
+    
+    @ResponseBody
+    @RequestMapping("/sendMessage")
+    public String sender() {
+        log.info("msg");
+        template.convertAndSendToUser("1606060960448", "/queue/getResponse", "test!");
+        return "...";
+    }
 
     @RequestMapping("/page")
     public String loginPage()
@@ -63,6 +75,16 @@ public class MainController {
 
         }
         return false;
+    }
+
+    @RequestMapping("404")
+    public String errorPage404() {
+        return "404.html";
+    }
+
+    @RequestMapping("500")
+    public String errorPage500() {
+        return "500";
     }
 }
 
