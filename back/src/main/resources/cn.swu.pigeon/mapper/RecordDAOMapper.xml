@@ -2,7 +2,7 @@
 <mapper namespace="cn.swu.pigeon.dao.RecordDAO">
 <!--    用户签到操作-->
     <insert id="record" parameterType="Record">
-        insert into signrecord values (#{id},#{temperature},#{nation},#{province},#{city},#{signTime},#{location},#{longitude},#{latitude},#{activityId},#{companyId})
+        insert into signrecord values (#{id},#{temperature},#{nation},#{province},#{city},#{signTime},#{location},#{longitude},#{latitude},#{activityId},#{companyId}, #{status})
     </insert>
 <!--    用户查看自己的签到信息-->
     <select id="find" parameterType="String" resultType="Record">

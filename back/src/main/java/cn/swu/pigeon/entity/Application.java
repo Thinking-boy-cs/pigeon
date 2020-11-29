@@ -1,8 +1,7 @@
 package cn.swu.pigeon.entity;
 
 import java.util.Date;
-
-
+import java.util.List;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -14,6 +13,7 @@ public class Application {
     private int id;
     private String activityName;
     private String applicant;
+    private List<String> participants;
     private String approver;
     private Date startTime;
     private Date endTime;
