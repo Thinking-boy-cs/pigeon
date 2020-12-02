@@ -1,17 +1,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.ActivityDao">
-    <insert id="submitAct" parameterType="Activity" useGeneratedKeys="true" keyProperty="id">
-        insert into activity
+    <!--    用户向管理员提交申请-->
+    <insert id="submitApp" parameterType="Application" useGeneratedKeys="true" keyProperty="id">
+        insert into application
         values (#{id},#{activityName},#{applicant},#{approver},#{startTime},#{endTime},#{status},#{submitTime})
     </insert>
-    <!--save-->
-    <select id="findAct" parameterType="String" resultType="Activity">
+    <!--    用户查看自己的申请-->
+    <select id="findApp" parameterType="String" resultType="Application">
         select *
-        from activity
+        from application
         where applicant = (#{id})
     </select>
-    <delete id="backAct" parameterType="int">
-        delete from activity
+    <!--    用户撤回自己的申请-->
+    <delete id="backApp" parameterType="int">
+        delete from application
         where id= #{id}
     </delete>
+    <select id="getById" parameterType="String" resultType="Activity">
+        select *
+        from activity
+        where id = (#{id})
+    </select>
+    <select id="getByUserId" parameterType="String" resultType="Activity">
+        select `activity`.*
+        from user_activity, activity
+        where `activity`.id=`user_activity`.activityId and `user_activity`.userId = (#{id})
+    </select>
+    <select id="getStatus" parameterType="String" resultType="Integer">
+        select status
+        from user_activity
+        where userId=#{userId} and activityId=#{activityId}
+    </select>
+    <select id="getRelatedUsers" parameterType="String" resultType="Activity">
+        select `staff`.*
+        from user_activity, staff
+        where `user_activity`.activityId=(#{id}) and `user_activity`.userId = `staff`.id
+    </select>
+    <insert id="insertActivity" parameterType="Activity" keyProperty="id">
+        insert into activity
+        values (#{id},#{name},#{approverId},#{isOnce},#{type})
+    </insert>
+    <insert id="participate" parameterType="String" keyProperty="id">
+        insert into user_activity
+        values (#{id},#{activityId},#{userId})
+    </insert>
+    <update id="sign" parameterType="String">
+        update user_activity set status=1 
+        where (userId=#{userId}) and activityId=(#{activityId})
+    </update>
+
 </mapper>

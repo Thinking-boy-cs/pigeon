@@ -36,7 +36,7 @@
         methods: {
             //提交活动
             backAct() {
-                axios.post("http://localhost:8989/api/pigeon/activity/backout?",this.activityId).then(res => {
+                axios.post("http://localhost:8989/api/pigeon/application/backout?",this.activityId).then(res => {
                     console.log(res.data);
                     if (!res.data.status) {
                         alert(res.data.msg + ",撤销成功!");

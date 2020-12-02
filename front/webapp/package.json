@@ -20,10 +20,12 @@
     "less-loader": "^5.0.0",
     "material-design-icons": "^3.0.1",
     "moment": "^2.29.1",
+    "reqwest": "^2.0.5",
     "sockjs-client": "^1.5.0",
     "stompjs": "^2.3.3",
     "vue": "^2.5.2",
     "vue-baidu-map": "^0.21.22",
+    "vue-infinite-scroll": "^2.0.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.5.1"
   },

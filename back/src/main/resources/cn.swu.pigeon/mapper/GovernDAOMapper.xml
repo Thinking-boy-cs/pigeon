@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.GovernDao">
-<!--    对用户的增删改查-->
+    <!--    对用户的增删改查-->
     <select id="findUser" parameterType="String" resultType="User">
         select id,username,dept,password,sex,status,registerTime,icon,telNumber,email
         from staff
@@ -24,20 +24,20 @@
     </select>
 
 <!--    对活动的管理(未考虑时间)-->
-    <select id="findActivity" parameterType="String" resultType="Activity">
+    <select id="findApplication" parameterType="String" resultType="Application">
         select id,activityName,applicant,approver,startTime,endTime,status,submitTime
-        from activity
+        from application
     </select>
 
-    <update id="approveActivity" parameterType="String">
-        update activity
+    <update id="approveApplication" parameterType="String">
+        update application
         set status=#{param2}
         where id=#{param1}
     </update>
 
-<!--    已签到/未签到/请假-->
-<!--    采用时间查询，当前存在于signrecord就是签到了的，存在于请假表的就是请假的，不存在于上述两个表的就是未签到的-->
-<!--    （都是一些表的查询）-->
+    <!--    已签到/未签到/请假-->
+    <!--    采用时间查询，当前存在于signrecord就是签到了的，存在于请假表的就是请假的，不存在于上述两个表的就是未签到的-->
+    <!--    （都是一些表的查询）-->
     <select id="findSigned" parameterType="Date" resultType="Record">
         select *
         from signrecord
@@ -61,10 +61,24 @@
         select *
         from vacation
     </select>
-
+<!--    对用户请假的处理-->
     <update id="approveLeave" parameterType="String">
         update vacation
         set state=#{param2}
         where id=#{param1}
     </update>
+
+    <!--    未签到人员统计，涉及signrecord 和 staff两张表-->
+    <select id="cUnsigned"  resultType="int">
+        SELECT count(*)
+        from staff SS
+        where SS.id not in  (SELECT rr.id from signrecord rr);
+    </select>
+
+    <!--    统计已签到人员的总数，涉及signrecord 和 staff两张表-->
+    <select id="cSigned"  resultType="int">
+        SELECT COUNT(*)
+        FROM staff ss
+        where ss.id in (SELECT rr.id from signrecord rr );
+    </select>
 </mapper>

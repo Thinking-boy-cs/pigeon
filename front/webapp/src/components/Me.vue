@@ -101,10 +101,10 @@ export default {
     iconUrl () {
       var that = this
       console.log(this.userData.icon
-        ? '/api/pigeon/pthotos/' + this.userData.icon
+        ? '/api/pigeon/photos/' + this.userData.icon
         : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png')
       return this.userData.icon
-        ? '/api/pigeon/pthotos/' + this.userData.icon
+        ? '/api/pigeon/photos/' + this.userData.icon
         : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
     }
   },

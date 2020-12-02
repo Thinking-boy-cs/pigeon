@@ -13,7 +13,7 @@
         <div id="avatar"><a-avatar :size="64" :src="iconUrl" /></div>
         <div id="userinfo">
           <a id="username">{{ userData.username }}</a>
-          <div id="apartment"> {{ userData.dept ? userData.dept : "无" }}</div>
+          <div id="apartment">{{ userData.dept ? userData.dept : "无" }}</div>
         </div>
         <div id="leave">
           <a-icon type="audit" style="font-size: 24px" />
@@ -21,8 +21,10 @@
         </div>
       </div>
       <div id="main-container">
-        <div id="sign-button">
-          <div id="sign-title">打卡</div>
+        <div id="title">{{ activity ? activity.name : "" }}</div>
+        <div id="sign-button" :class="{'signed': signed, 'unsign': !signed}" @click="signin">
+          <div id="sign-title" v-if="!loading">打卡</div>
+          <div id="sign-title" v-else><a-icon type="loading" /></div>
         </div>
         <div id="sign-map">
           <a-icon type="environment" id="environment" theme="filled" />
@@ -36,30 +38,76 @@
 <script>
 export default {
   data () {
-    return { userData: null }
+    return {
+      userData: null,
+      activity: null,
+      signed: false,
+      loading: false,
+      text: '打卡'
+    }
   },
   computed: {
     iconUrl () {
       var that = this
-      console.log(this.userData.icon
-        ? '/api/pigeon/pthotos/' + this.userData.icon
-        : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png')
+      console.log(
+        this.userData.icon
+          ? '/api/pigeon/pthotos/' + this.userData.icon
+          : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+      )
       return this.userData.icon
         ? '/api/pigeon/pthotos/' + this.userData.icon
         : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
     }
   },
   methods: {
+    signin () {
+      const that = this
+
+      this.$axios
+        .get('/api/pigeon/application/sign?activityId=' + this.$route.params.id)
+        .then(res => {
+          console.log(res)
+          if (res.data && res.data.status === 0) { setTimeout(() => { that.signed = true; that.text = '已打卡' }, 800) }
+        })
+    },
+    getStatus () {
+      const that = this
+      this.loading = true
+      this.$axios
+        .get('/api/pigeon/application/getStatus?activityId=' + that.$route.params.id)
+        .then(res => {
+          console.log('???', res)
+          that.signed = res.data ? (res.data.data === 1) : false
+          that.text = that.signed ? '已打卡' : '打卡'
+          that.loading = false
+        })
+        .catch(res => {
+          that.$message.error('获取失败，请检查您的网络连接')
+          that.loading = false
+        })
+    }
   },
   created () {
+    const that = this
     this.userData = window.localStorage.getItem('user')
 
-    console.log(this.userData)
+    console.log('???', this.userData)
     if (this.userData) {
       this.userData = JSON.parse(this.userData)
     } else {
       this.$router.push({ path: '/login' })
     }
+    this.$axios
+      .get('/api/pigeon/application/getById?id=' + this.$route.params.id)
+      .then(res => {
+        console.log('???', res)
+        that.activity = res.data ? res.data.data : null
+        if (!that.activity) that.$message.error('获取失败')
+      })
+      .catch(res => {
+        that.$message.error('获取失败，请检查您的网络连接')
+      })
+    this.getStatus()
   }
 }
 </script>
@@ -78,6 +126,12 @@ export default {
 }
 .page-title {
   font-size: 20px;
+  font-weight: bold;
+}
+#title {
+  height: 60px;
+  line-height: 60px;
+  font-size: 16px;
   font-weight: bold;
 }
 #content-container {
@@ -116,6 +170,7 @@ export default {
   margin: 0 auto;
   align-self: end;
   bottom: 30px;
+  top: 20px;
 }
 #main-container {
   position: relative;
@@ -128,9 +183,16 @@ export default {
   display: flex;
   flex-direction: column;
 }
+.unsign {
+
+  background-color: #3291f8;
+}
+.signed {
+  background-color: @success-color;
+
+}
 #sign-button {
   position: relative;
-  background-color: #3291f8;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -148,14 +210,14 @@ export default {
   padding-left: 75px;
 }
 #sign-map {
-  padding-top:20px;
+  padding-top: 20px;
 }
 #environment {
   font-size: 20px;
   color: #3291f8;
 }
 #text {
-  font-size: 20px;
+  font-size: 16px;
   color: #3291f8;
   font-weight: bold;
 }

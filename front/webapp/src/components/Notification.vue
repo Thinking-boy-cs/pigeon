@@ -12,7 +12,7 @@
         <a-col :span="12" @click="showDrawer">
         <!-- <a-icon id="feature-icon1" type="calendar"></a-icon> -->
           <a-avatar
-          :size="64"
+          :size="30"
           style="backgroundColor: #52c41a"
           icon="calendar"
           id="feature-icon1"
@@ -26,7 +26,7 @@
           aria-hidden="true"
         ></i> -->
         <a-avatar
-          :size="64"
+          :size="30"
           style="backgroundColor: #FCCF31"
           icon="schedule"
           id="feature-icon1"
@@ -120,8 +120,11 @@ export default {
             avatar: '',
             preview: '【签到提醒】2020-11-24 部门签到',
             lastest: '2020-11-24 17:00',
-            unRead: 1,
-            id: '1'
+            unRead: 0,
+            id: '1',
+            data: [
+              {'id': '192f01199d0c499', 'userId': '1606060960', 'receiverList': ['1606016550', '1606060960'], 'isToGroup': null, 'content': 'dada 结束了', 'url': '41d145f2941846c', 'time': '2020-11-26 01:34:10'}
+            ]
           },
           {
             type: 'build-in',
@@ -132,7 +135,10 @@ export default {
             preview: '【通知】下午进行体检',
             lastest: '2020-11-24 17:00',
             unRead: 0,
-            id: '0'
+            id: '0',
+            data: [
+
+            ]
           }
         ]
       }
@@ -179,7 +185,6 @@ export default {
 #content-container {
   position: absolute;
   width: 100%;
-
   top: 58px;
 }
 .notify-container {
@@ -272,7 +277,8 @@ export default {
   background-color: white;
   position: relative;
   width: 100%;
-  height: 13vh;
+  // height:
+  padding: 10px;
   box-shadow:1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 #notification-header {
