@@ -4,7 +4,7 @@
     <insert id="save" parameterType="User" >
         insert into staff values (#{id},#{username},#{dept},
         #{password},#{sex},#{telNumber},#{email},#{icon},
-        #{status},#{conpanyId},#{originId},#{registerTime})
+        #{status},#{companyId},#{originId},#{registerTime}, #{signature})
     </insert>
 <!--    找到用户-->
     <select id="findByTel" parameterType="String" resultType="User">

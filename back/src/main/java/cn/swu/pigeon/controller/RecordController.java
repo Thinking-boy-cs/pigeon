@@ -159,8 +159,9 @@ public class RecordController {
                 activity.setId(UuidGenerator.getUuid(15));
                 activity.setName((String)req.get("name"));
                 activity.setIsOnce("1");
-                activity.setApproverId((String)req.get("userId"));
+                activity.setApproverId(thisUser.getId());
                 activity.setType(ActivityType.CHECKIN.getId());
+                
                 activityService.insertActivity(activity);
                 // connect 
                 for (String receiver : receivers) {
@@ -171,13 +172,13 @@ public class RecordController {
                 Notification eventEnd = new Notification();
                 eventStart.setContent(req.get("name") + " 开始了");
                 eventStart.setId(UuidGenerator.getUuid(15));
-                eventStart.setUserId((String) req.get("userId"));
+                eventStart.setUserId(thisUser.getId());
                 eventStart.setUrl(activity.getId());
                 eventStart.setTime((String)req.get("startTime"));
                 eventEnd.setTime((String)req.get("endTime"));
                 eventEnd.setContent(req.get("name") + " 结束了");
                 eventEnd.setId(UuidGenerator.getUuid(15));
-                eventEnd.setUserId((String) req.get("userId"));
+                eventEnd.setUserId(thisUser.getId());
                 eventEnd.setUrl(activity.getId());
 
                 
@@ -189,6 +190,8 @@ public class RecordController {
 
                 deltaToStart = (deltaToStart <= 0) ? 1 : deltaToStart;
                 deltaToEnd = (deltaToEnd <= 0) ? 10 : deltaToEnd;
+                map.put("deltaToStart", deltaToStart);
+                map.put("deltaToEnd", deltaToEnd);
                 try {
                     rabbitTemplate.convertAndSend(
                             exchangeName, directKey, (Notification) (objectMapper

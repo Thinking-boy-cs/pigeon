@@ -13,7 +13,7 @@
             <a-icon type="container" />
             发布签到
           </span>
-          <div id="first-container">
+          <div id="content-wrapper">
             <a-form-model
               ref="ruleForm"
               :model="form"
@@ -80,13 +80,13 @@
           </span>
           Tab 2
         </a-tab-pane>
-        <a-tab-pane key="3">
+        <!-- <a-tab-pane key="3">
           <span slot="tab">
             <a-icon type="android" />
             功能页3
           </span>
           Tab 3
-        </a-tab-pane>
+        </a-tab-pane> -->
       </a-tabs>
     </div>
   </div>
@@ -131,8 +131,8 @@ export default {
           ]
         }
       ],
-      labelCol: { span: 6 },
-      wrapperCol: { span: 12 },
+      labelCol: { span: 8 },
+      wrapperCol: { span: 16 },
       other: '',
       form: {
         name: '',
@@ -231,16 +231,21 @@ export default {
   left: 15px;
   top: 30px;
   height: 75vh;
-  line-height: 40px;
 }
-
 #content-container {
   background-color: white;
   position: absolute;
   width: 100%;
   top: 59px;
 }
-.ant-form-item-label {
-  line-height: 40px;
+#content-wrapper {
+  position: relative;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+}
+#content-wrapper .ant-form-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 </style>

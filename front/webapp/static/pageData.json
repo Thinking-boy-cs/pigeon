@@ -24,7 +24,8 @@
         {
             "name": "发布",
             "icon": "upload",
-            "link": "/ManagePage"
+            "link": "/ManagePage",
+            "admin": true
         }
     ]
 }

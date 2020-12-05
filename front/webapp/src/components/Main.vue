@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-15 17:44:38
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-26 04:28:00
+ * @LastEditTime: 2020-11-26 06:59:51
 -->
 <template>
   <div id="app"  key="0">
@@ -59,7 +59,8 @@
 export default {
   data () {
     return {
-      pageData: {}
+      pageData: {},
+      id: null
     }
   },
   methods: {
@@ -67,14 +68,21 @@ export default {
       this.$router.push({ path: uri })
     }
   },
+  computed: {
+
+  },
   created () {
     var that = this
+    this.user = JSON.parse(window.localStorage.getItem('user'))
     // get page layout
     this.$axios
       .get('/static/pageData.json')
       .then(function (res) {
         console.log(res.data)
         that.pageData = res.data
+        that.pageData.recents = that.pageData.recents.filter((item) => {
+          return (!item.admin) || (that.user.id === '1606060960')
+        })
       })
       .catch(function (error) {
         console.log(error)
