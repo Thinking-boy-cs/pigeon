@@ -18,16 +18,16 @@
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Pigeon">
-        <application android:name=".MainActivity"
+        <activity android:name=".MainActivity"
                   android:screenOrientation = "portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </application>
-        <application android:name="com.example.pigeon.TestActivity">
-        </application>
+        </>
+        <activity android:name="com.example.pigeon.TestActivity">
+        </>
     </application>
 
 </manifest>
