@@ -237,7 +237,7 @@ export default {
   border-radius: 20px 20px 0px 0px;
   height: 52vh;
   bottom: 0;
-  position: fixed;
+  position: fixed; 
   z-index: 99;
 }
 #username,
