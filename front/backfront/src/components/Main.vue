@@ -28,48 +28,60 @@
           :style="{ height: '100%', borderRight: 0 }"
         >
           <a-sub-menu key="sub1">
-            <span slot="title"><a-icon type="user" />subnav 1</span>
+            <span slot="title"><a-icon type="user" />人员管理</span>
             <a-menu-item key="1">
-              option1
+              部门管理
             </a-menu-item>
             <a-menu-item key="2">
-              option2
+              员工管理
             </a-menu-item>
             <a-menu-item key="3">
-              option3
+              生日关怀
             </a-menu-item>
             <a-menu-item key="4">
-              option4
+              人事变动
+            </a-menu-item>
+            <a-menu-item key="5">
+              人事报表
             </a-menu-item>
           </a-sub-menu>
-          <a-sub-menu key="sub2">
-            <span slot="title"><a-icon type="laptop" />subnav 2</span>
+          <a-sub-menu key="attendance">
+            <span slot="title"><a-icon type="laptop" />考勤管理</span>
             <a-menu-item key="5">
-              option5
+              签到活动
             </a-menu-item>
             <a-menu-item key="6">
-              option6
+              假期管理
             </a-menu-item>
             <a-menu-item key="7">
-              option7
-            </a-menu-item>
-            <a-menu-item key="8">
-              option8
+              考勤报表
             </a-menu-item>
           </a-sub-menu>
-          <a-sub-menu key="sub3">
-            <span slot="title"><a-icon type="notification" />subnav 3</span>
+          <a-sub-menu key="approval">
+            <span slot="title"><a-icon type="form" />审批管理</span>
             <a-menu-item key="9">
-              option9
+              信息收集
             </a-menu-item>
             <a-menu-item key="10">
-              option10
+              审批活动
             </a-menu-item>
-            <a-menu-item key="11">
-              option11
+          </a-sub-menu>
+          <a-sub-menu key="announcement">
+            <span slot="title"><a-icon type="notification" />通知公告</span>
+            <a-menu-item key="9">
+              分类管理
             </a-menu-item>
-            <a-menu-item key="12">
-              option12
+            <a-menu-item key="10">
+              公告管理
+            </a-menu-item>
+          </a-sub-menu>
+          <a-sub-menu key="statistic">
+            <span slot="title"><a-icon type="area-chart" />数据管理</span>
+            <a-menu-item key="9">
+              人事报表
+            </a-menu-item>
+            <a-menu-item key="10">
+              考勤报表
             </a-menu-item>
           </a-sub-menu>
         </a-menu>
@@ -105,6 +117,10 @@ export default {
 </script>
 
 <style>
+#components-layout-demo-top-side-2 {
+    width: 100vw;
+    height: 100vh;
+}
 #components-layout-demo-top-side-2 .logo {
   width: 120px;
   height: 31px;
