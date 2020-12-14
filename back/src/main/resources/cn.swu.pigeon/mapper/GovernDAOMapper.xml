@@ -14,10 +14,11 @@
         delete from staff where id=#{id}
     </delete>
 
-    <update id="updateUser" parameterType="String">
+    <update id="updateUser" parameterType="User">
         update userinfo set id=#{id},username=#{username},password=#{password},sex=#{sex},
         status=#{status},registerTime=#{registerTime},icon=#{icon},telNumber=#{telNumber},
-        email=#{email},hometown=#{hometown},companyId=#{companyId},signature=#{signature}
+        email=#{email},hometown=#{hometown},companyId=#{companyId},signature=#{signature},
+        salary=#{salary}
         where id=#{id}
     </update>
 

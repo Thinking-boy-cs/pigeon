@@ -22,7 +22,7 @@ public interface GovernDao {
     //删除用户
     void deleteUser(String id);
     //更新用户信息
-    void updateUser(String id);
+    void updateUser(User user);
     //查询特定用户信息
     User queryUser(String id);
 
