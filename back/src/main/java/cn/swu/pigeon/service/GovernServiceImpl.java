@@ -2,6 +2,7 @@ package cn.swu.pigeon.service;
 
 import cn.swu.pigeon.dao.GovernDao;
 import cn.swu.pigeon.entity.Application;
+import cn.swu.pigeon.entity.Leave;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,17 +73,17 @@ public class GovernServiceImpl implements GovernService{
      * @return
      */
     @Override
-    public List<Record> findSigned(Date theTime) {
+    public List<Record> findSigned(String theTime) {
         return governDao.findSigned(theTime);
     }
 
     @Override
-    public List<Record> findUnsigned(Date theTime) {
+    public List<User> findUnsigned(String theTime) {
         return governDao.findUnsigned(theTime);
     }
 
     @Override
-    public List<Record> findLeaved(Date theTime) {
+    public List<Leave> findLeaved(String theTime) {
         return governDao.findLeaved(theTime);
     }
 
@@ -90,10 +91,10 @@ public class GovernServiceImpl implements GovernService{
      * 对请假的管理
      * @return
      */
-    @Override
-    public List<Record> findLeave(Date date) {
-        return governDao.findLeave(date);
-    }
+//    @Override
+//    public List<Record> findLeave(Date date) {
+//        return governDao.findLeave(date);
+//    }
 
     @Override
     public void approveLeave(String id, String status) {
