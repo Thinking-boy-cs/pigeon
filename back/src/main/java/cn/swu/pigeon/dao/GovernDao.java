@@ -23,6 +23,8 @@ public interface GovernDao {
     void deleteUser(String id);
     //更新用户信息
     void updateUser(String id);
+    //查询特定用户信息
+    User queryUser(String id);
 
     /**
      * 活动管理

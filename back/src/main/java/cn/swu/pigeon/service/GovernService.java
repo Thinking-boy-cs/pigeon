@@ -20,6 +20,8 @@ public interface GovernService {
     void deleteUser(User user);
     //修改用户信息
     void updateUser(User user);
+    //查询特定用户信息
+    User queryUser(String id);
 
     /**
      * 活动管理

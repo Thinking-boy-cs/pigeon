@@ -16,11 +16,13 @@
 
     <update id="updateUser" parameterType="String">
         update userinfo set id=#{id},username=#{username},password=#{password},sex=#{sex},
-        status=#{status},registerTime=#{registerTime},icon=#{icon},telNumber=#{telNumber},email=#{email} where id=#{id}
+        status=#{status},registerTime=#{registerTime},icon=#{icon},telNumber=#{telNumber},
+        email=#{email},hometown=#{hometown},companyId=#{companyId},signature=#{signature}
+        where id=#{id}
     </update>
 
-    <select id="queryUser" parameterType="int" resultType="String">
-        select id,username,password from userinfo where id=#{id}
+    <select id="queryUser" parameterType="String" resultType="User">
+        select * from staff where id=#{id}
     </select>
 
 <!--    对活动的管理(未考虑时间)-->

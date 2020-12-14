@@ -101,6 +101,26 @@ public class GovernController {
         }
         return map;
     }
+
+    /**
+     * 5.查询特定用户信息
+     */
+    @RequestMapping("queryUser")
+    public Map<String,Object> queryUser(@RequestBody String userId,HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            User u = governService.queryUser(userId);
+            map.put("status",0);
+            map.put("data",u);
+            map.put("msg","查询成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
+
     /**
      * 对签到的操作
      */
