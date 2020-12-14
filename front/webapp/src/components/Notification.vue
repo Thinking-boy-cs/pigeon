@@ -51,6 +51,7 @@
           <div class="notify-red-icon" v-if="item.unRead !== 0">{{item.unRead}}</div>
         </div>
       </div>
+      
       <!-- <div id="notification1">
         <a-avatar
           :size="64"
