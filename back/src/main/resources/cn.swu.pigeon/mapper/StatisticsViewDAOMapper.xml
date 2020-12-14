@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.swu.pigeon.dao.StatisticsViewDao">
+<!--    统计各个部门员工信息-->
+    <select id="dept_userNumber" parameterType="String" resultType="StatisticsCount">
+        select `name`,count(user_group.userId)
+        from user_group,`group`
+        where user_group.groupId = `group`.id and `group`.companyId = (#{companyId})
+    </select>
+    <!--    用户查看自己的签到信息-->
+    <select id="find" parameterType="String" resultType="Record">
+        select *
+        from signrecord
+        where id in (#{id})
+    </select>
+</mapper>
