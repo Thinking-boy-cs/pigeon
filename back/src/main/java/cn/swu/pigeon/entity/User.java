@@ -23,4 +23,5 @@ public class User {
     private String originId;
     private String signature;
     private float salary;
+    private String incomeLevel;
 }
