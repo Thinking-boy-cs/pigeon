@@ -47,6 +47,7 @@ public interface GovernDao {
     List<User> findUnsigned(String theTime);
     //查询某天处于请假的记录
     List<Leave> findLeaved(String theTime);
+    int leavedCount(String theTime);
 
 
     //审批请假
