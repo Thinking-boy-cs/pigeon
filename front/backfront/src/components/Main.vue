@@ -8,15 +8,9 @@
         :default-selected-keys="['2']"
         :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1">
-          nav 1
-        </a-menu-item>
-        <a-menu-item key="2">
-          nav 2
-        </a-menu-item>
-        <a-menu-item key="3">
-          nav 3
-        </a-menu-item>
+        <a-menu-item key="1"> nav 1 </a-menu-item>
+        <a-menu-item key="2"> nav 2 </a-menu-item>
+        <a-menu-item key="3"> nav 3 </a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout>
@@ -29,60 +23,32 @@
         >
           <a-sub-menu key="sub1">
             <span slot="title"><a-icon type="user" />人员管理</span>
-            <a-menu-item key="1">
-              部门管理
-            </a-menu-item>
-            <a-menu-item key="2">
-              员工管理
-            </a-menu-item>
-            <a-menu-item key="3">
-              生日关怀
-            </a-menu-item>
-            <a-menu-item key="4">
-              人事变动
-            </a-menu-item>
-            <a-menu-item key="5">
-              人事报表
-            </a-menu-item>
+            <a-menu-item key="1"> 部门管理 </a-menu-item>
+            <a-menu-item key="2"> 员工管理 </a-menu-item>
+            <a-menu-item key="3"> 生日关怀 </a-menu-item>
+            <a-menu-item key="4"> 人事变动 </a-menu-item>
+            <a-menu-item key="5"> 人事报表 </a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="attendance">
             <span slot="title"><a-icon type="laptop" />考勤管理</span>
-            <a-menu-item key="5">
-              签到活动
-            </a-menu-item>
-            <a-menu-item key="6">
-              假期管理
-            </a-menu-item>
-            <a-menu-item key="7">
-              考勤报表
-            </a-menu-item>
+            <a-menu-item key="5"> 签到活动 </a-menu-item>
+            <a-menu-item key="6"> 假期管理 </a-menu-item>
+            <a-menu-item key="7"> 考勤报表 </a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="approval">
             <span slot="title"><a-icon type="form" />审批管理</span>
-            <a-menu-item key="9">
-              信息收集
-            </a-menu-item>
-            <a-menu-item key="10">
-              审批活动
-            </a-menu-item>
+            <a-menu-item key="9"> 信息收集 </a-menu-item>
+            <a-menu-item key="10"> 审批活动 </a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="announcement">
             <span slot="title"><a-icon type="notification" />通知公告</span>
-            <a-menu-item key="9">
-              分类管理
-            </a-menu-item>
-            <a-menu-item key="10">
-              公告管理
-            </a-menu-item>
+            <a-menu-item key="9"> 分类管理 </a-menu-item>
+            <a-menu-item key="10"> 公告管理 </a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="statistic">
             <span slot="title"><a-icon type="area-chart" />数据管理</span>
-            <a-menu-item key="9">
-              人事报表
-            </a-menu-item>
-            <a-menu-item key="10">
-              考勤报表
-            </a-menu-item>
+            <a-menu-item key="9"> 人事报表 </a-menu-item>
+            <a-menu-item key="10"> 考勤报表 </a-menu-item>
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>
@@ -97,29 +63,51 @@
             background: '#fff',
             padding: '24px',
             margin: 0,
-            minHeight: '280px'
+            minHeight: '280px',
           }"
         >
-          Content
+          <!-- <Bar-charts :chartData="bardata"></Bar-charts>
+          <Line-charts :chartData="linedata"></Line-charts>
+          <Pie-charts :chartData="piedata"></Pie-charts> -->
         </a-layout-content>
       </a-layout>
     </a-layout>
   </a-layout>
 </template>
 <script>
+import BarCharts from './echarts_bar'
+import LineCharts from './echarts_line'
+import PieCharts from './echarts_pie'
 export default {
   data () {
     return {
-      collapsed: false
+      bardata: {
+        name: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+        data: [5, 20, 36, 10, 10, 20]
+      },
+      linedata: {
+        name: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+        data: [52, 2, 46, 15, 10, 30]
+      },
+      piedata: [
+        {value: 335, name: '直接访问'},
+        {value: 310, name: '邮件营销'},
+        {value: 234, name: '联盟广告'},
+        {value: 135, name: '视频广告'},
+        {value: 1548, name: '搜索引擎'}
+      ]
     }
+  },
+  components: {
+    BarCharts, LineCharts, PieCharts
   }
 }
 </script>
 
 <style>
 #components-layout-demo-top-side-2 {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 #components-layout-demo-top-side-2 .logo {
   width: 120px;
