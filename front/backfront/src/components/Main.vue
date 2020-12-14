@@ -23,63 +23,91 @@
       <a-layout-sider width="200" style="background: #fff">
         <a-menu
           mode="inline"
-          :default-selected-keys="['1']"
-          :default-open-keys="['sub1']"
+          :default-selected-keys="['groupmanage']"
+          :default-open-keys="['usermanage']"
           :style="{ height: '100%', borderRight: 0 }"
+           @select="onOpenChange"
         >
-          <a-sub-menu key="sub1">
-            <span slot="title"><a-icon type="user" />subnav 1</span>
-            <a-menu-item key="1">
-              option1
+          <a-sub-menu key="usermanage">
+            <span slot="title"><a-icon type="user" />人员管理</span>
+            <a-menu-item key="groupmanage">
+              部门管理
             </a-menu-item>
-            <a-menu-item key="2">
-              option2
+            <a-menu-item key="staffmanage">
+              员工管理
             </a-menu-item>
-            <a-menu-item key="3">
-              option3
+            <a-menu-item key="birthday">
+              生日关怀
             </a-menu-item>
-            <a-menu-item key="4">
-              option4
+            <a-menu-item key="personnel">
+              人事变动
             </a-menu-item>
-          </a-sub-menu>
-          <a-sub-menu key="sub2">
-            <span slot="title"><a-icon type="laptop" />subnav 2</span>
-            <a-menu-item key="5">
-              option5
-            </a-menu-item>
-            <a-menu-item key="6">
-              option6
-            </a-menu-item>
-            <a-menu-item key="7">
-              option7
-            </a-menu-item>
-            <a-menu-item key="8">
-              option8
+            <a-menu-item key="personalreport">
+              人事报表
             </a-menu-item>
           </a-sub-menu>
-          <a-sub-menu key="sub3">
-            <span slot="title"><a-icon type="notification" />subnav 3</span>
-            <a-menu-item key="9">
-              option9
+          <a-sub-menu key="attendance">
+            <span slot="title"><a-icon type="laptop" />考勤管理</span>
+            <a-menu-item key="signin">
+              签到活动
             </a-menu-item>
-            <a-menu-item key="10">
-              option10
+            <a-menu-item key="vacationmanage">
+              假期管理
             </a-menu-item>
-            <a-menu-item key="11">
-              option11
+            <a-menu-item key="attendancereport">
+              考勤报表
             </a-menu-item>
-            <a-menu-item key="12">
-              option12
+          </a-sub-menu>
+          <a-sub-menu key="approval">
+            <span slot="title"><a-icon type="form" />审批管理</span>
+            <a-menu-item key="infocollect">
+              信息收集
+            </a-menu-item>
+            <a-menu-item key="approvalmanage">
+              审批活动
+            </a-menu-item>
+          </a-sub-menu>
+          <a-sub-menu key="announcement">
+            <span slot="title"><a-icon type="notification" />通知公告</span>
+            <a-menu-item key="catemanage">
+              分类管理
+            </a-menu-item>
+            <a-menu-item key="announcemanage">
+              公告管理
+            </a-menu-item>
+          </a-sub-menu>
+          <a-sub-menu key="statistic">
+            <span slot="title"><a-icon type="area-chart" />数据管理</span>
+            <a-menu-item key="personnelreport">
+              人事报表
+            </a-menu-item>
+            <a-menu-item key="attendancereport">
+              考勤报表
             </a-menu-item>
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>
+      <router-view />
       <a-layout style="padding: 0 24px 24px">
-        <a-breadcrumb style="margin: 16px 0">
+        <div>
+            <a-breadcrumb :routes="routes">
+            <template slot="itemRender" slot-scope="{ route, params, routes, paths }">
+                <span v-if="routes.indexOf(route) === routes.length - 1">
+                {{ route.breadcrumbName }}
+                </span>
+                <router-link v-else :to="`${basePath}/${paths.join('/')}`">
+                {{ route.breadcrumbName }}
+                </router-link>
+            </template>
+            </a-breadcrumb>
+            <br />
+            {{ $route.path }}
+        </div>
+        <!-- <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>Home</a-breadcrumb-item>
           <a-breadcrumb-item>List</a-breadcrumb-item>
           <a-breadcrumb-item>App</a-breadcrumb-item>
-        </a-breadcrumb>
+        </a-breadcrumb> -->
         <a-layout-content
           :style="{
             background: '#fff',
@@ -100,11 +128,21 @@ export default {
     return {
       collapsed: false
     }
+  },
+  methods: {
+    onOpenChange (item, key, selectedKeys) {
+      console.log(item, key, selectedKeys)
+    }
   }
 }
 </script>
 
 <style>
+#components-layout-demo-top-side-2 {
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+}
 #components-layout-demo-top-side-2 .logo {
   width: 120px;
   height: 31px;
