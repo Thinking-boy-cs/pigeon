@@ -596,6 +596,192 @@ userId:"xxxxxxx"
 	msg:"删除成功"
   }
 ```   
+### 6. 某日已签到记录
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/findSigned      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	theTime &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp; &nbsp; &nbsp;List\<Record> &nbsp; 签到记录
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+theTime:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:[{xxx},{xxx},....]
+  }
+```   
+### 7. 某日未签到记录
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/findUnSigned      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	theTime &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp; &nbsp; &nbsp; List\<User> &nbsp; &nbsp; 签到记录
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+theTime:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:[{xxx},{xxx},....]
+  }
+```   
+### 8. 某日请假记录
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/findLeaved      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	theTime &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp; &nbsp; &nbsp;List\<Leave> &nbsp; 签到记录
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+theTime:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:[{xxx},{xxx},....]
+  }
+```   
+### 9. 某日已签到人数
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/countSigned      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	date &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 签到记录
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+date:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:20
+  }
+```   
+### 9. 某日未签到人数
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/countUnsigned      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	date &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 签到记录
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+date:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:20
+  }
+```   
+### 10. 某日请假人数
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/countLeaved      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	date &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 签到记录
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+date:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:20
+  }
+```   
 #后端~其他
 ## 1. 插入company表（管理员操作）
 请求地址      
