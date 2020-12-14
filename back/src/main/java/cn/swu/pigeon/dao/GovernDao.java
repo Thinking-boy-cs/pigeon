@@ -1,6 +1,7 @@
 package cn.swu.pigeon.dao;
 
 import cn.swu.pigeon.entity.Application;
+import cn.swu.pigeon.entity.Leave;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,7 +23,9 @@ public interface GovernDao {
     //删除用户
     void deleteUser(String id);
     //更新用户信息
-    void updateUser(String id);
+    void updateUser(User user);
+    //查询特定用户信息
+    User queryUser(String id);
 
     /**
      * 活动管理
@@ -39,18 +42,13 @@ public interface GovernDao {
      * @return
      */
     //查询某天已签到记录
-    List<Record> findSigned(Date theTime);
+    List<Record> findSigned(String theTime);
     //查询某天未签到记录
-    List<Record> findUnsigned(Date theTime);
+    List<User> findUnsigned(String theTime);
     //查询某天处于请假的记录
-    List<Record> findLeaved(Date theTime);
+    List<Leave> findLeaved(String theTime);
 
-    /**
-     * 请假管理
-     * @return
-     */
-    //找到所有请假
-    List<Record> findLeave(Date date);
+
     //审批请假
     void approveLeave(@Param("id") String id,@Param("status") String status);
 
@@ -58,6 +56,6 @@ public interface GovernDao {
      * 统计已签到的人数和未签到的人数，根据当前用户注册表而言
      * @return
      */
-    int cSigned();
-    int cUnsigned();
+    int cSigned(String theTime);
+    int cUnsigned(String theTime);
 }

@@ -127,4 +127,30 @@ public class StatisticsViewController {
         }
     }
 
+    //员工薪资情况人数统计
+    @RequestMapping("salary_userNumber")
+    public Map<String,Object> statisticsSalaryUserNumber(){
+        //测试
+        String companyId = "123456789012345";
+
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(companyId)){
+                List<StatisticsCount> ss = viewDataService.viewSalaryNumber(companyId);
+                map.put("status",0);
+                map.put("msg","查看成功");
+                map.put("data",ss);
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
+    }
+
 }

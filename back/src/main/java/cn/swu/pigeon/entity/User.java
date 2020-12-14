@@ -22,4 +22,6 @@ public class User {
     private String companyId;
     private String originId;
     private String signature;
+    private float salary;
+    private String incomeLevel;
 }

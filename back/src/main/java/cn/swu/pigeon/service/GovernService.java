@@ -1,6 +1,7 @@
 package cn.swu.pigeon.service;
 
 import cn.swu.pigeon.entity.Application;
+import cn.swu.pigeon.entity.Leave;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 
@@ -20,6 +21,8 @@ public interface GovernService {
     void deleteUser(User user);
     //修改用户信息
     void updateUser(User user);
+    //查询特定用户信息
+    User queryUser(String id);
 
     /**
      * 活动管理
@@ -36,14 +39,13 @@ public interface GovernService {
      * @return
      */
     //查询某天已签到记录
-    List<Record> findSigned(Date theTime);
+    List<Record> findSigned(String theTime);
     //查询某天未签到记录
-    List<Record> findUnsigned(Date theTime);
+    List<User> findUnsigned(String theTime);
     //查询某天处于请假的记录
-    List<Record> findLeaved(Date theTime);
+    List<Leave> findLeaved(String theTime);
 
-    //查看请假
-    List<Record> findLeave(Date date);
+
     //审批请假
     void approveLeave(String id,String status);
 
@@ -51,8 +53,8 @@ public interface GovernService {
      * 统计已签到的人数和未签到的人数，根据当前用户注册表而言
      * @return
      */
-    int cSigned();
-    int cUnsigned();
+    int cSigned(String theTime);
+    int cUnsigned(String theTime);
 
 
 }

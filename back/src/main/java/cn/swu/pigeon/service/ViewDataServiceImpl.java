@@ -34,4 +34,9 @@ public class ViewDataServiceImpl implements ViewDataService {
     public List<StatisticsCount> viewHometownNumber(String companyId) {
         return statisticsViewDao.hometown_userNumber(companyId);
     }
+
+    @Override
+    public List<StatisticsCount> viewSalaryNumber(String companyId) {
+        return statisticsViewDao.salary_userNumber(companyId);
+    }
 }
