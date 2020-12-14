@@ -25,7 +25,7 @@
         GROUP BY homeTown;
     </select>
 <!--    统计员工的薪资情况-->
-<!--要写一个存储过程：准备incomeLevel-->
+<!--要写一个触发器：准备incomeLevel-->
     <select id="salary_userNumber" parameterType="String" resultType="StatisticsCount">
         select incomeLevel as countName, count(*) as countNumber
         from staff sf
