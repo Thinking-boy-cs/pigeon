@@ -74,4 +74,29 @@ public class StatisticsViewController {
         }
     }
 
+    ////公司男女情况人数统计
+    @RequestMapping("sex_userNumber")
+    public Map<String,Object> statisticSexUserNumber(){
+        String companyId = "123456789012345";
+
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(companyId)){
+                List<StatisticsCount> sx = viewDataService.viewSexNumber(companyId);
+                map.put("status",0);
+                map.put("msg","查看成功");
+                map.put("data",sx);
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
+    }
+
 }

@@ -5,8 +5,16 @@
     select `name` as countName, count(*) as countNumber
     from user_group ug
     join `group` gg
-    on gg.companyId=#{company} and gg.id=ug.groupId
+    on gg.companyId=#{companyId} and gg.id=ug.groupId
     GROUP BY groupId;
+    </select>
+<!--    统计公司男女人数情况-->
+    <select id="sex_userNumber" parameterType="String" resultType="StatisticsCount">
+        select sex as countName, count(*) as countNumber
+        from staff sf
+        join company cc
+        on cc.id=#{companyId}
+        GROUP BY sex;
     </select>
 
 
