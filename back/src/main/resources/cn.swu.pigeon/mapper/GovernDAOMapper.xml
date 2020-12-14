@@ -59,6 +59,12 @@
         where to_days(#{theTime}) between to_days(startTime) and to_days(endTime)
     </select>
 
+    <select id="leavedCount" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM vacation
+        WHERE TO_DAYS(#{theTime}) BETWEEN TO_DAYS(startTime) AND TO_DAYS(endTime)
+    </select>
+
 <!--    &lt;!&ndash;    对请假的管理（未考虑时间）还要考虑其他的分类，比如已处理的和未处理的....&ndash;&gt;-->
 <!--    <select id="findLeave" parameterType="String" resultType="Leave">-->
 <!--        SELECT *-->

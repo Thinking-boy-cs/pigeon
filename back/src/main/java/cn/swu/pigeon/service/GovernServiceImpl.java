@@ -87,6 +87,11 @@ public class GovernServiceImpl implements GovernService{
         return governDao.findLeaved(theTime);
     }
 
+    @Override
+    public int leavedCount(String theTime) {
+        return governDao.leavedCount(theTime);
+    }
+
     /**
      * 对请假的管理
      * @return
