@@ -13,4 +13,6 @@ public interface StatisticsViewDao {
     List<StatisticsCount> sex_userNumber(String companyId);
     //统计员工的家乡
     List<StatisticsCount> hometown_userNumber(String companyId);
+    //统计员工的薪资情况
+    List<StatisticsCount> salary_userNumber(String companyId);
 }

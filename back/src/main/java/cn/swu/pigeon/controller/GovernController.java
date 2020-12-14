@@ -7,6 +7,7 @@ import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.GovernService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -72,10 +73,51 @@ public class GovernController {
     @RequestMapping("updateUser")
     public Map<String,Object> updateUser(@RequestBody User user,HttpServletRequest request){
         Map<String, Object> map =  new HashMap<>();
+        User thisUser = governService.queryUser(user.getId());
         try {
-            governService.updateUser(user);
-            map.put("status",0);
-            map.put("msg","修改成功!");
+            if (!ObjectUtils.isEmpty(user)) {
+                // 修改信息（避免没输入导致之前存的没了）
+                if (!user.getId().equals("")) {
+                    thisUser.setId(user.getId());
+                }
+                if (!user.getUsername().equals("")) {
+                    thisUser.setUsername(user.getUsername());
+                }
+                if (!user.getPassword().equals("")) {
+                    thisUser.setPassword(user.getPassword());
+                }
+                if (!user.getSex().equals("")) {
+                    thisUser.setSex(user.getSex());
+                }
+                if (!user.getHometown().equals("")) {
+                    thisUser.setHometown(user.getHometown());
+                }
+                if (!user.getTelNumber().equals("")) {
+                    thisUser.setTelNumber(user.getTelNumber());
+                }
+                if (!user.getEmail().equals("")) {
+                    thisUser.setEmail(user.getEmail());
+                }
+                if (!user.getIcon().equals("")) {
+                    thisUser.setIcon(user.getIcon());
+                }
+                if (!user.getStatus().equals("")) {
+                    thisUser.setStatus(user.getStatus());
+                }
+                if (!user.getCompanyId().equals("")) {
+                    thisUser.setCompanyId(user.getCompanyId());
+                }
+                if (!user.getSignature().equals("")) {
+                    thisUser.setSignature(user.getSignature());
+                }
+                String tmp = String.valueOf(user.getSalary());
+                if (!tmp.equals("")) {
+                    thisUser.setSalary(user.getSalary());
+                }
+                governService.updateUser(thisUser);
+                map.put("status", 0);
+                map.put("msg", "修改成功!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);

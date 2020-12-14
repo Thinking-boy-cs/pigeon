@@ -11,4 +11,6 @@ public interface ViewDataService {
     List<StatisticsCount> viewSexNumber(String companyId);
     //统计员工的家乡
     List<StatisticsCount> viewHometownNumber(String companyId);
+    //统计员工的薪资情况
+    List<StatisticsCount> viewSalaryNumber(String companyId);
 }

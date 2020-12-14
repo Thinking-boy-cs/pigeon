@@ -44,7 +44,7 @@ public class GovernServiceImpl implements GovernService{
     @Override
     public void updateUser(User user) {
         user.setRegisterTime(new Date());
-        governDao.updateUser(user.getId());
+        governDao.updateUser(user);
     }
 
     @Override
