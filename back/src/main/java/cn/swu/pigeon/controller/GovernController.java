@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -268,11 +269,16 @@ public class GovernController {
      * @return
      */
     @RequestMapping("countSigned")
-    public Map<String,Object> countSigned(){
+    public Map<String,Object> countSigned(Date date){
         Map<String,Object> map = new HashMap<>();
+//        date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        String sDate = simpleDateFormat.format(date);
+//        System.out.println(sDate);
+//        String sDate = "2020-12-14";
         try{
 
-            int sum = governService.cSigned();
+            int sum = governService.cSigned(sDate);
             map.put("status",0);
             map.put("msg","查询成功");
             map.put("data",sum);
@@ -287,10 +293,13 @@ public class GovernController {
     }
 
     @RequestMapping("countUnsigned")
-    public Map<String,Object> countUnsigned(){
+    public Map<String,Object> countUnsigned(Date date){
         Map<String,Object> map = new HashMap<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        String sDate = simpleDateFormat.format(date);
+
         try{
-            int sum = governService.cUnsigned();
+            int sum = governService.cUnsigned(sDate);
             map.put("status",0);
             map.put("msg","查询成功");
             map.put("data",sum);

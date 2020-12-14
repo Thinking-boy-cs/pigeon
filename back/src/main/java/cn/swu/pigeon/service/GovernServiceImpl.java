@@ -94,22 +94,23 @@ public class GovernServiceImpl implements GovernService{
         governDao.approveLeave(id,status);
     }
 
-
     /**
-     * 对已签到人数的统计
+     *根据指定日期查询已签到人数
+     * @param theTime
      * @return
      */
     @Override
-    public int cSigned() {
-        return governDao.cSigned();
+    public int cSigned(String theTime) {
+        return governDao.cSigned(theTime);
     }
 
     /**
-     * 对未签到人数的统计
+     * 根据指定日期查询未签到人数
+     * @param theTime
      * @return
      */
     @Override
-    public int cUnsigned() {
-        return governDao.cUnsigned();
+    public int cUnsigned(String theTime) {
+        return governDao.cUnsigned(theTime);
     }
 }

@@ -2,7 +2,7 @@
 <mapper namespace="cn.swu.pigeon.dao.StatisticsViewDao">
 <!--    统计各个部门员工信息-->
     <select id="dept_userNumber" parameterType="String" resultType="StatisticsCount">
-    select `name`,count(*)
+    select `name` as countName, count(*) as countNumber
     from user_group ug
     join `group` gg
     on gg.companyId=#{company} and gg.id=ug.groupId

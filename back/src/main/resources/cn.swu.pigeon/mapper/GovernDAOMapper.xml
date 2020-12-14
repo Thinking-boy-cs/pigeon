@@ -23,7 +23,7 @@
         select id,username,password from userinfo where id=#{id}
     </select>
 
-<!--    对活动的管理(未考虑时间)-->
+    <!--    对活动的管理(未考虑时间)-->
     <select id="findApplication" parameterType="String" resultType="Application">
         select id,activityName,applicant,approver,startTime,endTime,status,submitTime
         from application
@@ -61,7 +61,7 @@
         select *
         from vacation
     </select>
-<!--    对用户请假的处理-->
+    <!--    对用户请假的处理-->
     <update id="approveLeave" parameterType="String">
         update vacation
         set state=#{param2}
@@ -69,16 +69,21 @@
     </update>
 
     <!--    未签到人员统计，涉及signrecord 和 staff两张表-->
-    <select id="cUnsigned"  resultType="int">
-        SELECT count(*)
-        from staff SS
-        where SS.id not in  (SELECT rr.id from signrecord rr);
+    <select id="cUnsigned" parameterType="String" resultType="int">
+        SELECT COUNT(*) AS unsignedCount
+        FROM staff ss
+        JOIN signrecord rr
+        ON ss.id != rr.id
+        WHERE to_days(rr.signTime) = to_days(#{theTime});
     </select>
 
     <!--    统计已签到人员的总数，涉及signrecord 和 staff两张表-->
-    <select id="cSigned"  resultType="int">
-        SELECT COUNT(*)
+    <!--    根据指定日期查询-->
+    <select id="cSigned" parameterType="String" resultType="int">
+        SELECT COUNT(*) AS signedCount
         FROM staff ss
-        where ss.id in (SELECT rr.id from signrecord rr );
+        JOIN signrecord rr
+        ON ss.id = rr.id
+        WHERE to_days(rr.signTime) = to_days(#{theTime});
     </select>
 </mapper>
