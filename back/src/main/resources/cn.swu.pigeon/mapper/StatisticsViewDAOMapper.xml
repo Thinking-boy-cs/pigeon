@@ -2,14 +2,12 @@
 <mapper namespace="cn.swu.pigeon.dao.StatisticsViewDao">
 <!--    统计各个部门员工信息-->
     <select id="dept_userNumber" parameterType="String" resultType="StatisticsCount">
-        select `name`,count(user_group.userId)
-        from user_group,`group`
-        where user_group.groupId = `group`.id and `group`.companyId = (#{companyId})
+    select `name`,count(*)
+    from user_group ug
+    join `group` gg
+    on gg.companyId=#{company} and gg.id=ug.groupId
+    GROUP BY groupId;
     </select>
-    <!--    用户查看自己的签到信息-->
-    <select id="find" parameterType="String" resultType="Record">
-        select *
-        from signrecord
-        where id in (#{id})
-    </select>
+
+
 </mapper>

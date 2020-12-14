@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ViewDataServiceImpl implements ViewDataService {
@@ -15,7 +17,8 @@ public class ViewDataServiceImpl implements ViewDataService {
 
 
     @Override
-    public StatisticsCount viewDeptNumber(String companyId) {
+    public List<StatisticsCount> viewDeptNumber(String companyId) {
+        System.out.println(statisticsViewDao.dept_userNumber(companyId));
         return statisticsViewDao.dept_userNumber(companyId);
     }
 }

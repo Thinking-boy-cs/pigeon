@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,7 +55,9 @@ public class StatisticsViewController {
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(companyId)){
-                StatisticsCount sc = viewDataService.viewDeptNumber(companyId);
+                List<StatisticsCount> sc = viewDataService.viewDeptNumber(companyId);
+                //System.out.println(sc.get(0).getCountName());
+                //System.out.println(sc.get(0).getCountNumber());
                 map.put("status",0);
                 map.put("msg","查看成功");
                 map.put("data",sc);
