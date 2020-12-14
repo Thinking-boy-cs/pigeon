@@ -42,7 +42,7 @@
     </insert>
     <insert id="participate" parameterType="String" keyProperty="id">
         insert into user_activity
-        values (#{id},#{activityId},#{userId})
+        values (#{id},#{activityId},#{userId}, 0)
     </insert>
     <update id="sign" parameterType="String">
         update user_activity set status=1 
