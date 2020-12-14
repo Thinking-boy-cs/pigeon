@@ -46,6 +46,12 @@ public class GovernServiceImpl implements GovernService{
         governDao.updateUser(user.getId());
     }
 
+    @Override
+    public User queryUser(String id) {
+        return governDao.queryUser(id);
+    }
+
+
     /**
      * 对活动的管理
      * @return

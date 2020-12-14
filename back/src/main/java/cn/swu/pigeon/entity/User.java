@@ -17,6 +17,7 @@ public class User {
     private Date registerTime;
     private String icon;
     private String telNumber;
+    private String hometown;
     private String email;
     private String companyId;
     private String originId;

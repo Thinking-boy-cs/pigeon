@@ -15,10 +15,23 @@ public class ViewDataServiceImpl implements ViewDataService {
     @Autowired
     private StatisticsViewDao statisticsViewDao;
 
-
+    //统计各个部门的人数
     @Override
     public List<StatisticsCount> viewDeptNumber(String companyId) {
         System.out.println(statisticsViewDao.dept_userNumber(companyId));
         return statisticsViewDao.dept_userNumber(companyId);
+    }
+
+    //统计公司男女人数情
+    @Override
+    public List<StatisticsCount> viewSexNumber(String companyId) {
+        System.out.println(statisticsViewDao.sex_userNumber(companyId));
+        return statisticsViewDao.sex_userNumber(companyId);
+    }
+
+    //统计员工的家乡
+    @Override
+    public List<StatisticsCount> viewHometownNumber(String companyId) {
+        return statisticsViewDao.hometown_userNumber(companyId);
     }
 }

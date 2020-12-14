@@ -168,6 +168,7 @@ User{
   	sex:"女"
         telNumber:"xxxxxxxxxxx"
         email:"xxx@xxx.com"
+        homeTown:"重庆市"
    }
 ```
 返回数据实例
@@ -441,7 +442,160 @@ status的合法值
   }
 ```   
 #后端~后台管理系统
+## 一、员工信息的增删改查
+### 1. 添加员工信息
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/addUser      
+	请求参数         
+	属性 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;类型 &nbsp; &nbsp;&nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	user &nbsp; &nbsp; User&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 是&nbsp; &nbsp; 添加的员工信息    
 
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Object&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;添加成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;添加失败   
+
+请求数据实例   
+```
+user{
+  	id:"001",
+      	username:"小朋友",
+      	dept:"幼儿园",
+      	password:"123456",
+      	sex:"男",
+   }
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"提交成功"
+  }
+```   
+### 2. 修改员工信息
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/updateUser      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	user &nbsp; &nbsp; User &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 修改用户    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;修改成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;修改失败   
+
+请求数据实例   
+```
+User{
+  	sex:"女"
+        telNumber:"xxxxxxxxxxx"
+        email:"xxx@xxx.com"
+        homeTown:"重庆市"
+   }
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"修改成功"
+  }
+```   
+### 3. 查询员工信息（全部）
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/findUser      
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;List\<User>&nbsp; &nbsp;所有员工对象
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:[{xxx},{xxx}...]
+  }
+```   
+### 4. 查询员工信息（特定）
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/queryUser      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	userId &nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 查询用户    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; User &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;特定用户   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+userId:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:{...}
+  }
+```   
+### 5. 删除员工信息
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/deleteUser      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	userId &nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 删除用户    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;删除成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;删除失败   
+
+请求数据实例   
+```
+userId:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"删除成功"
+  }
+```   
 #后端~其他
 ## 1. 插入company表（管理员操作）
 请求地址      
