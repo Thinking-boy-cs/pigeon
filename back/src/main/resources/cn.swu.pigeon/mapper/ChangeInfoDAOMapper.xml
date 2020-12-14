@@ -3,7 +3,8 @@
 <!--    修改用户信息-->
     <update id="changeInfo" parameterType="User">
         UPDATE staff
-        SET sex=#{sex},icon = #{icon},telNumber=#{telNumber},email=#{email},signature=#{signature}
+        SET sex=#{sex},icon = #{icon},telNumber=#{telNumber},email=#{email},signature=#{signature},
+        homeTown=#{homeTown}
         where id=#{id};
     </update>
 </mapper>    

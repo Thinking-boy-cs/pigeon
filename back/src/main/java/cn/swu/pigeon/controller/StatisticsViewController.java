@@ -49,7 +49,8 @@ public class StatisticsViewController {
 
     //各个部门员工人数统计
     @RequestMapping("dept_userNumber")
-    public Map<String,Object> statisticDeptsUserNumber(){
+    public Map<String,Object> statisticsDeptUserNumber(){
+        //测试
         String companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
@@ -74,9 +75,10 @@ public class StatisticsViewController {
         }
     }
 
-    ////公司男女情况人数统计
+    //公司男女情况人数统计
     @RequestMapping("sex_userNumber")
-    public Map<String,Object> statisticSexUserNumber(){
+    public Map<String,Object> statisticsSexUserNumber(){
+        //测试
         String companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
@@ -86,6 +88,32 @@ public class StatisticsViewController {
                 map.put("status",0);
                 map.put("msg","查看成功");
                 map.put("data",sx);
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
+    }
+
+    //公司员工家乡情况人数统计
+    @RequestMapping("hometown_userNumber")
+    public Map<String,Object> statisticsHometownUserNumber(){
+        //测试
+        String companyId = "123456789012345";
+
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(companyId)){
+                List<StatisticsCount> sh = viewDataService.viewHometownNumber(companyId);
+                map.put("status",0);
+                map.put("msg","查看成功");
+                map.put("data",sh);
             } else {
                 map.put("status",1);
                 map.put("msg","查看失败");

@@ -205,6 +205,9 @@ public class UserController {
                 if(!user.getSignature().equals("")){
                     thisUser.setSignature(user.getSignature());
                 }
+                if(!user.getSignature().equals("")){
+                    thisUser.setHometown(user.getHometown());
+                }
                 log.info("修改性别后当前用户：[{}]",thisUser.toString());
 //                changeInfoService.changeUserInfo(thisUser);
                 changeInfoService.changeUserInfo(multipartFile,thisUser);

@@ -16,6 +16,13 @@
         on cc.id=#{companyId}
         GROUP BY sex;
     </select>
-
+<!--    统计员工的家乡-->
+    <select id="hometown_userNumber" parameterType="String" resultType="StatisticsCount">
+        select homeTown as countName, count(*) as countNumber
+        from staff sf
+        join company cc
+        on cc.id=#{companyId}
+        GROUP BY homeTown;
+    </select>
 
 </mapper>
