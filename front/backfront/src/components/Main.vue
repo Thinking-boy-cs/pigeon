@@ -87,7 +87,6 @@
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>
-      <router-view />
       <a-layout style="padding: 0 24px 24px">
         <a-layout-header style="background: transparent;">
           <template>
@@ -110,7 +109,7 @@
             minHeight: '280px'
           }"
         >
-          Content
+          <router-view />
         </a-layout-content>
       </a-layout>
     </a-layout>
