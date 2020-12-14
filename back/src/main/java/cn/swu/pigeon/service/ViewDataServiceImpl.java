@@ -28,4 +28,10 @@ public class ViewDataServiceImpl implements ViewDataService {
         System.out.println(statisticsViewDao.sex_userNumber(companyId));
         return statisticsViewDao.sex_userNumber(companyId);
     }
+
+    //统计员工的家乡
+    @Override
+    public List<StatisticsCount> viewHometownNumber(String companyId) {
+        return statisticsViewDao.hometown_userNumber(companyId);
+    }
 }

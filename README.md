@@ -168,6 +168,7 @@ User{
   	sex:"女"
         telNumber:"xxxxxxxxxxx"
         email:"xxx@xxx.com"
+        homeTown:"重庆市"
    }
 ```
 返回数据实例
