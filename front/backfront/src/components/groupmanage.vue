@@ -1,8 +1,20 @@
-<template>
+<template> 
+  <operation-table :data1="childData"></operation-table>
 </template>
 
 <script>
-export default {}
+import opertaionTable from './utils/operationTable'
+export default {
+  components: {
+    opertaionTable
+  },
+  data () {
+    return  {
+      childData: 'test data'
+    }
+  }
+}
 </script>
 
-<style></style>
+<sty
+    OperationTablele></style>
