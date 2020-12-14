@@ -48,13 +48,13 @@ public class StatisticsViewController {
 
     //各个部门员工人数统计
     @RequestMapping("dept_userNumber")
-    public Map<String,Object> statisticDeptsUserNumber(@RequestParam String companyId){
-        companyId = "123456789012345";
-        StatisticsCount sc = new StatisticsCount();
+    public Map<String,Object> statisticDeptsUserNumber(){
+        String companyId = "123456789012345";
+
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(companyId)){
-                sc = viewDataService.viewDeptNumber(companyId);
+                StatisticsCount sc = viewDataService.viewDeptNumber(companyId);
                 map.put("status",0);
                 map.put("msg","查看成功");
                 map.put("data",sc);
