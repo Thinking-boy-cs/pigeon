@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ViewDataServiceImpl implements ViewDataService {
@@ -13,9 +15,17 @@ public class ViewDataServiceImpl implements ViewDataService {
     @Autowired
     private StatisticsViewDao statisticsViewDao;
 
-
+    //统计各个部门的人数
     @Override
-    public StatisticsCount viewDeptNumber(String companyId) {
+    public List<StatisticsCount> viewDeptNumber(String companyId) {
+        System.out.println(statisticsViewDao.dept_userNumber(companyId));
         return statisticsViewDao.dept_userNumber(companyId);
+    }
+
+    //统计公司男女人数情
+    @Override
+    public List<StatisticsCount> viewSexNumber(String companyId) {
+        System.out.println(statisticsViewDao.sex_userNumber(companyId));
+        return statisticsViewDao.sex_userNumber(companyId);
     }
 }
