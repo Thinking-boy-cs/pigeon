@@ -2,7 +2,7 @@
   <div id="page-container">
     <div id="navigation-container">
       <div id="navigation-wrapper">
-        <div class="icon-container"></div>
+        <div class="icon-container"><a-icon type="left" @click="$router.go(-1)" style="color: black"/></div>
         <div class="page-title">管理</div>
       </div>
     </div>
@@ -13,7 +13,7 @@
             <a-icon type="container" />
             发布签到
           </span>
-          <div id="first-container">
+          <div id="content-wrapper">
             <a-form-model
               ref="ruleForm"
               :model="form"
@@ -31,28 +31,39 @@
                   "
                 />
               </a-form-model-item>
-              <a-form-model-item label="签到对象" prop="target">
+              <a-form-model-item label="签到对象" prop="participants">
                 <a-cascader
-                  :options="options"
+                  :options="groups"
                   change-on-select
-                  v-model="form.target"
+                  v-model="form.participants"
                 />
               </a-form-model-item>
-              <a-form-model-item label="签到开始时间" required prop="date">
+              <a-form-model-item label="签到开始时间" required prop="startTime">
                 <a-date-picker
-                  v-model="form.date"
+                  v-model="form.startTime"
                   show-time
                   type="date"
-                  placeholder="Pick a date"
+                  format="YYYY-MM-DD HH:mm:ss"
+                  placeholder="选择日期时间"
                   style="width: 100%"
                 />
               </a-form-model-item>
-              <a-form-model-item label="请选择持续时间" required prop="during">
+              <a-form-model-item label="签到结束时间" required prop="endTime">
+                <a-date-picker
+                  v-model="form.endTime"
+                  show-time
+                  type="date"
+                  placeholder="Pick a date"
+                  format="YYYY-MM-DD HH:mm:ss"
+                  style="width: 100%"
+                />
+              </a-form-model-item>
+              <!-- <a-form-model-item label="请选择持续时间" required prop="during">
                 <a-time-picker
                   v-model="form.during"
                   :default-open-value="moment('00:00:00', 'HH:mm:ss')"
                 />
-              </a-form-model-item>
+              </a-form-model-item> -->
               <a-form-model-item :wrapper-col="{ span: 10, offset: 4 }">
                 <a-button type="primary" @click="onSubmit"> Create </a-button>
                 <a-button style="margin-left: 25px" @click="resetForm">
@@ -69,13 +80,13 @@
           </span>
           Tab 2
         </a-tab-pane>
-        <a-tab-pane key="3">
+        <!-- <a-tab-pane key="3">
           <span slot="tab">
             <a-icon type="android" />
             功能页3
           </span>
           Tab 3
-        </a-tab-pane>
+        </a-tab-pane> -->
       </a-tabs>
     </div>
   </div>
@@ -120,14 +131,16 @@ export default {
           ]
         }
       ],
-      labelCol: { span: 6 },
-      wrapperCol: { span: 12 },
+      labelCol: { span: 8 },
+      wrapperCol: { span: 16 },
       other: '',
       form: {
         name: '',
-        target: undefined,
-        date: undefined,
-        during: undefined
+        participants: null,
+        startTime: null,
+        endTime: null,
+        status: null,
+        submitTime: null
       },
       rules: {
         name: [
@@ -153,15 +166,32 @@ export default {
         date: [
           { required: true, message: '请选择一个时间', trigger: 'change' }
         ]
-      }
+      },
+      groups: []
     }
   },
   methods: {
-    moment,
     onSubmit () {
+      const that = this
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
+          this.form.startTime = this.form.startTime.format('YYYY-MM-DD HH:mm:ss')
+          this.form.endTime = this.form.endTime.format('YYYY-MM-DD HH:mm:ss')
           console.log('submit!', this.form)
+          this.$axios.get('/api/pigeon/group/findUserIdsByGroupId?groupId=' + this.form.participants).then((res) => {
+            console.log('user data', res)
+          })
+          // submit
+          this.$axios.post('/api/pigeon/record/initiate', this.form).then((res) => {
+            console.log('Submitted!')
+            if (res.data && res.data.status === 0) {
+              that.$message.success('提交签到成功！')
+            } else {
+              that.$message.error('提交签到失败！' + res.data.msg)
+            }
+          }).catch((res) => {
+            that.$message.error('提交签到失败，请检查网络连接')
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -171,6 +201,19 @@ export default {
     resetForm () {
       this.$refs.ruleForm.resetFields()
     }
+  },
+  created () {
+    const that = this
+    this.$axios.get('/api/pigeon/group/findAllGroup').then((res) => {
+      console.log(res)
+      if (res.data && res.data.status === 0) {
+        that.groups = res.data.data
+        that.groups.forEach((item, i) => {
+          item.value = item.id
+          item.label = item.groupName
+        })
+      }
+    })
   }
 }
 </script>
@@ -194,5 +237,15 @@ export default {
   position: absolute;
   width: 100%;
   top: 59px;
+}
+#content-wrapper {
+  position: relative;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+}
+#content-wrapper .ant-form-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 </style>

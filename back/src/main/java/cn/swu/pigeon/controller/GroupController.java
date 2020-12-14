@@ -26,6 +26,24 @@ public class GroupController {
     @Autowired
     GroupService groupService;
 
+    @RequestMapping("findAllGroup")
+    public Map<String,Object> findAllGroup(){
+
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            //测试
+            List<Group> groups = groupService.findAllGroup();
+            map.put("status",0);
+            map.put("msg","查询成功!");
+            map.put("data", groups);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
     /**
      * 通过userId找到其所有group的groupId
      * @param userId
@@ -75,7 +93,25 @@ public class GroupController {
         }
         return map;
     }
+    @RequestMapping("findUserIdsByGroupId")
+    public Map<String,Object> findUserByIdsGroupId(String groupId){
 
+        Map<String, Object> map =  new HashMap<>();
+        try {
+            //测试
+            // groupId = "925014575aa049b";
+            List<String> thisUser = groupService.findUserIdsByGroupId(groupId);
+            map.put("status",0);
+            map.put("msg","查询成功!");
+            map.put("data",thisUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
     /**
      * 通过groupId找到该group的所有成员user
      * @param groupId
@@ -87,7 +123,7 @@ public class GroupController {
         Map<String, Object> map =  new HashMap<>();
         try {
             //测试
-            groupId = "925014575aa049b";
+            // groupId = "925014575aa049b";
             List<User> thisUser = groupService.findUserByGroupId(groupId);
             map.put("status",0);
             map.put("msg","查询成功!");

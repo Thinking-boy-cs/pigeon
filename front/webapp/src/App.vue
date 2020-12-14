@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-11-11 09:58:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-25 00:21:31
+ * @LastEditTime: 2020-11-26 05:13:42
 -->
 <template>
   <div id="app">
@@ -26,8 +26,8 @@
             type="bell"
             :class="{ 'menu-icon': true, selected: currentTab === 1 }"
           />
-          <div id="red-icon">
-            <div>{{ unreadCount }}</div>
+          <div id="red-icon" v-if="$store.state.outerCount">
+            <div>{{ $store.state.outerCount }}</div>
           </div>
           <div class="menu-name">消息</div>
         </a-col>
@@ -88,6 +88,8 @@ export default {
     },
     onmessage (res) {
       console.log(this.animationName, res)
+      this.$store.dispatch('addCountFunc', 1)
+      this.$store.dispatch('addMessageFunc', JSON.parse(res.body))
     },
     onerror (res) {
       console.log('err!!!: ', res)

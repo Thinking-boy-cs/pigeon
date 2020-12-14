@@ -1,16 +1,16 @@
 <!--
  * @Date: 2020-11-15 17:44:38
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-11-19 20:31:19
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-11-26 06:59:51
 -->
 <template>
   <div id="app"  key="0">
     <div id="carousel-container">
       <a-carousel autoplay>
-        <div class="cabg">1</div>
-        <div class="cabg">2</div>
-        <div class="cabg">3</div>
-        <div class="cabg">4</div>
+        <div class="cabg"></div>
+        <div class="cabg"></div>
+        <div class="cabg"></div>
+        <div class="cabg"></div>
       </a-carousel>
     </div>
     <!-- <i class="fa fa-address-book-o">face</i> -->
@@ -23,7 +23,7 @@
               class="feature-item"
               :span="8"
               v-for="(item, i) in pageData.recents"
-              :key="i" @click="toPage('/leave')"
+              :key="i" @click="toPage(item.link)"
             >
               <div class="feature-icon">
                 <a-icon :type="item.icon" two-tone-color="#fb7299" />
@@ -59,7 +59,8 @@
 export default {
   data () {
     return {
-      pageData: {}
+      pageData: {},
+      id: null
     }
   },
   methods: {
@@ -67,14 +68,21 @@ export default {
       this.$router.push({ path: uri })
     }
   },
+  computed: {
+
+  },
   created () {
     var that = this
+    this.user = JSON.parse(window.localStorage.getItem('user'))
     // get page layout
     this.$axios
       .get('/static/pageData.json')
       .then(function (res) {
         console.log(res.data)
         that.pageData = res.data
+        that.pageData.recents = that.pageData.recents.filter((item) => {
+          return (!item.admin) || (that.user.id === '1606060960')
+        })
       })
       .catch(function (error) {
         console.log(error)

@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         if(bundle != null)
             url = bundle.getString("url");
         if(url == null){
-            url = "file:///android_asset/webFile/test.html";
+            //url = "file:///android_asset/dist/index.html";
+            url = "http://project.jecosine.com";
         }
         //System.out.println(url);
         webView.setWebChromeClient(new WebChromeClient());

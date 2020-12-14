@@ -16,17 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
-        android:theme="@style/Theme.Pigeon">
-        <application android:name=".MainActivity"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.Pigeon"
+        android:name=".MainActivity"
                   android:screenOrientation = "portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </application>
-        <application android:name="com.example.pigeon.TestActivity">
-        </application>
-    </application>
 
+
+    </application>
+    <application
+        android:name="com.example.pigeon.TestActivity">
+    </application>
 </manifest>

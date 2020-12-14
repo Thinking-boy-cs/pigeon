@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-15 15:20:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 18:18:34
+ * @LastEditTime: 2020-11-26 05:43:09
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -21,6 +21,9 @@ import Router from 'vue-router'
 import Antd from 'ant-design-vue/es'
 import 'ant-design-vue/dist/antd.less'
 import BaiduMap from 'vue-baidu-map'
+import infiniteScroll from 'vue-infinite-scroll'
+Vue.use(infiniteScroll)
+console.log(infiniteScroll, 'InfiniteScroll')
 
 // import { ResolvePlugin } from 'webpack'
 // import { component } from 'vue/types/umd'
@@ -70,12 +73,12 @@ const router = new Router({
       }
     },
     {
-      path: '/Map',
-      name: 'Map',
-      component: Map
+      path: '/ViewMap',
+      name: 'ViewMap',
+      component: resolve => require(['@/components/ViewMap'], resolve)
     },
     {
-      path: '/Signin',
+      path: '/Signin/:id',
       name: 'Signin',
       // component: Signin
       component: resolve => require(['@/components/Signin'], resolve)
@@ -84,6 +87,11 @@ const router = new Router({
       path: '/ManagePage',
       name: 'ManagePage',
       component: resolve => require(['@/components/ManagePage'], resolve)
+    },
+    {
+      path: '/SigninData/:id',
+      name: 'SigninData',
+      component: resolve => require(['@/components/SigninData'], resolve)
     },
     {
       path: '/Profile',
@@ -139,7 +147,15 @@ const router = new Router({
       meta: {
         id: -15
       },
-      component: resolve => require(['@/components/Conversation'], resolve)
+      component: resolve => require(['@/components/conversation'], resolve)
+    },
+    {
+      path: '/test',
+      name: 'Test',
+      meta: {
+        id: -19
+      },
+      component: resolve => require(['@/components/Test'], resolve)
     }
   ]
 })
