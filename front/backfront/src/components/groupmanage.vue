@@ -1,12 +1,14 @@
 <template> 
-  <operation-table :data1="childData"></operation-table>
+<div>
+  <operationTable :data1="childData"></operationTable>
+</div>
 </template>
 
 <script>
-import opertaionTable from './utils/operationTable'
+import operaionTable from './utils/operationTable'
 export default {
   components: {
-    opertaionTable
+    operaionTable
   },
   data () {
     return  {

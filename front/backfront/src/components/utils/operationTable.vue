@@ -3,13 +3,11 @@
 </template>
 
 <script>
-export default {
-  name: 'operation-table',
+export default {  
   props: {
     data1: {
       type: String,
-      default: 'null !',
-      require: true
+      default: 'null '
     }
   },
   data () {
