@@ -26,7 +26,7 @@
           :default-selected-keys="['groupmanage']"
           :default-open-keys="['usermanage']"
           :style="{ height: '100%', borderRight: 0 }"
-           @select="onOpenChange"
+          @select="onOpenChange"
         >
           <a-sub-menu key="usermanage">
             <span slot="title"><a-icon type="user" />人员管理</span>
@@ -89,20 +89,14 @@
       </a-layout-sider>
       <router-view />
       <a-layout style="padding: 0 24px 24px">
-        <div>
-            <a-breadcrumb :routes="routes">
-            <template slot="itemRender" slot-scope="{ route, params, routes, paths }">
-                <span v-if="routes.indexOf(route) === routes.length - 1">
-                {{ route.breadcrumbName }}
-                </span>
-                <router-link v-else :to="`${basePath}/${paths.join('/')}`">
-                {{ route.breadcrumbName }}
-                </router-link>
-            </template>
-            </a-breadcrumb>
-            <br />
-            {{ $route.path }}
-        </div>
+        <a-layout-header style="background: transparent;">
+          <template>
+            <a-breadcrumb-item v-if="$route.meta.parent">
+              <a href>{{ $route.meta.parent }}</a>
+            </a-breadcrumb-item>
+            <a-breadcrumb-item>{{ $route.meta.name }} </a-breadcrumb-item>
+          </template>
+        </a-layout-header>
         <!-- <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>Home</a-breadcrumb-item>
           <a-breadcrumb-item>List</a-breadcrumb-item>
@@ -132,6 +126,7 @@ export default {
   methods: {
     onOpenChange (item, key, selectedKeys) {
       console.log(item, key, selectedKeys)
+      this.$router.push({ path: '/' + item.key })
     }
   }
 }
@@ -139,9 +134,9 @@ export default {
 
 <style>
 #components-layout-demo-top-side-2 {
-    width: 100vw;
-    height: 100vh;
-    user-select: none;
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
 }
 #components-layout-demo-top-side-2 .logo {
   width: 120px;
