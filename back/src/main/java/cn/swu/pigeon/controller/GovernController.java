@@ -1,6 +1,7 @@
 package cn.swu.pigeon.controller;
 
 import cn.swu.pigeon.entity.Application;
+import cn.swu.pigeon.entity.Leave;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.GovernService;
@@ -10,6 +11,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -179,8 +181,11 @@ public class GovernController {
     public Map<String,Object> findSigned(Date theTime){
 
         Map<String, Object> map =  new HashMap<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sDate = simpleDateFormat.format(theTime);
+//        String sDate = "2020-12-14";
         try {
-            List<Record> thisSigned = governService.findSigned(theTime);
+            List<Record> thisSigned = governService.findSigned(sDate);
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data",thisSigned);
@@ -200,8 +205,11 @@ public class GovernController {
     public Map<String,Object> findUnsigned(Date theTime){
 
         Map<String, Object> map =  new HashMap<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sDate = simpleDateFormat.format(theTime);
+//        String sDate = "2020-12-14";
         try {
-            List<Record> thisUnsigned = governService.findUnsigned(theTime);
+            List<User> thisUnsigned = governService.findUnsigned(sDate);
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data",thisUnsigned);
@@ -221,8 +229,11 @@ public class GovernController {
     public Map<String,Object> findLeaved(Date theTime){
 
         Map<String, Object> map =  new HashMap<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sDate = simpleDateFormat.format(theTime);
+//        String sDate = "2020-12-14";
         try {
-            List<Record> thisLeave = governService.findLeaved(theTime);
+            List<Leave> thisLeave = governService.findLeaved(sDate);
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data",thisLeave);
@@ -305,36 +316,22 @@ public class GovernController {
         }
         return map;
     }
-    /**
-     * 2.查看所有请假（结束/进行中）
-     */
-    @RequestMapping("findLeave")
-    public Map<String,Object> findLeave(Date date){
-        Map<String, Object> map =  new HashMap<>();
-        try {
-            List<Record> thisLeave = governService.findLeave(date);
-            map.put("status",0);
-            map.put("msg","查看成功!");
-            map.put("data",thisLeave);
-        } catch (Exception e) {
-            e.printStackTrace();
-            map.put("status",1);
-            map.put("msg",e.getMessage());
-            map.put("data",null);
-        }
-        return map;
-    }
 
     /**
      * 统计已签到的人数
      * @return
      */
     @RequestMapping("countSigned")
-    public Map<String,Object> countSigned(){
+    public Map<String,Object> countSigned(Date date){
         Map<String,Object> map = new HashMap<>();
+//        date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sDate = simpleDateFormat.format(date);
+//        System.out.println(sDate);
+//        String sDate = "2020-12-14";
         try{
 
-            int sum = governService.cSigned();
+            int sum = governService.cSigned(sDate);
             map.put("status",0);
             map.put("msg","查询成功");
             map.put("data",sum);
@@ -349,10 +346,13 @@ public class GovernController {
     }
 
     @RequestMapping("countUnsigned")
-    public Map<String,Object> countUnsigned(){
+    public Map<String,Object> countUnsigned(Date date){
         Map<String,Object> map = new HashMap<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sDate = simpleDateFormat.format(date);
+
         try{
-            int sum = governService.cUnsigned();
+            int sum = governService.cUnsigned(sDate);
             map.put("status",0);
             map.put("msg","查询成功");
             map.put("data",sum);
