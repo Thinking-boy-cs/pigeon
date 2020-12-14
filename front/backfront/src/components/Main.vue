@@ -8,15 +8,9 @@
         :default-selected-keys="['2']"
         :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1">
-          nav 1
-        </a-menu-item>
-        <a-menu-item key="2">
-          nav 2
-        </a-menu-item>
-        <a-menu-item key="3">
-          nav 3
-        </a-menu-item>
+        <a-menu-item key="1"> nav 1 </a-menu-item>
+        <a-menu-item key="2"> nav 2 </a-menu-item>
+        <a-menu-item key="3"> nav 3 </a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout>
@@ -106,9 +100,12 @@
             background: '#fff',
             padding: '24px',
             margin: 0,
-            minHeight: '280px'
+            minHeight: '280px',
           }"
         >
+          <!-- <Bar-charts :chartData="bardata"></Bar-charts>
+          <Line-charts :chartData="linedata"></Line-charts>
+          <Pie-charts :chartData="piedata"></Pie-charts> -->
           <router-view />
         </a-layout-content>
       </a-layout>
@@ -116,10 +113,27 @@
   </a-layout>
 </template>
 <script>
+import BarCharts from './echarts_bar'
+import LineCharts from './echarts_line'
+import PieCharts from './echarts_pie'
 export default {
   data () {
     return {
-      collapsed: false
+      bardata: {
+        name: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+        data: [5, 20, 36, 10, 10, 20]
+      },
+      linedata: {
+        name: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+        data: [52, 2, 46, 15, 10, 30]
+      },
+      piedata: [
+        {value: 335, name: '直接访问'},
+        {value: 310, name: '邮件营销'},
+        {value: 234, name: '联盟广告'},
+        {value: 135, name: '视频广告'},
+        {value: 1548, name: '搜索引擎'}
+      ]
     }
   },
   methods: {
@@ -127,6 +141,9 @@ export default {
       console.log(item, key, selectedKeys)
       this.$router.push({ path: '/' + item.key })
     }
+  },
+  components: {
+    BarCharts, LineCharts, PieCharts
   }
 }
 </script>

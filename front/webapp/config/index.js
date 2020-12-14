@@ -18,7 +18,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         // target: 'http://jecosine.com',
-        target: 'http://10.129.79.224:8989', // 接口的域名
+        target: 'http://0.0.0.0:8989', // 接口的域名
         ws: true,
         // secure: false,  // 如果是https接口，需要配置这个参数
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置，为true的话，请求的header将会设置为匹配目标服务器的规则（Access-Control-Allow-Origin）
