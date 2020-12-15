@@ -32,12 +32,13 @@
         on cc.id=#{companyId}
         GROUP BY salary;
     </select>
-<!--    统计员工的入职离职情况（未考虑时间）-->
+<!--    统计员工的入职离职情况（某天）-->
     <select id="status_userNumber" parameterType="String" resultType="StatisticsCount">
         select status as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{companyId}
-        GROUP BY status;
+        on cc.id=#{param1} and to_days(sf.statusTime)=to_days(#{param2})
+        GROUP BY status
+
     </select>
 </mapper>
