@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +51,9 @@ public class StatisticsViewController {
 
     //各个部门员工人数统计
     @RequestMapping("dept_userNumber")
-    public Map<String,Object> statisticDeptsUserNumber(){
-        String companyId = "123456789012345";
+    public Map<String,Object> statisticsDeptUserNumber(String companyId){
+        //测试
+        //String companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {
@@ -74,10 +77,11 @@ public class StatisticsViewController {
         }
     }
 
-    ////公司男女情况人数统计
+    //公司男女情况人数统计
     @RequestMapping("sex_userNumber")
-    public Map<String,Object> statisticSexUserNumber(){
-        String companyId = "123456789012345";
+    public Map<String,Object> statisticsSexUserNumber(String companyId){
+        //测试
+        //String companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {
@@ -86,6 +90,87 @@ public class StatisticsViewController {
                 map.put("status",0);
                 map.put("msg","查看成功");
                 map.put("data",sx);
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
+    }
+
+    //公司员工家乡情况人数统计
+    @RequestMapping("hometown_userNumber")
+    public Map<String,Object> statisticsHometownUserNumber(String companyId){
+        //测试
+        //String companyId = "123456789012345";
+
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(companyId)){
+                List<StatisticsCount> sh = viewDataService.viewHometownNumber(companyId);
+                map.put("status",0);
+                map.put("msg","查看成功");
+                map.put("data",sh);
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
+    }
+
+    //员工薪资情况人数统计
+    @RequestMapping("salary_userNumber")
+    public Map<String,Object> statisticsSalaryUserNumber(String companyId){
+        //测试
+        companyId = "123456789012345";
+
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(companyId)){
+                List<StatisticsCount> sl = viewDataService.viewSalaryNumber(companyId);
+                map.put("status",0);
+                map.put("msg","查看成功");
+                map.put("data",sl);
+            } else {
+                map.put("status",1);
+                map.put("msg","查看失败");
+            }
+            return map;
+        } catch (Exception e){
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg","查看失败");
+            return map;
+        }
+    }
+
+    //员工在离职情况统计
+    @RequestMapping("letOperation_userNumber")
+    public Map<String,Object> statisticsLetUserNumber(){
+        //测试
+        String companyId = "123456789012345";
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //String time = simpleDateFormat.format(tDate);
+        String time = "2020-12-15";
+        Map<String,Object> map = new HashMap<>();
+        try {
+            if(!ObjectUtils.isEmpty(companyId)){
+                List<StatisticsCount> sp = viewDataService.viewStatusNumber(companyId,time);
+                map.put("status",0);
+                map.put("msg","查看成功");
+                map.put("data",sp);
             } else {
                 map.put("status",1);
                 map.put("msg","查看失败");

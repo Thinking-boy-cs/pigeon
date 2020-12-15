@@ -14,11 +14,15 @@ public class User {
     private String password;
     private String sex;
     private String status;
+    private Date statusTime;
     private Date registerTime;
     private String icon;
     private String telNumber;
+    private String hometown;
     private String email;
     private String companyId;
     private String originId;
     private String signature;
+    private float salary;
+    private String incomeLevel;
 }
