@@ -7,30 +7,30 @@
 <body>
 <div>
     <input type="button" value="蹦蹦炸弹~" onclick="sendInfoToUser('signIn','remindInfo',4,'file:///android_asset/dist/index.html','芭芭拉','哒哒哒~')">
-    <input type="button" value="轰轰火花~" onclick="getJsonFromAndroid('哒哒哒~')">
+    <input type="button" value="轰轰火花~" onclick="getJsonFromAndroid()">
     <input type="button" value="通通火化~" onclick="getPic()">
     <input type="button" value="fuckYou~" onclick="getInfo()">
     <script type="text/javascript">
         function getInfo(){
-            var result = webInterface.getURL();
+            var photo = webViewUtil.getPhotoData();
+            document.write("<img src=\"data:image/png;base64," + photo + "\"/>");
         }
         //给用户发送弹窗消息
         function sendInfoToUser(channelId,chanelName,importance,url,title,content){
             webViewUtil.popInfo(channelId,chanelName,importance,url,title,content);
         }
-        function getJsonFromAndroid(s){
-            webInterface.showToast(s);
-            var result = webInterface.jsonToHtml();
+        function getJsonFromAndroid(){
+            var result = webViewUtil.getLocationInfo();
             var obj = eval("(" + result + ")");
             for(i=0;i<obj.length;i++){
                 var user = obj[i];
-                document.write("<p> location:" + user.location + "</p>");
-                document.write("<p> location:" + user.university + "</p>");
-                document.write("<p> location:" + user.major + "</p>");
+                document.write("<p> location:" + user.Longitude + "</p>");
+                document.write("<p> location:" + user.Latitude + "</p>");
             }
         }
         function getPic(){
-            webInterface.TakePhoto();
+            webViewUtil.TakePhoto();
+
         }
     </script>
 </div>

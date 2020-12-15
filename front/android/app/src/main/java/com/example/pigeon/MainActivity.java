@@ -1,11 +1,17 @@
 package com.example.pigeon;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 import com.example.pigeon.Util.webViewUtil;
 import com.tencent.smtt.export.external.interfaces.WebResourceError;
@@ -14,6 +20,11 @@ import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView = null;
@@ -34,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
             url = bundle.getString("url");
         if(url == null){
             //url = "file:///android_asset/dist/index.html";
-            url = "http://project.jecosine.com";
+            url = "file:///android_asset/webFile/test.html";
         }
         //System.out.println(url);
         webView.setWebChromeClient(new WebChromeClient());
-        webView.addJavascriptInterface(webViewutil,"webViewUtil");
+        //webView.addJavascriptInterface(webViewutil,"webViewUtil");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
@@ -78,4 +89,47 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data, String fileName) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            File dir = Environment.getExternalStorageDirectory();
+            File file = new File(dir, fileName);
+            Uri uri = FileProvider.getUriForFile(MainActivity.this, getPackageName() + ".provider", file);
+            try {
+                Bitmap photofile = BitmapFactory.decodeStream(MainActivity.this.getContentResolver().openInputStream(uri));
+                String test = bitmapToBase64(photofile);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private String bitmapToBase64(Bitmap bitmap) {
+            String result = null;
+            ByteArrayOutputStream baos = null;
+            try {
+                if (bitmap != null) {
+                    baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                    baos.flush();
+                    baos.close();
+
+                    byte[] bitmapBytes = baos.toByteArray();
+                    result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (baos != null) {
+                        baos.flush();
+                        baos.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return result;
+        }
 }

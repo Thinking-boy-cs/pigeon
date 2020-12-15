@@ -1,5 +1,6 @@
 package com.example.pigeon.Util;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Notification;
@@ -8,21 +9,32 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.Base64;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.FileProvider;
 
 import com.example.pigeon.MainActivity;
+
 import com.example.pigeon.R;
-import com.example.pigeon.TestActivity;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 
@@ -30,13 +42,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 public class webViewUtil {
     private Activity activity;
     private Intent intent;
+    private String fileName;
+    private Bitmap photofile = null;
     public webViewUtil(Activity activity){
         this.activity = activity;
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @JavascriptInterface
     public void popInfo(String channelId, String channelName, int importance, String url, String title, String content){
@@ -82,13 +103,13 @@ public class webViewUtil {
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
         webSettings.setGeolocationEnabled(true);//允许网页执行定位操作
         webSettings.setUserAgentString("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0");//设置User-Agent
-        //webView.addJavascriptInterface(new webViewUtil(activity),"webViewUtil");
+        webView.addJavascriptInterface(new webViewUtil(activity),"webViewUtil");
         return webSettings;
     }
     @SuppressLint("MissingPermission")
     @JavascriptInterface
     public String getLocationInfo(){
-        String result;
+        String result = null;
         LocationManager locationManager = (LocationManager) activity.getSystemService(activity.LOCATION_SERVICE);
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         if(!isGpsAble(locationManager)) {
@@ -115,6 +136,12 @@ public class webViewUtil {
         result = update(location);
         return result;
     }
+    private void verifyStoragePermissions(Activity activity) {
+        int permissionWrite = ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION);
+        if(permissionWrite != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+    }
     @JavascriptInterface
     public String jsonToHtml(double Longitude, double Latitude){
         JSONObject json;
@@ -139,5 +166,87 @@ public class webViewUtil {
     private String update(Location location){
         return jsonToHtml(location.getLongitude(),location.getLatitude());
     }
+    @JavascriptInterface
+    public void TakePhoto() {
+        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File dir = Environment.getExternalStorageDirectory();
+        fileName = System.currentTimeMillis()+".jpg";
+        File file = new File(dir,fileName);
+        Uri uri = FileProvider.getUriForFile(activity,activity.getPackageName()+".provider",file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
+        activity.startActivityForResult(intent, 1);
+        //uri = FileProvider.getUriForFile(activity,activity.getPackageName()+".provider",file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,photofile);
+        String result = bitmapToBase64(photofile);
+    }
+    @JavascriptInterface
+    public String getPhotoData(){
+        File dir = Environment.getExternalStorageDirectory();
+        File file = new File(dir,fileName);
+        Uri uri = FileProvider.getUriForFile(activity,activity.getPackageName()+".provider",file);
+        try {
+            photofile = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(uri));
 
+            photofile = Bitmap.createScaledBitmap(photofile, 300, 300, true);
+            photofile = adjustPhotoRotation(photofile, 90);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String result = bitmapToBase64(photofile);
+        return result;
+    }
+    public Bitmap adjustPhotoRotation(Bitmap bm, final int orientationDegree)
+    {
+
+        Matrix m = new Matrix();
+        m.setRotate(orientationDegree, (float) bm.getWidth() / 2, (float) bm.getHeight() / 2);
+        float targetX, targetY;
+        if (orientationDegree == 90) {
+            targetX = bm.getHeight();
+            targetY = 0;
+        } else {
+            targetX = bm.getHeight();
+            targetY = bm.getWidth();
+        }
+
+        final float[] values = new float[9];
+        m.getValues(values);
+
+        float x1 = values[Matrix.MTRANS_X];
+        float y1 = values[Matrix.MTRANS_Y];
+        m.postTranslate(targetX - x1, targetY - y1);
+        Bitmap bm1 = Bitmap.createBitmap(bm.getHeight(), bm.getWidth(), Bitmap.Config.ARGB_8888);
+        Paint paint = new Paint();
+        Canvas canvas = new Canvas(bm1);
+        canvas.drawBitmap(bm, m, paint);
+        return bm1;
+    }
+    private String bitmapToBase64(Bitmap bitmap) {
+        String result = null;
+        ByteArrayOutputStream baos = null;
+        try {
+            if (bitmap != null) {
+                baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                baos.flush();
+                baos.close();
+
+                byte[] bitmapBytes = baos.toByteArray();
+                result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (baos != null) {
+                    baos.flush();
+                    baos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
 }
