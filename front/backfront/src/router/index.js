@@ -12,6 +12,14 @@ export default new Router({
       component: resolve => require(['@/components/Main.vue'], resolve),
       children: [
         {
+          path: '/index',
+          name: 'index',
+          component: resolve => require(['@/components/index.vue'], resolve),
+          meta: {
+            name: '首页'
+          }
+        },
+        {
           path: '/groupmanage',
           name: 'groupmanage',
           component: resolve => require(['@/components/groupmanage.vue'], resolve),

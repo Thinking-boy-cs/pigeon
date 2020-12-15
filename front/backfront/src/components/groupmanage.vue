@@ -1,14 +1,12 @@
 <template> 
-<div>
-  <operationTable :data1="childData"></operationTable>
-</div>
+  <operation-table :data1="childData"></operation-table>
 </template>
 
 <script>
 import operaionTable from './utils/operationTable'
 export default {
   components: {
-    operaionTable
+    'operation-table': operaionTable
   },
   data () {
     return  {
@@ -18,5 +16,6 @@ export default {
 }
 </script>
 
-<sty
-    OperationTablele></style>
+<style scoped>
+
+</style>
