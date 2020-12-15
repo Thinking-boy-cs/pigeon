@@ -13,7 +13,7 @@
         select sex as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{companyId}
+        on cc.id=#{companyId} and sf.companyId=cc.id
         GROUP BY sex;
     </select>
 <!--    统计员工的家乡-->
@@ -21,7 +21,7 @@
         select homeTown as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{companyId}
+        on cc.id=#{companyId} and sf.companyId=cc.id
         GROUP BY homeTown;
     </select>
 <!--    统计员工的薪资情况-->
@@ -29,7 +29,7 @@
         select salary as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{companyId}
+        on cc.id=#{companyId} and sf.companyId=cc.id
         GROUP BY salary;
     </select>
 <!--    统计员工的入职离职情况（某天）-->
@@ -37,7 +37,7 @@
         select status as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{param1} and to_days(sf.statusTime)=to_days(#{param2})
+        on cc.id=#{param1} and to_days(sf.statusTime)=to_days(#{param2}) and sf.companyId=cc.id
         GROUP BY status
 
     </select>
