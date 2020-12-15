@@ -96,4 +96,18 @@
         ON ss.id = rr.id
         WHERE to_days(rr.signTime) = to_days(#{theTime});
     </select>
+
+<!--    员工在职/离职/待审核状态处理-->
+<!--    审批为在职-->
+    <update id="letStatusOn" parameterType="String">
+        update staff
+        set status="on",statusTime=current_timestamp
+        where id=#{id}
+    </update>
+<!--    审批为离职-->
+    <update id="letStatusOff" parameterType="String">
+        update staff
+        set status="off",statusTime=current_timestamp
+        where id=#{id}
+    </update>
 </mapper>
