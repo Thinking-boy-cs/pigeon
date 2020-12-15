@@ -35,6 +35,7 @@ public class ViewDataServiceImpl implements ViewDataService {
         return statisticsViewDao.hometown_userNumber(companyId);
     }
 
+    //统计员工的薪资情况
     @Override
     public List<StatisticsCount> viewSalaryNumber(String companyId) {
         return statisticsViewDao.salary_userNumber(companyId);

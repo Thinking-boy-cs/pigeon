@@ -131,15 +131,15 @@ public class StatisticsViewController {
     @RequestMapping("salary_userNumber")
     public Map<String,Object> statisticsSalaryUserNumber(String companyId){
         //测试
-        //String companyId = "123456789012345";
+        //companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(companyId)){
-                List<StatisticsCount> ss = viewDataService.viewSalaryNumber(companyId);
+                List<StatisticsCount> sl = viewDataService.viewSalaryNumber(companyId);
                 map.put("status",0);
                 map.put("msg","查看成功");
-                map.put("data",ss);
+                map.put("data",sl);
             } else {
                 map.put("status",1);
                 map.put("msg","查看失败");
