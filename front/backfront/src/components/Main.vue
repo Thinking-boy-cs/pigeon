@@ -23,8 +23,6 @@
       <a-layout-sider width="200" style="background: #fff">
         <a-menu
           mode="inline"
-          :default-selected-keys="['groupmanage']"
-          :default-open-keys="['usermanage']"
           :style="{ height: '100%', borderRight: 0 }"
           @select="onOpenChange"
         >
