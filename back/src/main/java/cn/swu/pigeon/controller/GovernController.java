@@ -387,18 +387,37 @@ public class GovernController {
     }
 
     /**
-     * 发信息收集表单（调用大厂接口API）
+     * 审核注册用户的状态信息
      */
+    @RequestMapping("letStatusOn")
+    public Map<String,Object> letStatusOn(String id){
+        Map<String, Object> map =  new HashMap<>();
+        id = "1606060963";
+        try {
+            governService.letStatusOn(id);
+            map.put("status",0);
+            map.put("msg","处理成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
 
-    /**
-     * 1.方案一：模板
-     */
-
-    /**
-     * 2.方案二：动态自定义
-     */
-
-    /**
-     * 发通知
-     */
+    @RequestMapping("letStatusOff")
+    public Map<String,Object> letStatusOff(String id){
+        Map<String, Object> map =  new HashMap<>();
+        id = "1606060963";
+        try {
+            governService.letStatusOff(id);
+            map.put("status",0);
+            map.put("msg","处理成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
 }

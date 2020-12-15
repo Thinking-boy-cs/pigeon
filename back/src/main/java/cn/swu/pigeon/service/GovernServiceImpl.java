@@ -125,4 +125,18 @@ public class GovernServiceImpl implements GovernService{
     public int cUnsigned(String theTime) {
         return governDao.cUnsigned(theTime);
     }
+
+    /**
+     * 审核处理注册用户的状态信息
+     * @param id
+     */
+    @Override
+    public void letStatusOn(String id) {
+        governDao.letStatusOn(id);
+    }
+
+    @Override
+    public void letStatusOff(String id) {
+        governDao.letStatusOff(id);
+    }
 }
