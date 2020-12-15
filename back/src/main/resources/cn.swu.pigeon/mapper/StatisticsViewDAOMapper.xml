@@ -39,6 +39,5 @@
         join company cc
         on cc.id=#{param1} and to_days(sf.statusTime)=to_days(#{param2}) and sf.companyId=cc.id
         GROUP BY status
-
     </select>
 </mapper>

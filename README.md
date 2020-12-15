@@ -906,6 +906,96 @@ companyId:"xxxxxxx"
         data:[{xxx},{xxx},...]
   }
 ```   
+### 15. 员工在离职情况人数统计可视化
+请求地址      
+POST http://localhost:8989/api/pigeon/view/status_userNumber      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	companyId &nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;是  &nbsp; &nbsp; 指定公司    
+	tDate &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; 是 &nbsp; &nbsp; &nbsp; 指定日期
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp;List\<StatCount>&nbsp; 统计记录
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+companyId:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:[{xxx},{xxx},...]
+  }
+```   
+### 16. 审核员工在职
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/letStatusOn      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	id &nbsp; &nbsp; &nbsp; &nbsp; String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;是  &nbsp; &nbsp; 指定用户    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;审核成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;审核失败   
+
+请求数据实例   
+```
+id:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"审核成功"
+  }
+```   
+### 17. 审核员工离职
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/letStatusOff      
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	id &nbsp; &nbsp; &nbsp; &nbsp; String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;是  &nbsp; &nbsp; 指定用户    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;审核成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;审核失败   
+
+请求数据实例   
+```
+id:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"审核成功"
+  }
+```   
 #后端~其他
 ## 1. 插入company表（管理员操作）
 请求地址      
