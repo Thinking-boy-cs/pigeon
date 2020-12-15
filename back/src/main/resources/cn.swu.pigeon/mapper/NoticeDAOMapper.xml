@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.swu.pigeon.dao.NoticeDAO">
+<!--    添加-->
+    <insert id="addContent" parameterType="Notice" keyColumn="id" useGeneratedKeys="true">
+    insert into notice values (#{id},#{content})
+        
+    </insert>
+
+<!--    查询-->
+    <select id="queryContent" resultType="Notice">
+    select *
+    from notice
+    </select>
+</mapper>
