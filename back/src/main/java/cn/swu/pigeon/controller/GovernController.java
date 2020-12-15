@@ -245,27 +245,6 @@ public class GovernController {
         }
         return map;
     }
-    @RequestMapping("leavedCount")
-    public Map<String,Object> leavedCount(Date theTime){
-        Map<String,Object> map = new HashMap<>();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sDate = simpleDateFormat.format(theTime);
-
-//        String sDate = "2020-12-14";
-        try {
-            int sum = governService.leavedCount(sDate);
-            map.put("status",0);
-            map.put("msg","查询成功");
-            map.put("data",sum);
-        } catch (Exception e) {
-            e.printStackTrace();
-            map.put("status",1);
-            map.put("msg",e.getMessage());
-            map.put("data",null);
-        }
-        return map;
-    }
-
 
 
     /**
@@ -386,7 +365,26 @@ public class GovernController {
         return map;
     }
 
+    @RequestMapping("countLeaved")
+    public Map<String,Object> leavedCount(Date theTime){
+        Map<String,Object> map = new HashMap<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sDate = simpleDateFormat.format(theTime);
 
+//        String sDate = "2020-12-14";
+        try {
+            int sum = governService.leavedCount(sDate);
+            map.put("status",0);
+            map.put("msg","查询成功");
+            map.put("data",sum);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
 
     /**
      * 发信息收集表单（调用大厂接口API）

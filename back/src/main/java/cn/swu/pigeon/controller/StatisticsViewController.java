@@ -49,9 +49,9 @@ public class StatisticsViewController {
 
     //各个部门员工人数统计
     @RequestMapping("dept_userNumber")
-    public Map<String,Object> statisticsDeptUserNumber(){
+    public Map<String,Object> statisticsDeptUserNumber(String companyId){
         //测试
-        String companyId = "123456789012345";
+        //String companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {
@@ -77,9 +77,9 @@ public class StatisticsViewController {
 
     //公司男女情况人数统计
     @RequestMapping("sex_userNumber")
-    public Map<String,Object> statisticsSexUserNumber(){
+    public Map<String,Object> statisticsSexUserNumber(String companyId){
         //测试
-        String companyId = "123456789012345";
+        //String companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {
@@ -103,9 +103,9 @@ public class StatisticsViewController {
 
     //公司员工家乡情况人数统计
     @RequestMapping("hometown_userNumber")
-    public Map<String,Object> statisticsHometownUserNumber(){
+    public Map<String,Object> statisticsHometownUserNumber(String companyId){
         //测试
-        String companyId = "123456789012345";
+        //String companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {
@@ -129,9 +129,9 @@ public class StatisticsViewController {
 
     //员工薪资情况人数统计
     @RequestMapping("salary_userNumber")
-    public Map<String,Object> statisticsSalaryUserNumber(){
+    public Map<String,Object> statisticsSalaryUserNumber(String companyId){
         //测试
-        String companyId = "123456789012345";
+        //String companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {
