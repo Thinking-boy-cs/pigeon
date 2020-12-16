@@ -133,7 +133,7 @@ public class StatisticsViewController {
     @RequestMapping("salary_userNumber")
     public Map<String,Object> statisticsSalaryUserNumber(String companyId){
         //测试
-        companyId = "123456789012345";
+        //companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {
@@ -156,14 +156,15 @@ public class StatisticsViewController {
     }
 
     //员工在离职情况统计
-    @RequestMapping("letOperation_userNumber")
-    public Map<String,Object> statisticsLetUserNumber(){
+    @RequestMapping("status_userNumber")
+    public Map<String,Object> statisticsLetUserNumber(String companyId,Date tDate){
         //测试
-        String companyId = "123456789012345";
+        //String companyId = "123456789012345";
+        //String time = "2020-12-15";
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        //String time = simpleDateFormat.format(tDate);
-        String time = "2020-12-15";
+        String time = simpleDateFormat.format(tDate);
+
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(companyId)){
