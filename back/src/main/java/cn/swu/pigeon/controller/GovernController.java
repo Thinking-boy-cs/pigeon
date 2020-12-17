@@ -392,7 +392,8 @@ public class GovernController {
     @RequestMapping("letStatusOn")
     public Map<String,Object> letStatusOn(String id){
         Map<String, Object> map =  new HashMap<>();
-        id = "1606060963";
+        //测试
+        //id = "1606060963";
         try {
             governService.letStatusOn(id);
             map.put("status",0);
@@ -408,7 +409,8 @@ public class GovernController {
     @RequestMapping("letStatusOff")
     public Map<String,Object> letStatusOff(String id){
         Map<String, Object> map =  new HashMap<>();
-        id = "1606060963";
+        //测试
+        //id = "1606060963";
         try {
             governService.letStatusOff(id);
             map.put("status",0);
