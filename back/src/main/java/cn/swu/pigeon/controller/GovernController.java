@@ -277,7 +277,7 @@ public class GovernController {
         try {
             //测试
             id="1";
-            status="已通过";
+            status="1";
             governService.approveApplication(id,status);
             map.put("status",0);
             map.put("msg","审批成功!");

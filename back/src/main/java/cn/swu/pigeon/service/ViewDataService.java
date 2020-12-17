@@ -13,7 +13,7 @@ public interface ViewDataService {
     //统计员工的家乡
     List<StatisticsCount> viewHometownNumber(String companyId);
     //统计员工的薪资情况
-    List<StatisticsCount> viewSalaryNumber(String companyId);
+    List<Float> viewSalaryNumber(String companyId);
     //统计员工在离职情况
-    List<StatisticsCount> viewStatusNumber(String companyId, String time);
+    List<StatisticsCount> viewStatusNumber(String companyId, String time1,String time2);
 }
