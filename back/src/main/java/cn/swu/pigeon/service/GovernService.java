@@ -13,8 +13,10 @@ public interface GovernService {
      * 用户管理
      * @return
      */
-    //管理员查看用户信息
-    List<User> findUsers();
+    //查看用户信息
+    List<User> findUsersByCompanyId(String companyId);
+    List<User> findUsersByDept(String department);
+
     //添加用户信息
     void addUser(User user);
     //删除用户信息

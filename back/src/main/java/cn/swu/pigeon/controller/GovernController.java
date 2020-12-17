@@ -32,14 +32,31 @@ public class GovernController {
     /**
      * 1.查看所有用户
      */
-    @RequestMapping("findUser")
-    public Map<String,Object> find(){
+    @RequestMapping("findUserByCompanyId")
+    public Map<String,Object> findUserByCompanyId(String companyId){
 
         Map<String, Object> map =  new HashMap<>();
+//        String companyId = "082f17ee-e77e-4";
         try {
-            List<User> thisUsers = governService.findUsers();
+            List<User> thisUsers = governService.findUsersByCompanyId(companyId);
             map.put("status",0);
-            map.put("msg","登录成功!");
+            map.put("msg","查询成功!");
+            map.put("data",thisUsers);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+            map.put("data",null);
+        }
+        return map;
+    }
+    @RequestMapping("findUserByDept")
+    public Map<String,Object> findUserByDept(String department){
+        Map<String,Object> map = new HashMap<>();
+        try {
+            List<User> thisUsers = governService.findUsersByDept(department);
+            map.put("status",0);
+            map.put("msg","查询成功");
             map.put("data",thisUsers);
         } catch (Exception e) {
             e.printStackTrace();
