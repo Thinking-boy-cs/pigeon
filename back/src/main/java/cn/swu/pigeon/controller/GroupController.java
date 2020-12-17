@@ -1,10 +1,8 @@
 package cn.swu.pigeon.controller;
 
-import cn.swu.pigeon.entity.Company;
-import cn.swu.pigeon.entity.Group;
-import cn.swu.pigeon.entity.Record;
-import cn.swu.pigeon.entity.User;
+import cn.swu.pigeon.entity.*;
 import cn.swu.pigeon.service.GroupService;
+import cn.swu.pigeon.service.UserGroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +23,9 @@ public class GroupController {
 
     @Autowired
     GroupService groupService;
+
+    @Autowired
+    UserGroupService userGroupService;
 
     @RequestMapping("findAllGroup")
     public Map<String,Object> findAllGroup(){
@@ -150,6 +151,24 @@ public class GroupController {
             groupService.addGroup(group);
             map.put("status",0);
             map.put("msg","查询成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status",1);
+            map.put("msg",e.getMessage());
+        }
+        return map;
+    }
+
+    @RequestMapping("addUserGroup")
+    public Map<String,Object> addUserGroup(@RequestBody UserGroup userGroup){
+        Map<String,Object> map = new HashMap<>();
+//        UserGroup userGroup = new UserGroup();
+//        userGroup.setUserId("2798752");/
+//        userGroup.setGroupId("149329");
+        try {
+            userGroupService.addUserGroup(userGroup);
+            map.put("status",0);
+            map.put("msg","添加成功");
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status",1);
