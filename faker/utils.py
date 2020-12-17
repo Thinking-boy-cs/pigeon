@@ -1,7 +1,7 @@
 '''
 Author: Jecosine
 Date: 2020-12-15 18:48:44
-LastEditTime: 2020-12-15 20:24:34
+LastEditTime: 2020-12-18 01:48:44
 LastEditors: Jecosine
 Description: utils
 '''
@@ -21,7 +21,7 @@ class DatabaseConnector:
         try:            
             cursor.execute(query)
         except Exception as e:
-            print(e)
+            print('executing {} error: '.format(query) + str(e))
             return None
         else:
             return cursor.fetchall()
@@ -36,7 +36,7 @@ class DatabaseConnector:
             else:
                 cursor.execute(sql)
         except Exception as e:
-            print(e)
+            print('executing {} error: '.format(sql) + str(e))
             cursor.close()
             return False
         else:
