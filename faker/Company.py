@@ -1,42 +1,35 @@
 '''
 Author: Jecosine
-Date: 2020-12-15 18:25:03
-LastEditTime: 2020-12-15 21:45:20
+Date: 2020-12-15 18:24:21
+LastEditTime: 2020-12-15 20:20:57
 LastEditors: Jecosine
-Description: group entity
+Description: company entity
 '''
 from random import random
 from uuid import SafeUUID
 from utils import *
-
 from faker import Faker
 import random
 faker = Faker('zh_CN')
-
-
-class Group:
+class Company:
     """
     comment
     """
-    def __init__(self, _id=None, name=None, parentId=None, companyId=None):
+    def __init__(self, _id=None, name=None, userId=None):
         self._id = _id or get_uuid(15)
-        self.name = name or faker.word()
-        self.parentId = parentId
-        self.companyId = companyId
-    
-    def set_parent(self, parent):
-        self.parentId = parent
+        self.name = name or faker.company()
+        self.userId = userId
 
     @staticmethod
     def get_insert_sql():
-        return '''INSERT INTO pigeonnest.`group` (id, name, parentId, companyId)
-VALUES (%s, %s, %s, %s)'''
+        return '''INSERT INTO company (id, name, userId)
+VALUES (%s, %s, %s);
+'''
     @staticmethod
     def get_update_sql():
-        return """UPDATE group t
+        return """UPDATE company t
                     SET t.name   = '%s',
-                        t.parentId = '%s'
-                        t.companyId = '%s'
+                        t.userId = '%s'
                     WHERE t.id LIKE '%s' ESCAPE '#'"""
 
     def get_data_for_insert(self):

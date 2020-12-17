@@ -16,8 +16,11 @@ public interface GovernDao {
      * 用户管理
      * @return
      */
-    //找到所有用户
-    List<User> findUser();
+    //根据公司id，找到所有用户
+    List<User> findUserByCompanyId(String companyId);
+//    根据部门id，找到该部门所有用户
+    List<User> findUserByDept(String department);
+
     //添加用户
     User addUser(User user);
     //删除用户

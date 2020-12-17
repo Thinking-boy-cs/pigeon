@@ -1,0 +1,7 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.swu.pigeon.dao.UserGroupDao">
+    <insert id="addUserGroup" parameterType="UserGroup" keyColumn="id" useGeneratedKeys="true">
+        insert into user_group values (#{id},#{userId},#{groupId})
+    </insert>
+</mapper>
+
