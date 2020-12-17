@@ -2,6 +2,7 @@ package cn.swu.pigeon.dao;
 
 import cn.swu.pigeon.entity.StatisticsCount;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface StatisticsViewDao {
     List<StatisticsCount> hometown_userNumber(String companyId);
     //统计员工的薪资情况
     List<StatisticsCount> salary_userNumber(String companyId);
+    //统计员工在离职情况
+    List<StatisticsCount> status_userNumber(@Param("companyId") String companyId, @Param("time") String time);
 }

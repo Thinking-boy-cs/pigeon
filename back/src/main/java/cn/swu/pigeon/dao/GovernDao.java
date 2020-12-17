@@ -59,4 +59,11 @@ public interface GovernDao {
      */
     int cSigned(String theTime);
     int cUnsigned(String theTime);
+
+    /**
+     * 审核处理注册用户的状态信息
+     * @param id
+     */
+    void letStatusOn(String id);
+    void letStatusOff(String id);
 }

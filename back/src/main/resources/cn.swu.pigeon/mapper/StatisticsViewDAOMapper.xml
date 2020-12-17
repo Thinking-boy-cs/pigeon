@@ -13,7 +13,7 @@
         select sex as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{companyId}
+        on cc.id=#{companyId} and sf.companyId=cc.id
         GROUP BY sex;
     </select>
 <!--    统计员工的家乡-->
@@ -21,24 +21,23 @@
         select homeTown as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{companyId}
+        on cc.id=#{companyId} and sf.companyId=cc.id
         GROUP BY homeTown;
     </select>
 <!--    统计员工的薪资情况-->
-<!--要写一个触发器：准备incomeLevel-->
     <select id="salary_userNumber" parameterType="String" resultType="StatisticsCount">
-        select incomeLevel as countName, count(*) as countNumber
+        select salary as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{companyId}
-        GROUP BY incomeLevel;
+        on cc.id=#{companyId} and sf.companyId=cc.id
+        GROUP BY salary;
     </select>
-<!--    统计员工的入职离职情况（未考虑时间）-->
+<!--    统计员工的入职离职情况（某天）-->
     <select id="status_userNumber" parameterType="String" resultType="StatisticsCount">
         select status as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{companyId}
-        GROUP BY status;
+        on cc.id=#{param1} and to_days(sf.statusTime)=to_days(#{param2}) and sf.companyId=cc.id
+        GROUP BY status
     </select>
 </mapper>

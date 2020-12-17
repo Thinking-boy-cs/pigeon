@@ -46,9 +46,10 @@ public class UserServiceImpl implements UserService {
         User userDB = userDAO.findByTel(user.getId());
         if(userDB==null){
             //1.生成用户状态
-            user.setStatus("1");
-            //2.设置用户注册时间
+            user.setStatus("wait");
+            //2.设置用户注册时间以及初始待审核状态时间
             user.setRegisterTime(new Date());
+            user.setStatusTime(new Date());
             //3.设置用户默认头像
             user.setIcon("/default");
             //4.调用DAO

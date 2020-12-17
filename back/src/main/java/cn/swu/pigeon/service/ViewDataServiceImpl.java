@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,8 +36,15 @@ public class ViewDataServiceImpl implements ViewDataService {
         return statisticsViewDao.hometown_userNumber(companyId);
     }
 
+    //统计员工的薪资情况
     @Override
     public List<StatisticsCount> viewSalaryNumber(String companyId) {
         return statisticsViewDao.salary_userNumber(companyId);
+    }
+
+    //统计员工在离职情况
+    @Override
+    public List<StatisticsCount> viewStatusNumber(String companyId, String time){
+        return statisticsViewDao.status_userNumber(companyId,time);
     }
 }

@@ -58,5 +58,6 @@ public interface GovernService {
     int cSigned(String theTime);
     int cUnsigned(String theTime);
 
-
+    void letStatusOn(String id);
+    void letStatusOff(String id);
 }

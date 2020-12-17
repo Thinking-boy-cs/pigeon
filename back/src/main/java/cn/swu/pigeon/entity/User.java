@@ -14,6 +14,7 @@ public class User {
     private String password;
     private String sex;
     private String status;
+    private Date statusTime;
     private Date registerTime;
     private String icon;
     private String telNumber;
