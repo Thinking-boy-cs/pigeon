@@ -65,8 +65,8 @@ public class GovernServiceImpl implements GovernService{
      * @return
      */
     @Override
-    public List<Application> findApplication() {
-        return governDao.findApplication();
+    public List<Application> findApplication(String  companyId) {
+        return governDao.findApplication(companyId);
     }
 
     @Override
@@ -80,18 +80,18 @@ public class GovernServiceImpl implements GovernService{
      * @return
      */
     @Override
-    public List<Record> findSigned(String theTime) {
-        return governDao.findSigned(theTime);
+    public List<Record> findSigned(String companyId,String theTime) {
+        return governDao.findSigned(companyId,theTime);
     }
 
     @Override
-    public List<User> findUnsigned(String theTime) {
-        return governDao.findUnsigned(theTime);
+    public List<User> findUnsigned(String companyId,String theTime) {
+        return governDao.findUnsigned(companyId,theTime);
     }
 
     @Override
-    public List<Leave> findLeaved(String theTime) {
-        return governDao.findLeaved(theTime);
+    public List<Leave> findLeaved(String companyId,String theTime) {
+        return governDao.findLeaved(companyId,theTime);
     }
 
     @Override

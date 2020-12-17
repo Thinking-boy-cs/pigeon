@@ -71,7 +71,7 @@ public class GovernController {
      * 2.添加用户信息
      */
     @RequestMapping("addUser")
-    public Map<String,Object> addUser(@RequestBody User user,HttpServletRequest request){
+    public Map<String,Object> addUser(@RequestBody User user){
         Map<String, Object> map =  new HashMap<>();
         try {
             governService.addUser(user);
@@ -88,7 +88,7 @@ public class GovernController {
      * 3.修改用户信息
      */
     @RequestMapping("updateUser")
-    public Map<String,Object> updateUser(@RequestBody User user,HttpServletRequest request){
+    public Map<String,Object> updateUser(@RequestBody User user){
         Map<String, Object> map =  new HashMap<>();
         User thisUser = governService.queryUser(user.getId());
         try {
@@ -149,10 +149,11 @@ public class GovernController {
      * 4.删除用户信息
      */
     @RequestMapping("deleteUser")
-    public Map<String,Object> deleteUser(@RequestBody User user,HttpServletRequest request){
+    public Map<String,Object> deleteUser(String userId){
         Map<String, Object> map =  new HashMap<>();
+        User thisUser = governService.queryUser(userId);
         try {
-            governService.deleteUser(user);
+            governService.deleteUser(thisUser);
             map.put("status",0);
             map.put("msg","删除成功!");
         } catch (Exception e) {
@@ -167,7 +168,7 @@ public class GovernController {
      * 5.查询特定用户信息
      */
     @RequestMapping("queryUser")
-    public Map<String,Object> queryUser(@RequestBody String userId,HttpServletRequest request){
+    public Map<String,Object> queryUser(String userId){
         Map<String, Object> map =  new HashMap<>();
         try {
             User u = governService.queryUser(userId);
@@ -195,14 +196,14 @@ public class GovernController {
      * 1.1已签到记录
      */
     @RequestMapping("findSigned")
-    public Map<String,Object> findSigned(Date theTime){
+    public Map<String,Object> findSigned(String companyId,String theTime){
 
         Map<String, Object> map =  new HashMap<>();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sDate = simpleDateFormat.format(theTime);
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String sDate = simpleDateFormat.format(theTime);
 //        String sDate = "2020-12-14";
         try {
-            List<Record> thisSigned = governService.findSigned(sDate);
+            List<Record> thisSigned = governService.findSigned(companyId,theTime);
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data",thisSigned);
@@ -219,14 +220,14 @@ public class GovernController {
      * 1.2未签到记录
      */
     @RequestMapping("findUnsigned")
-    public Map<String,Object> findUnsigned(Date theTime){
+    public Map<String,Object> findUnsigned(String companyId,String theTime){
 
         Map<String, Object> map =  new HashMap<>();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sDate = simpleDateFormat.format(theTime);
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String sDate = simpleDateFormat.format(theTime);
 //        String sDate = "2020-12-14";
         try {
-            List<User> thisUnsigned = governService.findUnsigned(sDate);
+            List<User> thisUnsigned = governService.findUnsigned(companyId,theTime);
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data",thisUnsigned);
@@ -243,14 +244,14 @@ public class GovernController {
      * 1.3请假记录
      */
     @RequestMapping("findLeaved")
-    public Map<String,Object> findLeaved(Date theTime){
+    public Map<String,Object> findLeaved(String companyId,String theTime){
 
         Map<String, Object> map =  new HashMap<>();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sDate = simpleDateFormat.format(theTime);
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String sDate = simpleDateFormat.format(theTime);
 //        String sDate = "2020-12-14";
         try {
-            List<Leave> thisLeave = governService.findLeaved(sDate);
+            List<Leave> thisLeave = governService.findLeaved(companyId,theTime);
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data",thisLeave);
@@ -275,9 +276,9 @@ public class GovernController {
     public Map<String,Object> approveActivity(String id ,String status){
         Map<String, Object> map =  new HashMap<>();
         try {
-            //测试
-            id="1";
-            status="1";
+//            //测试
+//            id="1";
+//            status="1";
             governService.approveApplication(id,status);
             map.put("status",0);
             map.put("msg","审批成功!");
@@ -293,10 +294,10 @@ public class GovernController {
      * 2.查看所有活动（结束/进行中）
      */
     @RequestMapping("findActivity")
-    public Map<String,Object> findActivity(){
+    public Map<String,Object> findActivity(String companyId){
         Map<String, Object> map =  new HashMap<>();
         try {
-            List<Application> thisActivities = governService.findApplication();
+            List<Application> thisActivities = governService.findApplication(companyId);
             map.put("status",0);
             map.put("msg","查看成功!");
             map.put("data",thisActivities);
@@ -319,9 +320,9 @@ public class GovernController {
     public Map<String,Object> approveLeave(String id ,String status){
         Map<String, Object> map =  new HashMap<>();
         try {
-            //测试
-            id="1";
-            status="已通过";
+//            //测试
+//            id="1";
+//            status="已通过";
             governService.approveLeave(id,status);
             map.put("status",0);
             map.put("msg","审批成功!");

@@ -912,7 +912,8 @@ POST http://localhost:8989/api/pigeon/view/status_userNumber
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
 	companyId &nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;是  &nbsp; &nbsp; 指定公司    
-	tDate &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; 是 &nbsp; &nbsp; &nbsp; 指定日期
+	time1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; 是 &nbsp; &nbsp; &nbsp; 指定日期1   
+    time2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; 是 &nbsp; &nbsp; &nbsp; 指定日期2
 
 返回值     
 	Map<int,Object>    
@@ -929,6 +930,8 @@ status的合法值
 请求数据实例   
 ```
 companyId:"xxxxxxx"
+time1:"xx:xx:xx"
+time2:"xx:xx:xx"
 ```
 返回数据实例
 ```
