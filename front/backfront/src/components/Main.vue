@@ -1,17 +1,20 @@
 <template>
   <a-layout id="components-layout-demo-top-side-2">
     <a-layout-header class="header">
-      <div class="logo" />
-      <a-menu
-        theme="dark"
-        mode="horizontal"
-        :default-selected-keys="['2']"
-        :style="{ lineHeight: '64px' }"
-      >
-        <a-menu-item key="1"> nav 1 </a-menu-item>
-        <a-menu-item key="2"> nav 2 </a-menu-item>
-        <a-menu-item key="3"> nav 3 </a-menu-item>
-      </a-menu>
+      <div class="logo">
+        <img src="../img/APP_LOGO1.png" style="width: 30%" />
+        <p>Pigeon</p>
+      </div>
+      <div class="userinfo">
+        <a-avatar
+          class="avatar"
+          style="color: white; backgroundColor: #3296fa"
+          :size="38"
+        >
+          帅文
+        </a-avatar>
+        <p>余帅文</p>
+      </div>
     </a-layout-header>
     <a-layout>
       <a-layout-sider width="200" style="background: #fff">
@@ -131,8 +134,22 @@ export default {
 #components-layout-demo-top-side-2 .logo {
   width: 120px;
   height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 28px 16px 0;
   float: left;
+}
+.logo p {
+  float: right;
+  color: white;
+  font-family: PingFang SC;
+  font-size: 20px;
+  font-weight: bold;
+}
+.userinfo {
+  float: right;
+}
+.userinfo p {
+  color: white;
+  padding-left: 13px;
+  float: right;
+  font-family: PingFang SC;
 }
 </style>
