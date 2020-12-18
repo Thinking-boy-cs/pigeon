@@ -24,6 +24,6 @@ public interface GroupDao {
     //添加group字段
     void addGroup(Group group);
     //void addUser_group()
-	List<Group> findAllGroup();
+	List<Group> findAllGroup(String companyId);
 
 }
