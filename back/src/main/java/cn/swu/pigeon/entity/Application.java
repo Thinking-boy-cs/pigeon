@@ -19,6 +19,7 @@ public class Application {
     private Date endTime;
     private String status;
     private Date submitTime;
+    private String companyId;
 
     /**
      * @return int return the id

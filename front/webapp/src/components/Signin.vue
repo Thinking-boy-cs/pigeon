@@ -22,14 +22,45 @@
       </div>
       <div id="main-container">
         <div id="title">{{ activity ? activity.name : "" }}</div>
-        <div id="sign-button" :class="{'signed': signed, 'unsign': !signed}" @click="signin">
+        <a-tabs default-active-key="2" :size="size">
+    <a-tab-pane key="1">
+      <span slot="tab">
+        <a-icon type="environment" />
+        签到打卡
+      </span>
+              <div>
+        <div
+          id="sign-button"
+          :class="{ signed: signed, unsign: !signed }"
+          @click="signin"
+        >
           <div id="sign-title" v-if="!loading">打卡</div>
           <div id="sign-title" v-else><a-icon type="loading" /></div>
         </div>
         <div id="sign-map">
           <a-icon type="environment" id="environment" theme="filled" />
-          <a id="text">查看签到范围</a>
+          <a id="text" @click="$router.push({ path: '/ViewMap' })"
+            >查看签到范围</a
+          >
         </div>
+        </div>
+    </a-tab-pane>
+    <a-tab-pane key="2">
+      <span slot="tab">
+        <a-icon type="camera" />
+        拍照打卡
+      </span>
+        <div
+          id="sign-button"
+          :class="{ signed: signed, unsign: !signed }"
+          @click="signin"
+        >
+          <div v-if="!loading"><a-icon id="sign-title1" type="camera" :style="{ fontSize: '100px'}" /></div>
+          <div id="sign-title" v-else><a-icon type="loading" /></div>
+        </div>
+    </a-tab-pane>
+  </a-tabs>
+
       </div>
     </div>
   </div>
@@ -43,7 +74,8 @@ export default {
       activity: null,
       signed: false,
       loading: false,
-      text: '打卡'
+      text: '打卡',
+      size: 'large'
     }
   },
   computed: {
@@ -65,23 +97,31 @@ export default {
 
       this.$axios
         .get('/api/pigeon/application/sign?activityId=' + this.$route.params.id)
-        .then(res => {
+        .then((res) => {
           console.log(res)
-          if (res.data && res.data.status === 0) { setTimeout(() => { that.signed = true; that.text = '已打卡' }, 800) }
+          if (res.data && res.data.status === 0) {
+            setTimeout(() => {
+              that.signed = true
+              that.text = '已打卡'
+            }, 800)
+          }
         })
     },
     getStatus () {
       const that = this
       this.loading = true
       this.$axios
-        .get('/api/pigeon/application/getStatus?activityId=' + that.$route.params.id)
-        .then(res => {
+        .get(
+          '/api/pigeon/application/getStatus?activityId=' +
+            that.$route.params.id
+        )
+        .then((res) => {
           console.log('???', res)
-          that.signed = res.data ? (res.data.data === 1) : false
+          that.signed = res.data ? res.data.data === 1 : false
           that.text = that.signed ? '已打卡' : '打卡'
           that.loading = false
         })
-        .catch(res => {
+        .catch((res) => {
           that.$message.error('获取失败，请检查您的网络连接')
           that.loading = false
         })
@@ -99,12 +139,12 @@ export default {
     }
     this.$axios
       .get('/api/pigeon/application/getById?id=' + this.$route.params.id)
-      .then(res => {
+      .then((res) => {
         console.log('???', res)
         that.activity = res.data ? res.data.data : null
         if (!that.activity) that.$message.error('获取失败')
       })
-      .catch(res => {
+      .catch((res) => {
         that.$message.error('获取失败，请检查您的网络连接')
       })
     this.getStatus()
@@ -184,12 +224,10 @@ export default {
   flex-direction: column;
 }
 .unsign {
-
   background-color: #3291f8;
 }
 .signed {
   background-color: @success-color;
-
 }
 #sign-button {
   position: relative;
@@ -203,11 +241,19 @@ export default {
   display: flex;
 }
 #sign-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  align-self: center;
+  padding-left: 70px;
+}
+#sign-title1 {
   font-size: 25px;
   font-weight: bold;
   color: white;
   align-self: center;
-  padding-left: 75px;
+  padding-left: 50px;
+  padding-top: 45px;
 }
 #sign-map {
   padding-top: 20px;

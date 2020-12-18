@@ -7,7 +7,26 @@
         },
         {
             "name": "请假",
-            "icon": "audit"
+            "icon": "audit",
+            "link": "/LeaveDetail"
+        },
+        {
+            "name": "发布",
+            "icon": "upload",
+            "link": "/ManagePage",
+            "admin": true
+        }
+    ],
+    "all": [
+        {
+            "name": "签到",
+            "icon": "environment",
+            "link": "/Signin"
+        },
+        {
+            "name": "请假",
+            "icon": "audit",
+            "link": "/LeaveDetail"
         },
         {
             "name": "信息收集",
@@ -20,12 +39,6 @@
         {
             "name": "地图",
             "icon": "compass"
-        },
-        {
-            "name": "发布",
-            "icon": "upload",
-            "link": "/ManagePage",
-            "admin": true
         }
     ]
 }

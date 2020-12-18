@@ -146,7 +146,7 @@ public class ActivityController {
 
     }
     @RequestMapping("getById")
-    public Map<String,Object> getById(HttpServletRequest request, @RequestParam String id) {
+    public Map<String,Object> getById(@RequestParam String id) {
         Map<String,Object> map = new HashMap<>();
         // User thisUser = (User) request.getSession().getAttribute("thisUser");
         try {
@@ -227,7 +227,7 @@ public class ActivityController {
         return map;
     }
     @RequestMapping("getByUserId")
-    public Map<String,Object> getByUserId(HttpServletRequest request, @RequestParam String userId) {
+    public Map<String,Object> getByUserId(HttpServletRequest request) {
         Map<String,Object> map = new HashMap<>();
         User thisUser = (User) request.getSession().getAttribute("thisUser");
         try {

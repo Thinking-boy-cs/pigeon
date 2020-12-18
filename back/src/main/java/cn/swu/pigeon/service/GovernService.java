@@ -4,6 +4,7 @@ import cn.swu.pigeon.entity.Application;
 import cn.swu.pigeon.entity.Leave;
 import cn.swu.pigeon.entity.Record;
 import cn.swu.pigeon.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,7 @@ public interface GovernService {
      * @return
      */
     //查看活动
-    List<Application> findApplication();
+    List<Application> findApplication(String companyId);
     //审批活动
     void approveApplication(String id,String status);
 
@@ -41,11 +42,11 @@ public interface GovernService {
      * @return
      */
     //查询某天已签到记录
-    List<Record> findSigned(String theTime);
+    List<Record> findSigned(@Param("companyId") String companyId, @Param("theTime") String theTime);
     //查询某天未签到记录
-    List<User> findUnsigned(String theTime);
+    List<User> findUnsigned(@Param("companyId") String companyId, @Param("theTime") String theTime);
     //查询某天处于请假的记录
-    List<Leave> findLeaved(String theTime);
+    List<Leave> findLeaved(@Param("companyId") String companyId, @Param("theTime") String theTime);
 //    统计某天请假人数
     int leavedCount(String theTime);
 

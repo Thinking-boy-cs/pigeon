@@ -35,7 +35,7 @@ public interface GovernDao {
      * @return
      */
     //找到所有活动
-    List<Application> findApplication();
+    List<Application> findApplication(String companyId);
     //审批活动
     void approveApplication(@Param("id") String id,@Param("status") String status);
 
@@ -45,11 +45,11 @@ public interface GovernDao {
      * @return
      */
     //查询某天已签到记录
-    List<Record> findSigned(String theTime);
+    List<Record> findSigned(String companyId,String theTime);
     //查询某天未签到记录
-    List<User> findUnsigned(String theTime);
+    List<User> findUnsigned(String companyId,String theTime);
     //查询某天处于请假的记录
-    List<Leave> findLeaved(String theTime);
+    List<Leave> findLeaved(String companyId,String theTime);
     int leavedCount(String theTime);
 
 
