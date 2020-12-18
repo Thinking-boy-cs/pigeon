@@ -55,15 +55,15 @@ export default new Router({
             name: '人事变动'
           }
         },
-        // {
-        //   path: '/personalreport',
-        //   name: 'personalreport',
-        //   component: resolve => require(['@/components/personalreport.vue'], resolve),
-        //   meta: {
-        //     parent: '人员管理',
-        //     name: '人事报表'
-        //   }
-        // },
+        {
+          path: '/personalreport',
+          name: 'personalreport',
+          component: resolve => require(['@/components/personalreport.vue'], resolve),
+          meta: {
+            parent: '人员管理',
+            name: '人事报表'
+          }
+        },
         {
           path: '/signin',
           name: 'signin',
@@ -143,6 +143,15 @@ export default new Router({
           meta: {
             parent: '数据管理',
             name: '考勤报表'
+          }
+        },
+        {
+          path: '/regionreport',
+          name: 'regionreport',
+          component: resolve => require(['@/components/regionreport.vue'], resolve),
+          meta: {
+            parent: '数据管理',
+            name: '地区战略'
           }
         }
       ]

@@ -25,7 +25,7 @@
             <span slot="title"><a-icon type="user" />人员管理</span>
             <a-menu-item key="groupmanage"> 部门管理 </a-menu-item>
             <a-menu-item key="staffmanage"> 员工管理 </a-menu-item>
-            <a-menu-item key="birthday"> 生日关怀 </a-menu-item>
+            <!-- <a-menu-item key="birthday"> 生日关怀 </a-menu-item> -->
             <a-menu-item key="personnel"> 人事变动 </a-menu-item>
             <a-menu-item key="personalreport"> 人事报表 </a-menu-item>
           </a-sub-menu>
@@ -49,6 +49,7 @@
             <span slot="title"><a-icon type="area-chart" />数据管理</span>
             <a-menu-item key="personnelreport"> 人事报表 </a-menu-item>
             <a-menu-item key="attendancereport"> 考勤报表 </a-menu-item>
+            <a-menu-item key="regionreport"> 地区战略 </a-menu-item>
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>

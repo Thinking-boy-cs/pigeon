@@ -17,12 +17,12 @@
         </div>
         <div id="leave">
           <a-icon type="audit" style="font-size: 24px" />
-          <div style="font-weight: bold">请假</div>
+          <div style="font-weight: bold" @click="$router.push({ path: '/LeaveApplication' })">请假</div>
         </div>
       </div>
       <div id="main-container">
         <div id="title">{{ activity ? activity.name : "" }}</div>
-        <a-tabs default-active-key="2" :size="size">
+        <a-tabs default-active-key="1" :size="size">
     <a-tab-pane key="1">
       <span slot="tab">
         <a-icon type="environment" />

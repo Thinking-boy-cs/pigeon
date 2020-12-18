@@ -20,7 +20,6 @@
       <div id="header-wrapper">
         <div class="header-title">注册</div>
         <div class="header-second-title">
-          注册之后可以立即绑定公司帐号，也可以之后再绑定~
         </div>
       </div>
     </div>
