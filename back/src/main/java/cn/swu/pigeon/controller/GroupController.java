@@ -28,12 +28,12 @@ public class GroupController {
     UserGroupService userGroupService;
 
     @RequestMapping("findAllGroup")
-    public Map<String,Object> findAllGroup(){
+    public Map<String,Object> findAllGroup(String companyId){
 
         Map<String, Object> map =  new HashMap<>();
         try {
             //测试
-            List<Group> groups = groupService.findAllGroup();
+            List<Group> groups = groupService.findAllGroup(companyId);
             map.put("status",0);
             map.put("msg","查询成功!");
             map.put("data", groups);
@@ -56,7 +56,7 @@ public class GroupController {
         Map<String, Object> map =  new HashMap<>();
         try {
             //测试
-            userId = "1606016550";
+            //userId = "1606016550";
             List<String> thisGroupId = groupService.findGroupId(userId);
             map.put("status",0);
             map.put("msg","查询成功!");
@@ -81,7 +81,7 @@ public class GroupController {
         Map<String, Object> map =  new HashMap<>();
         try {
             //测试
-            userId = "1606016550";
+            //userId = "1606016550";
             List<Group> thisGroupObject = groupService.findGroupObject(userId);
             map.put("status",0);
             map.put("msg","查询成功!");

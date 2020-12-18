@@ -2,7 +2,8 @@
 <mapper namespace="cn.swu.pigeon.dao.GroupDao">
     <select id="findAllGroup" parameterType="String" resultType="Group">
         select `group`.*
-        from `group`;
+        from `group`
+        where companyId=#{companyId}
     </select>
     <!--通过userId找到对应的groupId-->
     <select id="findGroupId" parameterType="String" resultType="String">
