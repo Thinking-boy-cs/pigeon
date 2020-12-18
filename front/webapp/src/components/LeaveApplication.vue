@@ -45,7 +45,7 @@
       />
     </div>
     <div id="cause">
-      <a id="text"><span style="color: red">*</span>请假理由</a>
+      <a id="text">请假理由</a>
       <a-textarea
         class="causetext"
         placeholder="请输入请假理由"
@@ -80,7 +80,7 @@
         <a-select-option value="sender3"> 管理员3 </a-select-option>
       </a-select>
     </div>
-    <a-button id="submit" type="primary" block> 提交 </a-button>
+    <a-button id="submit" type="primary" block @click="onSubmit"> 提交 </a-button>
   </div>
 </template>
 

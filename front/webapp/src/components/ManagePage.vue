@@ -64,7 +64,7 @@
                   :default-open-value="moment('00:00:00', 'HH:mm:ss')"
                 />
               </a-form-model-item> -->
-              <a-form-model-item :wrapper-col="{ span: 10, offset: 4 }">
+              <a-form-model-item :wrapper-col="{ span: 12, offset: 6 }">
                 <a-button type="primary" @click="onSubmit"> Create </a-button>
                 <a-button style="margin-left: 25px" @click="resetForm">
                   Reset
@@ -80,13 +80,6 @@
           </span>
           Tab 2
         </a-tab-pane>
-        <!-- <a-tab-pane key="3">
-          <span slot="tab">
-            <a-icon type="android" />
-            功能页3
-          </span>
-          Tab 3
-        </a-tab-pane> -->
       </a-tabs>
     </div>
   </div>

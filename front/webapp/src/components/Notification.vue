@@ -11,12 +11,7 @@
         <a-row>
         <a-col :span="12" @click="showDrawer">
         <!-- <a-icon id="feature-icon1" type="calendar"></a-icon> -->
-          <a-avatar
-          :size="30"
-          style="backgroundColor: #52c41a"
-          icon="calendar"
-          id="feature-icon1"
-        /><br />
+        <a-icon type="calendar" :style="{ fontSize: '30px', color: '#fb7299' }"/><br/>
         <a id="calendar">日历</a>
             </a-col>
              <a-col :span="12">
@@ -25,12 +20,7 @@
           id="feature-icon2"
           aria-hidden="true"
         ></i> -->
-        <a-avatar
-          :size="30"
-          style="backgroundColor: #FCCF31"
-          icon="schedule"
-          id="feature-icon1"
-        /><br />
+         <a-icon type="schedule" :style="{ fontSize: '30px', color: '#fb7299' }"/><br/>
         <a id="todo">待办</a>
          </a-col>
         </a-row>
@@ -51,7 +41,7 @@
           <div class="notify-red-icon" v-if="item.unRead !== 0">{{item.unRead}}</div>
         </div>
       </div>
-      
+
       <!-- <div id="notification1">
         <a-avatar
           :size="64"
@@ -74,7 +64,7 @@
         <div id="info2">管理员通知 <br /><span>【管理员提醒】</span></div>
       </div> -->
       <a-drawer
-        title="Basic Drawer"
+        title="打卡日历"
         placement="left"
         :closable="false"
         :visible="visible"
