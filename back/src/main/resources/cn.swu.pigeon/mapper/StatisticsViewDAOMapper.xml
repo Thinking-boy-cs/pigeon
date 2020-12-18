@@ -25,8 +25,8 @@
         GROUP BY homeTown;
     </select>
 <!--    统计员工的薪资情况-->
-    <select id="salary_userNumber" parameterType="String" resultType="StatisticsCount">
-        select salary as countName, count(*) as countNumber
+    <select id="salary_userNumber" parameterType="String" resultType="Float">
+        select salary
         from staff sf
         join company cc
         on cc.id=#{companyId} and sf.companyId=cc.id
@@ -37,7 +37,7 @@
         select status as countName, count(*) as countNumber
         from staff sf
         join company cc
-        on cc.id=#{param1} and to_days(sf.statusTime)=to_days(#{param2}) and sf.companyId=cc.id
+        on cc.id=#{param1} and (to_days(sf.statusTime) between to_days(#{param2}) and to_days(#{param3})) and sf.companyId=cc.id
         GROUP BY status
     </select>
 </mapper>

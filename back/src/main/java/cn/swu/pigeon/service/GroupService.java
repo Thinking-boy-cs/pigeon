@@ -24,6 +24,6 @@ public interface GroupService {
 
     public List<String> findUserIdsByGroupId(String groupId) ;
 
-	public List<Group> findAllGroup();
+	public List<Group> findAllGroup(String companyId);
     
 }

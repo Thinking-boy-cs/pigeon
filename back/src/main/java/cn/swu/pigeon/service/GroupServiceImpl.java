@@ -21,8 +21,8 @@ public class GroupServiceImpl implements GroupService{
     GroupDao groupDao;
 
     @Override
-	public List<Group> findAllGroup() {
-        return groupDao.findAllGroup();
+	public List<Group> findAllGroup(String companyId) {
+        return groupDao.findAllGroup(companyId);
 
     }
 

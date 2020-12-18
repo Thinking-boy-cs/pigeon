@@ -17,4 +17,5 @@ public class Leave {
     private Date endTime;
     private String state;
     private Date submitTime;
+    private String companyId;
 }

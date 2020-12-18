@@ -3,8 +3,9 @@
     <div id="navigation-container">
       <div id="navigation-wrapper">
         <div class="icon-container">
-          <a-icon type="left" />
+          <a-icon type="left" @click="$router.go(-1)" />
         </div>
+                <div class="page-title">签到范围</div>
         <div class="title-container">
           <baidu-map
             class="bm-view"
@@ -24,7 +25,7 @@
             >
             </bm-circle>
             <bm-marker
-              :position="circlePath.center"
+              :position="postionMap"
               animation="BMAP_ANIMATION_BOUNCE"
             >
               <bm-label
@@ -61,8 +62,8 @@ export default {
     return {
       show: false,
       postionMap: {
-        lng: 0,
-        lat: 0
+        lng: 105.588047,
+        lat: 29.407702
       },
       location: '',
       address: '',
@@ -81,8 +82,8 @@ export default {
       jgNum: '',
       circlePath: {
         center: {
-          lng: 116.404,
-          lat: 39.915
+          lng: 105.585047,
+          lat: 29.401702
         },
         radius: 500
       }
@@ -97,7 +98,7 @@ export default {
       // this.add.wd = e.point.lat
       // this.zoom = e.target.getZoom()
       let geocoder = new window.BMap.Geocoder()
-      let point = new window.BMap.Point(this.circlePath.center.lng, this.circlePath.center.lat)
+      let point = new window.BMap.Point(this.postionMap.lng, this.postionMap.lat)
       geocoder.getLocation(point, (rs) => {
         this.add.site = rs.address
         console.log(rs.address) // 这里打印可以看到里面的详细地址信息，可以根据需求选择想要的
@@ -125,6 +126,7 @@ export default {
   height: 58px;
   line-height: 58px;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  z-index: 99;
 }
 #navigation-wrapper {
   position: relative;
@@ -138,7 +140,6 @@ export default {
 .title-container {
   font-size: 18px;
   font-weight: bold;
-  padding-top: 60px;
 }
 #notification-header {
   position: relative;
@@ -146,6 +147,10 @@ export default {
 }
 .bm-view {
   width: 100%;
-  height: 750px;
+  height: 100vh;
+}
+.page-title {
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>

@@ -1,9 +1,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.GovernDao">
     <!--    对用户的增删改查-->
-    <select id="findUser" parameterType="String" resultType="User">
-        select id,username,dept,password,sex,status,registerTime,icon,telNumber,email
+    <select id="findUserByCompanyId" parameterType="String" resultType="User">
+        select *
         from staff
+        where companyId = #{companyId}
+    </select>
+
+    <select id="findUserByDept" parameterType="String" resultType="User">
+        select *
+        from staff
+        where id in (select userId from user_group where groupId = #{department})
     </select>
 
     <insert id="addUser" parameterType="User">
@@ -28,8 +35,9 @@
 
     <!--    对活动的管理(未考虑时间)-->
     <select id="findApplication" parameterType="String" resultType="Application">
-        select id,activityName,applicant,approver,startTime,endTime,status,submitTime
+        select *
         from application
+        where companyId=#{companyId}
     </select>
 
     <update id="approveApplication" parameterType="String">
@@ -44,19 +52,19 @@
     <select id="findSigned" parameterType="String" resultType="Record">
         select *
         from signrecord
-        where to_days(signTime) = to_days(#{theTime})
+        where to_days(signTime) = to_days(#{param2}) and companyId=#{param1}
     </select>
 
     <select id="findUnsigned" parameterType="String" resultType="User">
         select ss.*
         from staff ss
-        WHERE ss.id not in (SELECT id FROM signrecord WHERE to_days(signTime) = to_days(#{theTime}))
+        WHERE ss.id not in (SELECT id FROM signrecord WHERE to_days(signTime) = to_days(#{param2})) and companyId=#{param1}
     </select>
 
     <select id="findLeaved" parameterType="String" resultType="Leave">
         select *
         from vacation
-        where to_days(#{theTime}) between to_days(startTime) and to_days(endTime)
+        where to_days(#{param2}) between to_days(startTime) and to_days(endTime) and companyId=#{param1}
     </select>
 
     <select id="leavedCount" parameterType="String" resultType="int">

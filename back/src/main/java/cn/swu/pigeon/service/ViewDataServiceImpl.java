@@ -38,13 +38,13 @@ public class ViewDataServiceImpl implements ViewDataService {
 
     //统计员工的薪资情况
     @Override
-    public List<StatisticsCount> viewSalaryNumber(String companyId) {
+    public List<Float> viewSalaryNumber(String companyId) {
         return statisticsViewDao.salary_userNumber(companyId);
     }
 
     //统计员工在离职情况
     @Override
-    public List<StatisticsCount> viewStatusNumber(String companyId, String time){
-        return statisticsViewDao.status_userNumber(companyId,time);
+    public List<StatisticsCount> viewStatusNumber(String companyId, String time1,String time2){
+        return statisticsViewDao.status_userNumber(companyId,time1,time2);
     }
 }

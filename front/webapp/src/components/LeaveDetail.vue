@@ -94,6 +94,5 @@ export default {
 @import '../style/index.less';
 #status-container {
   width: 100%;
-
 }
 </style>

@@ -138,7 +138,7 @@ public class StatisticsViewController {
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(companyId)){
-                List<StatisticsCount> sl = viewDataService.viewSalaryNumber(companyId);
+                List<Float> sl = viewDataService.viewSalaryNumber(companyId);
                 map.put("status",0);
                 map.put("msg","查看成功");
                 map.put("data",sl);
@@ -157,18 +157,18 @@ public class StatisticsViewController {
 
     //员工在离职情况统计
     @RequestMapping("status_userNumber")
-    public Map<String,Object> statisticsLetUserNumber(String companyId,Date tDate){
+    public Map<String,Object> statisticsLetUserNumber(String companyId,String time1,String time2){
         //测试
         //String companyId = "123456789012345";
         //String time = "2020-12-15";
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String time = simpleDateFormat.format(tDate);
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String time = simpleDateFormat.format(tDate);
 
         Map<String,Object> map = new HashMap<>();
         try {
             if(!ObjectUtils.isEmpty(companyId)){
-                List<StatisticsCount> sp = viewDataService.viewStatusNumber(companyId,time);
+                List<StatisticsCount> sp = viewDataService.viewStatusNumber(companyId,time1,time2);
                 map.put("status",0);
                 map.put("msg","查看成功");
                 map.put("data",sp);
