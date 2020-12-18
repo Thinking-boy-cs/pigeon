@@ -7,10 +7,16 @@
   <div id="app"  key="0">
     <div id="carousel-container">
       <a-carousel autoplay>
-        <div class="cabg"></div>
-        <div class="cabg"></div>
-        <div class="cabg"></div>
-        <div class="cabg"></div>
+        <div class="cabg">
+          <!-- <img src='../img/01.jpg'/> -->
+        </div>
+        <div class="cabg">
+        </div>
+        <div class="cabg">
+        </div>
+        <div class="cabg">
+
+        </div>
       </a-carousel>
     </div>
     <!-- <i class="fa fa-address-book-o">face</i> -->
