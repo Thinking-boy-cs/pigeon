@@ -1,7 +1,7 @@
 '''
 Author: Jecosine
 Date: 2020-12-15 18:25:14
-LastEditTime: 2020-12-15 20:35:31
+LastEditTime: 2020-12-18 05:51:28
 LastEditors: Jecosine
 Description: staff entity
 '''
@@ -44,22 +44,22 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
     @staticmethod
     def get_update_sql():
         return """UPDATE staff t
-                    SET t.username     = '%s',
-                        t.dept         = '%s',
-                        t.password     = '%s',
-                        t.sex          = '%s',
-                        t.hometown     = '%s',
-                        t.telNumber    = '%s',
-                        t.email        = '%s',
-                        t.icon         = '%s',
-                        t.status       = '%s',
-                        t.statusTime   = '%s',
-                        t.companyId    = '%s',
-                        t.originId     = '%s',
-                        t.registerTime = '%s',
-                        t.signature    = '%s',
+                    SET t.username     = %s,
+                        t.dept         = %s,
+                        t.password     = %s,
+                        t.sex          = %s,
+                        t.hometown     = %s,
+                        t.telNumber    = %s,
+                        t.email        = %s,
+                        t.icon         = %s,
+                        t.status       = %s,
+                        t.statusTime   = %s,
+                        t.companyId    = %s,
+                        t.originId     = %s,
+                        t.registerTime = %s,
+                        t.signature    = %s,
                         t.salary       = %s
-                    WHERE t.id = '%s'"""
+                    WHERE t.id = %s"""
 
     def get_data_for_insert(self):
         d = list(self.__dict__.items())
@@ -69,5 +69,5 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
         d = [i[-1] for i in d]
         t = d.pop(0)
         d.append(t)
-        return (d)
+        return tuple(d)
 
