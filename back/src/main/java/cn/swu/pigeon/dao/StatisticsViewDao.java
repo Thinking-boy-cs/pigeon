@@ -15,7 +15,7 @@ public interface StatisticsViewDao {
     //统计员工的家乡
     List<StatisticsCount> hometown_userNumber(String companyId);
     //统计员工的薪资情况
-    List<StatisticsCount> salary_userNumber(String companyId);
+    List<Float> salary_userNumber(String companyId);
     //统计员工在离职情况
-    List<StatisticsCount> status_userNumber(@Param("companyId") String companyId, @Param("time") String time);
+    List<StatisticsCount> status_userNumber(@Param("companyId") String companyId, @Param("time1") String time1,@Param("time2") String time2);
 }
