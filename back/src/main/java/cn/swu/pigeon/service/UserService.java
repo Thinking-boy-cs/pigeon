@@ -14,5 +14,5 @@ public interface UserService {
     User find(User user);
 
     //请求短信验证码
-    void sendSMS(String phoneNumber);
+    String sendSMS(String phoneNumber);
 }

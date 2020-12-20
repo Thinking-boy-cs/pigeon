@@ -239,13 +239,15 @@ public class UserController {
         Map<String, Object> map =  new HashMap<>();
         User thisUser = (User)request.getSession().getAttribute("thisUser");
         try {
-            userService.sendSMS(thisUser.getTelNumber());
+            String messageCode = userService.sendSMS(thisUser.getTelNumber());
             map.put("status",0);
             map.put("msg","发送成功!");
+            map.put("smsCode",messageCode);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
             map.put("msg", e.getMessage());
+            map.put("smsCode",null);
         }
         return map;
     }

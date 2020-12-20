@@ -42,9 +42,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void sendSMS(String phoneNumber) {
+    public String sendSMS(String phoneNumber) {
         sendSMSUtil  sendTool = new sendSMSUtil();
-        sendTool.send(phoneNumber);
+        return sendTool.send(phoneNumber);
     }
 
     @Override

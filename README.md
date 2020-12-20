@@ -1224,5 +1224,6 @@ status的合法值
   {
 	status:0
 	msg:"发送成功"
+        smsCode:"660804"
   }
 ```   
