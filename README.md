@@ -1204,4 +1204,25 @@ status的合法值
              }
   }
 ```   
+### 7. 请求加速短信验证码
+请求地址      
+POST http://localhost:8989/api/pigeon/user/sendSMS      
 
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+返回数据实例
+```
+  {
+	status:0
+	msg:"发送成功"
+  }
+```   
