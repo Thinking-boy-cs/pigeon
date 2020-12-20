@@ -12,4 +12,7 @@ public interface UserService {
 
     //用户查询个人信息
     User find(User user);
+
+    //请求短信验证码
+    void sendSMS(String phoneNumber);
 }
