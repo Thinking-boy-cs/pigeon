@@ -14,7 +14,7 @@
           v-if="record.editable"
           style="margin: -5px 0"
           :value="text"
-          @change="e => handleChange(e.target.value, record.key, col.key)"
+          @change="e => handleChange(e.target.value, record.id, col.key)"
         />
         <template v-else>
           {{ text }}
@@ -25,19 +25,19 @@
         <a-popconfirm
           v-if="tableData.length"
           title="Sure to delete?"
-          @confirm="deleteRow(record.key)"
+          @confirm="deleteRow(record.id)"
         >
-          <a href="javascript:;">Delete</a>
+          <a href="javascript:;">删除</a>
         </a-popconfirm>
-        <div class="editable-row-operations">
+        <div class="editable-row-operations" style="display: inline-block">
           <span v-if="record.editable">
-            <a @click="() => save(record.key)">Save</a>
-            <a-popconfirm title="Sure to cancel?" @confirm="() => cancel(record.key)">
-              <a>Cancel</a>
+            <a @click="() => save(record.id)">保存</a>
+            <a-popconfirm title="Sure to cancel?" @confirm="() => cancel(record.id)">
+              <a>取消</a>
             </a-popconfirm>
           </span>
           <span v-else>
-            <a :disabled="editingKey !== ''" @click="() => edit(record.key)">Edit</a>
+            <a :disabled="editingKey !== ''" @click="() => edit(record.id)">编辑</a>
           </span>
         </div>
       </div>
@@ -47,7 +47,7 @@
 
 <script>
 const columns = [
-  { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left',scopedSlots: { customRender: 'name' } },
+  { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left', scopedSlots: { customRender: 'name' } },
   { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left', scopedSlots: { customRender: 'age' } },
   { title: 'Column 1', dataIndex: 'address', key: '1', width: 150, scopedSlots: { customRender: '1' } },
   { title: 'Column 2', dataIndex: 'address', key: '2', width: 150, scopedSlots: { customRender: '2' } },
@@ -98,7 +98,7 @@ export default {
     },
     handleChange (value, key, column) {
       const newData = [...this.tableData]
-      const target = newData.filter(item => key === item.key)[0]
+      const target = newData.filter(item => key === item.id)[0]
       if (target) {
         target[column] = value
         this.tableData = newData
@@ -106,7 +106,7 @@ export default {
     },
     edit (key) {
       const newData = [...this.tableData]
-      const target = newData.filter(item => key === item.key)[0]
+      const target = newData.filter(item => key === item.id)[0]
       this.editingKey = key
       if (target) {
         target.editable = true
@@ -116,8 +116,8 @@ export default {
     save (key) {
       const newData = [...this.tableData]
       const newCacheData = [...this.cacheData]
-      const target = newData.filter(item => key === item.key)[0]
-      const targetCache = newCacheData.filter(item => key === item.key)[0]
+      const target = newData.filter(item => key === item.id)[0]
+      const targetCache = newCacheData.filter(item => key === item.id)[0]
       if (target && targetCache) {
         delete target.editable
         this.tableData = newData
@@ -130,10 +130,10 @@ export default {
     },
     cancel (key) {
       const newData = [...this.tableData]
-      const target = newData.filter(item => key === item.key)[0]
+      const target = newData.filter(item => key === item.id)[0]
       this.editingKey = ''
       if (target) {
-        Object.assign(target, this.cacheData.filter(item => key === item.key)[0])
+        Object.assign(target, this.cacheData.filter(item => key === item.id)[0])
         delete target.editable
         this.tableData = newData
       }

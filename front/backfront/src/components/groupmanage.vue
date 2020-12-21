@@ -1,6 +1,6 @@
 <template>
-  <operation-table 
-    :tableData="tableData" 
+  <operation-table
+    :tableData="tableData"
     :tableColumns="tableColumns"
     @deleterow="onDelete"
     @saverow="onSave">
@@ -11,17 +11,17 @@
 <script>
 import operaionTable from './utils/operationTable'
 const columns = [
-  { title: 'id', width: 100, dataIndex: 'id', key: 'id', fixed: 'left',scopedSlots: { customRender: 'id' } },
-  { title: 'username', width: 100, dataIndex: 'username', key: 'username', fixed: 'left', scopedSlots: { customRender: 'age' } },
-  { title: 'sex', dataIndex: 'sex', key: 'sex', width: 150, scopedSlots: { customRender: 'sex' } },
-  { title: 'password', dataIndex: 'password', key: 'password', width: 150, scopedSlots: { customRender: 'password' } },
-  { title: 'telephone', dataIndex: 'telNumber', key: 'telNumber', width: 150, scopedSlots: { customRender: 'telNumber' } },
-  { title: 'email', dataIndex: 'email', key: 'email', width: 150, scopedSlots: { customRender: 'email' } },
+  { title: '职员号', width: 200, dataIndex: 'id', key: 'id', fixed: 'left', scopedSlots: { customRender: 'id' } },
+  { title: '用户名', width: 100, dataIndex: 'username', key: 'username', fixed: 'left', scopedSlots: { customRender: 'age' } },
+  { title: '性别', dataIndex: 'sex', key: 'sex', width: 150, scopedSlots: { customRender: 'sex' } },
+  { title: '密码', dataIndex: 'password', key: 'password', width: 150, scopedSlots: { customRender: 'password' } },
+  { title: '电话号码', dataIndex: 'telNumber', key: 'telNumber', width: 150, scopedSlots: { customRender: 'telNumber' } },
+  { title: '邮箱', dataIndex: 'email', key: 'email', width: 150, scopedSlots: { customRender: 'email' } },
   {
-    title: 'Action',
+    title: '操作',
     key: 'operation',
     fixed: 'right',
-    width: 100,
+    width: 200,
     scopedSlots: { customRender: 'action' }
   }
 ]
@@ -76,6 +76,14 @@ export default {
         console.log(res)
       })
     }
+  },
+  created () {
+    const that = this
+    this.$axios.get('http://localhost:8080/api/pigeon/govern/findUserByCompanyId?companyId=232b7da9-9582-4')
+      .then((res) => {
+        console.log(res)
+        that.tableData = res.data.data
+      })
   }
 }
 </script>

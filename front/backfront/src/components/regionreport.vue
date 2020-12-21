@@ -1,10 +1,10 @@
 <template>
   <div>
-    <mapbar
+    <!-- <mapbar
       :select="mapprov"
       :datas="cityDatas"
       :style="{ width: '100%', height: `${map_canvas}` }"
-    />
+    /> -->
     //中国地图
     <mapbar
       :select="mapchina"
@@ -25,7 +25,7 @@ export default {
     return {
       mapchina: 'china',
       mapprov: '广东',
-      map_canvas: '26vh',
+      map_canvas: '70vh',
       // 地图迁徙图设置
       provDatas: [
         [{ name: '黑龙江', value: 0 }, { name: '广东' }],
