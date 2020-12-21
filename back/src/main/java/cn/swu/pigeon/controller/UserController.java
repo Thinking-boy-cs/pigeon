@@ -41,6 +41,7 @@ public class UserController {
      * 处理用户登录
      */
     @PostMapping("login")
+//    @RequestMapping("login")
     public Map<String, Object> login(@RequestBody User user, HttpServletRequest request) {
         log.info("当前登录用户的信息1: [{}]", user.toString());
         log.info("in login sessionid: " + request.getSession().getId());
@@ -48,9 +49,9 @@ public class UserController {
         System.out.println(request.getServletPath());
         Map<String, Object> map = new HashMap<>();
         try {
-            User userDB = userService.login(user);
+            Map userDB= userService.login(user);
             //广播：一个变量
-            User thisUser = userService.find(user);
+            Map thisUser = userService.find(user);
             request.getSession().setAttribute("thisUser", thisUser);
             log.info("当前登录用户的信息2: [{}]", thisUser.toString());
             map.put("status",0);
