@@ -1,15 +1,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.swu.pigeon.dao.UserDAO">
-<!--    注册-->
-    <insert id="save" parameterType="User" >
+    <!--    注册-->
+    <insert id="save" parameterType="User">
         insert into staff values (#{id},#{username},#{dept},
         #{password},#{sex},#{telNumber},#{email},#{icon},
         #{status},#{companyId},#{originId},#{registerTime}, #{signature})
     </insert>
-<!--    找到用户-->
-    <select id="findByTel" parameterType="String" resultType="User">
-        select *
-        from staff where telNumber=#{telNumber}
+    <!--    找到用户-->
+    <select id="findByTel" parameterType="String" resultType="Map">
+        SELECT ss.* ,gg.`name` as deptName,cc.`name` as companyName
+        FROM staff ss
+        join `group` gg
+        ON ss.dept = gg.id
+        join company cc
+        ON ss.companyId = cc.id
+        WHERE ss.telNumber = #{telNumber};
     </select>
+
 
 </mapper>

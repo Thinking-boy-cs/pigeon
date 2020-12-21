@@ -65,6 +65,20 @@
       </exclusions>
     </dependency>
 
+<!--    支付宝支付-->
+    <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-sdk-java</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+    <!--腾讯短信依赖-->
+    <dependency>
+      <groupId>com.github.qcloudsms</groupId>
+      <artifactId>qcloudsms</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>druid</artifactId>
@@ -142,7 +156,20 @@
       <optional>true</optional>
     </dependency>
 
+<!--    腾讯发送验证短信-->
+    <dependency>
+      <groupId>com.tencentcloudapi</groupId>
+      <artifactId>tencentcloud-sdk-java</artifactId>
+      <version>3.1.87</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.qcloudsms</groupId>
+      <artifactId>qcloudsms</artifactId>
+      <version>1.0.6</version>
+    </dependency>
   </dependencies>
+
+
 
 
   <build>
