@@ -2,6 +2,7 @@ package cn.swu.pigeon.service;
 
 import cn.swu.pigeon.dao.UserDAO;
 import cn.swu.pigeon.entity.User;
+import cn.swu.pigeon.utils.sendSMSUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,12 @@ public class UserServiceImpl implements UserService {
 //        return userDAO.findByTel(user.getTelNumber());
         return userDAO.findByTel("14537294798");
 
+    }
+
+    @Override
+    public String sendSMS(String phoneNumber) {
+        sendSMSUtil  sendTool = new sendSMSUtil();
+        return sendTool.send(phoneNumber);
     }
 
     @Override

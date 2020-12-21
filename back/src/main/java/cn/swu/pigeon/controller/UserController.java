@@ -230,4 +230,27 @@ public class UserController {
 
     }
 
+    /**
+     * 请求发送短信验证码
+     * @param request
+     * @return
+     */
+    @RequestMapping("sendSMS")
+    public Map<String,Object> sendSMS(HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        User thisUser = (User)request.getSession().getAttribute("thisUser");
+        try {
+            String messageCode = userService.sendSMS(thisUser.getTelNumber());
+            map.put("status",0);
+            map.put("msg","发送成功!");
+            map.put("smsCode",messageCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status", 1);
+            map.put("msg", e.getMessage());
+            map.put("smsCode",null);
+        }
+        return map;
+    }
+
 }
