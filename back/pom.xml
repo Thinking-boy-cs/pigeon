@@ -142,7 +142,20 @@
       <optional>true</optional>
     </dependency>
 
+<!--    腾讯发送验证短信-->
+    <dependency>
+      <groupId>com.tencentcloudapi</groupId>
+      <artifactId>tencentcloud-sdk-java</artifactId>
+      <version>3.1.87</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.qcloudsms</groupId>
+      <artifactId>qcloudsms</artifactId>
+      <version>1.0.6</version>
+    </dependency>
   </dependencies>
+
+
 
 
   <build>
