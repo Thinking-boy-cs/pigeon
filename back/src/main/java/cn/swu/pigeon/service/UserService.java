@@ -18,4 +18,10 @@ public interface UserService {
     //请求短信验证码
     String sendSMS(String phoneNumber);
     Map find(User user);
+=======
+    User find(User user);
+
+    //请求短信验证码
+    String sendSMS(String phoneNumber);
+>>>>>>> dev
 }
