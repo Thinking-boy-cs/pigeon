@@ -16,6 +16,11 @@
         ON ss.companyId = cc.id
         WHERE ss.telNumber = #{telNumber};
     </select>
+    <select id="findUserByTel" parameterType="String" resultType="User">
+        select *
+        from staff
+        where telNumber = #{telNumber}
+    </select>
 
 
 </mapper>
