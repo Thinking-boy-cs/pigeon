@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import * as echarts from 'echarts'
-// import 'echarts/map/js/china.js'
+import './utils/china.js'
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts

@@ -12,6 +12,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>ems_vue</name>
   <description>ems manager project for Spring Boot</description>
+  <packaging>war</packaging>
 
   <properties>
     <java.version>12</java.version>

@@ -2,7 +2,10 @@
   <div ref="map" />
 </template>
 <script>
-import 'echarts/china.js' // 引入中国地图数据
+// import 'echarts/china.js' // 引入中国地图数据
+import china from '../utils/china.json'
+// import 'echarts/map/js/china'
+// import china from 'echarts/map/json/china.json'
 export default {
   props: {
     select: {// 用来判断是加载哪个地图，China，还是world，还是广东
@@ -79,6 +82,7 @@ export default {
       //   [{ name: '吉林', value: 10 }, { name: '广东' }],
       //   [{ name: '辽宁', value: 10 }, { name: '广东' }],
       //   [{ name: '河北', value: 10 }, { name: '广东' }]]
+      
     }
   },
   watch: {
@@ -88,6 +92,7 @@ export default {
   },
   mounted () {
     this.mapEchartsInit()
+    // this.initChart()
   },
   methods: {
     mapEchartsInit () {
@@ -225,7 +230,7 @@ export default {
           min: 0,
           max: 1,
           calculable: true,
-          show: false,
+          show: true,
           color: ['#4169E1', '#fc9700', '#ffde00', '#ffde00', '#00eaff'],
           textStyle: {
             color: '#fff'
@@ -272,12 +277,30 @@ export default {
         },
         series
       }
+      this.$echarts.registerMap('china', china)
       const myChart = this.$echarts.init(this.$refs.map)
+
       myChart.setOption(option, true)
       // console.log(option)
       window.addEventListener('resize', function () {
         myChart.resize()
       })
+    },
+    convertData (data) {
+      const res = []
+      for (let i = 0; i < data.length; i++) {
+        const dataItem = data[i]
+        const fromCoord = this.geoCoordMap[dataItem[0].name]
+        const toCoord = this.geoCoordMap[dataItem[1].name]
+        if (fromCoord && toCoord) {
+          res.push({
+            fromName: dataItem[0].name,
+            toName: dataItem[1].name,
+            coords: [fromCoord, toCoord]
+          })
+        }
+      }
+      return res
     }
   }
 }

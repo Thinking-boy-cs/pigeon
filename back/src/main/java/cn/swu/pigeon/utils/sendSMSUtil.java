@@ -10,6 +10,8 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import java.io.IOException;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class sendSMSUtil {
     //public static void main(String[] args) {
     public String send(String phoneNumber){
@@ -19,6 +21,7 @@ public class sendSMSUtil {
         int templateId = 817552;// NOTE: 这里是短信模板ID需要在短信控制台中申请
         String smsSign = "yuswwork网";//设置信息标头，如【腾讯云】
         String timeOut = "2"; //设置过期时长
+        
         //验证码
         String str = "";
         try {
@@ -30,7 +33,7 @@ public class sendSMSUtil {
             String[] params = {str, timeOut};
             SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
             // 签名参数未提供或者为空时，会使用默认签名发送短信，这里的13800138000是为用户输入的手机号码
-            SmsSingleSenderResult result = ssender.sendWithParam("86", phoneNumber, templateId, params, smsSign, "", "");
+            SmsSingleSenderResult result = ssender.sendWithParam("8", phoneNumber, templateId, params, smsSign, "", "");
             System.out.println(result);
         } catch (HTTPException e) {
             // HTTP响应码错误
