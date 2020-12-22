@@ -12,6 +12,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>ems_vue</name>
   <description>ems manager project for Spring Boot</description>
+  <packaging>war</packaging>
 
   <properties>
     <java.version>12</java.version>
@@ -63,6 +64,20 @@
           <artifactId>junit-vintage-engine</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+<!--    支付宝支付-->
+    <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-sdk-java</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+    <!--腾讯短信依赖-->
+    <dependency>
+      <groupId>com.github.qcloudsms</groupId>
+      <artifactId>qcloudsms</artifactId>
+      <version>1.0.6</version>
     </dependency>
 
     <dependency>

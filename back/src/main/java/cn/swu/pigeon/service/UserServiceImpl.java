@@ -2,15 +2,20 @@ package cn.swu.pigeon.service;
 
 import cn.swu.pigeon.dao.UserDAO;
 import cn.swu.pigeon.entity.User;
+import cn.swu.pigeon.utils.sendSMSUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.io.PrintWriter;
+import java.net.http.HttpRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 @Transactional
@@ -54,6 +59,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUser(User user) {
         return userDAO.findUserByTel(user.getTelNumber());
+    }
+
+    @Override
+    public String sendSMS(String phoneNumber) {
+        sendSMSUtil  sendTool = new sendSMSUtil();
+        return sendTool.send(phoneNumber);
     }
 
     @Override

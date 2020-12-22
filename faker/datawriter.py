@@ -1,7 +1,7 @@
 '''
 Author: Jecosine
 Date: 2020-12-15 19:22:33
-LastEditTime: 2020-12-15 21:49:04
+LastEditTime: 2020-12-18 05:52:57
 LastEditors: Jecosine
 Description: write data to mysql
 '''
@@ -36,6 +36,36 @@ def set_parent(g, gi, p):
     for i in gi:
         g[i].set_parent(g[p]._id)
 
+# basic 
+def get_companies():
+    companies = database.execute_query('select * from company')
+    companies = [i[0] for i in companies]
+    print(companies)
+    return companies
+
+def set_staff_distribution(companyId):
+    users = database.execute_query("select * from staff where companyId='{}'".format(companyId))
+    l = len(users)
+    serial = [i for i in range(l)]
+    print(users[0][9])
+    random.shuffle(serial)
+    a, b = int(l * 0.2), int(l * 0.75)
+    c = l - a - b
+    for i in range(a):
+        users[i] = list(users[i])
+        users[i][9] = '-1'
+    for i in range(a, a + b):
+        users[i] = list(users[i])
+        users[i][9] = '0'
+    for i in range(a + b, l):
+        users[i] = list(users[i])
+        users[i][9] = '1'
+    sql = Staff.get_update_sql()
+    for i in range(len(users)):
+        users[i].append(users[i].pop(0))
+    user_data = tuple([tuple(i) for i in users])
+    database.execute_change(sql, user_data)
+    
 def generate_company_with_groups(number):
     bosses = [Staff() for  i in range(number)]
     companies = [Company() for i in range(number)]
@@ -107,5 +137,11 @@ def generate_company_with_groups_and_staff(number, minimum=8, maximum=57):
     database.execute_change(group_sql, tuple(group_data))
     database.execute_change(staff_sql, tuple(users_data))
     
-
-generate_company_with_groups_and_staff(40)
+def set_company_staff_status():
+    companies = get_companies()
+    for i in companies:
+        set_staff_distribution(i)
+    
+set_company_staff_status()
+# get_companies()
+# generate_company_with_groups_and_staff(40)

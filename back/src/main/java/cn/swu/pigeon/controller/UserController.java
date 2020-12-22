@@ -6,6 +6,7 @@ import cn.swu.pigeon.entity.User;
 import cn.swu.pigeon.service.ChangeInfoService;
 import cn.swu.pigeon.service.UserService;
 import cn.swu.pigeon.utils.VerifyCodeUtils;
+import cn.swu.pigeon.utils.sendSMSUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import org.jetbrains.annotations.NotNull;
@@ -37,12 +38,40 @@ public class UserController {
     @Autowired
     private ChangeInfoService changeInfoService;
 
+    @Autowired
+    private sendSMSUtil smsSender;
     /**
      * 处理用户登录
      */
     @PostMapping("login")
 //    @RequestMapping("login")
     public Map<String, Object> login(@RequestBody User user, HttpServletRequest request) {
+        log.info("当前登录用户的信息1: [{}]", user.toString());
+        log.info("in login sessionid: " + request.getSession().getId());
+        System.out.println(request.getContextPath());
+        System.out.println(request.getServletPath());
+        Map<String, Object> map = new HashMap<>();
+        try {
+            Map userDB= userService.login(user);
+            //广播：一个变量
+            Map thisUser = userService.find(user);
+            request.getSession().setAttribute("thisUser", thisUser);
+            log.info("当前登录用户的信息2: [{}]", thisUser.toString());
+            map.put("status",0);
+            map.put("msg","登录成功!");
+            map.put("data",userDB);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status", 1);
+            map.put("msg", e.getMessage());
+            map.put("data", null);
+        }
+        return map;
+    }
+
+    @PostMapping("login1")
+//    @RequestMapping("login")
+    public Map<String, Object> login1(@RequestBody User user, HttpServletRequest request) {
         log.info("当前登录用户的信息1: [{}]", user.toString());
         log.info("in login sessionid: " + request.getSession().getId());
         System.out.println(request.getContextPath());
@@ -134,6 +163,12 @@ public class UserController {
             map.put("msg", "提示:" + e.getMessage());
         }
         return map;
+    }
+
+    @GetMapping("getSMSCode")
+    public void getSMS(String phone, HttpServletRequest request) {
+        String s = smsSender.send(phone);
+        request.getSession().setAttribute("code", s);
     }
 
     /**
@@ -228,6 +263,29 @@ public class UserController {
             return map;
         }
 
+    }
+
+    /**
+     * 请求发送短信验证码
+     * @param request
+     * @return
+     */
+    @RequestMapping("sendSMS")
+    public Map<String,Object> sendSMS(HttpServletRequest request){
+        Map<String, Object> map =  new HashMap<>();
+        User thisUser = (User)request.getSession().getAttribute("thisUser");
+        try {
+            String messageCode = userService.sendSMS(thisUser.getTelNumber());
+            map.put("status",0);
+            map.put("msg","发送成功!");
+            map.put("smsCode",messageCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status", 1);
+            map.put("msg", e.getMessage());
+            map.put("smsCode",null);
+        }
+        return map;
     }
 
 }
