@@ -25,7 +25,8 @@ public class UserServiceImpl implements UserService {
 //        Map map = new HashMap<>();
         //1.根据用户输入的电话号码进行查询
 
-        Map map = userDAO.findByTel("14537294798");
+//        Map map = userDAO.findByTel("14537294798");
+        Map map = userDAO.findByTel(user.getTelNumber());
 //        System.out.println(map1);
         if (map.isEmpty()){
             if (map.get("password").equals(user.getPassword())){
@@ -40,9 +41,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map find(User user) {
-//        return userDAO.findByTel(user.getTelNumber());
-        return userDAO.findByTel("14537294798");
+        return userDAO.findByTel(user.getTelNumber());
+//        return userDAO.findByTel("14537294798");
 
+    }
+
+    /**
+     * 根据电话号码只查找用户基本信息
+     * @param user
+     * @return
+     */
+    @Override
+    public User findUser(User user) {
+        return userDAO.findUserByTel(user.getTelNumber());
     }
 
     @Override

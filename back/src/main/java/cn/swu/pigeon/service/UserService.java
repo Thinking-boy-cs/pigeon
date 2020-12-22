@@ -14,4 +14,6 @@ public interface UserService {
 
     //用户查询个人信息
     Map find(User user);
+
+    User findUser(User user);
 }
