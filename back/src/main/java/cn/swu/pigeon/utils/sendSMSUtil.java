@@ -33,7 +33,7 @@ public class sendSMSUtil {
             String[] params = {str, timeOut};
             SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
             // 签名参数未提供或者为空时，会使用默认签名发送短信，这里的13800138000是为用户输入的手机号码
-            SmsSingleSenderResult result = ssender.sendWithParam("8", phoneNumber, templateId, params, smsSign, "", "");
+            SmsSingleSenderResult result = ssender.sendWithParam("86", phoneNumber, templateId, params, smsSign, "", "");
             System.out.println(result);
         } catch (HTTPException e) {
             // HTTP响应码错误
