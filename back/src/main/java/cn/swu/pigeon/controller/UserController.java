@@ -279,11 +279,13 @@ public class UserController {
             map.put("status",0);
             map.put("msg","发送成功!");
             map.put("smsCode",messageCode);
+            map.put("phoneNumber",thisUser.getTelNumber());
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
             map.put("msg", e.getMessage());
             map.put("smsCode",null);
+            map.put("phoneNumber",null);
         }
         return map;
     }

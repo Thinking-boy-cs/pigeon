@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ems_vue:war">
+    <output-path>$PROJECT_DIR$/back/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ems_vue</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ems_vue-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="ems_vue:war exploded" />
+    </root>
+  </artifact>
+</component>

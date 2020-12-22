@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ems_vue:war2">
+    <output-path>$PROJECT_DIR$/out/artifacts/ems_vue_war2</output-path>
+    <root id="archive" name="ems_vue_war.war">
+      <element id="artifact" artifact-name="ems_vue:war exploded" />
+    </root>
+  </artifact>
+</component>
