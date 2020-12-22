@@ -19,5 +19,5 @@ public interface UserService {
     String sendSMS(String phoneNumber);
     Map find(User user);
 
-    User findUser(User user);
+    User findUser(String telNumber);
 }

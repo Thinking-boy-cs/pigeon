@@ -30,6 +30,7 @@ import java.util.Map;
 @RequestMapping("user")
 @Slf4j
 public class UserController {
+    private  String messageCode;
 
     @Resource
     @Autowired
@@ -71,21 +72,23 @@ public class UserController {
 
     @PostMapping("login1")
 //    @RequestMapping("login")
-    public Map<String, Object> login1(@RequestBody User user, HttpServletRequest request) {
-        log.info("当前登录用户的信息1: [{}]", user.toString());
-        log.info("in login sessionid: " + request.getSession().getId());
-        System.out.println(request.getContextPath());
-        System.out.println(request.getServletPath());
+    public Map<String, Object> login1(HttpServletRequest request) {
+        String telNumber = request.getParameter("telNumber");
+        String code = request.getParameter("code");
         Map<String, Object> map = new HashMap<>();
         try {
-            Map userDB= userService.login(user);
-            //广播：一个变量
-            Map thisUser = userService.find(user);
-            request.getSession().setAttribute("thisUser", thisUser);
-            log.info("当前登录用户的信息2: [{}]", thisUser.toString());
-            map.put("status",0);
-            map.put("msg","登录成功!");
-            map.put("data",userDB);
+            if (messageCode.equals(code)){
+                User thisUser = userService.findUser(telNumber);
+                request.getSession().setAttribute("thisUser", thisUser);
+                map.put("status",0);
+                map.put("msg","登录成功!");
+                map.put("data",thisUser);
+            }else {
+                map.put("status",2);
+                map.put("msg","验证码输入错误");
+                map.put("data",null);
+            }
+//            log.info("当前登录用户的信息2: [{}]", thisUser.toString());
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
@@ -267,15 +270,15 @@ public class UserController {
 
     /**
      * 请求发送短信验证码
-     * @param request
+     * @param
      * @return
      */
     @RequestMapping("sendSMS")
-    public Map<String,Object> sendSMS(HttpServletRequest request){
+    public Map<String,Object> sendSMS(String telNumber){
         Map<String, Object> map =  new HashMap<>();
-        User thisUser = (User)request.getSession().getAttribute("thisUser");
+//        User thisUser = (User)request.getSession().getAttribute("thisUser");
         try {
-            String messageCode = userService.sendSMS(thisUser.getTelNumber());
+            messageCode = userService.sendSMS(telNumber);
             map.put("status",0);
             map.put("msg","发送成功!");
             map.put("smsCode",messageCode);

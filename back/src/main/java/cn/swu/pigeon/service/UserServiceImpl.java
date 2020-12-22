@@ -53,13 +53,16 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 根据电话号码只查找用户基本信息
-     * @param user
+     * @param telNumber
      * @return
      */
     @Override
-    public User findUser(User user) {
-        return userDAO.findUserByTel(user.getTelNumber());
+    public User findUser(String telNumber) {
+        return userDAO.findUserByTel(telNumber);
     }
+
+
+
 
     @Override
     public String sendSMS(String phoneNumber) {
