@@ -5,13 +5,11 @@
       :datas="cityDatas"
       :style="{ width: '100%', height: `${map_canvas}` }"
     /> -->
-    //中国地图
     <mapbar
       :select="mapchina"
       :datas="provDatas"
       :style="{ width: '100%', height: `${map_canvas}` }"
     />
-    //广东地图
   </div>
 </template>
 
