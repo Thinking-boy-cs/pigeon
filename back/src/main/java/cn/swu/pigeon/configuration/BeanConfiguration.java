@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-19 12:09:27
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-11-24 00:19:01
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-12-22 07:14:50
  */
 package cn.swu.pigeon.configuration;
 
@@ -33,6 +33,7 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import cn.swu.pigeon.rabbitmq.Receiver;
+import cn.swu.pigeon.utils.sendSMSUtil;
 
 // import swu.smxy.banana.entity.Business;
 // import swu.smxy.banana.util.DBConnection;
@@ -107,4 +108,8 @@ public class BeanConfiguration {
     // MessageListenerAdapter listenerAdapter(Receiver receiver) {
     //     return new MessageListenerAdapter(receiver, "receiveMessage");
     // }
+    @Bean
+    public sendSMSUtil smsSender() {
+        return new sendSMSUtil();
+    }
 }
