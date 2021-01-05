@@ -6,6 +6,8 @@ import router from './router'
 import axios from 'axios'
 import * as echarts from 'echarts'
 import './utils/china.js'
+import BrockCharts from 'brock-charts'
+Vue.use(BrockCharts)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts

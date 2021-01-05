@@ -11,12 +11,8 @@
 <script>
 import operaionTable from './utils/operationTable'
 const columns = [
-  { title: '职员号', width: 200, dataIndex: 'id', key: 'id', fixed: 'left', scopedSlots: { customRender: 'id' } },
-  { title: '用户名', width: 100, dataIndex: 'username', key: 'username', fixed: 'left', scopedSlots: { customRender: 'age' } },
-  { title: '性别', dataIndex: 'sex', key: 'sex', width: 150, scopedSlots: { customRender: 'sex' } },
-  { title: '密码', dataIndex: 'password', key: 'password', width: 150, scopedSlots: { customRender: 'password' } },
-  { title: '电话号码', dataIndex: 'telNumber', key: 'telNumber', width: 150, scopedSlots: { customRender: 'telNumber' } },
-  { title: '邮箱', dataIndex: 'email', key: 'email', width: 150, scopedSlots: { customRender: 'email' } },
+  { title: '部门号', width: 200, dataIndex: 'id', key: 'id', fixed: 'left', scopedSlots: { customRender: 'id' } },
+  { title: '部门名', width: 200, dataIndex: 'name', key: 'name', scopedSlots: { customRender: 'age' } },
   {
     title: '操作',
     key: 'operation',
@@ -79,7 +75,7 @@ export default {
   },
   created () {
     const that = this
-    this.$axios.get('http://localhost:8080/api/pigeon/govern/findUserByCompanyId?companyId=232b7da9-9582-4')
+    this.$axios.get('http://localhost:8989/api/pigeon/group/findAllGroup?companyId=232b7da9-9582-4')
       .then((res) => {
         console.log(res)
         that.tableData = res.data.data
