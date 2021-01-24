@@ -186,22 +186,22 @@ export default {
             brushType: 'stroke',
             scale: 4
           },
-          label: {
-            normal: {
-              show: true,
-              position: 'right',
-              offset: [5, 0],
-              color: '#0f0',
-              formatter: '{b}',
-              textStyle: {
-                color: '#0f0'
-              }
-            },
-            emphasis: {
-              show: true,
-              color: '#f60'
-            }
-          },
+          // label: {
+          //   normal: {
+          //     show: true,
+          //     position: 'right',
+          //     offset: [5, 0],
+          //     color: '#0f0',
+          //     formatter: '{b}',
+          //     textStyle: {
+          //       color: '#0f0'
+          //     }
+          //   },
+          //   emphasis: {
+          //     show: true,
+          //     color: '#f60'
+          //   }
+          // },
           symbol: 'pin',
           symbolSize: 20,
           data: [{

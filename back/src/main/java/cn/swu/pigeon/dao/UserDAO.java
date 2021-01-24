@@ -11,4 +11,6 @@ public interface UserDAO {
     void save(User user);
 
     Map findByTel(String telNumber);
+
+    User findUserByTel(String telNumber);
 }

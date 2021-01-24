@@ -29,7 +29,7 @@
             <a-menu-item key="groupmanage"> 部门管理 </a-menu-item>
             <a-menu-item key="staffmanage"> 员工管理 </a-menu-item>
             <!-- <a-menu-item key="birthday"> 生日关怀 </a-menu-item> -->
-            <a-menu-item key="personnel"> 人事变动 </a-menu-item>
+            <!-- <a-menu-item key="personnel"> 人事变动 </a-menu-item> -->
             <a-menu-item key="personalreport"> 人事报表 </a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="attendance">
@@ -38,19 +38,19 @@
             <a-menu-item key="vacationmanage"> 假期管理 </a-menu-item>
             <a-menu-item key="attendancereport"> 考勤报表 </a-menu-item>
           </a-sub-menu>
-          <a-sub-menu key="approval">
+          <!-- <a-sub-menu key="approval">
             <span slot="title"><a-icon type="form" />审批管理</span>
             <a-menu-item key="infocollect"> 信息收集 </a-menu-item>
             <a-menu-item key="approvalmanage"> 审批活动 </a-menu-item>
-          </a-sub-menu>
+          </a-sub-menu> -->
           <a-sub-menu key="announcement">
             <span slot="title"><a-icon type="notification" />通知公告</span>
-            <a-menu-item key="catemanage"> 分类管理 </a-menu-item>
+            <!-- <a-menu-item key="catemanage"> 分类管理 </a-menu-item> -->
             <a-menu-item key="announcemanage"> 公告管理 </a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="statistic">
             <span slot="title"><a-icon type="area-chart" />数据管理</span>
-            <a-menu-item key="personnelreport"> 人事报表 </a-menu-item>
+            <a-menu-item key="personalreport"> 人事报表 </a-menu-item>
             <a-menu-item key="attendancereport"> 考勤报表 </a-menu-item>
             <a-menu-item key="regionreport"> 地区战略 </a-menu-item>
           </a-sub-menu>
@@ -76,11 +76,9 @@
             padding: '24px',
             margin: 0,
             minHeight: '280px',
+            overflow:'scroll',
           }"
         >
-          <!-- <Bar-charts :chartData="bardata"></Bar-charts>
-          <Line-charts :chartData="linedata"></Line-charts>
-          <Pie-charts :chartData="piedata"></Pie-charts> -->
           <router-view />
         </a-layout-content>
       </a-layout>
