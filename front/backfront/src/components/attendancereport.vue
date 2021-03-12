@@ -2,22 +2,10 @@
   <div class="container">
     <div class="header-title">今日签到情况</div>
     <Pie-charts class="pie" :chartData="piedata"></Pie-charts>
-    <div class="header-title">员工薪酬情况</div>
-    <Line-charts class="line" :chartData="linedata"></Line-charts>
-    <div class="header-title">入职情况</div>
-    <Bar-charts class="bar" :chartData="bardata"></Bar-charts>
-    <div class="header-title">员工地域分布</div>
-    <charts-map
-    class="map"
-      :width="width"
-      :height="height"
-      :data="data"
-      :min="min"
-      :max="max"
-      :text="text"
-      :in-range="inRange"
-      :title="title"
-    ></charts-map>
+    <div class="header-title">近七天出勤率</div>
+    <Line-charts class="line" :chartData="linedata1"></Line-charts>
+    <div class="header-title">近三月请假率</div>
+    <Line-charts class="line" :chartData="linedata2"></Line-charts>
   </div>
 </template>
 
@@ -28,13 +16,13 @@ import PieCharts from './echarts_pie'
 export default {
   data () {
     return {
-      bardata: {
-        name: ['2016-12', '2017-12', '2018-12', '2019-12', '2020-12'],
-        data: [9, 10, 8, 6, 12]
+      linedata1: {
+        name: ['2021-3-06', '2021-3-07', '2021-3-08', '2021-3-09', '2021-3-10', '2021-3-11', '2021-3-12'],
+        data: [100, 97, 92, 90, 98, 100, 95]
       },
-      linedata: {
-        name: ['1001-5000', '5001-9000', '9001-13000', '13000-17000'],
-        data: [32, 60, 50, 15]
+      linedata2: {
+        name: ['2020-10', '2020-11', '2020-12'],
+        data: [5.5, 4.8, 4.3]
       },
       piedata: [
         { value: 318, name: '已签到' },
@@ -44,40 +32,6 @@ export default {
       height: '500px',
       title: { show: false },
       data: [
-        { name: '上海', value: 16 },
-        { name: '云南', value: 16 },
-        { name: '内蒙古', value: 17 },
-        { name: '北京', value: 15 },
-        { name: '台湾', value: 20 },
-        { name: '吉林', value: 18 },
-        { name: '四川', value: 18 },
-        { name: '天津', value: 19 },
-        { name: '宁夏', value: 12 },
-        { name: '安徽', value: 15 },
-        { name: '山东', value: 21 },
-        { name: '山西', value: 20 },
-        { name: '广东', value: 18 },
-        { name: '广西', value: 14 },
-        { name: '新疆', value: 22 },
-        { name: '江苏', value: 16 },
-        { name: '江西', value: 27 },
-        { name: '河北', value: 24 },
-        { name: '河南', value: 14 },
-        { name: '浙江', value: 8 },
-        { name: '海南', value: 15 },
-        { name: '湖北', value: 25 },
-        { name: '湖南', value: 16 },
-        { name: '澳门', value: 19 },
-        { name: '甘肃', value: 22 },
-        { name: '福建', value: 18 },
-        { name: '西藏', value: 26 },
-        { name: '贵州', value: 25 },
-        { name: '辽宁', value: 11 },
-        { name: '重庆', value: 16 },
-        { name: '陕西', value: 27 },
-        { name: '青海', value: 12 },
-        { name: '香港', value: 27 },
-        { name: '黑龙江', value: 14 }
       ]
     }
   },
