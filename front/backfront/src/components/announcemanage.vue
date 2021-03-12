@@ -11,13 +11,8 @@
 <script>
 import operaionTable from './utils/operationTable'
 const columns = [
-  { title: '序号', width: 80, dataIndex: 'id', key: 'id', fixed: 'left', scopedSlots: { customRender: 'id' } },
-  { title: '员工ID', dataIndex: 'userId', key: 'userId', width: 80, scopedSlots: { customRender: 'userId' } },
-  { title: '请假原因', dataIndex: 'Reason', key: 'Reason', width: 100, scopedSlots: { customRender: 'Reason' } },
-  { title: '开始时间', dataIndex: 'startTime', key: 'startTime', width: 100, scopedSlots: { customRender: 'startTime' } },
-  { title: '结束时间', dataIndex: 'endTime', key: 'endTime', width: 100, scopedSlots: { customRender: 'endTime' } },
-  { title: '状态', dataIndex: 'state', key: 'state', width: 50, scopedSlots: { customRender: 'state' } },
-  { title: '提交时间', dataIndex: 'submitTime', key: 'submitTime', width: 150, scopedSlots: { customRender: 'submitTime' } },
+  { title: '序号', width: 100, dataIndex: 'id', key: 'id', fixed: 'left', scopedSlots: { customRender: 'id' } },
+  { title: '公告内容', dataIndex: 'content', key: 'content', width: 150, scopedSlots: { customRender: 'content' } },
   {
     title: '操作',
     key: 'operation',
@@ -31,12 +26,7 @@ for (let i = 0; i < 100; i++) {
   data1.push({
     key: i,
     id: `${i}`,
-    userId: `${i}`,
-    Reason: '家里有事',
-    startTime: '2021-3-12 16:21:02',
-    endTime: '2021-3-12 16:21:02',
-    state: '已通过',
-    submitTime: '2021-3-12 16:21:02'
+    content: '这是一条公告！！'
   })
 }
 export default {
