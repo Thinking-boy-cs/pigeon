@@ -55,12 +55,12 @@ public class UserController {
         try {
             Map userDB= userService.login(user);
             //广播：一个变量
-            Map thisUser = userService.find(user);
+            User thisUser = userService.findUser(user.getTelNumber());
             request.getSession().setAttribute("thisUser", thisUser);
             log.info("当前登录用户的信息2: [{}]", thisUser.toString());
             map.put("status",0);
             map.put("msg","登录成功!");
-            map.put("data",userDB);
+            map.put("data",thisUser);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
@@ -282,7 +282,8 @@ public class UserController {
             map.put("status",0);
             map.put("msg","发送成功!");
             map.put("smsCode",messageCode);
-            map.put("phoneNumber",thisUser.getTelNumber());
+            //map.put("phoneNumber",thisUser.getTelNumber());
+            map.put("phoneNumber",telNumber);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("status", 1);
