@@ -20,6 +20,14 @@ export default new Router({
           }
         },
         {
+          path: '/shop',
+          name: 'shop',
+          component: resolve => require(['@/components/shop.vue'], resolve),
+          meta: {
+            name: '商店'
+          }
+        },
+        {
           path: '/groupmanage',
           name: 'groupmanage',
           component: resolve => require(['@/components/groupmanage.vue'], resolve),

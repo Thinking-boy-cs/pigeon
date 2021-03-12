@@ -54,6 +54,7 @@
             <a-menu-item key="attendancereport"> 考勤报表 </a-menu-item>
             <a-menu-item key="regionreport"> 地区战略 </a-menu-item>
           </a-sub-menu>
+          <a-menu-item key="shop"> <a-icon type="shop" />商店</a-menu-item>
         </a-menu>
       </a-layout-sider>
       <a-layout style="padding: 0 24px 24px">
