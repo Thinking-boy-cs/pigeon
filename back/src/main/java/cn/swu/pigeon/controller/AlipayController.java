@@ -1,6 +1,7 @@
 package cn.swu.pigeon.controller;
 
 import cn.swu.pigeon.configuration.AlipayConfig;
+import cn.swu.pigeon.utils.RandomPayCode;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
@@ -59,6 +60,13 @@ public class AlipayController {
         String subject = request.getParameter("Name");
         //商品描述，可空
         String body =request.getParameter("购物测试");
+        /**
+         * 测试
+         */
+        out_trade_no = RandomPayCode.getOrderNumber();
+        total_amount = "6999";
+        subject = "至尊VIP";
+        body = "至尊专享，服务大众";
         // 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1m～15d。m-分钟，h-小时，d-天，1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 该参数数值不接受小数点， 如 1.5h，可转换为 90m。
         String timeout_express = "1c";
         alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
