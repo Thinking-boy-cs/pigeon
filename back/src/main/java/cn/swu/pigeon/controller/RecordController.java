@@ -112,8 +112,8 @@ public class RecordController {
      * 查看用户签到
      */
     @RequestMapping("find")
-    public Map<String, Object> find(HttpServletRequest request) {thisUser"
-        User thisUser = (User) request.getSession().getAttribute(");
+    public Map<String, Object> find(HttpServletRequest request) {
+        User thisUser = (User) request.getSession().getAttribute("thisUser");
         Map<String, Object> map = new HashMap<>();
         try {
             if (!ObjectUtils.isEmpty(thisUser)) {

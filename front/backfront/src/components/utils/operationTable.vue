@@ -90,7 +90,7 @@ export default {
       columns1: columns,
       data: this.tableData,
       editingKey: '',
-      cacheData: this.tableData.map(item => ({ ...item }))
+      cacheData: null
     }
   },
   methods: {
@@ -98,6 +98,9 @@ export default {
       this.$emit('deleterow', key)
     },
     handleChange (value, key, column) {
+      if (this.cacheData === null) {
+        this.cacheData = this.tableData.map(item => ({ ...item }))
+      }
       const newData = [...this.tableData]
       const target = newData.filter(item => key === item.id)[0]
       if (target) {
@@ -106,6 +109,9 @@ export default {
       }
     },
     edit (key) {
+      if (this.cacheData === null) {
+        this.cacheData = this.tableData.map(item => ({ ...item }))
+      }
       const newData = [...this.tableData]
       const target = newData.filter(item => key === item.id)[0]
       this.editingKey = key
@@ -115,10 +121,14 @@ export default {
       }
     },
     save (key) {
+      if (this.cacheData === null) {
+        this.cacheData = this.tableData.map(item => ({ ...item }))
+      }
       const newData = [...this.tableData]
       const newCacheData = [...this.cacheData]
       const target = newData.filter(item => key === item.id)[0]
       const targetCache = newCacheData.filter(item => key === item.id)[0]
+      console.log(newCacheData)
       if (target && targetCache) {
         delete target.editable
         this.tableData = newData
@@ -140,6 +150,14 @@ export default {
         this.tableData = newData
       }
     }
+  },
+  created () {
+    let that = this
+    window.tableData = this
+    // this.$nextTick(() => {
+    //   that.cacheData = that.tableData.map(item => ({ ...item }))
+    // })
+   
   }
 }
 </script>

@@ -12,7 +12,7 @@
 import operaionTable from './utils/operationTable'
 const columns = [
   { title: '职员号', width: 200, dataIndex: 'id', key: 'id', fixed: 'left', scopedSlots: { customRender: 'id' } },
-  { title: '用户名', width: 100, dataIndex: 'username', key: 'username', fixed: 'left', scopedSlots: { customRender: 'age' } },
+  { title: '用户名', width: 100, dataIndex: 'username', key: 'username', fixed: 'left', scopedSlots: { customRender: 'username' } },
   { title: '性别', dataIndex: 'sex', key: 'sex', width: 150, scopedSlots: { customRender: 'sex' } },
   { title: '密码', dataIndex: 'password', key: 'password', width: 150, scopedSlots: { customRender: 'password' } },
   { title: '电话号码', dataIndex: 'telNumber', key: 'telNumber', width: 150, scopedSlots: { customRender: 'telNumber' } },
@@ -72,9 +72,9 @@ export default {
       // this.tableData = tableData.filter(item => item.key !== key)
     },
     onSave (obj) {
-      this.$axios.post('', obj).then((res) => {
-        console.log(res)
-      })
+      // this.$axios.post('', obj).then((res) => {
+      //   console.log(res)
+      // })
     }
   },
   created () {

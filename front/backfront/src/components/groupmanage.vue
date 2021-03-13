@@ -37,7 +37,7 @@ export default {
   data () {
     return {
       tableColumns: columns,
-      tableData: data1,
+      tableData: undefined,
       childData: 'test data',
       options: [
         {
