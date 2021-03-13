@@ -81,7 +81,7 @@ public class StatisticsViewController {
     @RequestMapping("sex_userNumber")
     public Map<String,Object> statisticsSexUserNumber(String companyId){
         //测试
-        //String companyId = "123456789012345";
+        //companyId = "123456789012345";
 
         Map<String,Object> map = new HashMap<>();
         try {

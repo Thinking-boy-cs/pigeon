@@ -3,11 +3,12 @@ package cn.swu.pigeon.entity;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Accessors(chain = true)
-public class User {
+public class User implements Serializable {
     private String id;
     private String username;
     private String dept;
