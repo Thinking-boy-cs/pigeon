@@ -85,11 +85,12 @@ export default {
     }
   },
   data () {
-    this.cacheData = this.tableData.map(item => ({ ...item }))
+    // this.cacheData = this.tableData.map(item => ({ ...item }))
     return {
       columns1: columns,
       data: this.tableData,
-      editingKey: ''
+      editingKey: '',
+      cacheData: this.tableData.map(item => ({ ...item }))
     }
   },
   methods: {
@@ -123,6 +124,7 @@ export default {
         this.tableData = newData
         Object.assign(targetCache, target)
         this.cacheData = newCacheData
+        console.log('target saved')
       }
       this.editingKey = ''
       console.log(target)
