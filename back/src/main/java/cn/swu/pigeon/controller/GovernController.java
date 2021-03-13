@@ -344,7 +344,7 @@ public class GovernController {
 //        date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String sDate = simpleDateFormat.format(date);
-//        System.out.println(sDate);
+//        System.out.println(sDate);  
 //        String sDate = "2020-12-14";
         try{
 

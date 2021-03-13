@@ -63,6 +63,7 @@ public class RecordController {
     @PostMapping("sign")
     public Map<String, Object> sign(@RequestBody Record record, HttpServletRequest request) {
         User thisUser = (User) request.getSession().getAttribute("thisUser");
+        System.out.println(thisUser);
 //        thisUser.setTelNumber("18607785522");
 //        thisUser.setId("5540c2a5-6d84-4");
         Map<String, Object> map = new HashMap<>();
@@ -72,6 +73,7 @@ public class RecordController {
                 // record.setActivityId(1);
                 //record.setId(thisUser.getId());
                 record.setId(thisUser.getId());
+                record.setCompanyId(thisUser.getCompanyId());
                 recordService.isSign(record);
                 
                 map.put("status", 0);
