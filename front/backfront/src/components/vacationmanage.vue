@@ -3,21 +3,75 @@
     :tableData="tableData"
     :tableColumns="tableColumns"
     @deleterow="onDelete"
-    @saverow="onSave">
+    @saverow="onSave"
+  >
     <a slot="action" slot-scope="text">action</a>
   </operation-table>
 </template>
 
 <script>
+import moment from 'moment'
 import operaionTable from './utils/operationTable'
 const columns = [
-  { title: '序号', width: 80, dataIndex: 'id', key: 'id', fixed: 'left', scopedSlots: { customRender: 'id' } },
-  { title: '员工ID', dataIndex: 'userId', key: 'userId', width: 80, scopedSlots: { customRender: 'userId' } },
-  { title: '请假原因', dataIndex: 'Reason', key: 'Reason', width: 100, scopedSlots: { customRender: 'Reason' } },
-  { title: '开始时间', dataIndex: 'startTime', key: 'startTime', width: 100, scopedSlots: { customRender: 'startTime' } },
-  { title: '结束时间', dataIndex: 'endTime', key: 'endTime', width: 100, scopedSlots: { customRender: 'endTime' } },
-  { title: '状态', dataIndex: 'state', key: 'state', width: 50, scopedSlots: { customRender: 'state' } },
-  { title: '提交时间', dataIndex: 'submitTime', key: 'submitTime', width: 150, scopedSlots: { customRender: 'submitTime' } },
+  {
+    title: '序号',
+    width: 80,
+    dataIndex: 'id',
+    key: 'id',
+    fixed: 'left',
+    scopedSlots: { customRender: 'id' }
+  },
+  {
+    title: '员工ID',
+    dataIndex: 'userId',
+    key: 'userId',
+    width: 80,
+    scopedSlots: { customRender: 'userId' }
+  },
+  {
+    title: '请假原因',
+    dataIndex: 'reason',
+    key: 'reason',
+    width: 100,
+    scopedSlots: { customRender: 'reason' }
+  },
+  {
+    title: '开始时间',
+    dataIndex: 'startTime',
+    key: 'startTime',
+    width: 100,
+    scopedSlots: { customRender: 'startTime' },
+    customRender: (text) => {
+      return moment(text).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
+  {
+    title: '结束时间',
+    dataIndex: 'endTime',
+    key: 'endTime',
+    width: 100,
+    scopedSlots: { customRender: 'endTime' },
+    customRender: (text) => {
+      return moment(text).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
+  {
+    title: '状态',
+    dataIndex: 'state',
+    key: 'state',
+    width: 50,
+    scopedSlots: { customRender: 'state' }
+  },
+  {
+    title: '提交时间',
+    dataIndex: 'submitTime',
+    key: 'submitTime',
+    width: 150,
+    scopedSlots: { customRender: 'submitTime' },
+    customRender: (text) => {
+      return moment(text).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
   {
     title: '操作',
     key: 'operation',
@@ -27,18 +81,18 @@ const columns = [
   }
 ]
 const data1 = []
-for (let i = 0; i < 100; i++) {
-  data1.push({
-    key: i,
-    id: `${i}`,
-    userId: `${i}`,
-    Reason: '家里有事',
-    startTime: '2021-3-12 16:21:02',
-    endTime: '2021-3-12 16:21:02',
-    state: '已通过',
-    submitTime: '2021-3-12 16:21:02'
-  })
-}
+// for (let i = 0; i < 100; i++) {
+//   data1.push({
+//     key: i,
+//     id: `${i}`,
+//     userId: `${i}`,
+//     Reason: '家里有事',
+//     startTime: '2021-3-12 16:21:02',
+//     endTime: '2021-3-12 16:21:02',
+//     state: '已通过',
+//     submitTime: '2021-3-12 16:21:02'
+//   })
+// }
 export default {
   components: {
     'operation-table': operaionTable
@@ -51,21 +105,15 @@ export default {
       options: [
         {
           name: 'edit',
-          method: (e) => {
-
-          }
+          method: (e) => {}
         },
         {
           name: 'view',
-          method: (e) => {
-
-          }
+          method: (e) => {}
         },
         {
           name: 'delete',
-          method: (e) => {
-
-          }
+          method: (e) => {}
         }
       ]
     }
@@ -84,7 +132,10 @@ export default {
   },
   created () {
     const that = this
-    this.$axios.get('http://localhost:8080/api/pigeon/govern/findUserByCompanyId?companyId=232b7da9-9582-4')
+    this.$axios
+      .get(
+        'http://localhost:8989/api/pigeon/govern/findLeaved?companyId=a81e3f81-7d30-4&theTime=2021-03-13'
+      )
       .then((res) => {
         console.log(res)
         that.tableData = res.data.data

@@ -3,18 +3,51 @@
     :tableData="tableData"
     :tableColumns="tableColumns"
     @deleterow="onDelete"
-    @saverow="onSave">
+    @saverow="onSave"
+  >
     <a slot="action" slot-scope="text">action</a>
   </operation-table>
 </template>
 
 <script>
+import moment from 'moment'
 import operaionTable from './utils/operationTable'
 const columns = [
-  { title: '员工ID', width: 100, dataIndex: 'id', key: 'id', fixed: 'left', scopedSlots: { customRender: 'id' } },
-  { title: '体温情况', width: 100, dataIndex: 'temperature', key: 'temperature', scopedSlots: { customRender: 'temperature' } },
-  { title: '签到时间', width: 100, dataIndex: 'signTime', key: 'signTime', scopedSlots: { customRender: 'signTime' } },
-  { title: '签到地点', dataIndex: 'location', key: 'location', width: 150, scopedSlots: { customRender: 'location' } },
+  {
+    title: '员工ID',
+    width: 250,
+    dataIndex: 'id',
+    key: 'id',
+    fixed: 'left',
+    scopedSlots: { customRender: 'id' }
+  },
+  {
+    title: '体温情况',
+    width: 200,
+    fixed: 'left',
+    dataIndex: 'temperature',
+    key: 'temperature',
+    scopedSlots: { customRender: 'temperature' }
+  },
+  {
+    title: '签到时间',
+    width: 250,
+    dataIndex: 'signTime',
+    key: 'signTime',
+    fixed: 'left',
+    scopedSlots: { customRender: 'signTime' },
+    customRender: (text) => {
+      return moment(text).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
+  {
+    title: '签到地点',
+    fixed: 'left',
+    dataIndex: 'location',
+    key: 'location',
+    width: 200,
+    scopedSlots: { customRender: 'location' }
+  },
   {
     title: '操作',
     key: 'operation',
@@ -30,7 +63,7 @@ for (let i = 0; i < 100; i++) {
     id: `Edrward ${i}`,
     temperature: 36.6,
     signTime: '2020-11-20 15:21:16',
-    location: '昌元街道学院路160号西南大学荣昌校区',
+    location: '昌元街道学院路160号西南大学荣昌校区'
   })
 }
 export default {
@@ -45,21 +78,15 @@ export default {
       options: [
         {
           name: 'edit',
-          method: (e) => {
-
-          }
+          method: (e) => {}
         },
         {
           name: 'view',
-          method: (e) => {
-
-          }
+          method: (e) => {}
         },
         {
           name: 'delete',
-          method: (e) => {
-
-          }
+          method: (e) => {}
         }
       ]
     }
@@ -78,7 +105,10 @@ export default {
   },
   created () {
     const that = this
-    this.$axios.get('http://localhost:8080/api/pigeon/govern/findUserByCompanyId?companyId=232b7da9-9582-4')
+    this.$axios
+      .get(
+        'http://localhost:8080/api/pigeon/govern/findSigned?companyId=a81e3f81-7d30-4&theTime=2021-03-13'
+      )
       .then((res) => {
         console.log(res)
         that.tableData = res.data.data

@@ -74,7 +74,7 @@ export default {
   },
   created () {
     const that = this
-    this.$axios.get('http://localhost:8080/api/pigeon/govern/findUserByCompanyId?companyId=232b7da9-9582-4')
+    this.$axios.get('http://localhost:8989/api/pigeon/notice/queryNotice')
       .then((res) => {
         console.log(res)
         that.tableData = res.data.data

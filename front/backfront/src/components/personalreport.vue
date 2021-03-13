@@ -2,13 +2,15 @@
   <div class="container">
     <div class="header-title">员工性别分布</div>
     <Pie-charts class="pie" :chartData="piedata"></Pie-charts>
+    <div class="header-title">员工在职情况</div>
+    <Pie-charts class="pie" :chartData="piedata1"></Pie-charts>
     <div class="header-title">员工薪酬情况</div>
     <Line-charts class="line" :chartData="linedata"></Line-charts>
     <div class="header-title">入职情况</div>
     <Bar-charts class="bar" :chartData="bardata"></Bar-charts>
     <div class="header-title">员工地域分布</div>
     <charts-map
-    class="map"
+      class="map"
       :width="width"
       :height="height"
       :data="data"
@@ -33,12 +35,24 @@ export default {
         data: [19, 12, 10, 8, 12]
       },
       linedata: {
-        name: ['1001-4000', '4001-7000', '7001-10000', '10000-13000', '13001-16000', '16001-19000'],
+        name: [
+          '1001-4000',
+          '4001-7000',
+          '7001-10000',
+          '10000-13000',
+          '13001-16000',
+          '16001-19000'
+        ],
         data: [113, 90, 80, 63, 53, 35]
       },
       piedata: [
         { value: 276, name: '男' },
         { value: 256, name: '女' }
+      ],
+      piedata1: [
+        { value: 527, name: '在职员工' },
+        { value: 10, name: '待离职员工' },
+        { value: 12, name: '已离职员工' }
       ],
       width: '60%',
       height: '500px',
@@ -108,6 +122,6 @@ export default {
   margin-left: 25%;
 }
 .container {
-    /* background: #ffffff; */
+  /* background: #ffffff; */
 }
 </style>

@@ -20,14 +20,7 @@
                     two-tone-color="#52c41a"
                   />基本的管理功能
                 </div>
-                <div class="item">
-                  <a-icon
-                    class="icon"
-                    type="close-circle"
-                    theme="twoTone"
-                    two-tone-color="#fc544b"
-                  />多层级的公司架构管理
-                </div>
+
                 <div class="item">
                   <a-icon
                     class="icon"
@@ -47,18 +40,26 @@
                 <div class="item">
                   <a-icon
                     class="icon"
-                    type="close-circle"
-                    theme="twoTone"
-                    two-tone-color="#fc544b"
-                  />提供企业数据可视化决策
-                </div>
-                <div class="item">
-                  <a-icon
-                    class="icon"
                     type="check-circle"
                     theme="twoTone"
                     two-tone-color="#52c41a"
                   />最多可支持设置3个次级管理员
+                </div>
+                <div class="item">
+                  <a-icon
+                    class="icon"
+                    type="close-circle"
+                    theme="twoTone"
+                    two-tone-color="#fc544b"
+                  />多层级的公司架构管理
+                </div>
+                <div class="item">
+                  <a-icon
+                    class="icon"
+                    type="close-circle"
+                    theme="twoTone"
+                    two-tone-color="#fc544b"
+                  />提供企业数据可视化决策
                 </div>
                 <div class="item">
                   <a-icon
@@ -88,14 +89,7 @@
                     two-tone-color="#52c41a"
                   />基本的管理功能
                 </div>
-                <div class="item">
-                  <a-icon
-                    class="icon"
-                    type="check-circle"
-                    theme="twoTone"
-                    two-tone-color="#52c41a"
-                  />多层级的公司架构管理
-                </div>
+
                 <div class="item">
                   <a-icon
                     class="icon"
@@ -115,10 +109,10 @@
                 <div class="item">
                   <a-icon
                     class="icon"
-                    type="close-circle"
+                    type="check-circle"
                     theme="twoTone"
-                    two-tone-color="#fc544b"
-                  />提供企业数据可视化决策
+                    two-tone-color="#52c41a"
+                  />最多可支持设置5个次级管理员
                 </div>
                 <div class="item">
                   <a-icon
@@ -126,7 +120,15 @@
                     type="check-circle"
                     theme="twoTone"
                     two-tone-color="#52c41a"
-                  />最多可支持设置5个次级管理员
+                  />多层级的公司架构管理
+                </div>
+                <div class="item">
+                  <a-icon
+                    class="icon"
+                    type="close-circle"
+                    theme="twoTone"
+                    two-tone-color="#fc544b"
+                  />提供企业数据可视化决策
                 </div>
                 <div class="item">
                   <a-icon
@@ -156,14 +158,7 @@
                     two-tone-color="#52c41a"
                   />基本的管理功能
                 </div>
-                <div class="item">
-                  <a-icon
-                    class="icon"
-                    type="check-circle"
-                    theme="twoTone"
-                    two-tone-color="#52c41a"
-                  />多层级的公司架构管理
-                </div>
+
                 <div class="item">
                   <a-icon
                     class="icon"
@@ -186,7 +181,7 @@
                     type="check-circle"
                     theme="twoTone"
                     two-tone-color="#52c41a"
-                  />提供企业数据可视化决策
+                  />最多可支持设置7个次级管理员
                 </div>
                 <div class="item">
                   <a-icon
@@ -194,8 +189,17 @@
                     type="check-circle"
                     theme="twoTone"
                     two-tone-color="#52c41a"
-                  />最多可支持设置7个次级管理员
+                  />多层级的公司架构管理
                 </div>
+                <div class="item">
+                  <a-icon
+                    class="icon"
+                    type="check-circle"
+                    theme="twoTone"
+                    two-tone-color="#52c41a"
+                  />提供企业数据可视化决策
+                </div>
+
                 <div class="item">
                   <a-icon
                     class="icon"
@@ -207,7 +211,15 @@
               </div>
             </div>
           </div>
-          <a-button class="button" type="primary"> 去订购 </a-button>
+          <a-button
+            @click="
+              goPage('http://10.129.3.194:8989/api/pigeon/Alipay/PayPage')
+            "
+            class="button"
+            type="primary"
+          >
+            去订购
+          </a-button>
         </a-col>
       </a-row>
     </div>
@@ -215,7 +227,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    goPage (url) {
+      window.location.href = url
+    }
+  }
+}
 </script>
 
 <style scoped>
