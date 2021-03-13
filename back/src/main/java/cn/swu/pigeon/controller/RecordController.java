@@ -63,11 +63,14 @@ public class RecordController {
     @PostMapping("sign")
     public Map<String, Object> sign(@RequestBody Record record, HttpServletRequest request) {
         User thisUser = (User) request.getSession().getAttribute("thisUser");
+//        thisUser.setTelNumber("18607785522");
+//        thisUser.setId("5540c2a5-6d84-4");
         Map<String, Object> map = new HashMap<>();
         try {
             if (!ObjectUtils.isEmpty(record)) {
                 // 测试（默认签到活动）
                 // record.setActivityId(1);
+                //record.setId(thisUser.getId());
                 record.setId(thisUser.getId());
                 recordService.isSign(record);
                 
