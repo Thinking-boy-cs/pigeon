@@ -39,19 +39,19 @@
       <div class="staff-view">
         <div class="left-view">
           <p class="kind">在职员工</p>
-          <p class="num">20</p>
+          <p class="num">527</p>
         </div>
         <div class="right-view1">
           <p class="kind">正式</p>
-          <p class="num">18</p>
+          <p class="num">493</p>
         </div>
         <div class="right-view2">
           <p class="kind">待离职</p>
-          <p class="num">2</p>
+          <p class="num">10</p>
         </div>
         <div class="right-view3">
           <p class="kind">已离职</p>
-          <p class="num">1</p>
+          <p class="num">12</p>
         </div>
       </div>
     </div>

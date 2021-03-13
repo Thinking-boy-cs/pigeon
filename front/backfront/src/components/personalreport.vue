@@ -2,13 +2,15 @@
   <div class="container">
     <div class="header-title">员工性别分布</div>
     <Pie-charts class="pie" :chartData="piedata"></Pie-charts>
+    <div class="header-title">员工在职情况</div>
+    <Pie-charts class="pie" :chartData="piedata1"></Pie-charts>
     <div class="header-title">员工薪酬情况</div>
     <Line-charts class="line" :chartData="linedata"></Line-charts>
     <div class="header-title">入职情况</div>
     <Bar-charts class="bar" :chartData="bardata"></Bar-charts>
     <div class="header-title">员工地域分布</div>
     <charts-map
-    class="map"
+      class="map"
       :width="width"
       :height="height"
       :data="data"
@@ -30,15 +32,27 @@ export default {
     return {
       bardata: {
         name: ['2016-12', '2017-12', '2018-12', '2019-12', '2020-12'],
-        data: [9, 10, 8, 6, 12]
+        data: [19, 12, 10, 8, 12]
       },
       linedata: {
-        name: ['1001-5000', '5001-9000', '9001-13000', '13000-17000'],
-        data: [32, 60, 50, 15]
+        name: [
+          '1001-4000',
+          '4001-7000',
+          '7001-10000',
+          '10000-13000',
+          '13001-16000',
+          '16001-19000'
+        ],
+        data: [113, 90, 80, 63, 53, 35]
       },
       piedata: [
-        { value: 318, name: '男' },
-        { value: 305, name: '女' }
+        { value: 276, name: '男' },
+        { value: 256, name: '女' }
+      ],
+      piedata1: [
+        { value: 527, name: '在职员工' },
+        { value: 10, name: '待离职员工' },
+        { value: 12, name: '已离职员工' }
       ],
       width: '60%',
       height: '500px',
@@ -48,9 +62,9 @@ export default {
         { name: '云南', value: 16 },
         { name: '内蒙古', value: 17 },
         { name: '北京', value: 15 },
-        { name: '台湾', value: 20 },
+        { name: '台湾', value: 10 },
         { name: '吉林', value: 18 },
-        { name: '四川', value: 18 },
+        { name: '四川', value: 28 },
         { name: '天津', value: 19 },
         { name: '宁夏', value: 12 },
         { name: '安徽', value: 15 },
@@ -58,7 +72,7 @@ export default {
         { name: '山西', value: 20 },
         { name: '广东', value: 18 },
         { name: '广西', value: 14 },
-        { name: '新疆', value: 22 },
+        { name: '新疆', value: 12 },
         { name: '江苏', value: 16 },
         { name: '江西', value: 27 },
         { name: '河北', value: 24 },
@@ -66,14 +80,14 @@ export default {
         { name: '浙江', value: 8 },
         { name: '海南', value: 15 },
         { name: '湖北', value: 25 },
-        { name: '湖南', value: 16 },
+        { name: '湖南', value: 36 },
         { name: '澳门', value: 19 },
         { name: '甘肃', value: 22 },
         { name: '福建', value: 18 },
-        { name: '西藏', value: 26 },
+        { name: '西藏', value: 16 },
         { name: '贵州', value: 25 },
         { name: '辽宁', value: 11 },
-        { name: '重庆', value: 16 },
+        { name: '重庆', value: 36 },
         { name: '陕西', value: 27 },
         { name: '青海', value: 12 },
         { name: '香港', value: 27 },
@@ -108,6 +122,6 @@ export default {
   margin-left: 25%;
 }
 .container {
-    /* background: #ffffff; */
+  /* background: #ffffff; */
 }
 </style>

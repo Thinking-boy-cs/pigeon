@@ -20,6 +20,14 @@ export default new Router({
           }
         },
         {
+          path: '/shop',
+          name: 'shop',
+          component: resolve => require(['@/components/shop.vue'], resolve),
+          meta: {
+            name: '商店'
+          }
+        },
+        {
           path: '/groupmanage',
           name: 'groupmanage',
           component: resolve => require(['@/components/groupmanage.vue'], resolve),
@@ -119,9 +127,9 @@ export default new Router({
           }
         },
         {
-          path: '/persosnalreport',
-          name: 'personalreport',
-          component: resolve => require(['@/components/personalreport.vue'], resolve),
+          path: '/announcemanage',
+          name: 'announcemanage',
+          component: resolve => require(['@/components/announcemanage.vue'], resolve),
           meta: {
             parent: '通知公告',
             name: '公告管理'
