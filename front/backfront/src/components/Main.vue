@@ -135,10 +135,15 @@ export default {
   height: 31px;
   float: left;
 }
+.logo {
+  position: relative;
+  left: -30px;
+}
 .logo p {
   float: right;
   color: white;
-  font-family: PingFang SC;
+  font-family: 'Noto Sans SC';
+  /* font-family: 'PingFang SC'; */
   font-size: 20px;
   font-weight: bold;
 }
@@ -149,6 +154,6 @@ export default {
   color: white;
   padding-left: 13px;
   float: right;
-  font-family: PingFang SC;
+  font-family: 'PingFang SC;'
 }
 </style>
