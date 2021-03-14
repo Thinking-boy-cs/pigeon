@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -97,6 +98,12 @@ public class GovernServiceImpl implements GovernService{
     @Override
     public int leavedCount(String theTime) {
         return governDao.leavedCount(theTime);
+    }
+
+    @Override
+    public List<Map> queryAll(String companyId, String theTime){
+
+        return governDao.queryAll(companyId,theTime);
     }
 
     /**

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface GovernService {
     /**
@@ -49,6 +50,8 @@ public interface GovernService {
     List<Leave> findLeaved(@Param("companyId") String companyId, @Param("theTime") String theTime);
 //    统计某天请假人数
     int leavedCount(String theTime);
+    //签到未签到都查询
+    List<Map> queryAll(@Param("companyId") String companyId, @Param("theTime") String theTime);
 
 
     //审批请假

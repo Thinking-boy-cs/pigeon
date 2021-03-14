@@ -61,6 +61,15 @@
         WHERE ss.id not in (SELECT id FROM signrecord WHERE to_days(signTime) = to_days(#{param2})) and companyId=#{param1}
     </select>
 
+    <!-- 签到和未签到都查询-->
+    <select id="queryAll" parameterType="String" resultType="Map">
+        select ss.email,sg.temperature
+        from staff ss
+        left join signrecord sg
+        on ss.id = sg.id
+        where to_days(signTime) = to_days(#{param2}) and sg.companyId=#{param1}
+    </select>
+
     <select id="findLeaved" parameterType="String" resultType="Leave">
         select *
         from vacation
