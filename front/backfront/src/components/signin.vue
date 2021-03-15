@@ -107,7 +107,7 @@ export default {
     const that = this
     this.$axios
       .get(
-        'http://localhost:8080/api/pigeon/govern/findSigned?companyId=232b7da9-9582-4&theTime=2021-03-13'
+        'http://localhost:8080/api/pigeon/govern/findSigned?companyId=232b7da9-9582-4&theTime=2021-03-14'
       )
       .then((res) => {
         console.log(res)
