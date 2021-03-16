@@ -62,8 +62,8 @@ export default {
     return {
       show: false,
       postionMap: {
-        lng: 105.588047,
-        lat: 29.407702
+        lng: 105.584147,
+        lat: 29.401702
       },
       location: '',
       address: '',

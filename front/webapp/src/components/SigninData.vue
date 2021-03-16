@@ -24,13 +24,13 @@
             <a-list :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item">
                 <a-list-item-meta :description="item.email">
-                  <a slot="title" :href="item.href">{{ item.name.last }}</a>
+                  <a slot="title" :href="item.href">{{ item.username }}</a>
                   <a-avatar
                     slot="avatar"
-                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    icon="user"
                   />
                 </a-list-item-meta>
-                <div>Content</div>
+                <div>未签到</div>
               </a-list-item>
               <div v-if="loading && !busy" class="demo-loading-container">
                 <a-spin />
@@ -59,7 +59,8 @@
 
 <script>
 import reqwest from 'reqwest'
-const fakeDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,email,nat&noinfo'
+// const fakeDataUrl = 'https://randomuser.me/api/?results=10&inc=name,gender,email,nat&noinfo'
+const fakeDataUrl = 'http://test.jecosine.com/api/pigeon/govern/findUnsigned?companyId=232b7da9-9582-4&theTime=2020-03-17'
 export default {
   data () {
     return {
@@ -70,7 +71,7 @@ export default {
   },
   beforeMount () {
     this.fetchData(res => {
-      this.data = res.results
+      this.data = res.data
     })
   },
   methods: {
@@ -95,7 +96,7 @@ export default {
         return
       }
       this.fetchData(res => {
-        this.data = data.concat(res.results)
+        this.data = data.concat(res.data)
         this.loading = false
       })
     }

@@ -262,7 +262,8 @@ export default {
     text-align: center;
     width: 100%;
     /* padding-left: 70px; */
-    top: 70px;
+    /* top: 70px; */
+    line-height: 200px;
     position: relative;
 }
 #sign-title1 {

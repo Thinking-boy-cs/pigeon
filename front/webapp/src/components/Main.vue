@@ -8,14 +8,10 @@
     <div id="carousel-container">
       <a-carousel autoplay>
         <div class="cabg">
-          <!-- <img src='../img/01.jpg'/> -->
+          <img class="cabgimg" src='../img/lunbo1.jpg'/>
         </div>
         <div class="cabg">
-        </div>
-        <div class="cabg">
-        </div>
-        <div class="cabg">
-
+          <img class="cabgimg" src='../img/lunbo2.jpg'/>
         </div>
       </a-carousel>
     </div>
@@ -99,6 +95,11 @@ export default {
 
 <style lang="less" scoped>
 @import "../style/index.less";
+
+.cabgimg {
+  width: 100%;
+  height: 100%;
+}
 
 #carousel-container {
   position: relative;

@@ -106,7 +106,8 @@ export default {
       iconLoading: false,
       form: {
         id: '',
-        password: ''
+        password: '',
+        code: ''
         // loadingWS: this.$message.loading({ content: '登录成功，跳转中', duration: 0, key })
       },
       wsUrl: '/api/pigeon/ws',
@@ -169,7 +170,7 @@ export default {
       //   }
       // })
       this.form.password = '123456'
-      this.$axios.post('/api/pigeon/user/login', this.form).then((res) => {
+      this.$axios.post('/api/pigeon/user/login', {telNumber: this.form.telNumber, password: this.form.password}).then((res) => {
         console.log(res)
         if (res.data && res.data.status === 0) {
           window.localStorage.setItem('user', JSON.stringify(res.data.data))
