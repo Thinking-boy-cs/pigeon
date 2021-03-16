@@ -88,7 +88,13 @@ export default {
     },
     onmessage (res) {
       console.log(this.animationName, res)
+      let resdata = JSON.parse(res.body)
       this.$store.dispatch('addCountFunc', 1)
+      this.$notification.open({
+        message: '新消息',
+        description: `${resdata.content}`,
+        icon: <a-icon type="info-circle" style="color: #108ee9" />
+      })
       this.$store.dispatch('addMessageFunc', JSON.parse(res.body))
     },
     onerror (res) {
@@ -142,8 +148,8 @@ export default {
     })
     // this.connection()
     this.$store.dispatch('connectFunc', {
-      userId: '1606060960',
-      subscribes: ['/user/1606060960/queue/getResponse'],
+      userId: '9514233f-14b7-4',
+      subscribes: ['/user/9514233f-14b7-4/queue/getResponse'],
       onmessage: this.onmessage,
       connectCallback: this.onmessage,
       errorCallBack: this.onerror

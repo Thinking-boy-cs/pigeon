@@ -88,6 +88,9 @@ const store = new Vuex.Store({
     addMessage (state, msg) {
       state.messageData.chats[0].data.push(msg)
     },
+    resetCount(state) {
+      state.outerCount = 0
+    },
     send (state) {
 
     }
@@ -104,7 +107,11 @@ const store = new Vuex.Store({
     },
     addMessageFunc (context, msg) {
       context.commit('addMessage', msg)
+    },
+    resetCountFunc(context) {
+      context.commit('resetCount')
     }
+
   }
 })
 

@@ -87,7 +87,7 @@ export default {
         console.log(res.data)
         that.pageData = res.data
         that.pageData.recents = that.pageData.recents.filter((item) => {
-          return (!item.admin) || (that.user.id === '1606060960')
+          return (!item.admin) || (that.user.id === '9514233f-14b7-4')
         })
       })
       .catch(function (error) {

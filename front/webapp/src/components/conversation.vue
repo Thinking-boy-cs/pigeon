@@ -49,12 +49,12 @@ export default {
         data: [
           {
             fromUser: {
-              id: '1606060960',
+              id: '9514233f-14b7-4',
               name: 'jecosine',
               icon: '867ecc603cde457aba0eb8309bc02cd4.png'
             },
             dept: {
-              id: '925014575aa049b',
+              id: '92ad18b6-5054-4',
               name: '前端',
               icon: '',
               background: '#1890ff'
@@ -139,5 +139,10 @@ export default {
   position: absolute;
   width: 100%;
   top: 58px;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+}
+#navigation-container {
+  z-index: 999;
 }
 </style>

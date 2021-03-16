@@ -31,7 +31,7 @@
                   "
                 />
               </a-form-model-item>
-              <a-form-model-item label="签到对象" prop="participants">
+              <a-form-model-item ref="target" required label="签到对象名称" prop="participants">
                 <a-cascader
                   :options="groups"
                   change-on-select
@@ -64,12 +64,10 @@
                   :default-open-value="moment('00:00:00', 'HH:mm:ss')"
                 />
               </a-form-model-item> -->
-              <a-form-model-item :wrapper-col="{ span: 12, offset: 6 }">
-                <a-button type="primary" @click="onSubmit"> Create </a-button>
-                <a-button style="margin-left: 25px" @click="resetForm">
-                  Reset
-                </a-button>
-              </a-form-model-item>
+                <a-button type="primary" @click="onSubmit" style="width: 40%"> Create </a-button>
+                <a-button @click="resetForm" style="width: 40%;margin-left: 25px">
+                      Reset
+                    </a-button>
             </a-form-model>
           </div>
         </a-tab-pane>
@@ -197,13 +195,13 @@ export default {
   },
   created () {
     const that = this
-    this.$axios.get('/api/pigeon/group/findAllGroup').then((res) => {
+    this.$axios.get('/api/pigeon/group/findAllGroup?companyId=232b7da9-9582-4').then((res) => {
       console.log(res)
       if (res.data && res.data.status === 0) {
         that.groups = res.data.data
         that.groups.forEach((item, i) => {
           item.value = item.id
-          item.label = item.groupName
+          item.label = item.name
         })
       }
     })

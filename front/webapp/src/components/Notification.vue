@@ -25,7 +25,7 @@
          </a-col>
         </a-row>
       </div>
-      <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i" @click="$router.push({path:'/getConv/'+item.id})">
+      <div class="notify-container" v-for="(item, i) in messageData.chats" :key="i" @click="goDetail(item.id)">
         <a-avatar
           class="notify-avatar"
           :size="64"
@@ -114,7 +114,7 @@ export default {
             unRead: 0,
             id: '1',
             data: [
-              {'id': '192f01199d0c499', 'userId': '1606060960', 'receiverList': ['1606016550', '1606060960'], 'isToGroup': null, 'content': 'dada 结束了', 'url': '41d145f2941846c', 'time': '2020-11-26 01:34:10'}
+              {'id': '192f01199d0c499', 'userId': '9514233f-14b7-4', 'receiverList': ['9514233f-14b7-4', '9514233f-14b7-1'], 'isToGroup': null, 'content': 'dada 结束了', 'url': '41d145f2941846c', 'time': '2020-11-26 01:34:10'}
             ]
           },
           {
@@ -136,6 +136,10 @@ export default {
     }
   },
   methods: {
+    goDetail (id) {
+      this.$store.dispatch('resetCountFunc')
+      this.$router.push({path:'/getConv/'+id})
+    },
     afterVisibleChange (val) {
       console.log('visible', val)
     },
