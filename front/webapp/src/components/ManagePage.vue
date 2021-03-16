@@ -177,6 +177,9 @@ export default {
             console.log('Submitted!')
             if (res.data && res.data.status === 0) {
               that.$message.success('提交签到成功！')
+              setTimeout(() => {
+                that.$router.push({name:"SigninData"})
+              }, 1000);
             } else {
               that.$message.error('提交签到失败！' + res.data.msg)
             }

@@ -38,7 +38,14 @@
         },
         {
             "name": "地图",
-            "icon": "compass"
+            "icon": "compass",
+            "link": "/ViewMap"
+        },
+        {
+          "name": "签到统计",
+          "icon": "compass",
+          "link": "/SigninDetail/1",
+          "admin": true
         }
     ]
 }

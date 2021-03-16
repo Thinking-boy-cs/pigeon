@@ -109,8 +109,8 @@ export default {
             icon: 'bell',
             background: '#f56a00',
             avatar: '',
-            preview: '【签到提醒】2020-11-24 部门签到',
-            lastest: '2020-11-24 17:00',
+            preview: '【签到提醒】2021-03-16 部门签到',
+            lastest: '2020-03-16 17:00',
             unRead: 0,
             id: '1',
             data: [
@@ -124,7 +124,7 @@ export default {
             background: '#1890ff',
             avatar: '',
             preview: '【通知】下午进行体检',
-            lastest: '2020-11-24 17:00',
+            lastest: '2021-3-16 17:00',
             unRead: 0,
             id: '0',
             data: [

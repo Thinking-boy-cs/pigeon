@@ -106,6 +106,9 @@ export default {
     }
   },
   methods: {
+    onSubmit() {
+      this.$router.push({path: `/Signin/41d145f2941846c?leave=1`})
+    },
     handleChange (value) {
       console.log(`selected ${value}`)
     },

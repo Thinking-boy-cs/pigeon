@@ -13,7 +13,7 @@
     </div>
     <div id="cover">
       <div id="header-mid">
-        <p id="login">账号密码登录</p>
+        <p id="login">{{(!verifyCode)?'账号密码登录':'验证码登录'}} <span style="float: right; right: 0;font-size: 14px; color: pink;" @click="verifyCode=!verifyCode">{{(verifyCode)?'账号密码登录':'验证码登录'}}</span></p>
         <a-form
           id="components-form-demo-normal-login"
           :form="form"
@@ -28,6 +28,7 @@
               @change="onChange"
               v-model="form.telNumber"
               placeholder="请输入手机号码"
+              
             >
               <a-icon
                 slot="prefix"
@@ -36,7 +37,30 @@
               />
             </a-input>
           </a-form-item>
-          <a-form-item>
+          <a-form-item v-show="verifyCode">
+            <a-input
+              size="large"
+              id="code"
+              allow-clear
+              @change="onChange"
+              v-model="form.code"
+              placeholder="请输入验证码"
+              style="width: 65%;margin-right:5%"
+            >
+              <a-icon
+                slot="prefix"
+                type="check-circle"
+                style="color: rgba(0, 0, 0, 0.25)"
+              />
+            </a-input>
+            <a-button 
+              size="large"
+              type="primary"
+              @click="sendVerify()"
+              style="width: 30%"
+              class="login-form-button" :loading="iconLoading">{{getButton}}</a-button>
+          </a-form-item>
+          <a-form-item v-show="!verifyCode">
             <a-input-password
               size="large"
               id="password"
@@ -53,8 +77,8 @@
           </a-form-item>
 
           <a-form-item>
-            <a-checkbox class="checkbox-remember"> 记住我 </a-checkbox>
-            <a class="login-form-forgot" href=""> 忘记密码 </a>
+            <a-checkbox class="checkbox-remember" v-show="!verifyCode"> 记住我 </a-checkbox>
+            <a class="login-form-forgot" href="" v-show="!verifyCode"> 忘记密码 </a>
             <a-button
               size="large"
               type="primary"
@@ -77,6 +101,9 @@ const key = 'updatable'
 export default {
   data () {
     return {
+      getButton: '获取',
+      verifyCode: false,
+      iconLoading: false,
       form: {
         id: '',
         password: ''
@@ -101,6 +128,24 @@ export default {
     onClose: function (e) {
       console.log('Closed')
     },
+    sendVerify () {
+      this.iconLoading = true
+      let count = 10
+      this.$axios.get('/api/pigeon/user/sendSMS?telNumber=' + this.form.telNumber).then(res => {
+        console.log(res)
+      })
+      let t = setInterval(() => {
+        if (count === 1) {
+          clearInterval(t)
+        }
+        this.getButton = `${count}(s)`
+        count --
+      }, 1000);
+      setTimeout(() => {
+        this.iconLoading = false
+        this.getButton = '获取'
+      }, 10000);
+    },
     sendMessage: function (msg) {
       this.$store.state.ws.send(msg)
     },
@@ -123,6 +168,7 @@ export default {
       //     console.log('Received values of form: ', values)
       //   }
       // })
+      this.form.password = '123456'
       this.$axios.post('/api/pigeon/user/login', this.form).then((res) => {
         console.log(res)
         if (res.data && res.data.status === 0) {

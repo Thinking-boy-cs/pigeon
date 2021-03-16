@@ -17,7 +17,7 @@
         </div>
         <div id="leave">
           <a-icon type="audit" style="font-size: 24px" />
-          <div style="font-weight: bold" @click="$router.push({ path: '/LeaveApplication' })">请假</div>
+          <div style="font-weight: bold" @click="goLeave()">请假</div>
         </div>
       </div>
       <div id="main-container">
@@ -26,7 +26,7 @@
     <a-tab-pane key="1">
       <span slot="tab">
         <a-icon type="environment" />
-        签到打卡
+        {{(isLeft)? '已请假': '签到打卡'}}
       </span>
               <div>
         <div
@@ -34,7 +34,7 @@
           :class="{ signed: signed, unsign: !signed }"
           @click="signin"
         >
-          <div id="sign-title" v-if="!loading">打卡</div>
+          <div id="sign-title" v-if="!loading">{{(isLeft)?'已清假':'打卡'}}</div>
           <div id="sign-title" v-else><a-icon type="loading" /></div>
         </div>
         <div id="sign-map">
@@ -75,7 +75,8 @@ export default {
       signed: false,
       loading: false,
       text: '打卡',
-      size: 'large'
+      size: 'large',
+      isLeft: false
     }
   },
   computed: {
@@ -92,6 +93,13 @@ export default {
     }
   },
   methods: {
+    goLeave () {
+      setTimeout(() => {
+        this.isLeft = true
+        this.signed = true
+      }, 1000);
+      this.$router.push({ path: `/LeaveApplication?id=${this.$route.params.id}` })
+    },
     signin () {
       const that = this
 
@@ -142,12 +150,19 @@ export default {
       .then((res) => {
         console.log('???', res)
         that.activity = res.data ? res.data.data : null
-        if (!that.activity) that.$message.error('获取失败')
+        // if (!that.activity) that.$message.error('获取失败')
       })
       .catch((res) => {
         that.$message.error('获取失败，请检查您的网络连接')
       })
     this.getStatus()
+    this.$nextTick(()=>{
+      if(window.location.href.indexOf('leave=1') >= 0) {
+        this.signed = true
+        this.isLeft = true
+      }
+    })
+    
   }
 }
 </script>
@@ -241,11 +256,14 @@ export default {
   display: flex;
 }
 #sign-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: white;
-  align-self: center;
-  padding-left: 70px;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    width: 100%;
+    /* padding-left: 70px; */
+    top: 70px;
+    position: relative;
 }
 #sign-title1 {
   font-size: 25px;
