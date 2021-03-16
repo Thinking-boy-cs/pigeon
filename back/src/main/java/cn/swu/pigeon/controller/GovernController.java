@@ -241,6 +241,27 @@ public class GovernController {
     }
 
     /**
+     * 1.3签到未签到都查询
+     */
+    @RequestMapping("queryAll")
+    public Map<String,Object> queryAll(String companyId,String theTime) {
+
+        Map<String, Object> map = new HashMap<>();
+        try {
+            List<Map> info = governService.queryAll(companyId, theTime);
+            map.put("status", 0);
+            map.put("msg", "查询成功");
+            map.put("data", info);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("status", 1);
+            map.put("msg", e.getMessage());
+            map.put("data", null);
+        }
+        return map;
+    }
+
+    /**
      * 1.3请假记录
      */
     @RequestMapping("findLeaved")

@@ -600,6 +600,7 @@ userId:"xxxxxxx"
 POST http://localhost:8989/api/pigeon/govern/findSigned      
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	companyId String &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  是 &nbsp; &nbsp;  &nbsp; &nbsp;  企业号  
 	theTime &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
 
 返回值     
@@ -616,6 +617,7 @@ status的合法值
 
 请求数据实例   
 ```
+companyId:"123456"
 theTime:"xxxxxxx"
 ```
 返回数据实例
@@ -630,7 +632,8 @@ theTime:"xxxxxxx"
 请求地址      
 POST http://localhost:8989/api/pigeon/govern/findUnSigned      
 	请求参数         
-	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明  
+    companyId String &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  是 &nbsp; &nbsp;  &nbsp; &nbsp;  企业号  
 	theTime &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
 
 返回值     
@@ -647,6 +650,40 @@ status的合法值
 
 请求数据实例   
 ```
+companyId:"123456"
+theTime:"xxxxxxx"
+```
+返回数据实例
+```
+  {
+	status:0
+	msg:"查询成功"
+        data:[{xxx},{xxx},....]
+  }
+```   
+### 7.2. 某日未签到/签到记录综合
+请求地址      
+POST http://localhost:8989/api/pigeon/govern/queryAll    
+	请求参数         
+	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明  
+    companyId String &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  是 &nbsp; &nbsp;  &nbsp; &nbsp;  企业号  
+	theTime &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
+
+返回值     
+	Map<int,Object>    
+	属性	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;类型&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	说明   
+	status&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;number&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态码   
+	msg&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;String &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;状态信息   
+	data &nbsp; &nbsp; &nbsp; &nbsp; List\<User> &nbsp; &nbsp; 签到记录
+
+status的合法值   
+	值&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;说明   
+	0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查询成功   
+	1&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;查询失败   
+
+请求数据实例   
+```
+companyId:"123456"
 theTime:"xxxxxxx"
 ```
 返回数据实例
@@ -662,6 +699,7 @@ theTime:"xxxxxxx"
 POST http://localhost:8989/api/pigeon/govern/findLeaved      
 	请求参数         
 	属性 &nbsp; &nbsp; 类型 &nbsp; &nbsp; 默认值 &nbsp; &nbsp; 必填 &nbsp; &nbsp; 说明    
+	companyId String &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  是 &nbsp; &nbsp;  &nbsp; &nbsp;  企业号     
 	theTime &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; 是  &nbsp; &nbsp; 指定日期    
 
 返回值     
@@ -678,6 +716,7 @@ status的合法值
 
 请求数据实例   
 ```
+companyId:"123456"
 theTime:"xxxxxxx"
 ```
 返回数据实例

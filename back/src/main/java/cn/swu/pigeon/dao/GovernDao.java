@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface GovernDao {
@@ -51,6 +52,8 @@ public interface GovernDao {
     //查询某天处于请假的记录
     List<Leave> findLeaved(String companyId,String theTime);
     int leavedCount(String theTime);
+    //签到未签到都查询
+    List<Map> queryAll(String companyId,String theTime);
 
 
     //审批请假
@@ -69,4 +72,6 @@ public interface GovernDao {
      */
     void letStatusOn(String id);
     void letStatusOff(String id);
+
+
 }
