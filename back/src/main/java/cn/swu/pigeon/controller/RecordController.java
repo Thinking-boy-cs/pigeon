@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.alipay.api.domain.RecResultInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Date;
@@ -156,7 +157,7 @@ public class RecordController {
                 map.put("msg", "提交成功");
                 map.put("deltaToStart", deltaToStart);
                 map.put("deltaToEnd", deltaToEnd);
-                log.info(((List<String>)req.get("participants")).toString());
+                log.info("Get request: " + ((List<String>)req.get("participants")).toString());
                 List<String> receivers = groupService.findUserIdsByGroupList((List<String>)req.get("participants"));
                 // connect with record
                 // Record record = new Record();
@@ -186,7 +187,9 @@ public class RecordController {
                 eventEnd.setUserId(thisUser.getId());
                 eventEnd.setUrl(activity.getId());
 
-                
+                for (String receiver : receivers) {
+                  log.info("before set: " + receiver);
+                }
                 eventStart.setReceiverList(receivers);
                 eventEnd.setReceiverList(receivers);
                 map.put("receivers", receivers);
@@ -195,6 +198,8 @@ public class RecordController {
 
                 deltaToStart = (deltaToStart <= 0) ? 1 : deltaToStart;
                 deltaToEnd = (deltaToEnd <= 0) ? 10 : deltaToEnd;
+                log.info("deltaToStart: " + deltaToStart);
+                log.info("deltaToEnd: " + deltaToEnd);
                 map.put("deltaToStart", deltaToStart);
                 map.put("deltaToEnd", deltaToEnd);
                 try {

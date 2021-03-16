@@ -39,6 +39,7 @@ public class DeadListener {
 
   @RabbitListener(queues = "order.dead.queue")
   public void orderConsumer(Notification data) {
+    log.info("---------In dead queue consomer!!!!!!--------");
     if (data == null) {
       return;
     }

@@ -38,7 +38,7 @@ public class MainController {
     @RequestMapping("/sendMessage")
     public String sender() {
         log.info("msg");
-        template.convertAndSendToUser("1606060960448", "/queue/getResponse", "test!");
+        template.convertAndSendToUser("9514233f-14b7-4", "/queue/getResponse", "test!");
         return "...";
     }
 

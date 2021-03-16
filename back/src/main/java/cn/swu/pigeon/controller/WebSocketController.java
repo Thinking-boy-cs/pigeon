@@ -38,7 +38,7 @@ public class WebSocketController {
         // User user = new User();
         log.info("--- send ---");
         
-        this.template.convertAndSendToUser("1606060960", "/queue/getResponse", "test!");
+        this.template.convertAndSendToUser("9514233f-14b7-4", "/queue/getResponse", "test!");
     }
     @ResponseBody
     @RequestMapping("/batchSender")
