@@ -23,7 +23,8 @@
               &nbsp;<span>部门</span>
             </div>
             <div class="detail-content">
-              {{ userData.dept ? userData.dept : "无" }}
+              董事会
+              <!-- {{ userData.dept ? userData.dept : "无" }} -->
             </div>
           </a-col>
           <a-col :span="12" class="detail-bar">

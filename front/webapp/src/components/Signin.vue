@@ -31,10 +31,10 @@
               <div>
         <div
           id="sign-button"
-          :class="{ signed: signed, unsign: !signed }"
+          :class="{ signed: signed, unsign: !signed, leave: isLeft }"
           @click="signin"
         >
-          <div id="sign-title" v-if="!loading">{{(isLeft)?'已清假':'打卡'}}</div>
+          <div id="sign-title" v-if="!loading">{{(isLeft)?'已请假':'打卡'}}</div>
           <div id="sign-title" v-else><a-icon type="loading" /></div>
         </div>
         <div id="sign-map">
@@ -206,6 +206,9 @@ export default {
 #avatar {
   margin-left: 20px;
   margin-top: 10px;
+}
+.leave {
+  background-color: purple;
 }
 #userinfo {
   margin-left: 10px;
